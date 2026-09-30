@@ -1,0 +1,2528 @@
+<!doctype html><html lang="ko"><head><title>Suno 프롬프트 모음 70개 이상 | MusicCanvas Prompt Studio</title><meta name="description" content="Suno에 바로 붙여넣는 무료 스타일 프롬프트 70개 이상. 발라드, 로파이, 시네마틱, 팝, 어쿠스틱, 앰비언트. 가사·제목 생성 포함."><meta property="og:type" content="website"><meta property="og:title" content="Suno 프롬프트 모음 | MusicCanvas Prompt Studio"><meta property="og:description" content="Suno에 바로 붙여넣는 무료 스타일 프롬프트 70개 이상. 발라드, 로파이, 시네마틱, 팝, 어쿠스틱, 앰비언트. 가사·제목 생성 포함."><meta name="twitter:card" content="summary"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+
+<style>
+  :root{
+    --ink:#0a0e1a;
+    --panel:#131a2e;
+    --panel-2:#1b2440;
+    --line:#2a3358;
+    --text:#f4f2ec;
+    --muted:#9aa4c4;
+    --violet:#8b6cf2;
+    --violet-soft:#c9baff;
+    --coral:#ff8f6b;
+    --gold:#ffcf8a;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Manrope',system-ui,-apple-system,sans-serif;
+    padding-inline:20px;
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif; text-wrap:balance; margin:0;}
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    margin-inline:calc(-1 * 20px);
+    padding:56px 20px 84px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 108%, rgba(255,207,138,.55), transparent 60%),
+      linear-gradient(180deg, #0a0e1a 0%, #241c3d 38%, #4a3564 62%, #a85a52 84%, #ff8f6b 100%);
+  }
+  .hero-inner{position:relative; z-index:1; max-width:720px; margin:0 auto; text-align:center;}
+  .eyebrow{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); background:rgba(10,14,26,.35);
+    border:1px solid rgba(255,207,138,.4); border-radius:999px; padding:6px 14px; margin-bottom:20px;
+  }
+  .hero h1{font-size:clamp(32px,6vw,52px); font-weight:600; color:#fff;}
+  .hero .sub{margin-top:16px; font-size:17px; color:rgba(244,242,236,.88); max-width:520px; margin-inline:auto;}
+  .hero-cta{margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    font-family:'Manrope',sans-serif; font-weight:700; font-size:15px; border-radius:10px;
+    padding:13px 24px; border:1px solid transparent; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{background:#fff; color:#241c3d;}
+  .btn-primary:hover{background:var(--gold);}
+  .btn-ghost{background:rgba(10,14,26,.3); color:#fff; border-color:rgba(255,255,255,.35);}
+  .btn-ghost:hover{background:rgba(10,14,26,.5);}
+
+  /* ---------- steps ---------- */
+  .steps{
+    max-width:1080px; margin:-48px auto 0; position:relative; z-index:2;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  }
+  .step{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 18px;
+  }
+  .step .n{font-family:'Space Mono',monospace; color:var(--coral); font-size:13px; letter-spacing:.08em;}
+  .step h3{font-size:16px; margin-top:6px; color:var(--text); font-weight:600; font-family:'Manrope',sans-serif;}
+  .step p{font-size:13.5px; color:var(--muted); margin-top:4px;}
+  .step-link{
+    display:inline-block; margin-top:10px; font-size:12.5px; font-weight:700;
+    color:var(--coral); text-decoration:none; border-bottom:1px solid rgba(255,143,107,.4);
+  }
+  .step-link:hover{border-color:var(--coral);}
+  .beginner-badge{background:var(--gold); color:var(--ink);}
+
+  /* ---------- nav ---------- */
+  .genre-nav{
+    position:sticky; top:env(safe-area-inset-top,0px);
+    z-index:5; margin-top:44px; padding-block:12px;
+    background:linear-gradient(var(--ink) 78%, transparent);
+    display:flex; gap:8px; overflow-x:auto; scrollbar-width:none;
+  }
+  .genre-nav::-webkit-scrollbar{display:none;}
+  .genre-nav a{
+    flex:0 0 auto; font-size:13.5px; font-weight:700; padding:9px 16px; border-radius:999px;
+    background:var(--panel); border:1px solid var(--line); color:var(--muted); text-decoration:none;
+    white-space:nowrap; transition:all .15s ease;
+  }
+  .genre-nav a.active{background:var(--violet); border-color:var(--violet); color:#fff;}
+
+  /* ---------- genre sections ---------- */
+  .genre{padding-top:40px; scroll-margin-top:70px;}
+  .genre-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px;}
+  .genre-head h2{font-size:26px; font-weight:600;}
+  .genre-head .count{font-family:'Space Mono',monospace; font-size:12px; color:var(--muted);}
+  .genre-vibe{color:var(--muted); font-size:14.5px; max-width:640px; margin-top:6px;}
+
+  .card-grid{
+    margin-top:20px; display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:14px;
+  }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 16px 14px;
+    display:flex; flex-direction:column; gap:10px; position:relative;
+  }
+  .card::before{
+    content:""; position:absolute; left:16px; right:16px; top:0; height:3px; border-radius:0 0 3px 3px;
+    background:var(--card-accent,var(--violet));
+  }
+  .card .label{font-size:12.5px; font-weight:700; color:var(--card-accent,var(--violet-soft));}
+  .prompt-text{
+    font-family:'Space Mono',monospace; font-size:12.5px; line-height:1.6; color:var(--text);
+    background:var(--panel-2); border-radius:8px; padding:10px 12px; margin:0;
+    white-space:pre-wrap; word-break:break-word; flex:1;
+  }
+  .card-foot{display:flex; justify-content:flex-end;}
+  .copy-btn{
+    font-family:'Manrope',sans-serif; font-size:12.5px; font-weight:700; padding:7px 14px;
+    border-radius:8px; border:1px solid var(--line); background:var(--panel-2); color:var(--text);
+    cursor:pointer;
+  }
+  .copy-btn:hover{border-color:var(--violet); color:var(--violet-soft);}
+  .card--lyric{border-style:dashed;}
+  .bonus-badge{
+    font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:.04em; font-weight:700;
+    color:var(--ink); background:var(--card-accent,var(--violet)); border-radius:5px;
+    padding:2px 7px; margin-left:8px; vertical-align:middle;
+  }
+  .gen-title-row{font-size:12.5px; color:var(--muted); margin-top:-4px; display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .gen-title-row .gen-title{color:var(--text); font-weight:700;}
+  .title-copy-btn{padding:3px 9px; font-size:11px; flex:0 0 auto;}
+  .card--lyric .card-foot{justify-content:space-between;}
+  .regen-btn{border-color:var(--card-accent,var(--violet)); color:var(--card-accent,var(--violet));}
+  .regen-btn:hover{background:var(--panel-2);}
+
+  /* ---------- proof ---------- */
+  .proof{margin-top:64px; border-top:1px solid var(--line); padding-top:40px;}
+  .proof h2{font-size:22px; margin-bottom:6px;}
+  .proof p.lead{color:var(--muted); font-size:14.5px; max-width:560px;}
+  .proof-list{margin-top:20px; display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px;}
+  .proof-item{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px;
+    text-decoration:none; display:flex; flex-direction:column; gap:4px;
+  }
+  .proof-item:hover{border-color:var(--coral);}
+  .proof-item .t{font-weight:700; font-size:14.5px;}
+  .proof-item .m{font-size:12.5px; color:var(--muted); font-family:'Space Mono',monospace;}
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    margin:72px calc(-1 * 20px) 0; padding:52px 20px 60px;
+    background:linear-gradient(160deg,#241c3d 0%, #6b3f5e 55%, #ff8f6b 100%);
+    text-align:center;
+  }
+  .final-cta-inner{max-width:560px; margin:0 auto;}
+  .final-cta h2{color:#fff; font-size:clamp(24px,4vw,34px);}
+  .final-cta p{color:rgba(244,242,236,.9); margin-top:12px; font-size:15px;}
+  .final-cta .btn-primary{margin-top:24px;}
+  .final-cta .fine{margin-top:14px; font-size:12.5px; color:rgba(244,242,236,.7); font-family:'Space Mono',monospace;}
+
+  footer{padding:28px 0 40px; text-align:center; color:var(--muted); font-size:12.5px;}
+
+  /* ---------- language switch ---------- */
+  .lang-switch{display:flex; gap:6px; justify-content:center; margin-bottom:22px; flex-wrap:wrap;}
+  .lang-switch button{
+    font-family:'Space Mono',monospace; font-size:11.5px; font-weight:700; letter-spacing:.03em;
+    padding:5px 11px; border-radius:7px; border:1px solid rgba(255,255,255,.28);
+    background:rgba(10,14,26,.35); color:rgba(244,242,236,.75); cursor:pointer;
+  }
+  .lang-switch button.active{background:#fff; color:#241c3d; border-color:#fff;}
+
+  @media (max-width:640px){
+    .steps{grid-template-columns:1fr;}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" data-lang="ko">한국어</button>
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="ja">日本語</button>
+      <button type="button" data-lang="zh">繁體中文</button>
+    </div>
+    <span class="eyebrow" data-i18n="eyebrow">Suno 프롬프트 무료 라이브러리</span>
+    <h1><span data-i18n="heroTitle1">노래는 이미 있어요.</span><br><span data-i18n="heroTitle2">이제 프롬프트만 필요해요.</span></h1>
+    <p class="sub" data-i18n="heroSub">Suno로 곡을 만들 때 그대로 붙여넣을 수 있는 스타일 프롬프트 70개 이상. 장르별로 정리했고, 전부 무료로 복사해서 쓸 수 있어요.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#발라드" data-i18n="ctaPrimary">프롬프트 보러가기 ↓</a>
+      <a class="btn btn-ghost" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener" data-i18n="ctaGhost">노래 완성 후 영상은? →</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="steps">
+    <div class="step">
+      <div class="n">01</div>
+      <h3 data-i18n="step1Title">프롬프트 복사</h3>
+      <p data-i18n="step1Desc">원하는 장르에서 마음에 드는 카드를 골라 복사 버튼을 눌러요.</p>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <h3 data-i18n="step2Title">Suno에 붙여넣기</h3>
+      <p data-i18n="step2Desc">Style of Music 칸엔 프롬프트를, Lyrics 칸엔 장르별 BONUS 카드의 가사 템플릿(빈칸만 채우면 돼요)을 넣어요. Pro/Premier라면 프롬프트 끝의 'avoid: ~' 부분만 잘라 고급설정의 Exclude Styles 칸에 넣으면 더 정확해요.</p>
+      <a class="step-link" href="https://suno.com/create" target="_blank" rel="noopener" data-i18n="step2Link">Suno 바로 열기 ↗</a>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <h3 data-i18n="step3Title">영상까지 완성</h3>
+      <p data-i18n="step3Desc">완성된 곡은 MusicCanvas로 가사 싱크·FX까지 넣어 5분 만에 영상으로.</p>
+    </div>
+  </div>
+
+  <nav class="genre-nav" id="genreNav">
+    <a href="#발라드" class="active" data-i18n="navBallad">감성 발라드</a>
+    <a href="#로파이" data-i18n="navLofi">Lo-Fi &amp; 칠</a>
+    <a href="#시네마틱" data-i18n="navCinematic">시네마틱 &amp; 에픽</a>
+    <a href="#팝" data-i18n="navPop">K-팝 &amp; 팝</a>
+    <a href="#어쿠스틱" data-i18n="navAcoustic">어쿠스틱 &amp; 포크</a>
+    <a href="#앰비언트" data-i18n="navAmbient">앰비언트 &amp; 인스트루멘탈</a>
+  </nav>
+
+  <!-- 감성 발라드 -->
+  <section class="genre" id="발라드" style="--sec-accent:var(--coral)">
+    <div class="genre-head">
+      <h2 data-i18n="navBallad">감성 발라드</h2>
+      <span class="count" data-i18n-count="11">11 prompts</span>
+    </div>
+    <p class="genre-vibe" data-i18n="vibeBallad">이별, 그리움, 재회 — 잔잔하게 시작해서 후렴에서 터지는 구조. Dusk Soul 채널이 가장 많이 쓰는 장르예요.</p>
+    <div class="card-grid">
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="emotional korean ballad, soft piano and warm strings, gentle male vocals, slow tempo 66bpm, builds to a full orchestral chorus, lyrics about missing someone you can't reach anymore, rain on window ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">이별 · 그리움 <span class="bonus-badge beginner-badge" data-i18n="beginnerBadge">🔰 초보자 추천</span></div><pre class="prompt-text">emotional korean ballad, soft piano and warm strings, gentle male vocals, slow tempo 66bpm, builds to a full orchestral chorus, lyrics about missing someone you can't reach anymore, rain on window ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="cinematic emotional ballad, delicate piano intro, breathy female vocals, strings swell in second verse, tempo 70bpm, key change into final chorus, theme of quiet goodbye, warm analog tape texture, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">잔잔한 이별</div><pre class="prompt-text">cinematic emotional ballad, delicate piano intro, breathy female vocals, strings swell in second verse, tempo 70bpm, key change into final chorus, theme of quiet goodbye, warm analog tape texture, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="korean r&b ballad, soulful female vocals with light vibrato, electric piano and soft drums, tempo 74bpm, mellow verse into emotional falsetto chorus, theme of loving someone from a distance, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">짝사랑</div><pre class="prompt-text">korean r&b ballad, soulful female vocals with light vibrato, electric piano and soft drums, tempo 74bpm, mellow verse into emotional falsetto chorus, theme of loving someone from a distance, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="hopeful ballad, acoustic guitar and warm pad, male and female duet vocals, tempo 78bpm, gentle build with light percussion in chorus, theme of finding each other again after years apart, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">재회</div><pre class="prompt-text">hopeful ballad, acoustic guitar and warm pad, male and female duet vocals, tempo 78bpm, gentle build with light percussion in chorus, theme of finding each other again after years apart, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="melancholic piano ballad, minimal arrangement, intimate male vocals close to the mic, tempo 62bpm, sparse verses, strings enter only in final chorus, theme of an empty room after someone leaves, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">빈 방</div><pre class="prompt-text">melancholic piano ballad, minimal arrangement, intimate male vocals close to the mic, tempo 62bpm, sparse verses, strings enter only in final chorus, theme of an empty room after someone leaves, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="orchestral pop ballad, cinematic string section, powerful female vocals, tempo 72bpm, dramatic dynamic shifts, choir in final chorus, theme of letting go with gratitude instead of regret, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">담담한 이별</div><pre class="prompt-text">orchestral pop ballad, cinematic string section, powerful female vocals, tempo 72bpm, dramatic dynamic shifts, choir in final chorus, theme of letting go with gratitude instead of regret, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="korean indie ballad, warm nostalgic synths and soft electric guitar, airy female vocals, tempo 80bpm, dreamy chorus with light reverb, theme of remembering a first love years later, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">첫사랑 회상</div><pre class="prompt-text">korean indie ballad, warm nostalgic synths and soft electric guitar, airy female vocals, tempo 80bpm, dreamy chorus with light reverb, theme of remembering a first love years later, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="slow burn ballad, sparse piano and low strings, deep male vocals, tempo 64bpm, builds through three choruses each bigger than the last, theme of holding on to a promise made long ago, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">기다림</div><pre class="prompt-text">slow burn ballad, sparse piano and low strings, deep male vocals, tempo 64bpm, builds through three choruses each bigger than the last, theme of holding on to a promise made long ago, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+            <div class="card" style="--card-accent:var(--coral)" data-prompt="quiet late night ballad, soft rhodes piano and gentle strings, whispery vocals close to the mic, tempo 68bpm, builds slowly into a hushed falsetto chorus, lyrics about calling someone at 3am just to hear their voice, faint city ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">새벽 전화</div><pre class="prompt-text">quiet late night ballad, soft rhodes piano and gentle strings, whispery vocals close to the mic, tempo 68bpm, builds slowly into a hushed falsetto chorus, lyrics about calling someone at 3am just to hear their voice, faint city ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="nostalgic korean ballad, warm acoustic guitar and soft strings, tender male vocals, tempo 76bpm, gentle build into a bittersweet chorus, lyrics about walking past a street that still remembers two people together, light rain ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">함께 걷던 거리</div><pre class="prompt-text">nostalgic korean ballad, warm acoustic guitar and soft strings, tender male vocals, tempo 76bpm, gentle build into a bittersweet chorus, lyrics about walking past a street that still remembers two people together, light rain ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="cinematic ballad, layered strings and soft piano, powerful female vocals building to a soaring bridge, tempo 71bpm, seasons-changing metaphor for lingering love, warm reverb-heavy production, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"><div class="label">계절이 지나도</div><pre class="prompt-text">cinematic ballad, layered strings and soft piano, powerful female vocals building to a soaring bridge, tempo 71bpm, seasons-changing metaphor for lingering love, warm reverb-heavy production, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ballad')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+<div class="card card--lyric" data-genre="ballad" style="--card-accent:var(--coral)">
+        <div class="label"><span data-i18n="bonusLyricLabel">가사 &amp; 제목</span><span class="bonus-badge">BONUS</span></div>
+        <div class="gen-title-row"><span><span data-i18n="genTitlePrefix">제목:</span> <span class="gen-title"></span></span><button class="copy-btn title-copy-btn" onclick="copyTitle(this)">복사</button></div>
+        <pre class="prompt-text gen-lyric"></pre>
+        <div class="card-foot">
+          <button class="copy-btn regen-btn" onclick="regen(this,'ballad')">🔀 다시 생성</button>
+          <button class="copy-btn" onclick="copyGen(this)">복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lo-Fi -->
+  <section class="genre" id="로파이" style="--sec-accent:var(--violet)">
+    <div class="genre-head">
+      <h2 data-i18n="navLofi">Lo-Fi &amp; 칠</h2>
+      <span class="count" data-i18n-count="11">11 prompts</span>
+    </div>
+    <p class="genre-vibe" data-i18n="vibeLofi">공부·작업·새벽 감성. 보컬 없는 인스트루멘탈이 많아서 배경음악으로 쓰기 좋아요.</p>
+    <div class="card-grid">
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="lofi hip hop instrumental, dusty vinyl crackle, mellow jazz piano chords, soft boom bap drums, tempo 82bpm, warm tape saturation, late night study atmosphere, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">새벽 작업 <span class="bonus-badge beginner-badge" data-i18n="beginnerBadge">🔰 초보자 추천</span></div><pre class="prompt-text">lofi hip hop instrumental, dusty vinyl crackle, mellow jazz piano chords, soft boom bap drums, tempo 82bpm, warm tape saturation, late night study atmosphere, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="chill lofi with soft female humming, muted electric piano, rain sounds in background, tempo 76bpm, gentle vinyl noise, cozy rainy afternoon mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">비 오는 오후</div><pre class="prompt-text">chill lofi with soft female humming, muted electric piano, rain sounds in background, tempo 76bpm, gentle vinyl noise, cozy rainy afternoon mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="jazzy lofi instrumental, upright bass and brushed drums, warm saxophone melody, tempo 88bpm, smoky cafe atmosphere, subtle vinyl hiss, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">재즈 카페</div><pre class="prompt-text">jazzy lofi instrumental, upright bass and brushed drums, warm saxophone melody, tempo 88bpm, smoky cafe atmosphere, subtle vinyl hiss, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="dreamy chillhop, soft synth pads, light guitar plucks, gentle female vocal ad-libs, tempo 80bpm, floaty reverb, golden hour drive mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">노을 드라이브</div><pre class="prompt-text">dreamy chillhop, soft synth pads, light guitar plucks, gentle female vocal ad-libs, tempo 80bpm, floaty reverb, golden hour drive mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="minimal lofi beat, soft kalimba melody, mellow bassline, tempo 70bpm, birdsong ambience, calm morning routine mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">아침 루틴</div><pre class="prompt-text">minimal lofi beat, soft kalimba melody, mellow bassline, tempo 70bpm, birdsong ambience, calm morning routine mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="korean lofi ballad hybrid, soft spoken-word style female vocals, gentle piano loop, tempo 74bpm, warm crackling texture, quiet diary entry mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">일기장</div><pre class="prompt-text">korean lofi ballad hybrid, soft spoken-word style female vocals, gentle piano loop, tempo 74bpm, warm crackling texture, quiet diary entry mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="lofi city pop fusion, mellow synth bass, soft electric guitar riffs, tempo 92bpm, night city window view mood, subtle vinyl warmth, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">도시의 밤</div><pre class="prompt-text">lofi city pop fusion, mellow synth bass, soft electric guitar riffs, tempo 92bpm, night city window view mood, subtle vinyl warmth, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="soft lofi instrumental, gentle marimba and rhodes piano, tempo 84bpm, light rain and distant thunder, quiet reading corner mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">책 읽는 시간</div><pre class="prompt-text">soft lofi instrumental, gentle marimba and rhodes piano, tempo 84bpm, light rain and distant thunder, quiet reading corner mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="lofi instrumental, soft glockenspiel melody, muffled snow ambience, tempo 72bpm, warm felt piano chords, quiet snowy night mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">눈 내리는 밤</div><pre class="prompt-text">lofi instrumental, soft glockenspiel melody, muffled snow ambience, tempo 72bpm, warm felt piano chords, quiet snowy night mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="chill lofi beat, soft acoustic guitar mutes, gentle purring cat ambience, tempo 78bpm, warm vinyl crackle, lazy sunday afternoon with a cat mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">고양이와 낮잠</div><pre class="prompt-text">chill lofi beat, soft acoustic guitar mutes, gentle purring cat ambience, tempo 78bpm, warm vinyl crackle, lazy sunday afternoon with a cat mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="lofi instrumental, mellow rhodes piano, distant train rumble and rain on windows, tempo 86bpm, soft brushed drums, long train ride at dusk mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"><div class="label">기차 창밖</div><pre class="prompt-text">lofi instrumental, mellow rhodes piano, distant train rumble and rain on windows, tempo 86bpm, soft brushed drums, long train ride at dusk mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'lofi')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card card--lyric" data-genre="lofi" style="--card-accent:var(--violet)">
+        <div class="label"><span data-i18n="bonusLyricLabel">가사 &amp; 제목</span><span class="bonus-badge">BONUS</span></div>
+        <div class="gen-title-row"><span><span data-i18n="genTitlePrefix">제목:</span> <span class="gen-title"></span></span><button class="copy-btn title-copy-btn" onclick="copyTitle(this)">복사</button></div>
+        <pre class="prompt-text gen-lyric"></pre>
+        <div class="card-foot">
+          <button class="copy-btn regen-btn" onclick="regen(this,'lofi')">🔀 다시 생성</button>
+          <button class="copy-btn" onclick="copyGen(this)">복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 시네마틱 -->
+  <section class="genre" id="시네마틱" style="--sec-accent:var(--gold)">
+    <div class="genre-head">
+      <h2 data-i18n="navCinematic">시네마틱 &amp; 에픽</h2>
+      <span class="count" data-i18n-count="14">14 prompts</span>
+    </div>
+    <p class="genre-vibe" data-i18n="vibeCinematic">웅장한 오케스트라와 합창. 인트로·예고편·게임 하이라이트 영상에 잘 어울려요.</p>
+    <div class="card-grid">
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="epic cinematic orchestral, full choir and brass, powerful timpani hits, tempo 100bpm, builds from quiet strings to massive climax, trailer style, heroic and triumphant mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">예고편 <span class="bonus-badge beginner-badge" data-i18n="beginnerBadge">🔰 초보자 추천</span></div><pre class="prompt-text">epic cinematic orchestral, full choir and brass, powerful timpani hits, tempo 100bpm, builds from quiet strings to massive climax, trailer style, heroic and triumphant mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="dark epic orchestral, low brass drones, tense string ostinato, war drums, tempo 92bpm, building tension throughout, battle before the storm mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">전투 전야</div><pre class="prompt-text">dark epic orchestral, low brass drones, tense string ostinato, war drums, tempo 92bpm, building tension throughout, battle before the storm mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="emotional cinematic score, solo violin over soft strings, gentle harp, tempo 68bpm, slow swell into full orchestra, bittersweet victory mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">씁쓸한 승리</div><pre class="prompt-text">emotional cinematic score, solo violin over soft strings, gentle harp, tempo 68bpm, slow swell into full orchestra, bittersweet victory mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="fantasy adventure orchestral, playful woodwinds and light strings, tempo 112bpm, adventurous and curious mood, journey beginning theme, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">모험의 시작</div><pre class="prompt-text">fantasy adventure orchestral, playful woodwinds and light strings, tempo 112bpm, adventurous and curious mood, journey beginning theme, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="epic hybrid trailer music, orchestral strings layered with modern synth bass, powerful percussion hits, tempo 96bpm, cinematic riser and impact, product reveal mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">공개 영상</div><pre class="prompt-text">epic hybrid trailer music, orchestral strings layered with modern synth bass, powerful percussion hits, tempo 96bpm, cinematic riser and impact, product reveal mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="melancholic epic orchestral, solo cello theme, choir enters in final section, tempo 60bpm, slow and majestic, memorial and remembrance mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">추모</div><pre class="prompt-text">melancholic epic orchestral, solo cello theme, choir enters in final section, tempo 60bpm, slow and majestic, memorial and remembrance mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="triumphant epic finale, full orchestra and choir, ascending key changes, tempo 104bpm, glorious ending theme, credits roll mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">엔딩 크레딧</div><pre class="prompt-text">triumphant epic finale, full orchestra and choir, ascending key changes, tempo 104bpm, glorious ending theme, credits roll mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="mysterious cinematic ambient orchestral, sparse piano and eerie strings, distant choir whispers, tempo 66bpm, ancient ruins discovery mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">유적 발견</div><pre class="prompt-text">mysterious cinematic ambient orchestral, sparse piano and eerie strings, distant choir whispers, tempo 66bpm, ancient ruins discovery mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="cinematic sci-fi orchestral, shimmering synth pads layered with strings, slow swelling brass, tempo 76bpm, awe and wonder mood, deep space discovery theme, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">우주 탐사</div><pre class="prompt-text">cinematic sci-fi orchestral, shimmering synth pads layered with strings, slow swelling brass, tempo 76bpm, awe and wonder mood, deep space discovery theme, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="tense cinematic orchestral, staccato strings and low piano hits, sparse percussion, tempo 88bpm, building suspense, moment of judgment mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">심판의 순간</div><pre class="prompt-text">tense cinematic orchestral, staccato strings and low piano hits, sparse percussion, tempo 88bpm, building suspense, moment of judgment mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="emotional cinematic orchestral, warm strings and solo horn theme, tempo 64bpm, slow uplifting swell, soldier's homecoming mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">귀환</div><pre class="prompt-text">emotional cinematic orchestral, warm strings and solo horn theme, tempo 64bpm, slow uplifting swell, soldier's homecoming mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="dark cinematic orchestral, ominous pipe organ, deep choir chants, tempo 84bpm, slow menacing build to a distorted brass climax, villain's rise to power mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">악당의 등장</div><pre class="prompt-text">dark cinematic orchestral, ominous pipe organ, deep choir chants, tempo 84bpm, slow menacing build to a distorted brass climax, villain's rise to power mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="cinematic ambient orchestral, deep cello drones, shimmering underwater synth textures, tempo 58bpm, slow weightless swell, descending into the ocean depths mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">심해로</div><pre class="prompt-text">cinematic ambient orchestral, deep cello drones, shimmering underwater synth textures, tempo 58bpm, slow weightless swell, descending into the ocean depths mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="grand ceremonial orchestral, regal brass fanfare, resonant cathedral bells, tempo 108bpm, stately processional rhythm building to full choir, royal coronation mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"><div class="label">대관식</div><pre class="prompt-text">grand ceremonial orchestral, regal brass fanfare, resonant cathedral bells, tempo 108bpm, stately processional rhythm building to full choir, royal coronation mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'cinematic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card card--lyric" data-genre="cinematic" style="--card-accent:var(--gold)">
+        <div class="label"><span data-i18n="bonusLyricLabel">가사 &amp; 제목</span><span class="bonus-badge">BONUS</span></div>
+        <div class="gen-title-row"><span><span data-i18n="genTitlePrefix">제목:</span> <span class="gen-title"></span></span><button class="copy-btn title-copy-btn" onclick="copyTitle(this)">복사</button></div>
+        <pre class="prompt-text gen-lyric"></pre>
+        <div class="card-foot">
+          <button class="copy-btn regen-btn" onclick="regen(this,'cinematic')">🔀 다시 생성</button>
+          <button class="copy-btn" onclick="copyGen(this)">복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- K-팝 -->
+  <section class="genre" id="팝" style="--sec-accent:var(--coral)">
+    <div class="genre-head">
+      <h2 data-i18n="navPop">K-팝 &amp; 팝</h2>
+      <span class="count" data-i18n-count="14">14 prompts</span>
+    </div>
+    <p class="genre-vibe" data-i18n="vibePop">중독성 있는 후렴과 탄탄한 드롭. 쇼츠·릴스 배경음악으로도 잘 맞아요.</p>
+    <div class="card-grid">
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="upbeat kpop pop, punchy synth bass, bright pluck synths, tempo 128bpm, catchy pre-chorus into anthemic drop chorus, confident and energetic mood, female group vocals, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">여름 타이틀곡 <span class="bonus-badge beginner-badge" data-i18n="beginnerBadge">🔰 초보자 추천</span></div><pre class="prompt-text">upbeat kpop pop, punchy synth bass, bright pluck synths, tempo 128bpm, catchy pre-chorus into anthemic drop chorus, confident and energetic mood, female group vocals, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="retro synthwave pop, groovy bassline, nostalgic 80s synths, tempo 118bpm, smooth male vocals, night drive with neon lights mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">레트로 신스</div><pre class="prompt-text">retro synthwave pop, groovy bassline, nostalgic 80s synths, tempo 118bpm, smooth male vocals, night drive with neon lights mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="dreamy dance pop, airy female vocals, four on the floor beat, tempo 122bpm, shimmering synth arpeggios, festival sunset mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">페스티벌</div><pre class="prompt-text">dreamy dance pop, airy female vocals, four on the floor beat, tempo 122bpm, shimmering synth arpeggios, festival sunset mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="funky disco pop, groovy slap bass, bright horn stabs, tempo 116bpm, confident female lead vocals, dancefloor celebration mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">파티</div><pre class="prompt-text">funky disco pop, groovy slap bass, bright horn stabs, tempo 116bpm, confident female lead vocals, dancefloor celebration mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="soft kpop r&b, smooth electric piano, laid back trap drums, tempo 90bpm, sultry male vocals with light autotune, late night text conversation mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">밤톡</div><pre class="prompt-text">soft kpop r&b, smooth electric piano, laid back trap drums, tempo 90bpm, sultry male vocals with light autotune, late night text conversation mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="bright bubblegum pop, playful synth melody, claps and light percussion, tempo 130bpm, cheerful duet vocals, first day of summer mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">첫 여름날</div><pre class="prompt-text">bright bubblegum pop, playful synth melody, claps and light percussion, tempo 130bpm, cheerful duet vocals, first day of summer mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="powerful pop anthem, driving drums, soaring strings layered with synths, tempo 100bpm, empowering female vocals, standing up after a hard year mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">응원가</div><pre class="prompt-text">powerful pop anthem, driving drums, soaring strings layered with synths, tempo 100bpm, empowering female vocals, standing up after a hard year mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="chill tropical pop, marimba melody, soft reggae-influenced guitar, tempo 100bpm, relaxed vocals, beach vacation mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">여행 브이로그</div><pre class="prompt-text">chill tropical pop, marimba melody, soft reggae-influenced guitar, tempo 100bpm, relaxed vocals, beach vacation mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="anthemic pop rock hybrid, driving electric guitar riffs, pounding stadium drums, tempo 124bpm, confident female vocals, chasing a dream against the odds mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">도전</div><pre class="prompt-text">anthemic pop rock hybrid, driving electric guitar riffs, pounding stadium drums, tempo 124bpm, confident female vocals, chasing a dream against the odds mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="y2k inspired pop, bright vocoder hooks, bouncy synth bass, tempo 120bpm, playful duet vocals, texting your crush past midnight mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">설레는 문자</div><pre class="prompt-text">y2k inspired pop, bright vocoder hooks, bouncy synth bass, tempo 120bpm, playful duet vocals, texting your crush past midnight mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="moody electro pop, dark pulsing synth bass, glitchy percussion, tempo 108bpm, sultry confident female vocals, turning a breakup into a power anthem mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">이별 후 반전</div><pre class="prompt-text">moody electro pop, dark pulsing synth bass, glitchy percussion, tempo 108bpm, sultry confident female vocals, turning a breakup into a power anthem mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="carnival pop, bright chiptune-esque synth melody, bouncy percussion, tempo 126bpm, playful duet vocals, falling for someone at a carnival mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">놀이공원</div><pre class="prompt-text">carnival pop, bright chiptune-esque synth melody, bouncy percussion, tempo 126bpm, playful duet vocals, falling for someone at a carnival mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="nostalgic graduation pop anthem, warm synth pads layered with light guitar, tempo 96bpm, bittersweet uplifting vocals, saying goodbye to your school days mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">졸업</div><pre class="prompt-text">nostalgic graduation pop anthem, warm synth pads layered with light guitar, tempo 96bpm, bittersweet uplifting vocals, saying goodbye to your school days mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--coral)" data-prompt="high energy workout pop, driving four on the floor beat, punchy synth stabs, tempo 132bpm, motivational shouted vocal ad-libs, pushing through the last rep mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"><div class="label">운동할 때</div><pre class="prompt-text">high energy workout pop, driving four on the floor beat, punchy synth stabs, tempo 132bpm, motivational shouted vocal ad-libs, pushing through the last rep mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'pop')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card card--lyric" data-genre="pop" style="--card-accent:var(--coral)">
+        <div class="label"><span data-i18n="bonusLyricLabel">가사 &amp; 제목</span><span class="bonus-badge">BONUS</span></div>
+        <div class="gen-title-row"><span><span data-i18n="genTitlePrefix">제목:</span> <span class="gen-title"></span></span><button class="copy-btn title-copy-btn" onclick="copyTitle(this)">복사</button></div>
+        <pre class="prompt-text gen-lyric"></pre>
+        <div class="card-foot">
+          <button class="copy-btn regen-btn" onclick="regen(this,'pop')">🔀 다시 생성</button>
+          <button class="copy-btn" onclick="copyGen(this)">복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 어쿠스틱 -->
+  <section class="genre" id="어쿠스틱" style="--sec-accent:var(--violet)">
+    <div class="genre-head">
+      <h2 data-i18n="navAcoustic">어쿠스틱 &amp; 포크</h2>
+      <span class="count" data-i18n-count="11">11 prompts</span>
+    </div>
+    <p class="genre-vibe" data-i18n="vibeAcoustic">기타와 목소리 중심의 담백한 곡. 브이로그, 인터뷰 배경음악으로 자주 쓰여요.</p>
+    <div class="card-grid">
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="warm acoustic folk, fingerpicked guitar, soft harmonica, tempo 84bpm, gentle male vocals, small town nostalgia mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">고향 <span class="bonus-badge beginner-badge" data-i18n="beginnerBadge">🔰 초보자 추천</span></div><pre class="prompt-text">warm acoustic folk, fingerpicked guitar, soft harmonica, tempo 84bpm, gentle male vocals, small town nostalgia mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="intimate acoustic ballad, single guitar and soft female vocals, minimal production, tempo 70bpm, close mic warmth, quiet confession mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">고백</div><pre class="prompt-text">intimate acoustic ballad, single guitar and soft female vocals, minimal production, tempo 70bpm, close mic warmth, quiet confession mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="upbeat folk pop, strummed acoustic guitar, hand claps and tambourine, tempo 104bpm, cheerful duet vocals, road trip with friends mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">로드트립</div><pre class="prompt-text">upbeat folk pop, strummed acoustic guitar, hand claps and tambourine, tempo 104bpm, cheerful duet vocals, road trip with friends mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="gentle acoustic lullaby, soft nylon guitar, warm humming vocals, tempo 60bpm, quiet and tender, parent singing to a child mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">자장가</div><pre class="prompt-text">gentle acoustic lullaby, soft nylon guitar, warm humming vocals, tempo 60bpm, quiet and tender, parent singing to a child mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="acoustic indie folk, layered guitars and soft strings, breathy female vocals, tempo 88bpm, wistful autumn afternoon mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">가을 오후</div><pre class="prompt-text">acoustic indie folk, layered guitars and soft strings, breathy female vocals, tempo 88bpm, wistful autumn afternoon mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="folk storytelling ballad, acoustic guitar and soft banjo, warm male vocals, tempo 76bpm, narrative verses building to reflective chorus, looking back on youth mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">지난 시절</div><pre class="prompt-text">folk storytelling ballad, acoustic guitar and soft banjo, warm male vocals, tempo 76bpm, narrative verses building to reflective chorus, looking back on youth mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="bright acoustic pop folk, ukulele and light percussion, cheerful vocals, tempo 112bpm, sunny morning walk mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">산책</div><pre class="prompt-text">bright acoustic pop folk, ukulele and light percussion, cheerful vocals, tempo 112bpm, sunny morning walk mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="melancholic acoustic folk, slide guitar and soft strings, weathered male vocals, tempo 66bpm, saying goodbye to an old friend mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">작별 인사</div><pre class="prompt-text">melancholic acoustic folk, slide guitar and soft strings, weathered male vocals, tempo 66bpm, saying goodbye to an old friend mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="acoustic coffeehouse pop, warm strummed guitar chords, soft cajon percussion, tempo 96bpm, breathy male vocals, nervous excitement of a first date mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">첫 데이트</div><pre class="prompt-text">acoustic coffeehouse pop, warm strummed guitar chords, soft cajon percussion, tempo 96bpm, breathy male vocals, nervous excitement of a first date mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="rustic bluegrass-tinged acoustic, interplay of mandolin and banjo, upbeat handclap rhythm, tempo 120bpm, cheerful group vocals, harvest festival celebration mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">수확의 계절</div><pre class="prompt-text">rustic bluegrass-tinged acoustic, interplay of mandolin and banjo, upbeat handclap rhythm, tempo 120bpm, cheerful group vocals, harvest festival celebration mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--violet)" data-prompt="wistful acoustic waltz in 3/4 time, gentle guitar arpeggios, soft accordion touches, tempo 92bpm, tender female vocals, dancing slowly in the kitchen at night mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"><div class="label">부엌에서의 왈츠</div><pre class="prompt-text">wistful acoustic waltz in 3/4 time, gentle guitar arpeggios, soft accordion touches, tempo 92bpm, tender female vocals, dancing slowly in the kitchen at night mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'acoustic')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card card--lyric" data-genre="acoustic" style="--card-accent:var(--violet)">
+        <div class="label"><span data-i18n="bonusLyricLabel">가사 &amp; 제목</span><span class="bonus-badge">BONUS</span></div>
+        <div class="gen-title-row"><span><span data-i18n="genTitlePrefix">제목:</span> <span class="gen-title"></span></span><button class="copy-btn title-copy-btn" onclick="copyTitle(this)">복사</button></div>
+        <pre class="prompt-text gen-lyric"></pre>
+        <div class="card-foot">
+          <button class="copy-btn regen-btn" onclick="regen(this,'acoustic')">🔀 다시 생성</button>
+          <button class="copy-btn" onclick="copyGen(this)">복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 앰비언트 -->
+  <section class="genre" id="앰비언트" style="--sec-accent:var(--gold)">
+    <div class="genre-head">
+      <h2 data-i18n="navAmbient">앰비언트 &amp; 인스트루멘탈</h2>
+      <span class="count" data-i18n-count="11">11 prompts</span>
+    </div>
+    <p class="genre-vibe" data-i18n="vibeAmbient">보컬 없이 분위기만. 명상, 수면, 배경 영상용으로 부담 없이 쓸 수 있어요.</p>
+    <div class="card-grid">
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="ambient instrumental, soft evolving pads, distant piano notes, no drums, tempo-free, spacious reverb, floating in still water mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">고요한 물 <span class="bonus-badge beginner-badge" data-i18n="beginnerBadge">🔰 초보자 추천</span></div><pre class="prompt-text">ambient instrumental, soft evolving pads, distant piano notes, no drums, tempo-free, spacious reverb, floating in still water mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="dark ambient instrumental, deep drones, sparse metallic textures, no percussion, slow evolving atmosphere, abandoned space at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">빈 공간</div><pre class="prompt-text">dark ambient instrumental, deep drones, sparse metallic textures, no percussion, slow evolving atmosphere, abandoned space at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="meditative ambient, soft singing bowl tones, gentle wind chimes, very slow tempo, deep relaxation and breathing mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">명상</div><pre class="prompt-text">meditative ambient, soft singing bowl tones, gentle wind chimes, very slow tempo, deep relaxation and breathing mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="ambient piano instrumental, sparse minimalist notes, long reverb tails, no beat, quiet snowfall at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">밤눈</div><pre class="prompt-text">ambient piano instrumental, sparse minimalist notes, long reverb tails, no beat, quiet snowfall at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="cinematic ambient instrumental, soft strings and warm synth textures, gentle swell, no percussion, watching the sunset alone mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">혼자 보는 노을</div><pre class="prompt-text">cinematic ambient instrumental, soft strings and warm synth textures, gentle swell, no percussion, watching the sunset alone mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="sleep ambient instrumental, very slow soft pads, occasional distant chimes, no rhythm, deep sleep and calm mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">수면</div><pre class="prompt-text">sleep ambient instrumental, very slow soft pads, occasional distant chimes, no rhythm, deep sleep and calm mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="nature-inspired ambient instrumental, soft flute over warm pads, forest wind texture, tempo-free, walking alone in an old forest mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">숲길</div><pre class="prompt-text">nature-inspired ambient instrumental, soft flute over warm pads, forest wind texture, tempo-free, walking alone in an old forest mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="focus ambient instrumental, subtle rhythmic pulse, soft airy pads, no vocals, steady and unobtrusive, deep work session mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">딥워크</div><pre class="prompt-text">focus ambient instrumental, subtle rhythmic pulse, soft airy pads, no vocals, steady and unobtrusive, deep work session mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+            <div class="card" style="--card-accent:var(--gold)" data-prompt="ambient instrumental, soft breathy pads, distant muted flute-like tones, no drums, slow evolving texture, walking through morning fog mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">새벽 안개</div><pre class="prompt-text">ambient instrumental, soft breathy pads, distant muted flute-like tones, no drums, slow evolving texture, walking through morning fog mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="ambient instrumental, shimmering bell-like synth textures, soft sustained pads, no percussion, wide spacious reverb, lying under a sky full of stars mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">별이 쏟아지는 밤</div><pre class="prompt-text">ambient instrumental, shimmering bell-like synth textures, soft sustained pads, no percussion, wide spacious reverb, lying under a sky full of stars mood, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+      <div class="card" style="--card-accent:var(--gold)" data-prompt="ambient instrumental, warm mellow synth pads, soft muted piano notes, no beat, gentle rain-window mood, quiet unhurried afternoon, avoid: drums, sudden loud transients, abrupt jarring cutoff"><div class="label">비 오는 오후</div><pre class="prompt-text">ambient instrumental, warm mellow synth pads, soft muted piano notes, no beat, gentle rain-window mood, quiet unhurried afternoon, avoid: drums, sudden loud transients, abrupt jarring cutoff</pre><div class="card-foot"><button class="copy-btn regen-btn" onclick="regenStyle(this,'ambient')">🔀 다시 생성</button><button class="copy-btn" onclick="copyCard(this)">복사</button></div></div>
+
+<div class="card card--lyric" data-genre="ambient" style="--card-accent:var(--gold)">
+        <div class="label"><span data-i18n="bonusTitleOnlyLabel">제목 아이디어</span><span class="bonus-badge">BONUS</span></div>
+        <div class="gen-title-row"><span><span data-i18n="genTitlePrefix">제목:</span> <span class="gen-title"></span></span><button class="copy-btn title-copy-btn" onclick="copyTitle(this)">복사</button></div>
+        <pre class="prompt-text gen-lyric"></pre>
+        <div class="card-foot">
+          <button class="copy-btn regen-btn" onclick="regen(this,'ambient')">🔀 다시 생성</button>
+          <button class="copy-btn" onclick="copyGen(this)">복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof">
+    <h2 data-i18n="proofTitle">이렇게 완성돼요</h2>
+    <p class="lead" data-i18n="proofLead">위 프롬프트 계열로 만든 곡들을 MusicCanvas로 영상까지 완성한 실제 예시예요.</p>
+    <div class="proof-list">
+      <a class="proof-item" href="https://claude.ai/artifact/4y3KgB8SuBKYhRadmBpdVa" target="_blank" rel="noopener">
+        <span class="t" data-i18n="proofItem0Title">노래 더 들어보기</span>
+        <span class="m" data-i18n="proofItem0Sub">Dusk Soul 쇼케이스 · 23곡</span>
+      </a>
+      <a class="proof-item" href="https://www.youtube.com/watch?v=Lyx-sPo3hmE" target="_blank" rel="noopener">
+        <span class="t">Heart Carried by the Wind</span>
+        <span class="m" data-i18n="proofItem1Sub">감성 발라드 · Dusk Soul</span>
+      </a>
+      <a class="proof-item" href="https://youtu.be/ADSfcPhdE-k" target="_blank" rel="noopener">
+        <span class="t" data-i18n="proofItem2Title">MusicCanvas 사용법 튜토리얼</span>
+        <span class="m" data-i18n="proofItem2Sub">실제 제작 과정 보기</span>
+      </a>
+      <a class="proof-item" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">
+        <span class="t" data-i18n="proofItem3Title">MusicCanvas 7일 무료체험</span>
+        <span class="m" data-i18n="proofItem3Sub">평생 라이선스 $22</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <h2 data-i18n="finalTitle">노래가 완성됐다면, 영상은 5분이면 돼요</h2>
+    <p data-i18n="finalDesc">오디오만 넣으면 가사 자동 싱크, 배경, FX까지 자동으로 붙여서 유튜브·틱톡용 영상을 만들어드려요.</p>
+    <a class="btn btn-primary" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener" data-i18n="finalBtn">MusicCanvas 무료로 써보기</a>
+    <p class="fine" data-i18n="finalFine">7일 무료 체험 · 구독 아님 · 평생 라이선스 $22</p>
+  </div>
+</div>
+
+<footer data-i18n="footerText">프롬프트 스튜디오 · MusicCanvas가 만든 무료 리소스</footer>
+
+<script>
+  // ---------- i18n ----------
+  var I18N = {
+    ko: {
+      eyebrow: "Suno 프롬프트 무료 라이브러리",
+      heroTitle1: "노래는 이미 있어요.",
+      heroTitle2: "이제 프롬프트만 필요해요.",
+      heroSub: "Suno로 곡을 만들 때 그대로 붙여넣을 수 있는 스타일 프롬프트 70개 이상. 장르별로 정리했고, 전부 무료로 복사해서 쓸 수 있어요.",
+      ctaPrimary: "프롬프트 보러가기 ↓",
+      ctaGhost: "노래 완성 후 영상은? →",
+      step1Title: "프롬프트 복사", step1Desc: "원하는 장르에서 마음에 드는 카드를 골라 복사 버튼을 눌러요.",
+      step2Title: "Suno에 붙여넣기", step2Desc: "Style of Music 칸엔 프롬프트를, Lyrics 칸엔 장르별 BONUS 카드의 가사 템플릿(빈칸만 채우면 돼요)을 넣어요. Pro/Premier라면 프롬프트 끝의 'avoid: ~' 부분만 잘라 고급설정의 Exclude Styles 칸에 넣으면 더 정확해요.", step2Link: "Suno 바로 열기 ↗", beginnerBadge: "🔰 초보자 추천",
+      step3Title: "영상까지 완성", step3Desc: "완성된 곡은 MusicCanvas로 가사 싱크·FX까지 넣어 5분 만에 영상으로.",
+      navBallad: "감성 발라드", navLofi: "Lo-Fi & 칠", navCinematic: "시네마틱 & 에픽",
+      navPop: "K-팝 & 팝", navAcoustic: "어쿠스틱 & 포크", navAmbient: "앰비언트 & 인스트루멘탈",
+      vibeBallad: "이별, 그리움, 재회 — 잔잔하게 시작해서 후렴에서 터지는 구조. Dusk Soul 채널이 가장 많이 쓰는 장르예요.",
+      vibeLofi: "공부·작업·새벽 감성. 보컬 없는 인스트루멘탈이 많아서 배경음악으로 쓰기 좋아요.",
+      vibeCinematic: "웅장한 오케스트라와 합창. 인트로·예고편·게임 하이라이트 영상에 잘 어울려요.",
+      vibePop: "중독성 있는 후렴과 탄탄한 드롭. 쇼츠·릴스 배경음악으로도 잘 맞아요.",
+      vibeAcoustic: "기타와 목소리 중심의 담백한 곡. 브이로그, 인터뷰 배경음악으로 자주 쓰여요.",
+      vibeAmbient: "보컬 없이 분위기만. 명상, 수면, 배경 영상용으로 부담 없이 쓸 수 있어요.",
+      proofTitle: "이렇게 완성돼요",
+      proofLead: "위 프롬프트 계열로 만든 곡들을 MusicCanvas로 영상까지 완성한 실제 예시예요.",
+      proofItem0Title: "노래 더 들어보기", proofItem0Sub: "Dusk Soul 쇼케이스 · 23곡", proofItem1Sub: "감성 발라드 · Dusk Soul",
+      proofItem2Title: "MusicCanvas 사용법 튜토리얼", proofItem2Sub: "실제 제작 과정 보기",
+      proofItem3Title: "MusicCanvas 7일 무료체험", proofItem3Sub: "평생 라이선스 $22",
+      finalTitle: "노래가 완성됐다면, 영상은 5분이면 돼요",
+      finalDesc: "오디오만 넣으면 가사 자동 싱크, 배경, FX까지 자동으로 붙여서 유튜브·틱톡용 영상을 만들어드려요.",
+      finalBtn: "MusicCanvas 무료로 써보기",
+      finalFine: "7일 무료 체험 · 구독 아님 · 평생 라이선스 $22",
+      footerText: "프롬프트 스튜디오 · MusicCanvas가 만든 무료 리소스",
+      bonusLyricLabel: "가사 & 제목", bonusTitleOnlyLabel: "제목 아이디어", genTitlePrefix: "제목:",
+      copyBtn: "복사", copiedState: "복사됨!", selectedState: "선택됨", regenBtn: "🔀 다시 생성",
+      countFmt: "{n}개"
+    },
+    en: {
+      eyebrow: "Free Suno Prompt Library",
+      heroTitle1: "The song's already there.",
+      heroTitle2: "All you need is the prompt.",
+      heroSub: "70+ ready-to-paste style prompts for Suno, sorted by genre. Every one of them is free to copy and use.",
+      ctaPrimary: "Browse prompts ↓",
+      ctaGhost: "Need a video after? →",
+      step1Title: "Copy a prompt", step1Desc: "Pick a card in the genre you like and hit copy.",
+      step2Title: "Paste into Suno", step2Desc: "Prompt goes in Style of Music. Paste the BONUS card's lyric template into Lyrics — just fill in the blanks. On Pro/Premier, cut the 'avoid: ...' part at the end and paste it into the Exclude Styles field in advanced settings for more accurate results.", step2Link: "Open Suno ↗", beginnerBadge: "🔰 Beginner Pick",
+      step3Title: "Finish the video", step3Desc: "Turn the finished track into a video in 5 minutes with MusicCanvas — lyric sync and FX included.",
+      navBallad: "Emotional Ballad", navLofi: "Lo-Fi & Chill", navCinematic: "Cinematic & Epic",
+      navPop: "K-Pop & Pop", navAcoustic: "Acoustic & Folk", navAmbient: "Ambient & Instrumental",
+      vibeBallad: "Heartbreak, longing, reunion — starts quiet and breaks open in the chorus. The genre Dusk Soul uses most.",
+      vibeLofi: "Study, work, late-night vibes. Mostly vocal-free instrumentals, great as background music.",
+      vibeCinematic: "Sweeping orchestra and choir. Works well for intros, trailers, and game highlight reels.",
+      vibePop: "Catchy hooks and solid drops. Fits Shorts and Reels backgrounds too.",
+      vibeAcoustic: "Guitar-and-voice, understated songs. Often used for vlogs and interview backgrounds.",
+      vibeAmbient: "Mood without vocals. Easy to drop into meditation, sleep, or background videos.",
+      proofTitle: "Here's what it becomes",
+      proofLead: "Real examples of tracks made from these prompts, finished as videos with MusicCanvas.",
+      proofItem0Title: "Hear more songs", proofItem0Sub: "Dusk Soul Showcase · 23 tracks", proofItem1Sub: "Emotional Ballad · Dusk Soul",
+      proofItem2Title: "MusicCanvas Tutorial", proofItem2Sub: "Watch the actual process",
+      proofItem3Title: "MusicCanvas 7-Day Free Trial", proofItem3Sub: "Lifetime license $22",
+      finalTitle: "Song's done? The video takes 5 minutes.",
+      finalDesc: "Drop in the audio and get automatic lyric sync, backgrounds, and FX for your YouTube and TikTok video.",
+      finalBtn: "Try MusicCanvas free",
+      finalFine: "7-day free trial · not a subscription · lifetime license $22",
+      footerText: "Prompt Studio · a free resource by MusicCanvas",
+      bonusLyricLabel: "Lyrics & Title", bonusTitleOnlyLabel: "Title Ideas", genTitlePrefix: "Title:",
+      copyBtn: "Copy", copiedState: "Copied!", selectedState: "Selected", regenBtn: "🔀 Regenerate",
+      countFmt: "{n} prompts"
+    },
+    ja: {
+      eyebrow: "Suno プロンプト無料ライブラリ",
+      heroTitle1: "曲はもうある。",
+      heroTitle2: "あとはプロンプトだけ。",
+      heroSub: "Sunoにそのまま貼り付けられるスタイルプロンプト70個以上。ジャンル別に整理していて、すべて無料でコピーして使えます。",
+      ctaPrimary: "プロンプトを見る ↓",
+      ctaGhost: "曲ができたら動画は? →",
+      step1Title: "プロンプトをコピー", step1Desc: "好きなジャンルからカードを選んでコピーボタンを押します。",
+      step2Title: "Sunoに貼り付け", step2Desc: "Style of MusicにはプロンプトをLyricsにはジャンル別BONUSカードの歌詞テンプレート(空欄を埋めるだけ)を入れます。Pro/Premierなら、プロンプト末尾の'avoid: ~'部分だけ切り取って詳細設定のExclude Styles欄に入れるとより正確になります。", step2Link: "Sunoを開く ↗", beginnerBadge: "🔰 初心者おすすめ",
+      step3Title: "動画まで完成", step3Desc: "完成した曲はMusicCanvasで歌詞同期・FXまで入れて5分で動画に。",
+      navBallad: "感性バラード", navLofi: "Lo-Fi & チル", navCinematic: "シネマティック & エピック",
+      navPop: "K-POP & ポップ", navAcoustic: "アコースティック & フォーク", navAmbient: "アンビエント & インストゥルメンタル",
+      vibeBallad: "別れ、恋しさ、再会 — 静かに始まりサビで弾ける構成。Dusk Soulチャンネルが最もよく使うジャンルです。",
+      vibeLofi: "勉強・作業・夜明けの雰囲気。ボーカルなしのインストが多く、BGMとして使いやすいです。",
+      vibeCinematic: "壮大なオーケストラと合唱。イントロ・予告編・ゲームハイライト映像によく合います。",
+      vibePop: "中毒性のあるサビとしっかりしたドロップ。ショート動画のBGMにもぴったりです。",
+      vibeAcoustic: "ギターと声中心の飾らない曲。Vlogやインタビューの BGM としてよく使われます。",
+      vibeAmbient: "ボーカルなしで雰囲気だけ。瞑想、睡眠、背景映像に気軽に使えます。",
+      proofTitle: "こんな風に完成します",
+      proofLead: "上記のプロンプト系統で作った曲を、MusicCanvasで動画まで完成させた実例です。",
+      proofItem0Title: "もっと曲を聴く", proofItem0Sub: "Dusk Soul ショーケース · 23曲", proofItem1Sub: "感性バラード · Dusk Soul",
+      proofItem2Title: "MusicCanvas 使い方チュートリアル", proofItem2Sub: "実際の制作過程を見る",
+      proofItem3Title: "MusicCanvas 7日間無料体験", proofItem3Sub: "買い切り $22",
+      finalTitle: "曲ができたら、動画は5分でできます",
+      finalDesc: "音源を入れるだけで歌詞自動同期・背景・FXまで自動で付けて、YouTube・TikTok用動画を作ります。",
+      finalBtn: "MusicCanvasを無料で試す",
+      finalFine: "7日間無料体験 · サブスクではありません · 買い切り $22",
+      footerText: "プロンプトスタジオ · MusicCanvasが作った無料リソース",
+      bonusLyricLabel: "歌詞 & タイトル", bonusTitleOnlyLabel: "タイトル案", genTitlePrefix: "タイトル:",
+      copyBtn: "コピー", copiedState: "コピーしました!", selectedState: "選択済み", regenBtn: "🔀 再生成",
+      countFmt: "{n}個"
+    },
+    zh: {
+      eyebrow: "Suno 提示詞免費資料庫",
+      heroTitle1: "歌曲已經有了。",
+      heroTitle2: "現在只需要提示詞。",
+      heroSub: "70 組以上可直接貼上 Suno 使用的風格提示詞，按曲風分類，全部免費複製使用。",
+      ctaPrimary: "瀏覽提示詞 ↓",
+      ctaGhost: "歌完成後影片呢? →",
+      step1Title: "複製提示詞", step1Desc: "在喜歡的曲風中選一張卡片，按下複製按鈕。",
+      step2Title: "貼到 Suno", step2Desc: "Style of Music 欄放提示詞，Lyrics 欄放該曲風 BONUS 卡片的歌詞範本(只要填空即可)。Pro/Premier 方案可以把提示詞結尾的「avoid: ~」部分剪下，貼到進階設定的 Exclude Styles 欄位，效果更準確。", step2Link: "開啟 Suno ↗", beginnerBadge: "🔰 新手推薦",
+      step3Title: "完成影片", step3Desc: "完成的歌曲用 MusicCanvas 加上歌詞同步、特效，5 分鐘就能做成影片。",
+      navBallad: "抒情敘事曲", navLofi: "Lo-Fi & 放鬆", navCinematic: "電影感 & 史詩",
+      navPop: "K-Pop & 流行", navAcoustic: "原聲吉他 & 民謠", navAmbient: "氛圍 & 純音樂",
+      vibeBallad: "離別、思念、重逢 — 平靜開場、副歌爆發的結構。是 Dusk Soul 頻道最常使用的曲風。",
+      vibeLofi: "讀書、工作、深夜氛圍。多為無人聲的純音樂，很適合當背景音樂。",
+      vibeCinematic: "磅礴的管弦樂與合唱。很適合開場、預告片、遊戲精華影片。",
+      vibePop: "洗腦的副歌與紮實的鼓點。也很適合短影音的背景音樂。",
+      vibeAcoustic: "以吉他與人聲為主、樸實的歌曲。常用於 Vlog、訪談背景音樂。",
+      vibeAmbient: "沒有人聲、只有氛圍。適合冥想、睡眠、背景影片，輕鬆使用。",
+      proofTitle: "完成後就是這樣",
+      proofLead: "用上面這些提示詞做出的歌曲，透過 MusicCanvas 完成影片的實際案例。",
+      proofItem0Title: "聽更多歌曲", proofItem0Sub: "Dusk Soul 精選集 · 23 首", proofItem1Sub: "抒情敘事曲 · Dusk Soul",
+      proofItem2Title: "MusicCanvas 使用教學", proofItem2Sub: "看實際製作過程",
+      proofItem3Title: "MusicCanvas 7 天免費試用", proofItem3Sub: "買斷制 $22",
+      finalTitle: "歌曲完成後，影片只需要 5 分鐘",
+      finalDesc: "只要放入音檔，就能自動加上歌詞同步、背景、特效，做出適合 YouTube、TikTok 的影片。",
+      finalBtn: "免費試用 MusicCanvas",
+      finalFine: "7 天免費試用 · 非訂閱制 · 買斷制 $22",
+      footerText: "提示詞工作室 · MusicCanvas 提供的免費資源",
+      bonusLyricLabel: "歌詞 & 標題", bonusTitleOnlyLabel: "標題靈感", genTitlePrefix: "標題:",
+      copyBtn: "複製", copiedState: "已複製!", selectedState: "已選取", regenBtn: "🔀 重新生成",
+      countFmt: "{n} 個"
+    }
+  };
+  var currentLang = 'ko';
+  function t(key){
+    var d = I18N[currentLang] || I18N.ko;
+    return (key in d) ? d[key] : (I18N.ko[key] || '');
+  }
+  function applyLang(lang){
+    if(!I18N[lang]) lang = 'ko';
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var val = t(key);
+      if(val) el.textContent = val;
+    });
+    document.querySelectorAll('.count[data-i18n-count]').forEach(function(el){
+      var n = el.getAttribute('data-i18n-count');
+      el.textContent = t('countFmt').replace('{n}', n);
+    });
+    document.querySelectorAll('.copy-btn:not(.regen-btn)').forEach(function(b){
+      b.textContent = t('copyBtn');
+    });
+    document.querySelectorAll('.regen-btn').forEach(function(b){
+      b.textContent = t('regenBtn');
+    });
+    document.querySelectorAll('#langSwitch button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    try{ localStorage.setItem('ps_lang', lang); }catch(e){}
+    if(typeof BANKS !== 'undefined' && BANKS && BANKS[lang]){
+      document.querySelectorAll('.card--lyric').forEach(function(card){
+        renderGen(card, card.getAttribute('data-genre'));
+      });
+    }
+  }
+  (function initLang(){
+    var saved = null;
+    try{ saved = localStorage.getItem('ps_lang'); }catch(e){}
+    if(!saved){
+      var nav = (navigator.language || '').toLowerCase();
+      if(nav.indexOf('ko') === 0) saved = 'ko';
+      else if(nav.indexOf('ja') === 0) saved = 'ja';
+      else if(nav.indexOf('zh') === 0) saved = 'zh';
+      else if(nav.indexOf('en') === 0) saved = 'en';
+      else saved = 'ko';
+    }
+    applyLang(saved);
+    document.querySelectorAll('#langSwitch button').forEach(function(b){
+      b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+    });
+  })();
+
+  function copyCard(btn){
+    var card = btn.closest('.card');
+    var text = card.getAttribute('data-prompt');
+    function done(label){
+      btn.textContent = label;
+      setTimeout(function(){ btn.textContent = t('copyBtn'); }, 1500);
+    }
+    try{
+      navigator.clipboard.writeText(text).then(function(){ done(t('copiedState')); }).catch(function(){
+        selectFallback(card, btn);
+      });
+    }catch(e){
+      selectFallback(card, btn);
+    }
+  }
+  function selectFallback(card, btn){
+    try{
+      var pre = card.querySelector('.prompt-text');
+      var range = document.createRange();
+      range.selectNodeContents(pre);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      btn.textContent = t('selectedState');
+      setTimeout(function(){ btn.textContent = t('copyBtn'); }, 1500);
+    }catch(e){}
+  }
+
+  // ---------- 스타일 프롬프트 재생성 (같은 무드를 유지하면서 템포·질감만 바꿔서 사용자마다 다른 곡이 나오게) ----------
+  var STYLE_TEMPO = {
+    ballad: [62,64,66,68,70,72,74,76,78,80],
+    lofi: [70,72,74,76,78,80,82,84,86,88,92],
+    cinematic: [60,64,66,68,76,88,92,96,100,104,112],
+    pop: [90,100,116,118,122,128,130],
+    acoustic: [60,66,70,76,84,88,104,112],
+    ambient: []
+  };
+  var STYLE_FLAVOR = {
+    ballad: ["soft rain on window ambience","warm analog tape texture","distant thunder rumble","delicate music box motif","gentle wind chime accent","subtle room reverb","quiet vinyl crackle","muted string harmonics","faint piano pedal noise","soft breath before the chorus"],
+    lofi: ["dusty vinyl crackle","warm tape hiss","distant city traffic hum","soft cassette wow and flutter","gentle rain on a window","muffled footsteps in the hallway","faint radio static","low tape saturation warmth"],
+    cinematic: ["distant choir swell","subtle wind textures","low sub-bass rumble","soft bell chime accent","faint battle horn call","gentle harp glissando","reverberant stone hall ambience","sparse taiko drum hits"],
+    pop: ["crowd cheer ad-libs","bright vinyl scratch accent","subtle vocal chop hook","shimmering hi-hat rolls","warm analog synth bass","light finger snap rhythm","airy vocal chop backing","punchy sidechain pump"],
+    acoustic: ["soft campfire crackle ambience","gentle porch creak","light room reverb","distant birdsong","warm tape saturation","faint wind through trees","soft finger squeak on strings","quiet audience hush"],
+    ambient: ["faint tape hiss","distant ocean waves","soft granular texture swell","subtle field recording layer","gentle binaural shimmer","low sub-bass drone","sparse water droplet texture","faint wind through open space"]
+  };
+  function regenStyle(btn, genre){
+    var card = btn.closest('.card');
+    var base = card.getAttribute('data-prompt-base');
+    if(!base){
+      base = card.getAttribute('data-prompt');
+      card.setAttribute('data-prompt-base', base);
+    }
+    var result = base;
+    var tempos = STYLE_TEMPO[genre];
+    if(tempos && tempos.length){
+      var newT = tempos[Math.floor(Math.random()*tempos.length)];
+      if(/tempo\s*\d+bpm/.test(result)){
+        result = result.replace(/tempo\s*\d+bpm/, 'tempo ' + newT + 'bpm');
+      }
+    }
+    var flavors = STYLE_FLAVOR[genre];
+    if(flavors && flavors.length){
+      var f = flavors[Math.floor(Math.random()*flavors.length)];
+      if(result.indexOf(f) === -1){
+        result = result + ', ' + f;
+      }
+    }
+    card.setAttribute('data-prompt', result);
+    var pre = card.querySelector('.prompt-text');
+    if(pre) pre.textContent = result;
+  }
+
+  // ---------- 가사/제목 랜덤 생성기 ----------
+  var BANKS = {
+  "en": {
+    "ballad": {
+      "verse1": [
+        "I still keep an old sweater / folded on your side of the bed\nThe hallway light still flickers / the way it did back then",
+        "Your name sits quiet on my tongue / like a word I'm scared to lose\nI trace the shape of yesterday / in everything I do",
+        "The coffee's cold again / just like the morning that you left\nI keep one cup too many / out of habit, not by choice",
+        "There's a photograph half-faded / tucked inside a book we shared\nI don't open it too often / but I know it's always there",
+        "The rain remembers better / than I ever could pretend\nEvery drop against the window / spells out how this ends",
+        "I drive past the old café / just to see if it's still there\nSome memories don't need visiting / but I go anyway",
+        "The song you used to love / just came on the radio again\nI didn't change the station / I let it play till the end",
+        "An old ticket stub in my wallet / still holds the warmth of that day\nI don't know why I kept it / I just never threw it away",
+        "I keep walking down that alley / where we used to walk side by side\nI don't need to anymore / but somehow my feet decide"
+      ],
+      "pre": [
+        "Maybe I'm still waiting / for a sound that won't come back",
+        "Maybe some goodbyes / don't know how to end",
+        "I keep rewinding moments / that were never mine to keep",
+        "Somewhere between forgetting / and holding on too tight",
+        "If silence had a color / it would look like this",
+        "There's one number I still can't delete",
+        "Maybe missing you just became a habit",
+        "Tonight I miss you more than usual"
+      ],
+      "chorus": [
+        "And I hold onto nothing / but the shape of your name\nEvery empty room / still feels the same",
+        "So I'll sing it soft and quiet / so the hurt won't wake\nA love that lingers longer / than the choice we didn't make",
+        "And maybe love was never / meant to stay this long\nBut I still hum the outline / of our unfinished song",
+        "So here's to every almost / and the words we never said\nI'll keep them safe and folded / like a letter left unread",
+        "And still I light the candle / though the room's been dark for years\nSome kind of love just settles / in the quiet of your absence",
+        "So I'll walk this road a little slower / than I used to when you're gone\nHoping every step erases / less of you than one more song",
+        "I fold up every season / that we spent side by side\nAnd keep it in a corner / where the quiet lives inside",
+        "I leave one chair empty / and wander around that space\nHoping if this song reaches you / it finds you in a gentle place",
+        "If you're there when this song ends / I'll wave to you so quiet\nNo need for words between us / just this one last goodbye"
+      ],
+      "verse2": [
+        "Maybe someday I'll stop checking / for a message that won't come\nBut tonight I'll let the missing / just be missing, not undone",
+        "I've learned to live around the edges / of the space you used to fill\nIt's not healing, it's not hurting / it's just quiet, and it's still",
+        "Sometimes I catch your laugh / in someone else's voice by chance\nAnd for a second I forget / to remember it's not you",
+        "The seasons keep on turning / like they don't know you're not here\nI'm the only one still counting / how long it's been this year",
+        "I gave your side of silence / a name I never say out loud\nSome things are easier to carry / when you don't call them by their name",
+        "Sometimes I catch the scent / of the perfume you used to wear\nA passing moment in the night / that tells me you were here",
+        "The date I circled on the calendar / means nothing anymore\nJust a number on a page now / not the ache it was before",
+        "The seasons keep on turning / even though you're not around\nAnd step by step without you / I'm still walking steady ground"
+      ],
+      "bridge": [
+        "If you ever think of me / I hope it's soft, not sad",
+        "Wherever this song finds you / I hope it finds you well",
+        "I'm not asking you to stay / just asking to be remembered kindly",
+        "Maybe love doesn't end / it just changes shape and stays",
+        "Let this be the version of goodbye / that doesn't hurt to sing",
+        "I hope this feeling never fully fades away",
+        "I hope someday we can smile when we meet again",
+        "Maybe missing is just another name for love"
+      ],
+      "outro": [
+        "I still keep the light on...",
+        "Some things you don't stop missing...",
+        "Maybe this is how it stays...",
+        "The room stays quiet, and so do I...",
+        "(just staring at a phone screen...)",
+        "(standing alone under the moonlight...)",
+        "(never got to say the last goodbye...)"
+      ],
+      "titleAdj": [
+        "Quiet",
+        "Faded",
+        "Unsent",
+        "Distant",
+        "Gentle",
+        "Unfinished",
+        "Soft",
+        "Lingering",
+        "Unforgettable",
+        "Clumsy",
+        "Unreturning"
+      ],
+      "titleNoun": [
+        "Goodbye",
+        "Horizon",
+        "Heartbeat",
+        "Echo",
+        "Window Light",
+        "Letter",
+        "Silence",
+        "Afterglow",
+        "Promise",
+        "Season",
+        "Empty Chair"
+      ]
+    },
+    "lofi": {
+      "verse1": [
+        "Another slow evening / nothing much to prove\nJust the hum of the radiator / and the room in soft blue",
+        "Steam rising off the coffee / that's already gone cold\nI'm not doing anything / just letting the hours unfold",
+        "The clock ticks somewhere distant / but I've stopped keeping time\nJust the sound of pages turning / and a thought I can't quite find",
+        "Streetlights blur through curtains / painting shapes across the floor\nEverything moves slower here / than it does outside the door",
+        "My playlist's stuck on repeat / but I don't mind at all\nSome nights just want the same song / playing soft against the wall",
+        "The rain's been going all day / and I've let it keep me in\nNo plans, no rush, no reason / just this quiet I'm sitting in",
+        "Staring at my laptop screen / and somehow dawn crept in\nI didn't notice the hours pass / lost somewhere within",
+        "A melody drifts through my headphones / one I think I used to know\nFamiliar in a quiet way / though I forget where from",
+        "The notes still pile on my desk / exactly where they've stayed\nI'll get to them tomorrow / or maybe another day"
+      ],
+      "pre": [
+        "Mm, stay a while / mm, it's alright",
+        "Take it slow tonight / take it slow",
+        "No need to hurry home / no need at all",
+        "Just breathe it out / just let it go",
+        "Nothing's due tonight / nothing at all",
+        "You did enough today",
+        "Turn off the light, close your eyes a while",
+        "Just a little longer like this"
+      ],
+      "chorus": [
+        "Mm, stay a while / mm, it's alright\nNo need to hurry home / no need at all",
+        "Take it slow tonight / take it slow\nJust breathe it out / just let it go",
+        "Nothing's due tonight / nothing at all\nMm, stay a while / mm, it's alright",
+        "You did enough today\nMm, let's just rest a while",
+        "Turn off the light, close your eyes a while\nEverything's gonna be fine",
+        "Until this song is over\nlet's not think of anything at all"
+      ],
+      "verse2": [
+        "A quiet thought keeps drifting by / like it always does\nI let it pass without a name / and that's enough because",
+        "The window's fogged up just a little / from the tea I made too hot\nI wipe a circle clean to watch / the streetlights I forgot",
+        "Somewhere a train goes by unseen / a sound I've learned to love\nIt doesn't ask me to be anywhere / it just moves above",
+        "The fridge hums a little louder / than it usually does tonight",
+        "Only the sound of turning pages / fills this quiet room",
+        "Phone's on silent, notifications off / just passing time alone"
+      ],
+      "bridge": [
+        "No need to explain this feeling / it already knows the way",
+        "Some nights don't need a reason / just a little static and gray",
+        "Let the hours blur together / nothing's asking to be solved",
+        "This day is fine to leave as it is",
+        "Nobody here is in a hurry",
+        "This hour belongs completely to me",
+        "Whatever this feeling is, it's welcome to stay a little longer"
+      ],
+      "outro": [
+        "(soft humming, fade out)",
+        "(vinyl crackle, fade)",
+        "(rain continues, fade to silence)",
+        "(gentle keys, fade out)",
+        "(keyboard clicks, settling down)",
+        "(streetlight outside, swaying gently)",
+        "(a small yawn, fade out)"
+      ],
+      "titleAdj": [
+        "3AM",
+        "Slow",
+        "Rainy",
+        "Soft",
+        "Faded",
+        "Quiet",
+        "Half-Awake",
+        "Late-Night",
+        "Warm Night",
+        "Little",
+        "Staying"
+      ],
+      "titleNoun": [
+        "and Fine",
+        "Down With Me",
+        "Window Thoughts",
+        "Static",
+        "Focus",
+        "Corner",
+        "Thinking",
+        "Drift",
+        "At My Desk",
+        "Under the Light",
+        "Small Room"
+      ]
+    },
+    "cinematic": {
+      "verse1": [
+        "We rise from the ashes / where silence used to be\nEvery step forward / carved in memory",
+        "Beneath a sky of embers / the last light starts to fade\nBut something in the distance / refuses to be swayed",
+        "They said the walls would hold us / they said we'd never see\nBut every broken promise / became our victory",
+        "Through the fields of yesterday / where nothing seemed to grow\nWe planted every ending / and watched a beginning show",
+        "The banners fell in silence / the drums forgot their sound\nBut something in our chests still beat / for ground we hadn't found",
+        "When the last torch flickered out / and no one thought we'd stand\nWe carried what was left of hope / in nothing but our hands",
+        "Even behind a broken shield / we never closed our eyes",
+        "There was no road on any map / but we made the first footprint",
+        "In the cold air of dawn / we caught our breath and stood"
+      ],
+      "pre": [
+        "So let the silence gather / before the final call",
+        "Hold your breath a moment longer / before the walls all fall",
+        "This is the hour that decides us / this is where we rise",
+        "There's no room to retreat from here",
+        "Everything rides on this moment",
+        "Just one more step forward"
+      ],
+      "chorus": [
+        "We are the fire / that the dark could not erase\nWe are the ones / who found the light in every place",
+        "So let the sky fall down in pieces / we were built to hold the weight\nEvery scar becomes a compass / pointing straight back to our fate",
+        "We didn't come this far / to fall before the dawn\nEvery ending is a doorway / to a war we haven't drawn",
+        "So raise the banners higher / let the whole world hear us now\nWe are not the ashes falling / we're the fire taking ground",
+        "This is not the end we're given / this is just the storm before\nWe will rise above the ruins / stronger than we were before",
+        "Let them count the ones who doubted / let them count the ones who stayed\nWe are still here, still standing / still the fire, still unafraid",
+        "We break and rise again / that's the only way we've known",
+        "Even when the world turned away / we held each other's ground",
+        "As long as this song still echoes / we will never fall"
+      ],
+      "verse2": [
+        "Every name we lost along the way / is carried in this song\nWe are the echo of their courage / and we will not go silent long",
+        "The dawn does not forgive us gently / but it lets us stand again\nAnd every step we take from here / begins where they had been",
+        "A seed planted in the ruins / bloomed for the first time today",
+        "Even those who never believed us / finally nodded along",
+        "Through the darkest night we've walked / we met the brightest morning",
+        "Every quiet wound we carried / becomes the story they will tell\nAnd the ones who doubted loudest / are the first to ring the bell"
+      ],
+      "bridge": [
+        "Even if it ends here / we made it worth the fight",
+        "Let this be the story / they tell beside the fire",
+        "We are more than what we lost / we are what we chose to become",
+        "If this is our last stand / then let it be our loudest",
+        "Whatever comes at dawn / we already won the night",
+        "Defeat isn't the end, just the start of the next chapter",
+        "Every drop of sweat we gave was never wasted",
+        "We came this far for this one moment"
+      ],
+      "outro": [
+        "(wordless choir swell)",
+        "(orchestra fades to a single note)",
+        "(drums fade, silence holds)",
+        "(final horn, then stillness)",
+        "(drums slowly coming to a stop)",
+        "(light spreading across the screen)",
+        "(a final roar, echoing on)"
+      ],
+      "titleAdj": [
+        "Rising",
+        "Last",
+        "Hollow",
+        "Final",
+        "Unbroken",
+        "Silent",
+        "Burning",
+        "Distant",
+        "Unbroken",
+        "Awakened",
+        "Reclaimed"
+      ],
+      "titleNoun": [
+        "Dawn",
+        "Stand",
+        "Horizon",
+        "Ember",
+        "Vow",
+        "Storm",
+        "Crown",
+        "Echoes",
+        "Shield",
+        "Warrior",
+        "Victory"
+      ]
+    },
+    "pop": {
+      "verse1": [
+        "City lights are calling / everybody's leaving home\nSomething in the air tonight / says we're never doing this alone",
+        "Turn it up a little louder / let the bassline take control\nWe've been waiting all week for this / now here we go",
+        "Found you in the crowd tonight / like the room was made for us\nEvery beat feels like a heartbeat / that we didn't have to rush",
+        "Sneakers on the pavement / running towards the neon signs\nEverything's electric / when you're standing next to mine",
+        "We don't need a reason / we just need the night to start\nEvery song's a little brighter / when you're dancing from the heart",
+        "Phone's on do not disturb / tonight's not made for waiting\nEvery second's ours to spend / and we're not hesitating",
+        "The speakers feel like they'll blow / there's no brakes tonight",
+        "In every photo with my friends / we're all just laughing",
+        "New outfit, stepping out the door / tonight I'm the main character"
+      ],
+      "pre": [
+        "Count it down, here we go",
+        "Feel it building, here it comes",
+        "Lights are dropping, one, two, three",
+        "Say the word and we're already gone",
+        "You ready? then let's go",
+        "Just give in to the rhythm",
+        "Tonight belongs to us"
+      ],
+      "chorus": [
+        "We're alive, we're on fire / dancing through the night\nSay my name a little louder / feels so right",
+        "So throw your hands up higher / let the whole block hear us now\nWe don't need a reason why / we just need right now",
+        "This is our forever moment / caught in flashing light\nSpin me one more time before / the morning steals the night",
+        "We're the loudest in the room / and we don't care who's watching\nEvery heartbeat's on the beat / and nothing's slowing down",
+        "Turn the night into a memory / that we replay for years\nEvery lyric, every laugh line / disappearing all our fears",
+        "So here's to running wild tonight / with nowhere left to be\nJust you, the lights, the music / and everything we could be",
+        "The speakers feel like they'll blow / there's no brakes tonight",
+        "With my friends right here beside me / anywhere turns into a party",
+        "Doesn't matter when the song ends / we're gonna keep dancing anyway"
+      ],
+      "verse2": [
+        "Somebody hit the lights up / somebody turn it up more\nWe've been waiting on this feeling / since we walked through that door",
+        "Every clock in here stopped counting / the second that you smiled\nI don't wanna go home yet / let's stay just a while",
+        "It's already past 2AM / and I don't wanna go home",
+        "Nobody started it first / but we all screamed together",
+        "One song is all it takes / to make tonight complete",
+        "The city hums along with us / like it knows we're wide awake\nEvery streetlight points our way / to whatever choice we make"
+      ],
+      "bridge": [
+        "Even if the night ends / this feeling never will",
+        "Let the music keep on playing / long after we go home",
+        "We'll remember this forever / even if the lights go out",
+        "No matter where tomorrow takes us / tonight was always ours",
+        "Some nights you don't forget / and this will be that one",
+        "Tomorrow's worries can wait for tomorrow's me",
+        "Right now I'm only thinking about this moment",
+        "A night like this might never come again"
+      ],
+      "outro": [
+        "(chorus repeat, fade)",
+        "(crowd cheer, fade to quiet)",
+        "(beat drops out, vocal ad-libs fade)",
+        "(synths glow and fade)",
+        "(speaker volume climbing to the max)",
+        "(flash lights, sparkling)",
+        "(everyone shouting the chorus, fade out)"
+      ],
+      "titleAdj": [
+        "Neon",
+        "Electric",
+        "Golden",
+        "Wild",
+        "Midnight",
+        "Runaway",
+        "Loud",
+        "Bright",
+        "About to Burst",
+        "Dazzling",
+        "Unstoppable"
+      ],
+      "titleNoun": [
+        "Heartbeat",
+        "Feeling",
+        "Summer",
+        "Lights",
+        "Rush",
+        "Nights",
+        "Static",
+        "Sound",
+        "Party",
+        "Fireworks",
+        "Rhythm"
+      ]
+    },
+    "acoustic": {
+      "verse1": [
+        "The porch light's still flickering / the way it always has\nEvery creak inside these floorboards / remembers where we sat",
+        "Grandpa's old guitar's still tuned / to songs I half-forget\nBut something in the melody / brings back what I regret",
+        "The dirt road out to nowhere / still smells like summer rain\nEvery mile I walked back then / still echoes with your name",
+        "There's a photograph in the kitchen / that no one's taken down\nEvery time I pass it slowly / I hear that old hometown",
+        "The screen door still won't close right / the way it never did\nBut some things aren't worth fixing / they're just part of where we lived",
+        "Sunday mornings move so slow here / like the world forgot to rush\nEvery cup of coffee tastes like / something I don't want to lose",
+        "The smell of blankets on the line / always meant summer had come",
+        "Counting coins on the corner store bench / those were simple days",
+        "Every time I pushed the pedal / the spokes would catch the light"
+      ],
+      "pre": [
+        "So let the evening find us / right where we always stay",
+        "There's no clock on this porch / and we don't need one anyway",
+        "Some things don't need chasing / they just gently come our way",
+        "Let's go back to that time for a moment",
+        "One slow song is all we need",
+        "Let's just sit here a little longer"
+      ],
+      "chorus": [
+        "Take the long way home / let the evening slow\nThere's no need to rush / where the old wind blows",
+        "So I'll sing it like my father did / a little rough, a little slow\nSome songs aren't about the singing / they're about the ones you know",
+        "We don't need the radio on / just the crickets and the porch\nEvery story's better spoken / by a quiet, tired voice",
+        "So let the evening find us here / right where we always stay\nSome things don't need chasing after / they just gently come our way",
+        "Take me back to gravel roads / and screen doors left ajar\nSome kind of peace was always waiting / right where we already are",
+        "So here's to porch light stories / told the same way every year\nSome things don't get old with telling / they just get a little dear",
+        "Like blankets hung out on the line / let the wind dry out our hearts",
+        "Like that summer counting coins / let's feel that simple joy again",
+        "Put on a slow song / and just sit here without a word"
+      ],
+      "verse2": [
+        "The old dog still waits by the gate / like someone's coming home\nSome habits never really leave you / even after you have grown",
+        "I planted something in this yard / the same year I left town\nIt's taller than the both of us / every time I come back around",
+        "The bench in the corner of the yard / still holds its place",
+        "An old letter sits in the mailbox / still never sent",
+        "Like the mosquito coil on a summer night / a feeling quietly burning"
+      ],
+      "bridge": [
+        "Some roads don't need an ending / just a place to slow down",
+        "Not every song needs a reason / some just need a porch and time",
+        "We don't chase the years too closely / we just let them settle in",
+        "Home was never just a building / it was always in this song",
+        "Some things get better with age / and this old road's one of them",
+        "It's okay to go slow, just like this song",
+        "Simple things are the ones that last the longest",
+        "Summer back home is always right there"
+      ],
+      "outro": [
+        "(guitar fades, gentle hum)",
+        "(porch creaks, quiet strum)",
+        "(last chord rings out)",
+        "(soft whistle, fade)",
+        "(crickets, settling into quiet)",
+        "(wind chimes swaying in the breeze)",
+        "(a low whistle, fading into distance)"
+      ],
+      "titleAdj": [
+        "Old",
+        "Slow",
+        "Quiet",
+        "Worn",
+        "Golden",
+        "Gravel",
+        "Faded",
+        "Dusty",
+        "Simple",
+        "Faded",
+        "Staying"
+      ],
+      "titleNoun": [
+        "Porch Light",
+        "Roads",
+        "Guitar Strings",
+        "Sunday",
+        "Hometown",
+        "Screen Door",
+        "Summer",
+        "Songbook",
+        "Porch Bench",
+        "Mailbox",
+        "Summer Night"
+      ]
+    },
+    "ambient": {
+      "titleAdj": [
+        "Still",
+        "Distant",
+        "Quiet",
+        "Hollow",
+        "Faint",
+        "Slow",
+        "Muted",
+        "Soft",
+        "Sunken",
+        "Drifting",
+        "Silent"
+      ],
+      "titleNoun": [
+        "Snowfall",
+        "Horizon",
+        "Stillness",
+        "Low Tide",
+        "Static",
+        "Hourglass",
+        "Drift",
+        "Half-Light",
+        "Fog",
+        "Moonlight",
+        "Depths"
+      ],
+      "note": "Ambient tracks are usually vocal-free. In Suno, turn on the Instrumental toggle instead of writing lyrics — the title alone sets the mood."
+    }
+  },
+  "ko": {
+    "ballad": {
+      "verse1": [
+        "옷장 속 낡은 스웨터엔\n아직 네 향이 남아있어",
+        "커피는 오늘도 식어가고\n너 없인 아침이 낯설어",
+        "빛바랜 사진 한 장을\n책갈피 사이에 숨겨뒀어",
+        "창밖에 내리는 빗소리가\n네 이름을 자꾸 불러",
+        "네가 좋아하던 노래가\n라디오에서 흘러나와",
+        "지갑 속 낡은 티켓 한 장\n그날의 온도를 기억해",
+        "너와 걷던 그 골목길을\n요즘도 자꾸 지나게 돼"
+      ],
+      "pre": [
+        "아직도 기다리고 있나 봐",
+        "이별은 끝나지 않았나 봐",
+        "말하지 못한 게 너무 많아서",
+        "아직 못 지운 번호가 하나 있어",
+        "그리움도 습관이 되나 봐",
+        "이 밤엔 유난히 네가 보고 싶어"
+      ],
+      "chorus": [
+        "네 이름의 모양만 안고서\n텅 빈 방을 서성여",
+        "다 못한 말들은 접어서\n편지처럼 넣어둘게",
+        "촛불 하나 켜놓은 채로\n네 빈자리를 지켜",
+        "이 노래가 널 찾아가면\n부디 편안하게 들리길",
+        "너와 나눈 계절들을\n가슴 한켠에 접어두고",
+        "빈 의자 하나 남겨둔 채\n그 자리를 맴돌아",
+        "이 노래 끝에 네가 있다면\n조용히 손 흔들어줄게"
+      ],
+      "verse2": [
+        "언젠가는 그만 기다릴까\n오늘 밤은 그냥 그리워할게",
+        "낯선 목소리에 네 웃음이\n스쳐 지날 때가 있어",
+        "계절은 자꾸 바뀌는데\n난 아직 여기 멈춰있어",
+        "네가 쓰던 향수 냄새가\n스쳐 지나가는 밤이 있어",
+        "달력 위에 표시해둔 날짜가\n이제는 그냥 숫자일 뿐",
+        "너 없이도 계절은 오고\n나는 조금씩 걸어가"
+      ],
+      "bridge": [
+        "혹시 날 떠올린다면 따뜻하게 기억해줘",
+        "이 노래가 닿는 곳에서 잘 지내고 있길 바라",
+        "사랑은 끝나지 않고 모양만 바뀌나 봐",
+        "이 마음이 다 사라지진 않았으면 해",
+        "언젠가 우리도 웃으며 마주치길",
+        "그리움도 사랑의 다른 이름이겠지"
+      ],
+      "outro": [
+        "(불빛은 여전히 켜둔 채...)",
+        "(그리움은 멈추지 않고...)",
+        "(조용한 방, 나 혼자...)",
+        "(핸드폰 화면만 바라보다...)",
+        "(달빛 아래 혼자 서서...)",
+        "(마지막 인사도 못 한 채...)"
+      ],
+      "titleAdj": [
+        "조용한",
+        "빛바랜",
+        "보내지 못한",
+        "머나먼",
+        "다정한",
+        "끝나지 않은",
+        "잊혀지지 않는",
+        "서툰",
+        "돌아오지 않는"
+      ],
+      "titleNoun": [
+        "이별",
+        "지평선",
+        "심장 소리",
+        "메아리",
+        "창가의 빛",
+        "편지",
+        "약속",
+        "계절",
+        "빈 의자"
+      ]
+    },
+    "lofi": {
+      "verse1": [
+        "또 하나의 느린 저녁\n증명할 건 아무것도 없어",
+        "식어버린 커피 한 잔\n그냥 흘러가게 둘래",
+        "시계 소리 저 멀리서\n시간 가는 걸 잊었어",
+        "커튼 사이 흐린 불빛\n바닥 위에 그림자져",
+        "노트북 화면만 바라보다\n어느새 새벽이 왔어",
+        "이어폰 너머로 흘러나오는\n낯익은 멜로디 하나",
+        "책상 위에 쌓인 메모들\n오늘도 그대로 남아있어"
+      ],
+      "pre": [
+        "잠깐 머물러도 돼",
+        "천천히 가도 괜찮아",
+        "오늘은 아무것도 안 해도 돼",
+        "오늘 하루도 수고했어",
+        "불 끄고 잠깐 눈 감아봐",
+        "조금만 더 이렇게 있을래"
+      ],
+      "chorus": [
+        "음, 잠깐 머물러줘\n음, 괜찮으니까",
+        "천천히 가자 오늘 밤은\n그냥 흘려보내자",
+        "서두를 필요 없어\n숨만 천천히 내쉬어",
+        "오늘은 아무 일도 없어\n음, 잠깐 머물러줘",
+        "오늘 하루도 수고했어\n음, 잠깐 쉬어가자",
+        "불 끄고 잠깐 눈 감아봐\n다 괜찮아질 거야",
+        "이 노래가 끝날 때까지만\n아무 생각 하지 말자"
+      ],
+      "verse2": [
+        "조용한 생각 하나가\n스쳐 지나가고 있어",
+        "김 서린 창문 너머로\n가로등을 바라봐",
+        "저 멀리 지나가는 기차\n소리만으로 충분해",
+        "냉장고 돌아가는 소리가\n오늘따라 크게 들려",
+        "책장 넘기는 소리만\n방 안을 가득 채워",
+        "휴대폰 알림도 꺼둔 채\n조용히 시간을 보내"
+      ],
+      "bridge": [
+        "설명이 필요 없는 기분이야",
+        "오늘 밤은 이유가 없어도 돼",
+        "시간은 그냥 흐르게 두자",
+        "오늘은 그냥 이대로 있어도 돼",
+        "서두르는 사람은 아무도 없어",
+        "이 시간만큼은 온전히 내 거야",
+        "이 기분이 뭐든, 조금만 더 있어도 괜찮아"
+      ],
+      "outro": [
+        "(잔잔한 허밍, 페이드아웃)",
+        "(빗소리, 조용히 사라짐)",
+        "(부드러운 건반, 페이드아웃)",
+        "(키보드 소리, 잦아들며)",
+        "(창밖 가로등 불빛, 흔들리며)",
+        "(작은 하품, 페이드아웃)"
+      ],
+      "titleAdj": [
+        "새벽 3시",
+        "느린",
+        "비 오는",
+        "포근한",
+        "빛바랜",
+        "조용한",
+        "포근한 밤",
+        "작은",
+        "머무는"
+      ],
+      "titleNoun": [
+        "와 함께",
+        "창가의 생각",
+        "정적",
+        "집중",
+        "한구석",
+        "표류",
+        "책상 위",
+        "불빛 아래",
+        "작은 방"
+      ]
+    },
+    "cinematic": {
+      "verse1": [
+        "잿더미 속에서 일어나\n한 걸음씩 새겨왔어",
+        "타오르던 마지막 빛이\n조용히 저물어가도",
+        "무너질 거라 했었지만\n우린 여기 서 있어",
+        "아무도 몰랐던 용기가\n우리 손에 남아있어",
+        "부서진 방패 뒤에서도\n우린 눈을 감지 않았어",
+        "지도에 없던 길이었지만\n우리가 첫 발자국을 남겼어",
+        "차가운 새벽 공기 속에서\n마지막 숨을 고르며 섰어"
+      ],
+      "pre": [
+        "이 순간이 우릴 증명해",
+        "마지막 벽이 무너지기 전에",
+        "숨을 고르고 다시 일어서",
+        "여기서 물러설 순 없어",
+        "모든 게 걸린 순간이야",
+        "한 걸음만 더 나아가면 돼"
+      ],
+      "chorus": [
+        "우린 꺼지지 않는 불꽃\n어둠 속에서도 타올라",
+        "하늘이 무너져 내려도\n우린 버텨낼 거야",
+        "이 끝은 시작일 뿐이야\n우린 다시 일어설 거야",
+        "깃발을 더 높이 들어\n온 세상이 듣게 해",
+        "부서져도 다시 일어나\n우린 그렇게 배웠으니까",
+        "모두가 등 돌린 순간에도\n우린 서로를 붙잡았어",
+        "이 노래가 울려 퍼지는 한\n우린 절대 지지 않아"
+      ],
+      "verse2": [
+        "잃어버린 이름들도\n이 노래 속에 살아있어",
+        "새벽은 쉽게 오지 않지만\n다시 일어설 힘을 줘",
+        "우리가 지나온 자리마다\n새로운 길이 열려",
+        "폐허 위에 다시 심은 씨앗이\n오늘 처음 꽃을 피웠어",
+        "우리를 믿지 않았던 이들도\n결국 고개를 끄덕였어",
+        "가장 어두웠던 밤을 지나\n가장 밝은 아침을 맞았어",
+        "묵묵히 참아온 상처 하나가\n언젠가는 전설로 남을 거야"
+      ],
+      "bridge": [
+        "여기서 끝난다 해도, 싸운 만큼 가치 있었어",
+        "이것이 마지막 함성이라면, 가장 크게 외치자",
+        "무엇이 오든, 우린 오늘 밤을 이미 이겼어",
+        "패배는 끝이 아니라 다음 장의 시작일 뿐",
+        "우리가 흘린 땀은 결코 헛되지 않았어",
+        "이 순간을 위해 우린 여기까지 왔어"
+      ],
+      "outro": [
+        "(합창이 웅장하게 울려 퍼지며)",
+        "(오케스트라, 한 음으로 잦아들며)",
+        "(마지막 뿔피리 소리, 고요함)",
+        "(북소리, 서서히 멈추며)",
+        "(빛이 스크린 가득 번지며)",
+        "(마지막 함성, 메아리치며)"
+      ],
+      "titleAdj": [
+        "떠오르는",
+        "마지막",
+        "텅 빈",
+        "불멸의",
+        "고요한",
+        "불타오르는",
+        "부서지지 않는",
+        "깨어난",
+        "되찾은"
+      ],
+      "titleNoun": [
+        "새벽",
+        "함성",
+        "지평선",
+        "불씨",
+        "맹세",
+        "폭풍",
+        "방패",
+        "전사",
+        "승리"
+      ]
+    },
+    "pop": {
+      "verse1": [
+        "도시의 불빛이 부르고 있어\n오늘 밤은 집에 있지 마",
+        "베이스를 더 크게 틀어줘\n오늘을 위해 기다려왔어",
+        "사람들 속에서 널 찾았어\n마치 운명처럼",
+        "네온사인을 향해 달려가\n모든 게 반짝거려",
+        "스피커가 터질 것 같아\n오늘 밤은 브레이크 없어",
+        "친구들과 찍은 사진 속\n우리 모두 웃고 있었지",
+        "새로 산 옷을 입고 나가\n오늘만큼은 주인공이야"
+      ],
+      "pre": [
+        "하나 둘 셋, 자 시작이야",
+        "불빛이 떨어지면, 바로 그 순간",
+        "말 한마디면 우린 이미 떠났어",
+        "준비됐어? 그럼 가보자",
+        "리듬에 몸을 맡겨봐",
+        "오늘 밤은 우리 거야"
+      ],
+      "chorus": [
+        "우린 살아있어, 불타올라\n밤새도록 춤을 춰",
+        "손을 더 높이 들어줘\n온 동네가 듣게 해",
+        "지금 이 순간이 영원이 되도록\n한 번 더 돌아줘",
+        "가장 시끄러운 우리가\n오늘 밤의 주인공이야",
+        "스피커가 터질 것 같아\n오늘 밤은 브레이크 없어",
+        "친구들과 함께라면\n어디든 파티장이 돼",
+        "노래가 끝나도 상관없어\n우린 계속 춤출 거니까"
+      ],
+      "verse2": [
+        "누가 불을 켰는지 몰라도\n오늘 밤은 완벽해",
+        "시계는 멈춘 것 같아\n네가 웃는 순간부터",
+        "핸드폰은 잠시 꺼둬\n오늘은 온전히 우리 거야",
+        "새벽 두 시가 넘었는데도\n집에 갈 생각이 없어",
+        "누가 먼저랄 것도 없이\n다 같이 소리를 질렀어",
+        "이 노래 하나면 충분해\n오늘 밤을 완성하기엔",
+        "지금 이 순간을 사진에 담아\n내일도 오늘처럼 빛나길"
+      ],
+      "bridge": [
+        "오늘 밤이 끝나도, 이 기분은 남을 거야",
+        "음악이 계속되게 둬, 우리가 집에 가도",
+        "오늘 밤을 절대 잊지 않을 거야",
+        "내일 걱정은 내일의 나에게 맡기고",
+        "지금 이 순간만 생각하기로 해",
+        "오늘 같은 밤은 다시 안 올지도 몰라"
+      ],
+      "outro": [
+        "(후렴 반복, 페이드아웃)",
+        "(환호성, 조용해지며)",
+        "(신스 불빛처럼 퍼지며)",
+        "(스피커 볼륨 최고조로 치솟으며)",
+        "(플래시 조명, 반짝이며)",
+        "(다 같이 외치는 후렴, 페이드아웃)"
+      ],
+      "titleAdj": [
+        "네온",
+        "전기 같은",
+        "황금빛",
+        "거친",
+        "한밤의",
+        "질주하는",
+        "터질듯한",
+        "눈부신",
+        "멈추지 않는"
+      ],
+      "titleNoun": [
+        "심장박동",
+        "여름",
+        "불빛",
+        "질주",
+        "밤",
+        "울림",
+        "파티",
+        "불꽃놀이",
+        "리듬"
+      ]
+    },
+    "acoustic": {
+      "verse1": [
+        "현관 불빛은 여전히 깜빡이고\n마룻바닥은 그때를 기억해",
+        "할아버지의 낡은 기타는\n잊었던 노래를 다시 불러",
+        "흙길은 여전히 여름 냄새가 나고\n네 이름이 스쳐 지나가",
+        "부엌에 걸린 오래된 사진\n지날 때마다 그 여름이 떠올라",
+        "빨랫줄에 걸린 이불 냄새가\n여름을 알려주곤 했어",
+        "동네 어귀 슈퍼 평상에\n동전 세며 앉아있던 날들",
+        "자전거 페달을 밟을 때마다\n바큇살이 반짝거렸어"
+      ],
+      "pre": [
+        "저녁이 우릴 찾아오게 두자",
+        "이 마루에는 시계가 없어",
+        "서두르지 않아도 괜찮아",
+        "그 시절로 잠깐 돌아가 볼까",
+        "느린 노래 하나면 충분해",
+        "여기 앉아서 조금만 더 있자"
+      ],
+      "chorus": [
+        "먼 길로 돌아 집에 가자\n저녁이 천천히 저물게",
+        "라디오는 필요 없어\n귀뚜라미 소리면 충분해",
+        "저녁이 우릴 찾아오게 두고\n늘 있던 그 자리에 머물자",
+        "낡은 기타 줄과\n작은 이야기 하나면 돼",
+        "빨랫줄에 걸린 이불처럼\n바람에 마음을 말려보자",
+        "동전 세던 그 여름날처럼\n소박한 행복을 다시 느껴",
+        "느린 노래 하나 틀어놓고\n아무 말 없이 앉아있자"
+      ],
+      "verse2": [
+        "늙은 개는 여전히 대문을 지켜\n누군가 올 것처럼",
+        "그 해에 심은 나무는\n이제 나보다 훨씬 커졌어",
+        "여름은 다시 돌아오지만\n그때 그 얼굴은 아니야",
+        "마당 한켠에 놓인 평상은\n여전히 그 자리를 지켜",
+        "우체통엔 낡은 편지 한 통\n아직도 부치지 못했어",
+        "여름밤 마당의 모깃불처럼\n조용히 타오르던 마음"
+      ],
+      "bridge": [
+        "모든 길이 끝나야 하는 건 아니야, 잠시 멈출 곳이면 돼",
+        "나이가 들수록 더 좋아지는 것도 있어, 이 오래된 길처럼",
+        "고향은 늘 이 노래 속에 있었어",
+        "느려도 괜찮아, 이 노래처럼",
+        "소박한 것들이 결국 오래 남아",
+        "고향의 여름은 늘 그 자리에 있어"
+      ],
+      "outro": [
+        "(기타 소리 잦아들며, 낮은 허밍)",
+        "(현관이 삐걱, 조용한 스트럼)",
+        "(마지막 화음, 여운)",
+        "(풀벌레 소리, 잦아들며)",
+        "(바람에 흔들리는 풍경 소리)",
+        "(낮은 휘파람, 멀어지며)"
+      ],
+      "titleAdj": [
+        "오래된",
+        "느린",
+        "조용한",
+        "낡은",
+        "황금빛",
+        "먼지 쌓인",
+        "소박한",
+        "바랜",
+        "머무는"
+      ],
+      "titleNoun": [
+        "현관불",
+        "길",
+        "기타 줄",
+        "일요일",
+        "고향",
+        "여름날",
+        "평상",
+        "우체통",
+        "여름밤"
+      ]
+    },
+    "ambient": {
+      "titleAdj": [
+        "고요한",
+        "머나먼",
+        "조용한",
+        "텅 빈",
+        "희미한",
+        "느린",
+        "잠긴",
+        "떠도는",
+        "가라앉은"
+      ],
+      "titleNoun": [
+        "눈송이",
+        "지평선",
+        "정적",
+        "잔잔한 물",
+        "표류",
+        "반그림자",
+        "안개",
+        "달빛",
+        "심연"
+      ],
+      "note": "앰비언트 트랙은 보통 보컬이 없어요. Suno에서는 가사 대신 Instrumental 토글을 켜세요 — 제목만으로 분위기를 전달할 수 있어요."
+    }
+  },
+  "ja": {
+    "ballad": {
+      "verse1": [
+        "クローゼットの古いセーターに\nまだ君の匂いが残ってる",
+        "冷めたコーヒーがまた一杯\n君がいない朝は慣れない",
+        "色褪せた写真を一枚\nしおりの間に挟んでる",
+        "窓を打つ雨の音が\n君の名前を呼んでいる",
+        "君が好きだった曲が\nラジオから流れてくる",
+        "財布の中の古いチケット\nあの日の温度を覚えてる",
+        "君と歩いたあの路地を\n最近もつい通ってしまう"
+      ],
+      "pre": [
+        "まだ待っているのかもしれない",
+        "別れはまだ終わっていない",
+        "言えなかった言葉が多すぎて",
+        "まだ消せない番号が一つある",
+        "恋しさも習慣になるのかな",
+        "今夜は特別に君に会いたい"
+      ],
+      "chorus": [
+        "君の名前の形だけ抱いて\n空っぽの部屋をさまよう",
+        "言えなかった言葉は畳んで\n手紙のようにしまっておく",
+        "ろうそくを一つ灯したまま\n君のいない場所を守る",
+        "この歌が君に届くなら\nどうか穏やかに聞こえますように",
+        "共に過ごした季節たちを\n胸の片隅にしまいながら",
+        "空いた椅子を一つ残したまま\nその場所をさまよう",
+        "この歌の終わりに君がいたら\n静かに手を振るよ"
+      ],
+      "verse2": [
+        "いつか待つのをやめるかな\n今夜はただ恋しく思うよ",
+        "知らない声に君の笑い声が\n重なる瞬間がある",
+        "季節は変わっていくのに\n僕はまだここで止まってる",
+        "君がつけてた香水の匂いが\nふと通り過ぎる夜がある",
+        "カレンダーに印した日付が\n今はただの数字になった",
+        "君がいなくても季節は巡り\n僕は少しずつ歩いていく"
+      ],
+      "bridge": [
+        "もし僕を思い出すなら、優しく覚えていて",
+        "この歌が届く場所で、元気でいてほしい",
+        "愛は終わらずに、形を変えるだけなのかもしれない",
+        "この気持ちが全部消えなければいいな",
+        "いつか僕らも笑って会えたらいいな",
+        "恋しさも愛の別の名前なのかもしれない"
+      ],
+      "outro": [
+        "(灯りはまだ点けたまま...)",
+        "(恋しさは止まらない...)",
+        "(静かな部屋、僕一人...)",
+        "(携帯の画面をただ見つめて...)",
+        "(月明かりの下、一人立って...)",
+        "(最後の挨拶もできないまま...)"
+      ],
+      "titleAdj": [
+        "静かな",
+        "色褪せた",
+        "届かなかった",
+        "遠い",
+        "優しい",
+        "終わらない",
+        "忘れられない",
+        "不器用な",
+        "戻らない"
+      ],
+      "titleNoun": [
+        "別れ",
+        "地平線",
+        "鼓動",
+        "こだま",
+        "窓辺の灯り",
+        "手紙",
+        "約束",
+        "季節",
+        "空いた椅子"
+      ]
+    },
+    "lofi": {
+      "verse1": [
+        "またゆっくりとした夜\n証明することは何もない",
+        "冷めたコーヒーを一杯\nそのまま流れるままに",
+        "時計の音は遠くで\n時間を忘れてしまった",
+        "カーテン越しの淡い光\n床に影を落としてる",
+        "パソコンの画面を見つめてたら\nいつの間にか夜明けが来た",
+        "イヤホン越しに流れてくる\n聞き覚えのあるメロディ",
+        "机の上に積もったメモは\n今日もそのまま残ってる"
+      ],
+      "pre": [
+        "少しだけここにいて",
+        "ゆっくりでいいから",
+        "今日は何もしなくていい",
+        "今日も一日お疲れさま",
+        "灯りを消して少し目を閉じて",
+        "もう少しだけこのままでいたい"
+      ],
+      "chorus": [
+        "うん、少しだけここにいて\nうん、大丈夫だから",
+        "今夜はゆっくり行こう\nただ流れるままに",
+        "急ぐ必要はないよ\nただ静かに息をして",
+        "今日は何も起きない\nうん、少しだけここにいて",
+        "今日も一日お疲れさま\nうん、少し休もう",
+        "灯りを消して少し目を閉じて\n全部大丈夫になるから",
+        "この歌が終わるまでは\n何も考えないでいよう"
+      ],
+      "verse2": [
+        "静かな考えが一つ\n通り過ぎていく",
+        "曇った窓の向こうに\n街灯を眺めてる",
+        "遠くを走る電車の音\nそれだけで十分",
+        "冷蔵庫が唸る音が\n今日はやけに大きく聞こえる",
+        "ページをめくる音だけが\n部屋を静かに満たしてる",
+        "スマホの通知も切ったまま\n静かに時間を過ごしてる"
+      ],
+      "bridge": [
+        "説明はいらない気分",
+        "理由がなくてもいい夜",
+        "時間はただ流れるままに",
+        "今日はこのままでいてもいい",
+        "急いでる人なんて誰もいない",
+        "この時間だけは完全に僕のもの",
+        "この気持ちが何であれ、もう少しいてもいい"
+      ],
+      "outro": [
+        "(静かなハミング、フェードアウト)",
+        "(雨音、静かに消えていく)",
+        "(柔らかな鍵盤、フェードアウト)",
+        "(キーボードの音、静まっていく)",
+        "(窓の外の街灯、揺れながら)",
+        "(小さなあくび、フェードアウト)"
+      ],
+      "titleAdj": [
+        "深夜3時",
+        "ゆっくり",
+        "雨の",
+        "柔らかな",
+        "色褪せた",
+        "静かな",
+        "暖かな夜",
+        "小さな",
+        "とどまる"
+      ],
+      "titleNoun": [
+        "と一緒に",
+        "窓辺の想い",
+        "静寂",
+        "集中",
+        "片隅",
+        "漂流",
+        "机の上",
+        "灯りの下",
+        "小さな部屋"
+      ]
+    },
+    "cinematic": {
+      "verse1": [
+        "灰の中から立ち上がり\n一歩ずつ刻んできた",
+        "燃え尽きる最後の光が\n静かに消えていっても",
+        "崩れると言われたけれど\n僕らはここに立っている",
+        "誰も知らなかった勇気が\n僕らの手に残っている",
+        "砕けた盾の後ろでも\n僕らは目を閉じなかった",
+        "地図になかった道だけど\n僕らが最初の足跡を残した",
+        "冷たい夜明けの空気の中\n最後の息を整えて立った"
+      ],
+      "pre": [
+        "この瞬間が僕らを証明する",
+        "最後の壁が崩れる前に",
+        "息を整えてまた立ち上がる",
+        "ここで退くわけにはいかない",
+        "全てがかかった瞬間だ",
+        "あと一歩踏み出せばいい"
+      ],
+      "chorus": [
+        "僕らは消えない炎\n闇の中でも燃え上がる",
+        "空が崩れ落ちても\n僕らは耐え抜く",
+        "この終わりは始まりに過ぎない\n僕らはまた立ち上がる",
+        "旗をもっと高く掲げて\n世界中に届かせよう",
+        "砕けてもまた立ち上がる\n僕らはそう学んできたから",
+        "みんなが背を向けた瞬間も\n僕らは互いを支え合った",
+        "この歌が響き渡る限り\n僕らは決して負けない"
+      ],
+      "verse2": [
+        "失われた名前たちも\nこの歌の中に生きている",
+        "夜明けは簡単には来ないけど\nまた立ち上がる力をくれる",
+        "僕らが通り過ぎた場所に\n新しい道が開かれる",
+        "廃墟にまた蒔いた種が\n今日初めて花を咲かせた",
+        "僕らを信じなかった者たちも\n最後にはうなずいた",
+        "最も暗い夜を越えて\n最も明るい朝を迎えた",
+        "静かに耐えてきた傷こそ\nいつか伝説として残る"
+      ],
+      "bridge": [
+        "ここで終わるとしても、戦った価値はあった",
+        "これが最後の叫びなら、一番大きく叫ぼう",
+        "何が来ても、僕らは今夜すでに勝っている",
+        "敗北は終わりじゃなく次の章の始まりに過ぎない",
+        "僕らが流した汗は決して無駄じゃなかった",
+        "この瞬間のために僕らはここまで来た"
+      ],
+      "outro": [
+        "(合唱が壮大に響き渡り)",
+        "(オーケストラ、一音に収束して)",
+        "(最後のホルン、静寂)",
+        "(太鼓の音、ゆっくり止まりながら)",
+        "(光がスクリーン一杯に広がって)",
+        "(最後の雄叫び、こだましながら)"
+      ],
+      "titleAdj": [
+        "昇る",
+        "最後の",
+        "空っぽの",
+        "不滅の",
+        "静かな",
+        "燃え上がる",
+        "砕けない",
+        "目覚めた",
+        "取り戻した"
+      ],
+      "titleNoun": [
+        "夜明け",
+        "雄叫び",
+        "地平線",
+        "残り火",
+        "誓い",
+        "嵐",
+        "盾",
+        "戦士",
+        "勝利"
+      ]
+    },
+    "pop": {
+      "verse1": [
+        "街の明かりが呼んでる\n今夜は家にいないで",
+        "ベースをもっと大きくして\n今日のために待ってた",
+        "人混みの中で君を見つけた\nまるで運命みたいに",
+        "ネオンサインへ走り出す\n全部がキラキラしてる",
+        "スピーカーが弾けそう\n今夜はブレーキなし",
+        "友達と撮った写真の中\nみんな笑ってたね",
+        "新しい服を着て出かける\n今日だけは主役だ"
+      ],
+      "pre": [
+        "1、2、3、さあ始まりだ",
+        "光が落ちたら、その瞬間に",
+        "一言でもう出発してる",
+        "準備はいい?なら行こう",
+        "リズムに身を任せて",
+        "今夜は僕らのものだ"
+      ],
+      "chorus": [
+        "僕らは生きてる、燃えてる\n夜通し踊り続ける",
+        "手をもっと高く上げて\n街中に届かせよう",
+        "この瞬間が永遠になるように\nもう一度回ろう",
+        "一番騒がしい僕らが\n今夜の主役だ",
+        "スピーカーが弾けそう\n今夜はブレーキなし",
+        "友達と一緒なら\nどこでもパーティー会場に",
+        "歌が終わっても構わない\n僕らは踊り続けるから"
+      ],
+      "verse2": [
+        "誰が明かりをつけたか知らないけど\n今夜は完璧だ",
+        "時計が止まったみたい\n君が笑った瞬間から",
+        "携帯はしばらく置いておこう\n今日は完全に僕らのものだ",
+        "夜中の2時を過ぎても\n家に帰る気がしない",
+        "誰からともなく\nみんなで叫び声を上げた",
+        "この一曲で十分だ\n今夜を完成させるには",
+        "今夜の写真を撮っておこう\n明日もこんな風に輝くように"
+      ],
+      "bridge": [
+        "今夜が終わっても、この気持ちは残る",
+        "音楽を鳴らし続けて、僕らが帰っても",
+        "今夜のことは絶対忘れない",
+        "明日の心配は明日の僕に任せて",
+        "今この瞬間だけを考えよう",
+        "こんな夜はもう二度と来ないかもしれない"
+      ],
+      "outro": [
+        "(サビ繰り返し、フェードアウト)",
+        "(歓声、静かになっていく)",
+        "(シンセの光のように広がって)",
+        "(スピーカーの音量、最高潮に達しながら)",
+        "(フラッシュライト、きらめきながら)",
+        "(みんなで叫ぶサビ、フェードアウト)"
+      ],
+      "titleAdj": [
+        "ネオンの",
+        "電気のような",
+        "黄金の",
+        "荒々しい",
+        "真夜中の",
+        "疾走する",
+        "弾けそうな",
+        "眩しい",
+        "止まらない"
+      ],
+      "titleNoun": [
+        "鼓動",
+        "夏",
+        "明かり",
+        "疾走",
+        "夜",
+        "響き",
+        "パーティー",
+        "花火",
+        "リズム"
+      ]
+    },
+    "acoustic": {
+      "verse1": [
+        "玄関の灯りはまだ瞬いて\n床板はあの頃を覚えてる",
+        "おじいちゃんの古いギターが\n忘れていた歌を呼び戻す",
+        "土の道は今も夏の匂い\n君の名前がふと過ぎる",
+        "台所に飾られた古い写真\n通るたびあの夏を思い出す",
+        "物干し竿にかかった布団の匂いが\n夏を知らせてくれた",
+        "近所の店先の縁台で\n小銭を数えて座ってた日々",
+        "自転車のペダルを踏むたび\nスポークがきらめいてた"
+      ],
+      "pre": [
+        "夕暮れが僕らを見つけるまで",
+        "この縁側に時計はいらない",
+        "急がなくてもいいんだ",
+        "あの頃に少し戻ってみようか",
+        "ゆっくりした歌一つで十分だ",
+        "ここに座ってもう少しだけいよう"
+      ],
+      "chorus": [
+        "遠回りして家に帰ろう\n夕暮れがゆっくり沈むように",
+        "ラジオはいらない\n虫の声だけで十分だ",
+        "夕暮れが僕らを見つけるまで\nいつもの場所で待とう",
+        "古びたギターの弦と\n小さな物語があればいい",
+        "物干しの布団のように\n風に心を乾かしてみよう",
+        "小銭を数えたあの夏の日のように\n素朴な幸せをまた感じて",
+        "ゆっくりした歌をかけて\n何も言わずに座っていよう"
+      ],
+      "verse2": [
+        "老犬はまだ門を見張ってる\n誰かが来るみたいに",
+        "あの年に植えた木は\n今じゃ僕よりずっと大きい",
+        "夏はまた巡ってくるけど\nあの頃の顔じゃない",
+        "庭の片隅に置かれた縁台は\n今もその場所を守ってる",
+        "郵便受けには古い手紙が一通\nまだ出せずにいる",
+        "夏の夜の庭の蚊遣り火のように\n静かに燃えていた気持ち"
+      ],
+      "bridge": [
+        "すべての道が終わる必要はない、立ち止まる場所でいい",
+        "歳を重ねるほど良くなるものもある、この古い道みたいに",
+        "故郷はいつもこの歌の中にあった",
+        "遅くてもいい、この歌のように",
+        "素朴なものが結局長く残る",
+        "故郷の夏はいつもそこにある"
+      ],
+      "outro": [
+        "(ギターの音が消えていく、低いハミング)",
+        "(玄関がきしむ、静かなストローク)",
+        "(最後の和音、余韻)",
+        "(虫の声、静まっていく)",
+        "(風に揺れる風鈴の音)",
+        "(低い口笛、遠ざかりながら)"
+      ],
+      "titleAdj": [
+        "古い",
+        "ゆっくり",
+        "静かな",
+        "くたびれた",
+        "黄金の",
+        "埃をかぶった",
+        "素朴な",
+        "色あせた",
+        "とどまる"
+      ],
+      "titleNoun": [
+        "玄関の灯り",
+        "道",
+        "ギターの弦",
+        "日曜日",
+        "故郷",
+        "夏の日",
+        "縁台",
+        "郵便受け",
+        "夏の夜"
+      ]
+    },
+    "ambient": {
+      "titleAdj": [
+        "静かな",
+        "遠い",
+        "かすかな",
+        "空っぽの",
+        "ゆっくり",
+        "仄暗い",
+        "沈んだ",
+        "漂う",
+        "沈黙の"
+      ],
+      "titleNoun": [
+        "雪",
+        "地平線",
+        "静寂",
+        "凪いだ水面",
+        "漂流",
+        "半分の光",
+        "霧",
+        "月明かり",
+        "深淵"
+      ],
+      "note": "アンビエントの曲は基本的にボーカルなしです。Sunoでは歌詞の代わりにInstrumentalトグルをオンにしてください — タイトルだけで雰囲気は伝わります。"
+    }
+  },
+  "zh": {
+    "ballad": {
+      "verse1": [
+        "衣櫃裡那件舊毛衣\n還留著你的氣息",
+        "咖啡又涼了一杯\n沒有你的早晨很陌生",
+        "一張泛黃的照片\n夾在書頁之間",
+        "打在窗上的雨聲\n一直在叫著你的名字",
+        "你曾喜歡的那首歌\n從收音機裡流洩而出",
+        "皮夾裡那張舊票根\n還記得那天的溫度",
+        "和你一起走過的巷子\n最近還是常常經過"
+      ],
+      "pre": [
+        "也許我還在等待",
+        "這場離別還沒有結束",
+        "有太多話沒能說出口",
+        "還有一個號碼捨不得刪除",
+        "思念好像也變成了習慣",
+        "今晚特別想見你一面"
+      ],
+      "chorus": [
+        "只抱著你名字的形狀\n在空蕩的房間裡徘徊",
+        "沒說完的話就摺起來\n像信一樣收好",
+        "點著一根蠟燭\n守著你留下的空位",
+        "如果這首歌能傳到你那裡\n希望聽起來很平靜",
+        "把一起度過的季節\n收進心裡的一個角落",
+        "留著一張空椅子\n就這樣在原地徘徊",
+        "如果這首歌的盡頭有你\n我會靜靜地揮揮手"
+      ],
+      "verse2": [
+        "也許有一天會不再等待\n但今晚就讓我想念",
+        "陌生的聲音裡\n偶爾閃過你的笑聲",
+        "季節不停地變換\n我卻還停在這裡",
+        "你用過的那款香水味\n偶爾會在夜裡飄過",
+        "日曆上做過記號的日期\n如今只是個數字而已",
+        "沒有你，季節依然流轉\n我也一步一步向前走"
+      ],
+      "bridge": [
+        "如果你偶爾想起我，希望是溫柔的回憶",
+        "願這首歌到達的地方，你都一切安好",
+        "也許愛從未結束，只是換了一種形狀",
+        "希望這份心意不會完全消失",
+        "希望有一天我們能笑著重逢",
+        "思念也許是愛的另一個名字"
+      ],
+      "outro": [
+        "(燈還亮著...)",
+        "(思念沒有停止...)",
+        "(安靜的房間，只有我...)",
+        "(只是盯著手機螢幕...)",
+        "(獨自站在月光下...)",
+        "(連最後的告別都沒能說出口...)"
+      ],
+      "titleAdj": [
+        "安靜的",
+        "泛黃的",
+        "沒能寄出的",
+        "遙遠的",
+        "溫柔的",
+        "未完的",
+        "難忘的",
+        "笨拙的",
+        "回不去的"
+      ],
+      "titleNoun": [
+        "離別",
+        "地平線",
+        "心跳",
+        "回聲",
+        "窗邊的光",
+        "一封信",
+        "約定",
+        "季節",
+        "空椅子"
+      ]
+    },
+    "lofi": {
+      "verse1": [
+        "又是一個緩慢的夜晚\n沒什麼需要證明",
+        "涼掉的咖啡一杯\n就讓它這樣流逝",
+        "時鐘的聲音很遙遠\n我已經忘了時間",
+        "窗簾透進的微光\n在地板上投下影子",
+        "盯著筆電螢幕看著看著\n不知不覺天就亮了",
+        "耳機裡傳來的旋律\n是那麼熟悉的調子",
+        "桌上堆著的便條紙\n今天依然原封不動"
+      ],
+      "pre": [
+        "留一會兒也沒關係",
+        "慢慢來就好",
+        "今天什麼都不做也可以",
+        "今天也辛苦了",
+        "關掉燈稍微閉上眼睛",
+        "想再這樣待一會兒"
+      ],
+      "chorus": [
+        "嗯，留一會兒吧\n嗯，沒關係的",
+        "今晚就慢慢來\n讓它自然流過",
+        "不需要著急\n只要慢慢地呼吸",
+        "今天什麼都不會發生\n嗯，留一會兒吧",
+        "今天也辛苦了\n嗯，稍微休息一下吧",
+        "關掉燈稍微閉上眼睛\n一切都會沒事的",
+        "在這首歌結束之前\n什麼都不要去想"
+      ],
+      "verse2": [
+        "一個安靜的念頭\n就這樣飄過",
+        "起霧的窗外\n望著那盞路燈",
+        "遠處駛過的列車聲\n這樣就夠了",
+        "冰箱運轉的聲音\n今天聽起來特別大聲",
+        "只有翻書頁的聲音\n靜靜地填滿了房間",
+        "連手機通知都關掉了\n安靜地度過這段時間"
+      ],
+      "bridge": [
+        "這種感覺不需要解釋",
+        "今晚不需要理由",
+        "就讓時間這樣流逝",
+        "今天就這樣待著也沒關係",
+        "沒有人在著急",
+        "這段時間完全屬於我自己",
+        "不管這是什麼感覺，再待久一點也沒關係"
+      ],
+      "outro": [
+        "(輕輕哼唱，漸弱)",
+        "(雨聲持續，漸漸消失)",
+        "(柔和的琴聲，漸弱)",
+        "(鍵盤聲，漸漸靜下來)",
+        "(窗外的路燈，輕輕搖曳)",
+        "(小小的哈欠，漸弱)"
+      ],
+      "titleAdj": [
+        "凌晨三點",
+        "緩慢的",
+        "下雨的",
+        "柔軟的",
+        "泛黃的",
+        "安靜的",
+        "溫暖的夜",
+        "小小的",
+        "停留"
+      ],
+      "titleNoun": [
+        "與你",
+        "窗邊的思緒",
+        "寂靜",
+        "專注",
+        "一個角落",
+        "漂流",
+        "書桌前",
+        "燈光下",
+        "小房間"
+      ]
+    },
+    "cinematic": {
+      "verse1": [
+        "從灰燼中站起來\n一步一步刻下痕跡",
+        "即使最後一絲光芒\n悄悄地熄滅",
+        "他們說我們會倒下\n但我們依然站在這裡",
+        "無人知曉的勇氣\n如今握在我們手中",
+        "即使盾牌已經破碎\n我們也沒有閉上眼睛",
+        "這是地圖上沒有的路\n但我們留下了第一個腳印",
+        "在寒冷的黎明空氣中\n穩住最後一口氣站起來"
+      ],
+      "pre": [
+        "這一刻證明了我們",
+        "在最後一道牆倒下之前",
+        "穩住呼吸再次站起",
+        "這裡不能退縮",
+        "這是決定一切的瞬間",
+        "只要再往前一步"
+      ],
+      "chorus": [
+        "我們是不滅的火焰\n在黑暗中依然燃燒",
+        "即使天空塌下來\n我們也會撐過去",
+        "這個結束只是開始\n我們會再次站起",
+        "把旗幟舉得更高\n讓全世界都聽見",
+        "就算破碎也會再站起來\n因為我們就是這樣學會的",
+        "即使所有人都轉身離開\n我們依然互相扶持",
+        "只要這首歌還在迴響\n我們就絕不會輸"
+      ],
+      "verse2": [
+        "那些消失的名字\n都活在這首歌裡",
+        "黎明不會輕易到來\n但它給了我們站起的力量",
+        "我們走過的每一處\n都開出了新的道路",
+        "廢墟中重新種下的種子\n今天第一次開了花",
+        "那些不曾相信我們的人\n最終也點了點頭",
+        "越過了最黑暗的夜晚\n迎來了最明亮的早晨",
+        "默默忍受的傷痕\n終將化為傳說流傳"
+      ],
+      "bridge": [
+        "就算在這裡結束，這場戰鬥也值得",
+        "如果這是最後的吶喊，就喊得最響亮",
+        "無論發生什麼，我們今晚已經贏了",
+        "失敗不是結束，只是下一章的開始",
+        "我們流下的汗水從未白費",
+        "為了這一刻，我們一路走到這裡"
+      ],
+      "outro": [
+        "(合唱壯闊地響起)",
+        "(管弦樂，收束於一個音符)",
+        "(最後的號角聲，寂靜)",
+        "(鼓聲，緩緩停下)",
+        "(光芒佈滿整個畫面)",
+        "(最後的吶喊，迴盪著)"
+      ],
+      "titleAdj": [
+        "升起的",
+        "最後的",
+        "空蕩的",
+        "不朽的",
+        "寂靜的",
+        "燃燒的",
+        "不碎的",
+        "覺醒的",
+        "奪回的"
+      ],
+      "titleNoun": [
+        "黎明",
+        "吶喊",
+        "地平線",
+        "餘燼",
+        "誓言",
+        "風暴",
+        "盾牌",
+        "戰士",
+        "勝利"
+      ]
+    },
+    "pop": {
+      "verse1": [
+        "城市的燈光在召喚\n今晚別待在家裡",
+        "把貝斯開得更大聲\n為了今天等了一整週",
+        "在人群中找到了你\n就像命中註定",
+        "朝著霓虹燈跑去\n一切都閃閃發光",
+        "音響快要爆炸了\n今晚沒有煞車",
+        "和朋友拍的照片裡\n大家都在笑",
+        "穿上新買的衣服出門\n今天就是主角"
+      ],
+      "pre": [
+        "一、二、三，開始吧",
+        "燈光落下的那一刻",
+        "一句話我們就已經出發",
+        "準備好了嗎？那就出發吧",
+        "把身體交給節奏吧",
+        "今晚是屬於我們的"
+      ],
+      "chorus": [
+        "我們活著，我們燃燒\n整夜跳著舞",
+        "把手舉得更高\n讓整條街都聽見",
+        "讓這一刻變成永恆\n再轉一圈吧",
+        "最吵鬧的我們\n就是今晚的主角",
+        "音響快要爆炸了\n今晚沒有煞車",
+        "只要和朋友在一起\n哪裡都能變成派對",
+        "就算歌結束了也無所謂\n我們會繼續跳舞"
+      ],
+      "verse2": [
+        "不知道是誰點亮了燈\n但今晚很完美",
+        "時鐘好像停了\n從你笑的那一刻起",
+        "手機先放一邊\n今天完全屬於我們",
+        "已經過了凌晨兩點\n卻完全不想回家",
+        "不知道是誰先開始的\n大家一起大聲吶喊",
+        "有這一首歌就夠了\n足以完成今晚",
+        "把今晚的照片留下來\n希望明天也一樣閃耀"
+      ],
+      "bridge": [
+        "就算今晚結束，這種感覺也會留下",
+        "讓音樂繼續播放，就算我們回家了",
+        "今晚我們絕不會忘記",
+        "明天的煩惱就交給明天的自己",
+        "現在只想著這一刻",
+        "像這樣的夜晚也許不會再有了"
+      ],
+      "outro": [
+        "(副歌重複，漸弱)",
+        "(歡呼聲，漸漸安靜)",
+        "(合成器的光芒般擴散)",
+        "(音響音量衝到最高)",
+        "(閃光燈，閃爍著)",
+        "(大家一起喊的副歌，漸弱)"
+      ],
+      "titleAdj": [
+        "霓虹的",
+        "電流般的",
+        "金色的",
+        "狂野的",
+        "午夜的",
+        "狂奔的",
+        "快爆炸的",
+        "耀眼的",
+        "停不下來的"
+      ],
+      "titleNoun": [
+        "心跳",
+        "夏天",
+        "燈光",
+        "狂奔",
+        "夜晚",
+        "回響",
+        "派對",
+        "煙火",
+        "節奏"
+      ]
+    },
+    "acoustic": {
+      "verse1": [
+        "門廊的燈還在閃爍\n地板記得那時候的事",
+        "爺爺那把舊吉他\n又喚起了遺忘的歌",
+        "泥土路還帶著夏天的味道\n你的名字偶爾閃過",
+        "廚房裡那張舊照片\n每次經過都想起那個夏天",
+        "曬衣繩上棉被的味道\n總是提醒著夏天到了",
+        "巷口雜貨店前的長椅上\n數著零錢坐著的日子",
+        "每踩一下腳踏車踏板\n輪輻就閃閃發亮"
+      ],
+      "pre": [
+        "讓黃昏慢慢找到我們",
+        "這個門廊不需要時鐘",
+        "不用急著走",
+        "要不要回到那個時候看看",
+        "一首慢歌就夠了",
+        "就這樣坐著再待一會兒"
+      ],
+      "chorus": [
+        "繞遠路回家吧\n讓黃昏慢慢落下",
+        "不需要收音機\n蟋蟀的聲音就夠了",
+        "讓黃昏找到我們\n就待在熟悉的地方",
+        "一把舊吉他的弦\n加上一個小故事就夠了",
+        "像曬衣繩上的棉被一樣\n讓風把心情吹乾吧",
+        "像數零錢的那個夏天一樣\n再次感受樸實的幸福",
+        "放一首慢歌\n什麼都不說地坐著"
+      ],
+      "verse2": [
+        "老狗還守著大門\n好像在等誰回來",
+        "那年種下的樹\n現在已經比我還高",
+        "夏天又會回來\n但已不是當年的模樣",
+        "院子角落放著的長椅\n依然守著那個位置",
+        "信箱裡有一封舊信\n還是沒能寄出去",
+        "夏夜院子裡的蚊香\n靜靜地燃燒著的心情"
+      ],
+      "bridge": [
+        "不是所有的路都要走到盡頭，能停下來就好",
+        "有些東西會隨著時間變得更好，就像這條老路",
+        "故鄉一直都在這首歌裡",
+        "慢一點也沒關係，就像這首歌",
+        "樸實的東西終究留得最久",
+        "故鄉的夏天一直都在那裡"
+      ],
+      "outro": [
+        "(吉他聲漸漸消失，低聲哼唱)",
+        "(門廊嘎吱作響，輕柔的撥弦)",
+        "(最後一個和弦，餘音)",
+        "(蟲鳴聲，漸漸平靜)",
+        "(風鈴隨風搖曳的聲音)",
+        "(低沉的口哨聲，漸漸遠去)"
+      ],
+      "titleAdj": [
+        "古老的",
+        "緩慢的",
+        "安靜的",
+        "陳舊的",
+        "金色的",
+        "佈滿灰塵的",
+        "樸實的",
+        "褪色的",
+        "停留的"
+      ],
+      "titleNoun": [
+        "門廊燈",
+        "路",
+        "吉他弦",
+        "星期天",
+        "故鄉",
+        "夏日",
+        "長椅",
+        "信箱",
+        "夏夜"
+      ]
+    },
+    "ambient": {
+      "titleAdj": [
+        "靜止的",
+        "遙遠的",
+        "安靜的",
+        "空曠的",
+        "微弱的",
+        "朦朧的",
+        "沉沒的",
+        "漂浮的",
+        "寂靜的"
+      ],
+      "titleNoun": [
+        "落雪",
+        "地平線",
+        "寂靜",
+        "靜水",
+        "漂流",
+        "半明半暗",
+        "霧氣",
+        "月光",
+        "深淵"
+      ],
+      "note": "氛圍音樂通常沒有人聲。在 Suno 裡請開啟 Instrumental 開關取代填寫歌詞——光靠標題就能傳達氛圍。"
+    }
+  }
+};
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function renderGen(card, key){
+    var langBank = BANKS[currentLang] || BANKS.en;
+    var b = langBank[key] || (BANKS.en && BANKS.en[key]);
+    if(!b || !card) return;
+    var title = pick(b.titleAdj) + ' ' + pick(b.titleNoun);
+    var titleEl = card.querySelector('.gen-title');
+    if(titleEl) titleEl.textContent = title;
+    var lyricEl = card.querySelector('.gen-lyric');
+    if(lyricEl){
+      if(b.verse1){
+        lyricEl.textContent =
+          '[Verse 1]\n' + pick(b.verse1) +
+          '\n\n[Pre-Chorus]\n' + pick(b.pre) +
+          '\n\n[Chorus]\n' + pick(b.chorus) +
+          '\n\n[Verse 2]\n' + pick(b.verse2) +
+          '\n\n[Bridge]\n' + pick(b.bridge) +
+          '\n\n[Outro]\n' + pick(b.outro);
+      } else {
+        lyricEl.textContent = b.note || (BANKS.en.ambient && BANKS.en.ambient.note) || '';
+      }
+    }
+  }
+
+  function regen(btn, key){
+    var card = btn.closest('.card--lyric');
+    renderGen(card, key);
+  }
+
+  function copyGen(btn){
+    var card = btn.closest('.card--lyric');
+    var lyricEl = card.querySelector('.gen-lyric');
+    var text = lyricEl ? lyricEl.textContent : '';
+    function done(label){ btn.textContent = label; setTimeout(function(){ btn.textContent = t('copyBtn'); }, 1500); }
+    try{
+      navigator.clipboard.writeText(text).then(function(){ done(t('copiedState')); }).catch(function(){ selectGenFallback(lyricEl, btn); });
+    }catch(e){
+      selectGenFallback(lyricEl, btn);
+    }
+  }
+  function copyTitle(btn){
+    var card = btn.closest('.card--lyric');
+    var titleEl = card.querySelector('.gen-title');
+    var text = titleEl ? titleEl.textContent : '';
+    function done(label){ btn.textContent = label; setTimeout(function(){ btn.textContent = t('copyBtn'); }, 1500); }
+    try{
+      navigator.clipboard.writeText(text).then(function(){ done(t('copiedState')); }).catch(function(){ selectGenFallback(titleEl, btn); });
+    }catch(e){
+      selectGenFallback(titleEl, btn);
+    }
+  }
+  function selectGenFallback(el, btn){
+    try{
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      btn.textContent = t('selectedState');
+      setTimeout(function(){ btn.textContent = t('copyBtn'); }, 1500);
+    }catch(e){}
+  }
+
+  document.querySelectorAll('.card--lyric').forEach(function(card){
+    renderGen(card, card.getAttribute('data-genre'));
+  });
+
+  // scrollspy for genre nav
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('#genreNav a'));
+    var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+    if(!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var id = entry.target.id;
+          links.forEach(function(a){
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    sections.forEach(function(s){ if(s) io.observe(s); });
+  })();
+</script>
+
+</body></html>

@@ -1,0 +1,552 @@
+<!doctype html><html lang="ko"><head><title>유튜브 음악 제목·설명·해시태그 생성기 | 무료</title><meta name="description" content="음악 채널용 유튜브 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프를 한 번에 만들어주는 무료 생성기."><meta property="og:type" content="website"><meta property="og:title" content="유튜브 음악 제목·설명·해시태그 생성기 | 무료"><meta property="og:description" content="음악 채널용 유튜브 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프를 한 번에 만들어주는 무료 생성기."><meta name="twitter:card" content="summary"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>
+  :root{
+    --bg:#f3f1ea; --card:#ffffff; --ink:#1b2a27; --muted:#5a6b66; --line:#d8d6cb;
+    --accent:#0f766e; --accent-ink:#ffffff; --accent-soft:#dff1ee; --field:#fbfaf6;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1716; --card:#172422; --ink:#e7f0ee; --muted:#93a8a3; --line:#2a3d3a;
+      --accent:#5fd3c5; --accent-ink:#06211e; --accent-soft:#1b3733; --field:#122020;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1716; --card:#172422; --ink:#e7f0ee; --muted:#93a8a3; --line:#2a3d3a;
+    --accent:#5fd3c5; --accent-ink:#06211e; --accent-soft:#1b3733; --field:#122020;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg); color:var(--ink); font-family:'Noto Sans KR',system-ui,-apple-system,sans-serif;
+       padding-inline:16px; padding-block:26px 56px; line-height:1.6; font-size:15px;}
+  .wrap{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:20px;}
+  h1,h2,p{margin:0;}
+  h1{font-size:clamp(26px,5vw,36px); line-height:1.25; font-weight:800; letter-spacing:-.01em; text-wrap:balance;}
+  h2{font-size:17px; font-weight:800;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  .top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
+  .eyebrow{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600;}
+  .lang{display:flex; gap:6px;}
+  .lang button{font:inherit; font-size:12px; padding:5px 11px; border-radius:7px; border:1px solid var(--line);
+       background:var(--card); color:var(--muted); cursor:pointer;}
+  .lang button.on{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .sub{color:var(--muted); max-width:62ch;}
+  .panel{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:14px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  @media (max-width:560px){ .grid{grid-template-columns:1fr;} }
+  label.f{display:flex; flex-direction:column; gap:5px; font-size:13px; font-weight:700;}
+  label.f small{font-weight:400; color:var(--muted); font-size:12px;}
+  input[type=text], select, textarea{font:inherit; font-size:14.5px; padding:9px 11px; border-radius:9px; border:1px solid var(--line);
+       background:var(--field); color:var(--ink); width:100%;}
+  textarea{resize:vertical; min-height:92px; font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:13px;}
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .seg{display:flex; gap:6px; flex-wrap:wrap;}
+  .seg button{font:inherit; font-size:13.5px; font-weight:700; padding:8px 14px; border-radius:9px; border:1px solid var(--line);
+       background:var(--field); color:var(--muted); cursor:pointer;}
+  .seg button.on{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .checks{display:flex; flex-direction:column; gap:8px;}
+  .chk{display:flex; gap:9px; align-items:flex-start; font-size:13.5px;}
+  .chk input{margin-top:4px; accent-color:var(--accent);}
+  .chk small{display:block; color:var(--muted); font-size:12px;}
+  .out{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:12px;}
+  .out-head{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
+  .btns{display:flex; gap:6px;}
+  .b{font:inherit; font-size:12.5px; font-weight:700; padding:6px 12px; border-radius:8px; border:1px solid var(--line);
+     background:var(--field); color:var(--ink); cursor:pointer;}
+  .b:hover{border-color:var(--accent); color:var(--accent);}
+  .b.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .titles{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .titles li{display:flex; gap:10px; align-items:center; justify-content:space-between; padding:9px 12px; border:1px solid var(--line);
+       border-radius:10px; background:var(--field);}
+  .titles .t{flex:1; word-break:break-word; font-weight:500;}
+  .titles .n{font-size:11.5px; color:var(--muted); white-space:nowrap;}
+  pre.blk{margin:0; white-space:pre-wrap; word-break:break-word; font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:13px;
+     background:var(--field); border:1px solid var(--line); border-radius:10px; padding:12px; line-height:1.65;}
+  .meta{font-size:12px; color:var(--muted);}
+  .warn{color:#b3261e;}
+  :root[data-theme="dark"] .warn{color:#ff8c84;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .warn{color:#ff8c84;} }
+  input[type=range]{width:100%; accent-color:var(--accent);}
+  .cta{background:var(--ink); color:var(--bg); border-radius:14px; padding:20px; display:flex; flex-direction:column; gap:10px;}
+  .cta p{font-size:14.5px; opacity:.92;}
+  .cta a.btn{display:inline-block; width:fit-content; padding:11px 18px; border-radius:10px; background:var(--accent); color:var(--accent-ink);
+     font-weight:800; text-decoration:none;}
+  .links{display:flex; gap:14px; flex-wrap:wrap; font-size:13px;}
+  .links a{color:var(--accent);}
+  .fine{font-size:12px; color:var(--muted);}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<div class="wrap">
+  <div class="top">
+    <span class="eyebrow mono" data-i18n="eyebrow">음악 채널용 · 무료</span>
+    <div class="lang" id="uilang">
+      <button type="button" data-ui="ko">한국어</button>
+      <button type="button" data-ui="en">English</button>
+    </div>
+  </div>
+
+  <header style="display:flex; flex-direction:column; gap:10px;">
+    <h1 data-i18n="title">유튜브 제목·설명·해시태그 생성기</h1>
+    <p class="sub" data-i18n="sub">곡 제목과 분위기만 고르면 제목 5개, 설명글, 해시태그, 태그, 고정 댓글이 바로 나와요. 서버도 저장도 없이 이 화면에서만 만들어져요.</p>
+  </header>
+
+  <section class="panel">
+    <div class="grid">
+      <label class="f"><span data-i18n="fTitle">곡 제목</span>
+        <input type="text" id="songTitle" value="다시 만날 때까지" maxlength="60">
+        <small data-i18n="fTitleHint">비워두면 제목 없이 분위기 중심으로 만들어요</small></label>
+      <label class="f"><span data-i18n="fGenre">장르</span>
+        <select id="genre"></select></label>
+      <label class="f"><span data-i18n="fSit">듣는 상황</span>
+        <select id="sit"></select></label>
+      <label class="f"><span data-i18n="fOutLang">결과 언어</span>
+        <select id="outLang"><option value="ko">한국어</option><option value="en">English</option></select></label>
+    </div>
+    <div class="f" style="display:flex; flex-direction:column; gap:6px;">
+      <span style="font-size:13px; font-weight:700;" data-i18n="fType">영상 종류</span>
+      <div class="seg" id="vtype">
+        <button type="button" data-v="single" data-i18n="vSingle">한 곡</button>
+        <button type="button" data-v="playlist" data-i18n="vPlaylist">플레이리스트·롱믹스</button>
+        <button type="button" data-v="shorts" data-i18n="vShorts">쇼츠</button>
+      </div>
+    </div>
+    <label class="f" id="lenRow"><span data-i18n="fLen">플레이리스트 길이</span>
+      <select id="len"><option value="30">30분</option><option value="60" selected>1시간</option><option value="120">2시간</option><option value="180">3시간</option></select></label>
+    <div class="checks">
+      <label class="chk"><input type="checkbox" id="oAI" checked><span data-i18n="oAI">AI로 만든 음악이라고 설명에 표기<small data-i18n="oAIs">권장: 시청자에게 솔직하고 정책 확인에도 안전해요</small></span></label>
+      <label class="chk"><input type="checkbox" id="oLyr"><span data-i18n="oLyr">가사를 직접 쓰거나 고쳤다고 표기<small data-i18n="oLyrs">사실일 때만 체크하세요</small></span></label>
+      <label class="chk"><input type="checkbox" id="oPaid"><span data-i18n="oPaid">Suno 유료 플랜(Pro/Premier)으로 만들었다고 표기<small data-i18n="oPaids">사실일 때만 체크하세요</small></span></label>
+      <label class="chk"><input type="checkbox" id="oSub" checked><span data-i18n="oSub">구독 안내 문구 넣기</span></label>
+      <label class="chk"><input type="checkbox" id="oMC" checked><span data-i18n="oMC">영상 제작 도구(MusicCanvas) 표기 넣기<small data-i18n="oMCs">필요 없으면 체크를 끄세요</small></span></label>
+    </div>
+  </section>
+
+  <section class="out">
+    <div class="out-head"><h2 data-i18n="hTitles">제목 후보 5개</h2>
+      <div class="btns"><button class="b" type="button" id="rgTitles" data-i18n="regen">🔀 다시 생성</button></div></div>
+    <ul class="titles" id="titles"></ul>
+    <p class="meta" data-i18n="titleTip">제목은 100자 이하여야 하고, 모바일에서는 앞 40자 안팎만 보여요. 핵심 단어를 앞에 두세요.</p>
+  </section>
+
+  <section class="out">
+    <div class="out-head"><h2 data-i18n="hDesc">설명글</h2>
+      <div class="btns"><button class="b" type="button" id="rgDesc" data-i18n="regen">🔀 다시 생성</button><button class="b primary" type="button" id="cpDesc" data-i18n="copy">복사</button></div></div>
+    <pre class="blk" id="desc"></pre>
+  </section>
+
+  <section class="out">
+    <div class="out-head"><h2 data-i18n="hTags">해시태그</h2>
+      <div class="btns"><button class="b" type="button" id="rgTags" data-i18n="regen">🔀 다시 생성</button><button class="b primary" type="button" id="cpTags" data-i18n="copy">복사</button></div></div>
+    <label class="f"><span><span data-i18n="tagCount">해시태그 개수</span>: <b id="tagN">8</b></span>
+      <input type="range" id="tagRange" min="3" max="15" value="8"></label>
+    <pre class="blk" id="hashtags"></pre>
+    <p class="meta" data-i18n="tagTip">유튜브는 해시태그가 15개를 넘으면 전부 무시해요. 설명에 넣은 앞쪽 3개가 제목 위에 표시돼요.</p>
+  </section>
+
+  <section class="out">
+    <div class="out-head"><h2 data-i18n="hKw">검색 태그 (키워드)</h2>
+      <div class="btns"><button class="b" type="button" id="rgKw" data-i18n="regen">🔀 다시 생성</button><button class="b primary" type="button" id="cpKw" data-i18n="copy">복사</button></div></div>
+    <pre class="blk" id="kw"></pre>
+    <p class="meta" id="kwMeta"></p>
+  </section>
+
+  <section class="out">
+    <div class="out-head"><h2 data-i18n="hPin">고정 댓글</h2>
+      <div class="btns"><button class="b" type="button" id="rgPin" data-i18n="regen">🔀 다시 생성</button><button class="b primary" type="button" id="cpPin" data-i18n="copy">복사</button></div></div>
+    <pre class="blk" id="pin"></pre>
+  </section>
+
+  <section class="out">
+    <div class="out-head"><h2 data-i18n="hTs">타임스탬프 만들기</h2>
+      <div class="btns"><button class="b primary" type="button" id="cpTs" data-i18n="copy">복사</button></div></div>
+    <label class="f"><span data-i18n="tsLabel">곡 목록과 길이를 한 줄에 하나씩 적으세요</span>
+      <textarea id="tsIn" spellcheck="false">Until We Meet Again 3:42
+Light Through the Rain 4:05
+Heart Carried by the Wind 3:28</textarea>
+      <small data-i18n="tsHint">형식: 곡 제목 3:42 (시:분:초도 가능). 위 세 줄은 예시예요.</small></label>
+    <pre class="blk" id="tsOut"></pre>
+    <p class="meta" id="tsMeta"></p>
+  </section>
+
+  <section class="cta">
+    <h2 data-i18n="ctaTitle">이 글들, 영상 내보낼 때 자동으로 만들어져요</h2>
+    <p data-i18n="ctaBody">MusicCanvas는 영상을 내보낼 때 제목, 설명, 해시태그, 고정 댓글 초안을 txt 파일로 같이 만들어줘요. 가사 싱크와 오디오 반응 효과로 영상도 곡마다 다르게 만들고요. 오프라인 작동, 한 번 결제 $22, 7일 무료체험.</p>
+    <a class="btn" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener" data-i18n="ctaBtn">7일 무료체험 시작 →</a>
+  </section>
+
+  <div class="links">
+    <a href="../prompt-studio/" target="_blank" rel="noopener" data-i18n="l1">무료 수노 프롬프트 70개+</a>
+    <a href="../channel-check/" target="_blank" rel="noopener" data-i18n="l2">수익화 위험 체크리스트</a>
+    <a href="https://claude.ai/artifact/4y3KgB8SuBKYhRadmBpdVa" target="_blank" rel="noopener" data-i18n="l3">Dusk Soul 쇼케이스</a>
+  </div>
+  <p class="fine" data-i18n="fine">생성된 문구는 초안이에요. 올리기 전에 내 영상 내용에 맞게 고치고, 사실이 아닌 표기는 넣지 마세요.</p>
+</div>
+
+<script>
+(function(){
+  var ui = "ko";
+  try{ var sv = localStorage.getItem("mc_meta_ui"); if(sv === "en" || sv === "ko") ui = sv; }catch(e){}
+
+  var UI = {
+    ko:{eyebrow:"음악 채널용 · 무료", title:"유튜브 제목·설명·해시태그 생성기",
+      sub:"곡 제목과 분위기만 고르면 제목 5개, 설명글, 해시태그, 태그, 고정 댓글이 바로 나와요. 서버도 저장도 없이 이 화면에서만 만들어져요.",
+      fTitle:"곡 제목", fTitleHint:"비워두면 제목 없이 분위기 중심으로 만들어요", fGenre:"장르", fSit:"듣는 상황", fOutLang:"결과 언어",
+      fType:"영상 종류", vSingle:"한 곡", vPlaylist:"플레이리스트·롱믹스", vShorts:"쇼츠", fLen:"플레이리스트 길이",
+      oAI:"AI로 만든 음악이라고 설명에 표기", oAIs:"권장: 시청자에게 솔직하고 정책 확인에도 안전해요",
+      oLyr:"가사를 직접 쓰거나 고쳤다고 표기", oLyrs:"사실일 때만 체크하세요",
+      oPaid:"Suno 유료 플랜(Pro/Premier)으로 만들었다고 표기", oPaids:"사실일 때만 체크하세요",
+      oSub:"구독 안내 문구 넣기", oMC:"영상 제작 도구(MusicCanvas) 표기 넣기", oMCs:"필요 없으면 체크를 끄세요",
+      hTitles:"제목 후보 5개", regen:"🔀 다시 생성", copy:"복사", copied:"복사됨",
+      titleTip:"제목은 100자 이하여야 하고, 모바일에서는 앞 40자 안팎만 보여요. 핵심 단어를 앞에 두세요.",
+      hDesc:"설명글", hTags:"해시태그", tagCount:"해시태그 개수",
+      tagTip:"유튜브는 해시태그가 15개를 넘으면 전부 무시해요. 설명에 넣은 앞쪽 3개가 제목 위에 표시돼요.",
+      hKw:"검색 태그 (키워드)", hPin:"고정 댓글", hTs:"타임스탬프 만들기",
+      tsLabel:"곡 목록과 길이를 한 줄에 하나씩 적으세요", tsHint:"형식: 곡 제목 3:42 (시:분:초도 가능). 위 세 줄은 예시예요.",
+      ctaTitle:"이 글들, 영상 내보낼 때 자동으로 만들어져요",
+      ctaBody:"MusicCanvas는 영상을 내보낼 때 제목, 설명, 해시태그, 고정 댓글 초안을 txt 파일로 같이 만들어줘요. 가사 싱크와 오디오 반응 효과로 영상도 곡마다 다르게 만들고요. 오프라인 작동, 한 번 결제 $22, 7일 무료체험.",
+      ctaBtn:"7일 무료체험 시작 →", l1:"무료 수노 프롬프트 70개+", l2:"수익화 위험 체크리스트", l3:"Dusk Soul 쇼케이스",
+      fine:"생성된 문구는 초안이에요. 올리기 전에 내 영상 내용에 맞게 고치고, 사실이 아닌 표기는 넣지 마세요.",
+      chars:"자", kwMeta:"{n}자 / 500자", kwOver:"500자를 넘어 뒤쪽 키워드는 잘랐어요", noTs:"곡 목록을 입력하면 타임스탬프가 만들어져요.",
+      tsTotal:"총 길이 {t}", tsBad:"{n}줄은 길이를 못 읽어서 건너뛰었어요", titleEx:"제목 없이 만든 예시"},
+    en:{eyebrow:"For music channels · free", title:"YouTube title, description and hashtag generator",
+      sub:"Pick a song title and a mood and get 5 titles, a description, hashtags, tags and a pinned comment. No server, nothing saved, it all happens on this page.",
+      fTitle:"Song title", fTitleHint:"Leave empty to build from mood only", fGenre:"Genre", fSit:"Listening situation", fOutLang:"Output language",
+      fType:"Video type", vSingle:"Single song", vPlaylist:"Playlist / long mix", vShorts:"Shorts", fLen:"Playlist length",
+      oAI:"State in the description that the music is AI-made", oAIs:"Recommended: honest with viewers and safer for policy checks",
+      oLyr:"State that you wrote or edited the lyrics", oLyrs:"Only check if true",
+      oPaid:"State it was made on a paid Suno plan (Pro/Premier)", oPaids:"Only check if true",
+      oSub:"Add a subscribe line", oMC:"Add a video tool credit (MusicCanvas)", oMCs:"Uncheck if you do not want it",
+      hTitles:"5 title options", regen:"🔀 Regenerate", copy:"Copy", copied:"Copied",
+      titleTip:"Titles must be 100 characters or fewer, and mobile shows roughly the first 40. Put key words first.",
+      hDesc:"Description", hTags:"Hashtags", tagCount:"Number of hashtags",
+      tagTip:"YouTube ignores all hashtags if a video has more than 15. The first 3 in the description appear above the title.",
+      hKw:"Search tags (keywords)", hPin:"Pinned comment", hTs:"Timestamp builder",
+      tsLabel:"Write one song and its length per line", tsHint:"Format: song title 3:42 (h:mm:ss also works). The three lines above are examples.",
+      ctaTitle:"These texts are made automatically when you export a video",
+      ctaBody:"When MusicCanvas exports a video it also writes a txt file with a title, description, hashtags and a pinned comment draft. Lyric sync and audio-reactive effects make each video different. Works offline, one-time $22, 7-day free trial.",
+      ctaBtn:"Start the 7-day free trial →", l1:"70+ free Suno prompts", l2:"Monetization risk checklist", l3:"Dusk Soul showcase",
+      fine:"Generated text is a draft. Edit it to fit your video before posting, and never include statements that are not true.",
+      chars:" chars", kwMeta:"{n} / 500 characters", kwOver:"Over 500 characters, trailing keywords were cut", noTs:"Enter a song list to build timestamps.",
+      tsTotal:"Total length {t}", tsBad:"{n} line(s) skipped because no length was found", titleEx:"Example without a title"}
+  };
+
+  var G = {
+    ballad:{ko:{name:"감성 발라드", moods:["애절한","잔잔한","눈물 나는","먹먹한","그리운","담담한","위로되는","가슴 저린"],
+        hooks:["말하지 못한 마음을 노래로 전합니다.","오늘 밤, 조용히 흘러가는 노래 한 곡.","보내지 못한 편지 같은 노래.","잠깐 멈춰 서서 마음을 들여다보는 시간."],
+        tags:["감성발라드","발라드","이별노래","노래추천"], kw:["감성 발라드","발라드 추천","이별 노래","그리움 노래","잔잔한 노래","눈물 나는 노래","슬픈 노래","AI 발라드"]},
+      en:{name:"Ballad", moods:["Heartfelt","Tender","Bittersweet","Aching","Nostalgic","Comforting","Soulful","Wistful"],
+        hooks:["Words I could not say, sung out loud.","One quiet song for tonight.","A letter I never sent, turned into music.","A moment to pause and listen to your heart."],
+        tags:["Ballad","EmotionalSong","SadSongs","HeartfeltMusic"], kw:["emotional ballad","sad songs","heartfelt ballad","nostalgic songs","slow songs","piano ballad","breakup songs","AI ballad"]}},
+    lofi:{ko:{name:"로파이", moods:["나른한","포근한","차분한","몽글몽글한","여유로운","따뜻한"],
+        hooks:["잠깐 쉬어가도 괜찮아요. 천천히 흘러가는 비트.","창밖을 보며 듣기 좋은 느긋한 소리.","복잡한 하루를 조용히 덮어주는 음악.","아무 생각 없이 틀어두기 좋은 로파이."],
+        tags:["로파이","로파이음악","공부음악","힐링음악"], kw:["로파이","로파이 플레이리스트","공부할 때 듣는 음악","작업용 음악","힐링 음악","차분한 음악","lofi","AI 로파이"]},
+      en:{name:"Lofi", moods:["Cozy","Mellow","Chill","Dreamy","Relaxing","Warm"],
+        hooks:["Slow down for a moment with these laid-back beats.","Easy sounds for looking out the window.","Music that gently closes a busy day.","Lofi to leave running in the background."],
+        tags:["Lofi","LofiBeats","StudyMusic","ChillVibes"], kw:["lofi","lofi beats","chill music","study music","relaxing music","background music","lofi playlist","AI lofi"]}},
+    cinematic:{ko:{name:"시네마틱 음악", moods:["웅장한","벅차오르는","압도적인","장엄한","드라마틱한","영화 같은"],
+        hooks:["한 장면이 떠오르는 웅장한 사운드.","끝까지 차오르는 오케스트라의 울림.","영화의 마지막 장면처럼 벅찬 음악.","눈을 감으면 펼쳐지는 이야기."],
+        tags:["시네마틱","영화음악","웅장한음악","오케스트라"], kw:["시네마틱 음악","영화 음악","웅장한 음악","오케스트라","에픽 음악","배경음악","트레일러 음악","AI 시네마틱"]},
+      en:{name:"Cinematic Music", moods:["Epic","Majestic","Triumphant","Dramatic","Soaring","Cinematic"],
+        hooks:["A grand sound that paints a whole scene.","An orchestra that keeps rising until the end.","Music as sweeping as a final movie scene.","Close your eyes and the story unfolds."],
+        tags:["Cinematic","EpicMusic","FilmScore","Orchestral"], kw:["cinematic music","epic music","orchestral music","film score","trailer music","dramatic music","background music","AI cinematic"]}},
+    pop:{ko:{name:"팝", moods:["신나는","중독성 있는","상큼한","반짝이는","설레는","에너제틱한"],
+        hooks:["한 번 들으면 계속 맴도는 후렴.","기분 전환이 필요할 때 틀어보세요.","오늘 하루에 반짝임을 더해주는 노래.","볼륨을 키우고 싶어지는 한 곡."],
+        tags:["팝송","신나는노래","케이팝","노래추천"], kw:["팝송","신나는 노래","중독성 있는 노래","케이팝 스타일","기분 좋아지는 노래","노래 추천","드라이브 노래","AI 팝"]},
+      en:{name:"Pop", moods:["Catchy","Upbeat","Bright","Energetic","Fun","Sparkling"],
+        hooks:["A chorus that stays in your head.","Press play when you need a mood lift.","A song that adds some sparkle to your day.","Turn the volume up for this one."],
+        tags:["PopMusic","UpbeatSongs","FeelGood","NewMusic"], kw:["pop music","upbeat songs","catchy songs","feel good music","dance pop","new music","driving songs","AI pop"]}},
+    acoustic:{ko:{name:"어쿠스틱", moods:["따뜻한","담백한","포근한","잔잔한","소박한","편안한"],
+        hooks:["기타 소리와 목소리만으로 채운 노래.","꾸밈없이 담백하게 전하는 이야기.","오후 햇살처럼 따뜻한 한 곡.","마음이 조용해지는 기타 선율."],
+        tags:["어쿠스틱","기타음악","포크","잔잔한노래"], kw:["어쿠스틱","어쿠스틱 기타","포크 음악","잔잔한 노래","편안한 음악","감성 음악","카페 음악","AI 어쿠스틱"]},
+      en:{name:"Acoustic", moods:["Warm","Gentle","Heartwarming","Simple","Soothing","Earthy"],
+        hooks:["A song made of just guitar and voice.","A story told plainly and honestly.","One track as warm as afternoon sunlight.","Guitar melodies that quiet the mind."],
+        tags:["Acoustic","AcousticGuitar","FolkMusic","GentleSongs"], kw:["acoustic music","acoustic guitar","folk music","gentle songs","soothing music","cafe music","singer songwriter","AI acoustic"]}},
+    ambient:{ko:{name:"앰비언트", moods:["고요한","몽환적인","깊은","평온한","아득한","명상 같은"],
+        hooks:["소리가 천천히 공간을 채워요.","아무것도 하지 않아도 되는 시간.","호흡을 따라 천천히 가라앉는 음악.","조용히 머무르기 좋은 소리."],
+        tags:["앰비언트","명상음악","수면음악","힐링음악"], kw:["앰비언트","명상 음악","수면 음악","집중 음악","힐링 음악","잔잔한 배경음악","ambient","AI 앰비언트"]},
+      en:{name:"Ambient", moods:["Serene","Ethereal","Calm","Deep","Floating","Meditative"],
+        hooks:["Sound that slowly fills the space.","A time when you do not need to do anything.","Music that settles with your breathing.","A quiet sound to stay with."],
+        tags:["Ambient","AmbientMusic","Meditation","SleepMusic"], kw:["ambient music","meditation music","sleep music","focus music","relaxing ambient","calm background","drone ambient","AI ambient"]}}
+  };
+  var GKEYS = ["ballad","lofi","cinematic","pop","acoustic","ambient"];
+  var GNAME = {ko:{ballad:"감성 발라드",lofi:"로파이",cinematic:"시네마틱",pop:"팝",acoustic:"어쿠스틱",ambient:"앰비언트"},
+               en:{ballad:"Ballad",lofi:"Lofi",cinematic:"Cinematic",pop:"Pop",acoustic:"Acoustic",ambient:"Ambient"}};
+
+  var S = {
+    none:{ko:{label:"선택 안 함"}, en:{label:"None"}},
+    study:{ko:{label:"공부·작업", phrase:"공부할 때", tag:"공부음악", kw:["공부할 때 듣는 음악","집중 음악"]}, en:{label:"Study / work", phrase:"studying", tag:"StudyMusic", kw:["study music","focus music"]}},
+    sleep:{ko:{label:"잠들기 전", phrase:"잠들기 전", tag:"수면음악", kw:["수면 음악","잠잘 때 듣는 음악"]}, en:{label:"Before sleep", phrase:"sleeping", tag:"SleepMusic", kw:["sleep music","music for sleeping"]}},
+    drive:{ko:{label:"드라이브", phrase:"드라이브할 때", tag:"드라이브음악", kw:["드라이브 음악","운전할 때 듣는 노래"]}, en:{label:"Driving", phrase:"night drives", tag:"DrivingMusic", kw:["driving music","night drive songs"]}},
+    night:{ko:{label:"새벽", phrase:"새벽에", tag:"새벽감성", kw:["새벽 감성","밤에 듣는 노래"]}, en:{label:"Late night", phrase:"late nights", tag:"LateNight", kw:["late night music","midnight songs"]}},
+    rain:{ko:{label:"비 오는 날", phrase:"비 오는 날", tag:"비오는날", kw:["비 오는 날 듣는 노래","빗소리 음악"]}, en:{label:"Rainy day", phrase:"rainy days", tag:"RainyDay", kw:["rainy day music","rainy day songs"]}},
+    breakup:{ko:{label:"이별 후", phrase:"이별한 뒤", tag:"이별노래", kw:["이별 후 듣는 노래","위로되는 노래"]}, en:{label:"After a breakup", phrase:"a broken heart", tag:"BreakupSongs", kw:["breakup songs","healing music"]}},
+    cafe:{ko:{label:"카페", phrase:"카페에서", tag:"카페음악", kw:["카페 음악","매장 음악"]}, en:{label:"Cafe", phrase:"coffee shops", tag:"CafeMusic", kw:["cafe music","coffee shop music"]}},
+    workout:{ko:{label:"운동", phrase:"운동할 때", tag:"운동음악", kw:["운동 음악","헬스 노래"]}, en:{label:"Workout", phrase:"workouts", tag:"WorkoutMusic", kw:["workout music","gym songs"]}},
+    travel:{ko:{label:"여행", phrase:"여행 중", tag:"여행음악", kw:["여행 음악","여행 갈 때 듣는 노래"]}, en:{label:"Travel", phrase:"road trips", tag:"TravelMusic", kw:["travel music","road trip songs"]}}
+  };
+  var SKEYS = ["none","study","sleep","drive","night","rain","breakup","cafe","workout","travel"];
+
+  var P = {
+    single:{
+      ko:["{T} | {M} {G}","{T} ({G}) - {M} 노래","[{G}] {T}","{M} {G} 노래 추천 | {T}","{T} - {S} 듣기 좋은 {G}","{S} 듣기 좋은 {G} | {T}","{S} 생각나는 노래, {T}","{M} 분위기의 {G} 한 곡","{S} 듣기 좋은 {M} {G}","오늘 밤 {M} {G} 한 곡","{G} | 마음이 {M} 날 들어보세요","{M} {G}, 조용히 흐르는 노래","{G} 신곡 | {M} 노래","마음을 {M} 쪽으로 데려가는 {G}","조용한 밤에 어울리는 {M} {G}"],
+      en:["{T} | {M} {G}","{T} ({G})","[{G}] {T}","{T} - {G} for {S}","{M} {G} for {S} | {T}","{G} for {S} | {T}","{M} {G} You Can Feel","A {M} {G} for Tonight","{M} {G} for {S}","{T} - a {M} {G} song","One {M} {G} Song for {S}","{M} {G} to Play Tonight","New {G} Song - {M} Vibes","{M} {G} Music for Quiet Moments","{M} {G} Song (New)"]},
+    playlist:{
+      ko:["{N} {M} {G} 플레이리스트","{S} 듣기 좋은 {G} 플레이리스트 {N}","{M} {G} 플레이리스트 | {S}","[Playlist] {M} {G} {N}","하루를 마무리하는 {M} {G} {N}","{S} 틀어두기 좋은 {G} {N}","{G} 모음 | {N} {M} 노래","{M} {G} 믹스 {N} | {T}","{T} 포함 {M} {G} 모음 {N}","{N} 동안 이어지는 {M} {G}"],
+      en:["{N} of {M} {G} | Playlist","{G} Playlist for {S} ({N})","{M} {G} Mix | {N}","Playlist: {M} {G} for {S}","{N} {G} Playlist - {M} Songs","{M} {G} Mix for {S} | {N}","{N} {M} {G} | Includes {T}","{G} Mix to Leave On | {N}","{N} of {M} {G} Music","{M} {G} Songs for {S} ({N})"]},
+    shorts:{
+      ko:["{M} {G} #Shorts","{T} #Shorts","{S} 듣는 노래 #Shorts","한 소절만 들어도 {M} #Shorts","{T} 후렴 #Shorts","{M} {G}, 15초만 들어보세요 #Shorts","{S} 딱 맞는 {G} #Shorts","{T} | {M} {G} #Shorts","{G} 신곡 잠깐 들어보세요 #Shorts","{M} 노래 한 소절 #Shorts","이 {M} {G} 들어보셨나요 #Shorts"],
+      en:["{M} {G} #Shorts","{T} #Shorts","{G} for {S} #Shorts","One line and you will feel {M} #Shorts","{T} chorus #Shorts","{M} {G}, just 15 seconds #Shorts","{G} for {S} #Shorts","{T} | {M} {G} #Shorts","New {G} snippet #Shorts","A {M} {G} moment #Shorts","Have you heard this {M} {G}? #Shorts"]}
+  };
+
+  var ABOUT = {
+    ko:{withS:["{S} 듣기 좋은 {M} {G}예요.","{S} 틀어두면 잘 어울리는 {G}예요.","{S} 마음을 {M} 쪽으로 데려다주는 {G}예요."],
+        noS:["{M} 분위기의 {G}예요.","조용히 귀 기울이기 좋은 {M} {G}예요.","마음이 {M} 날 들으면 좋은 {G}예요."]},
+    en:{withS:["A {m} {g} track that suits {S}.","A {g} piece that fits {S} well.","A {m} {g} to put on for {S}."],
+        noS:["A {m} {g} track.","A {m} {g} that rewards quiet listening.","A {g} piece for when you want something {m}."]}
+  };
+  var SUBL = {ko:["마음에 들었다면 구독과 좋아요로 다음 곡도 함께해 주세요.","이런 노래가 더 듣고 싶다면 구독해 주세요.","댓글로 듣고 싶은 분위기를 알려주세요. 다음 곡에 참고할게요."],
+              en:["If you liked it, subscribe and like so you do not miss the next song.","Subscribe if you would like more songs like this.","Tell me the mood you want to hear next in the comments."]};
+  var PIN = {ko:["오늘 하루는 어땠어요? 이 곡을 들으면 떠오르는 장면을 댓글로 남겨주세요.","{T} 중에서 제일 마음에 남은 부분이 어디인가요? 댓글로 알려주세요.","다음에 듣고 싶은 분위기를 댓글로 골라주세요. 가장 많이 나온 분위기로 만들어볼게요.","이 노래를 누구에게 들려주고 싶으세요? 댓글로 나눠주세요."],
+             en:["How was your day? Tell me in the comments what scene this song brings to mind.","Which part of {T} stayed with you the most? Let me know in the comments.","Pick the mood you want next in the comments. I will make the most requested one.","Who would you share this song with? Tell me in the comments."]};
+  var COMMON = {ko:{tags:["플레이리스트","노래추천","AI음악","Suno"], kw:["플레이리스트","노래 추천","AI 음악","Suno","수노"]},
+                en:{tags:["Playlist","MusicMix","AIMusic","Suno"], kw:["playlist","music mix","AI music","Suno","Suno AI"]}};
+  var LINES = {
+    ko:{ai:"이 곡은 AI(Suno)로 만든 음악입니다.", lyr:"가사는 직접 작성하거나 수정했습니다.", paid:"Suno 유료 플랜으로 제작했습니다.",
+        ts:"타임스탬프", tsPh:"00:00 첫 번째 곡\n00:00 두 번째 곡", mc:"영상 제작: MusicCanvas", tracks:"수록곡"},
+    en:{ai:"This song was made with AI (Suno).", lyr:"The lyrics were written or edited by me.", paid:"Made on a paid Suno plan.",
+        ts:"Timestamps", tsPh:"00:00 First song\n00:00 Second song", mc:"Video made with MusicCanvas", tracks:"Tracklist"}
+  };
+  var MC_URL = "https://kkwd21.gumroad.com/l/musiccanvas";
+
+  var st = {vtype:"single", seed:{titles:11, desc:23, tags:37, kw:41, pin:53}};
+
+  function rng(seed){ var a = seed >>> 0; return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function shuffle(arr, r){ var a = arr.slice(); for(var i = a.length - 1; i > 0; i--){ var j = Math.floor(r() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function pickOne(arr, r){ return arr[Math.floor(r() * arr.length)]; }
+
+  function $(id){ return document.getElementById(id); }
+  function vals(){
+    var lang = $("outLang").value;
+    return {lang:lang, title:$("songTitle").value.trim(), g:$("genre").value, s:$("sit").value, v:st.vtype,
+      len:parseInt($("len").value, 10), ai:$("oAI").checked, lyr:$("oLyr").checked, paid:$("oPaid").checked, sub:$("oSub").checked, mc:$("oMC").checked,
+      tagN:parseInt($("tagRange").value, 10)};
+  }
+  function lenPhrase(min, lang){
+    if(lang === "ko") return min === 30 ? "30분" : (min / 60) + "시간";
+    return min === 30 ? "30 Minutes" : (min / 60) + (min === 60 ? " Hour" : " Hours");
+  }
+  function fill(tpl, d, r){
+    var gd = G[d.g][d.lang];
+    var sd = d.s === "none" ? null : S[d.s][d.lang];
+    var mood = pickOne(gd.moods, r);
+    var out = tpl.replace(/\{T\}/g, d.title).replace(/\{G\}/g, gd.name).replace(/\{g\}/g, gd.name.toLowerCase())
+      .replace(/\{M\}/g, mood).replace(/\{m\}/g, mood.toLowerCase())
+      .replace(/\{S\}/g, sd ? sd.phrase : "").replace(/\{N\}/g, lenPhrase(d.len, d.lang)).replace(/\s+/g, " ").trim();
+    if(d.lang === "en") out = out.replace(/\b([Aa]) (?=[AEIOUaeiou])/g, "$1n ");
+    return out;
+  }
+  function usable(tpl, d){
+    if(tpl.indexOf("{T}") >= 0 && !d.title) return false;
+    if(tpl.indexOf("{S}") >= 0 && d.s === "none") return false;
+    return true;
+  }
+  function makeTitles(d){
+    var r = rng(st.seed.titles);
+    var pool = P[d.v][d.lang].filter(function(t){ return usable(t, d); });
+    var out = [], seen = {};
+    shuffle(pool, r).forEach(function(t){
+      if(out.length >= 5) return;
+      var s = fill(t, d, r);
+      if(!seen[s]){ seen[s] = 1; out.push(s); }
+    });
+    return out;
+  }
+  function makeHashtags(d){
+    var r = rng(st.seed.tags), gd = G[d.g][d.lang], sd = d.s === "none" ? null : S[d.s][d.lang];
+    var list = [];
+    if(d.v === "shorts") list.push("Shorts");
+    list = list.concat(shuffle(gd.tags, r).slice(0, 2));
+    if(sd) list.push(sd.tag);
+    list = list.concat(gd.tags.filter(function(x){ return list.indexOf(x) < 0; }));
+    list = list.concat(shuffle(COMMON[d.lang].tags, r));
+    var seen = {}, out = [];
+    list.forEach(function(x){ if(!seen[x]){ seen[x] = 1; out.push(x); } });
+    return out.slice(0, d.tagN).map(function(x){ return "#" + x; });
+  }
+  function makeKw(d){
+    var r = rng(st.seed.kw), gd = G[d.g][d.lang], sd = d.s === "none" ? null : S[d.s][d.lang];
+    var list = [];
+    if(d.title) list.push(d.title);
+    list = list.concat(shuffle(gd.kw, r));
+    if(sd) list = list.concat(sd.kw);
+    list = list.concat(COMMON[d.lang].kw);
+    var seen = {}, out = [], total = 0, cut = false;
+    list.forEach(function(x){
+      if(seen[x.toLowerCase()]) return; seen[x.toLowerCase()] = 1;
+      var add = x.length + (out.length ? 2 : 0);
+      if(total + add > 500){ cut = true; return; }
+      out.push(x); total += add;
+    });
+    return {text:out.join(", "), n:out.join(", ").length, cut:cut};
+  }
+  function parseTs(text){
+    var lines = text.split(/\r?\n/), rows = [], bad = 0;
+    lines.forEach(function(ln){
+      if(!ln.trim()) return;
+      var m = ln.match(/^(.*?)[\s\-–—|:]*((?:\d{1,2}:)?\d{1,2}:\d{2})\s*$/);
+      if(!m){ bad++; return; }
+      var p = m[2].split(":").map(Number), sec = p.length === 3 ? p[0] * 3600 + p[1] * 60 + p[2] : p[0] * 60 + p[1];
+      rows.push({name:m[1].trim(), sec:sec});
+    });
+    return {rows:rows, bad:bad};
+  }
+  function fmt(sec, long){
+    var h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
+    function z(n){ return (n < 10 ? "0" : "") + n; }
+    return long ? h + ":" + z(m) + ":" + z(s) : z(m) + ":" + z(s);
+  }
+  function makeTs(d){
+    var p = parseTs($("tsIn").value);
+    if(!p.rows.length) return {text:"", total:0, bad:p.bad};
+    var total = p.rows.reduce(function(a, b){ return a + b.sec; }, 0), long = total >= 3600, acc = 0, lines = [];
+    p.rows.forEach(function(rw){ lines.push(fmt(acc, long) + " " + (rw.name || "-")); acc += rw.sec; });
+    return {text:lines.join("\n"), total:total, bad:p.bad, long:long};
+  }
+  function makeDesc(d, hashtags){
+    var r = rng(st.seed.desc), gd = G[d.g][d.lang], sd = d.s === "none" ? null : S[d.s][d.lang], L = LINES[d.lang];
+    var parts = [];
+    parts.push(pickOne(gd.hooks, r));
+    if(d.v === "shorts"){
+      if(d.title) parts.push(d.title + " - " + gd.name);
+    } else {
+      var head = d.title ? d.title + " - " + gd.name : gd.name;
+      parts.push(head);
+      var ab = sd ? ABOUT[d.lang].withS : ABOUT[d.lang].noS;
+      parts.push(fill(pickOne(ab, r), d, r));
+    }
+    if(d.v === "playlist"){
+      var t = makeTs(d);
+      parts.push(L.ts + "\n" + (t.text ? t.text : L.tsPh));
+    }
+    var notes = [];
+    if(d.ai) notes.push(L.ai);
+    if(d.lyr) notes.push(L.lyr);
+    if(d.paid) notes.push(L.paid);
+    if(notes.length) parts.push(notes.join(" "));
+    if(d.sub && d.v !== "shorts") parts.push(pickOne(SUBL[d.lang], r));
+    if(d.mc) parts.push(L.mc + " - " + MC_URL);
+    parts.push(hashtags.join(" "));
+    return parts.join("\n\n");
+  }
+  function makePin(d){
+    var r = rng(st.seed.pin);
+    var pool = PIN[d.lang].filter(function(t){ return t.indexOf("{T}") < 0 || d.title; });
+    return pickOne(pool, r).replace(/\{T\}/g, d.title);
+  }
+
+  function copyText(text, btn, el){
+    var label = UI[ui].copy;
+    function ok(){ btn.textContent = UI[ui].copied; setTimeout(function(){ btn.textContent = label; }, 1400); }
+    function fb(){
+      try{
+        var rg = document.createRange(); rg.selectNodeContents(el);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(rg);
+        btn.textContent = "Ctrl+C";
+        setTimeout(function(){ btn.textContent = label; }, 2200);
+      }catch(e){}
+    }
+    try{ navigator.clipboard.writeText(text).then(ok).catch(fb); }catch(e){ fb(); }
+  }
+
+  var last = {};
+  function render(){
+    var d = vals();
+    var titles = makeTitles(d), ul = $("titles"); ul.innerHTML = "";
+    if(!d.title && d.v !== "playlist"){ /* ok: title-less patterns used */ }
+    titles.forEach(function(t){
+      var li = document.createElement("li");
+      var sp = document.createElement("span"); sp.className = "t"; sp.textContent = t;
+      var n = document.createElement("span"); n.className = "n mono" + (t.length > 100 ? " warn" : ""); n.textContent = t.length + UI[ui].chars;
+      var b = document.createElement("button"); b.type = "button"; b.className = "b"; b.textContent = UI[ui].copy;
+      b.addEventListener("click", function(){ copyText(t, b, sp); });
+      li.appendChild(sp); li.appendChild(n); li.appendChild(b); ul.appendChild(li);
+    });
+    var tags = makeHashtags(d); last.tags = tags.join(" ");
+    $("hashtags").textContent = last.tags; $("tagN").textContent = d.tagN;
+    last.desc = makeDesc(d, tags); $("desc").textContent = last.desc;
+    var kw = makeKw(d); last.kw = kw.text; $("kw").textContent = kw.text;
+    $("kwMeta").textContent = UI[ui].kwMeta.replace("{n}", kw.n) + (kw.cut ? " · " + UI[ui].kwOver : "");
+    last.pin = makePin(d); $("pin").textContent = last.pin;
+    var ts = makeTs(d); last.ts = ts.text;
+    $("tsOut").textContent = ts.text || UI[ui].noTs;
+    var meta = []; if(ts.total) meta.push(UI[ui].tsTotal.replace("{t}", fmt(ts.total, true))); if(ts.bad) meta.push(UI[ui].tsBad.replace("{n}", ts.bad));
+    $("tsMeta").textContent = meta.join(" · ");
+    $("lenRow").style.display = d.v === "playlist" ? "" : "none";
+  }
+
+  function fillSelects(){
+    var g = $("genre"), s = $("sit"), gv = g.value || "ballad", sv = s.value || "none";
+    g.innerHTML = ""; s.innerHTML = "";
+    GKEYS.forEach(function(k){ var o = document.createElement("option"); o.value = k; o.textContent = GNAME[ui][k]; g.appendChild(o); });
+    SKEYS.forEach(function(k){ var o = document.createElement("option"); o.value = k; o.textContent = S[k][ui].label; s.appendChild(o); });
+    g.value = gv; s.value = sv;
+  }
+  function applyUI(){
+    document.documentElement.lang = ui;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var v = UI[ui][el.getAttribute("data-i18n")]; if(v === undefined) return;
+      var small = el.querySelector("small");
+      if(small){
+        var key = el.getAttribute("data-i18n") + "s";
+        var txt = document.createTextNode(v);
+        while(el.firstChild) el.removeChild(el.firstChild);
+        el.appendChild(txt); small.textContent = UI[ui][key] || small.textContent; el.appendChild(small);
+      } else { el.textContent = v; }
+    });
+    document.querySelectorAll("small[data-i18n]").forEach(function(sm){ var v = UI[ui][sm.getAttribute("data-i18n")]; if(v) sm.textContent = v; });
+    document.querySelectorAll("#uilang button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-ui") === ui); });
+    var lenSel = $("len"); var lv = lenSel.value; lenSel.innerHTML = "";
+    [30, 60, 120, 180].forEach(function(m){ var o = document.createElement("option"); o.value = m; o.textContent = lenPhrase(m, ui); lenSel.appendChild(o); });
+    lenSel.value = lv || "60";
+    fillSelects(); render();
+  }
+
+  document.querySelectorAll("#uilang button").forEach(function(b){
+    b.addEventListener("click", function(){
+      ui = b.getAttribute("data-ui");
+      try{ localStorage.setItem("mc_meta_ui", ui); }catch(e){}
+      applyUI();
+    });
+  });
+  document.querySelectorAll("#vtype button").forEach(function(b){
+    b.addEventListener("click", function(){
+      st.vtype = b.getAttribute("data-v");
+      document.querySelectorAll("#vtype button").forEach(function(x){ x.classList.toggle("on", x === b); });
+      render();
+    });
+  });
+  ["songTitle","genre","sit","outLang","len","oAI","oLyr","oPaid","oSub","oMC","tagRange","tsIn"].forEach(function(id){
+    $(id).addEventListener("input", render); $(id).addEventListener("change", render);
+  });
+  function bump(key){ st.seed[key] = (st.seed[key] * 1103515245 + 12345) % 2147483647; }
+  $("rgTitles").addEventListener("click", function(){ bump("titles"); render(); });
+  $("rgDesc").addEventListener("click", function(){ bump("desc"); render(); });
+  $("rgTags").addEventListener("click", function(){ bump("tags"); render(); });
+  $("rgKw").addEventListener("click", function(){ bump("kw"); render(); });
+  $("rgPin").addEventListener("click", function(){ bump("pin"); render(); });
+  $("cpDesc").addEventListener("click", function(){ copyText(last.desc, this, $("desc")); });
+  $("cpTags").addEventListener("click", function(){ copyText(last.tags, this, $("hashtags")); });
+  $("cpKw").addEventListener("click", function(){ copyText(last.kw, this, $("kw")); });
+  $("cpPin").addEventListener("click", function(){ copyText(last.pin, this, $("pin")); });
+  $("cpTs").addEventListener("click", function(){ copyText(last.ts || "", this, $("tsOut")); });
+
+  document.querySelector('#vtype button[data-v="single"]').classList.add("on");
+  window.__mcMetaTest = {vals:vals, render:render, last:function(){ return last; }};
+  applyUI();
+})();
+</script>
+
+</body></html>

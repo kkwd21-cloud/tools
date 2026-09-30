@@ -1,0 +1,355 @@
+<!doctype html><html lang="ko"><head><title>수노 채널 체크 | Suno 음악 유튜브 수익화 위험 점검</title><meta name="description" content="Suno로 만든 음악 채널의 유튜브 수익화 위험을 7문항으로 점검하고, 항목별로 무엇을 고칠지 알려주는 무료 체크리스트."><meta property="og:type" content="website"><meta property="og:title" content="수노 채널 체크 | Suno 음악 유튜브 수익화 위험 점검"><meta property="og:description" content="Suno로 만든 음악 채널의 유튜브 수익화 위험을 7문항으로 점검하고, 항목별로 무엇을 고칠지 알려주는 무료 체크리스트."><meta name="twitter:card" content="summary"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>
+  :root{
+    --bg:#f6f4ef; --card:#ffffff; --ink:#1d2433; --muted:#5d6678; --line:#dcd8cd;
+    --accent:#3b4cc0; --accent-soft:#e6e9fb;
+    --ok:#1f7a4d; --ok-bg:#e1f3e9; --warn:#a15c00; --warn-bg:#fbeed6; --bad:#b3261e; --bad-bg:#fbe3e1;
+    --cta:#1d2433; --cta-ink:#ffffff;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#10141f; --card:#182033; --ink:#eceff7; --muted:#9aa4bd; --line:#2b3552;
+      --accent:#8fa0ff; --accent-soft:#232c52;
+      --ok:#6fd6a0; --ok-bg:#15352a; --warn:#f0bd63; --warn-bg:#3a2d12; --bad:#ff8c84; --bad-bg:#3d1c1a;
+      --cta:#eceff7; --cta-ink:#10141f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#10141f; --card:#182033; --ink:#eceff7; --muted:#9aa4bd; --line:#2b3552;
+    --accent:#8fa0ff; --accent-soft:#232c52;
+    --ok:#6fd6a0; --ok-bg:#15352a; --warn:#f0bd63; --warn-bg:#3a2d12; --bad:#ff8c84; --bad-bg:#3d1c1a;
+    --cta:#eceff7; --cta-ink:#10141f;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg); color:var(--ink); font-family:'Noto Sans KR',system-ui,-apple-system,sans-serif;
+       padding-inline:16px; padding-block:28px 56px; line-height:1.6; font-size:15px;}
+  .wrap{max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:22px;}
+  h1,h2,h3,p{margin:0;}
+  h1{font-size:clamp(26px,5vw,36px); line-height:1.25; text-wrap:balance; font-weight:800; letter-spacing:-.01em;}
+  h2{font-size:19px; font-weight:800; text-wrap:balance;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  .top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
+  .eyebrow{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600;}
+  .lang{display:flex; gap:6px;}
+  .lang button{font:inherit; font-size:12px; padding:5px 11px; border-radius:7px; border:1px solid var(--line);
+       background:var(--card); color:var(--muted); cursor:pointer;}
+  .lang button.on{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .sub{color:var(--muted); max-width:60ch;}
+  .why{font-size:14px; border-left:3px solid var(--accent); padding-left:12px;}
+  .example{font-size:13px; background:var(--accent-soft); color:var(--ink); padding:10px 14px; border-radius:10px;}
+  .q{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:10px; margin:0;}
+  .q legend{padding:0; font-weight:700; font-size:15.5px;}
+  .q .num{font-family:'IBM Plex Mono',monospace; color:var(--accent); margin-right:6px;}
+  .opts{display:flex; flex-direction:column; gap:8px;}
+  .opt{display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border:1px solid var(--line); border-radius:10px; cursor:pointer; background:var(--bg);}
+  .opt:hover{border-color:var(--accent);}
+  .opt input{margin-top:4px; accent-color:var(--accent);}
+  .opt span{flex:1;}
+  .opt:has(input:checked){border-color:var(--accent); background:var(--accent-soft);}
+  .hint{font-size:12.5px; color:var(--muted);}
+  .result{background:var(--card); border:2px solid var(--line); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:14px;}
+  .result.ok{border-color:var(--ok);} .result.warn{border-color:var(--warn);} .result.bad{border-color:var(--bad);}
+  .badge{display:inline-block; padding:4px 12px; border-radius:999px; font-weight:800; font-size:14px; width:fit-content;}
+  .ok .badge{background:var(--ok-bg); color:var(--ok);} .warn .badge{background:var(--warn-bg); color:var(--warn);} .bad .badge{background:var(--bad-bg); color:var(--bad);}
+  .meter{height:10px; border-radius:999px; background:var(--line); overflow:hidden;}
+  .meter i{display:block; height:100%; width:0; border-radius:999px; background:var(--accent); transition:width .25s ease;}
+  .ok .meter i{background:var(--ok);} .warn .meter i{background:var(--warn);} .bad .meter i{background:var(--bad);}
+  .score{font-size:13px; color:var(--muted);}
+  .fixes{margin:0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .fixes li{padding:10px 12px; border-radius:10px; background:var(--bg); border:1px solid var(--line); font-size:14px;}
+  .fixes li b{display:block; margin-bottom:2px;}
+  .facts{display:flex; flex-direction:column; gap:10px; margin:0; padding:0; list-style:none;}
+  .facts li{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px; font-size:14px;}
+  .facts a{color:var(--accent); font-size:12.5px; word-break:break-all;}
+  .facts .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); display:block; margin-bottom:2px;}
+  .unsure{border-style:dashed;}
+  .cta{background:var(--cta); color:var(--cta-ink); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:12px;}
+  .cta p{opacity:.9; font-size:14.5px;}
+  .btn{display:inline-block; width:fit-content; padding:12px 20px; border-radius:10px; font-weight:800; text-decoration:none;
+       background:var(--bg); color:var(--ink);}
+  .links{display:flex; gap:14px; flex-wrap:wrap; font-size:13px;}
+  .links a{color:var(--accent);}
+  .fine{font-size:12px; color:var(--muted);}
+  @media (max-width:480px){ .result{padding:16px;} }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<div class="wrap">
+  <div class="top">
+    <span class="eyebrow mono" data-i18n="eyebrow">채널 체크 · 기준일 2026-09-30</span>
+    <div class="lang" id="lang">
+      <button type="button" data-lang="ko">한국어</button>
+      <button type="button" data-lang="en">English</button>
+    </div>
+  </div>
+
+  <header style="display:flex; flex-direction:column; gap:10px;">
+    <h1 data-i18n="title">내 수노 채널, 수익화 괜찮을까?</h1>
+    <p class="sub" data-i18n="sub">질문 7개에 답하면 내 채널의 위험 신호가 어디 있는지 바로 보여줘요. 가입도 저장도 없이 이 화면에서만 계산돼요.</p>
+    <p class="why" data-i18n="why">왜 필요할까요? 수노 무료 플랜으로 만든 곡은 상업적으로 쓸 수 없고, 유튜브는 2025년 7월부터 반복적이거나 대량 생산된 영상을 수익화에서 제외해요. 둘 중 하나만 걸려도 채널 수익이 막히거나 영상이 문제 될 수 있어서, 올리기 전에 한 번 점검해 보세요.</p>
+    <p class="example" data-i18n="example">예시 답변이 미리 선택돼 있어요. 내 상황에 맞게 바꿔보세요.</p>
+  </header>
+
+  <form id="form" style="display:flex; flex-direction:column; gap:14px;" onsubmit="return false"></form>
+
+  <section class="result" id="result" aria-live="polite">
+    <span class="badge" id="badge"></span>
+    <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+    <p class="score mono" id="score"></p>
+    <p class="score" data-i18n="scoreNote">0~3점 낮음, 4~7점 주의, 8점 이상 높음. 이 점수는 이 페이지의 자체 기준이며 유튜브나 수노의 공식 평가가 아니에요.</p>
+    <ul class="fixes" id="fixes"></ul>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:12px;">
+    <h2 data-i18n="factsTitle">알아둘 사실</h2>
+    <ul class="facts" id="facts"></ul>
+  </section>
+
+  <section class="cta">
+    <h2 data-i18n="ctaTitle">영상 쪽 위험은 제작 방식으로 줄일 수 있어요</h2>
+    <p data-i18n="ctaBody">유튜브가 문제 삼는 건 같은 틀로 찍어낸 영상이에요. MusicCanvas는 곡마다 다른 배경, 가사 싱크, 오디오 반응 효과를 넣어 영상을 만들어줘요. 수익화를 보장하지는 않지만, 영상마다 실제 차이를 만드는 데 도움이 돼요. 오프라인 작동, 한 번 결제 $22, 7일 무료체험.</p>
+    <a class="btn" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener" data-i18n="ctaBtn">7일 무료체험 시작 →</a>
+  </section>
+
+  <div class="links">
+    <a href="../prompt-studio/" target="_blank" rel="noopener" data-i18n="linkPrompt">무료 수노 프롬프트 70개+</a>
+    <a href="https://claude.ai/artifact/4y3KgB8SuBKYhRadmBpdVa" target="_blank" rel="noopener" data-i18n="linkShowcase">Dusk Soul 쇼케이스</a>
+  </div>
+
+  <p class="fine" data-i18n="fine">이 페이지는 일반 정보이며 법률 조언이 아니에요. 정책과 요금은 자주 바뀌므로 아래 출처 링크에서 최신 내용을 꼭 확인하세요. 기준일: 2026-09-30.</p>
+</div>
+
+<script>
+(function(){
+  var lang = "ko";
+  try{ var s = localStorage.getItem("mc_check_lang"); if(s === "en" || s === "ko") lang = s; }catch(e){}
+
+  var T = {
+    ko:{
+      eyebrow:"채널 체크 · 기준일 2026-09-30",
+      title:"내 수노 채널, 수익화 괜찮을까?",
+      sub:"질문 7개에 답하면 내 채널의 위험 신호가 어디 있는지 바로 보여줘요. 가입도 저장도 없이 이 화면에서만 계산돼요.",
+      why:"왜 필요할까요? 수노 무료 플랜으로 만든 곡은 상업적으로 쓸 수 없고, 유튜브는 2025년 7월부터 반복적이거나 대량 생산된 영상을 수익화에서 제외해요. 둘 중 하나만 걸려도 채널 수익이 막히거나 영상이 문제 될 수 있어서, 올리기 전에 한 번 점검해 보세요.",
+      example:"예시 답변이 미리 선택돼 있어요. 내 상황에 맞게 바꿔보세요.",
+      factsTitle:"알아둘 사실",
+      ctaTitle:"영상 쪽 위험은 제작 방식으로 줄일 수 있어요",
+      ctaBody:"유튜브가 문제 삼는 건 같은 틀로 찍어낸 영상이에요. MusicCanvas는 곡마다 다른 배경, 가사 싱크, 오디오 반응 효과를 넣어 영상을 만들어줘요. 수익화를 보장하지는 않지만, 영상마다 실제 차이를 만드는 데 도움이 돼요. 오프라인 작동, 한 번 결제 $22, 7일 무료체험.",
+      ctaBtn:"7일 무료체험 시작 →",
+      linkPrompt:"무료 수노 프롬프트 70개+",
+      linkShowcase:"Dusk Soul 쇼케이스",
+      fine:"이 페이지는 일반 정보이며 법률 조언이 아니에요. 정책과 요금은 자주 바뀌므로 아래 출처 링크에서 최신 내용을 꼭 확인하세요. 기준일: 2026-09-30.",
+      low:"위험 낮음", mid:"주의 필요", high:"위험 높음",
+      scoreFmt:"위험 점수 {s} / {m}",
+      scoreNote:"0~3점 낮음, 4~7점 주의, 8점 이상 높음. 이 점수는 이 페이지의 자체 기준이며 유튜브나 수노의 공식 평가가 아니에요.",
+      basis:"근거",
+      noFix:"지금 답변 기준으로 눈에 띄는 위험 신호는 없어요. 그래도 정책은 바뀌니 정기적으로 확인하세요.",
+      fixHead:"이렇게 고치면 좋아요",
+      unsureTag:"확인 필요", sourceTag:"출처"
+    },
+    en:{
+      eyebrow:"Channel check · as of 2026-09-30",
+      title:"Can my Suno channel be monetized safely?",
+      sub:"Answer 7 questions and see where your channel's risk signals are. No sign-up, nothing saved, calculated right on this page.",
+      why:"Why check? Songs made on Suno's free plan cannot be used commercially, and since July 2025 YouTube excludes repetitive or mass-produced videos from monetization. Either one can block channel income or cause problems for a video, so check before you upload.",
+      example:"Sample answers are pre-selected. Change them to match your situation.",
+      factsTitle:"Facts worth knowing",
+      ctaTitle:"You can lower the video-side risk by how you make videos",
+      ctaBody:"What YouTube objects to is mass-produced videos from one template. MusicCanvas builds each video with a different background, lyric sync and audio-reactive effects. It cannot guarantee monetization, but it helps you make real differences between videos. Works offline, one-time $22, 7-day free trial.",
+      ctaBtn:"Start the 7-day free trial →",
+      linkPrompt:"70+ free Suno prompts",
+      linkShowcase:"Dusk Soul showcase",
+      fine:"General information, not legal advice. Policies and prices change often, so check the source links below for the latest. As of 2026-09-30.",
+      low:"Low risk", mid:"Needs attention", high:"High risk",
+      scoreFmt:"Risk score {s} / {m}",
+      scoreNote:"0-3 low, 4-7 needs attention, 8+ high. This score is this page's own rule of thumb, not an official rating from YouTube or Suno.",
+      basis:"Basis",
+      noFix:"No obvious risk signals with these answers. Policies change, so keep checking.",
+      fixHead:"What to fix",
+      unsureTag:"Verify", sourceTag:"Source"
+    }
+  };
+
+  // each option: [score, text ko, text en]; tip shown when score > 0
+  var Q = [
+    {k:"plan", srcUrl:"https://help.suno.com/en/articles/2425729", srcKo:"Suno 도움말", srcEn:"Suno help",
+     ko:"곡을 만들 때 수노 유료 구독(Pro/Premier) 중이었나요?",
+     en:"Were you on a paid Suno plan (Pro/Premier) when you made the songs?",
+     opts:[[0,"전부 유료 구독 중에 만들었어요","All made while on a paid plan"],
+           [3,"일부는 무료 플랜으로 만들었어요","Some were made on the free plan"],
+           [2,"잘 모르겠어요","Not sure"]],
+     tipKo:"무료 플랜 곡은 개인·비상업용이고, 나중에 구독해도 소급해서 상업 사용권이 생기지 않아요. 무료 때 만든 곡은 수익화 영상에서 빼고, 유료 구독 중에 새로 만드세요.",
+     tipEn:"Free-plan songs are personal, non-commercial only, and subscribing later does not retroactively grant commercial rights. Remove free-plan songs from monetized videos and remake them while subscribed."},
+    {k:"visual", srcUrl:"https://support.google.com/youtube/answer/1311392", srcKo:"YouTube 공식 안내", srcEn:"YouTube official",
+     ko:"영상 화면은 어떻게 만드나요?",
+     en:"How do you make the video visuals?",
+     opts:[[3,"정지 이미지 한 장에 음악만 깔아요","One still image with the music"],
+           [1,"이미지를 몇 장 돌려 써요","A few images, reused"],
+           [0,"곡마다 다른 배경에 가사 싱크나 효과를 넣어요","Different background per song, with lyric sync or effects"]],
+     tipKo:"유튜브는 이미지 슬라이드쇼나 최소한의 변화만 있는 반복 콘텐츠를 수익화 대상에서 제외할 수 있다고 안내해요. 곡마다 다른 배경, 가사 싱크, 효과로 영상마다 실제 차이를 만드세요.",
+     tipEn:"YouTube says image slideshows and content with minimal variation can be ineligible for monetization. Give each video real differences: its own background, lyric sync, effects."},
+    {k:"volume", srcUrl:"https://support.google.com/youtube/answer/1311392", srcKo:"YouTube 공식 안내", srcEn:"YouTube official",
+     ko:"업로드 패턴은 어떤가요?",
+     en:"What is your upload pattern?",
+     opts:[[3,"같은 템플릿으로 하루에 여러 개씩 올려요","Several videos a day from the same template"],
+           [1,"주 몇 개, 곡마다 제목과 분위기가 달라요","A few a week, each with its own title and mood"],
+           [0,"가끔 올려요","Occasionally"]],
+     tipKo:"대량으로 찍어낸 듯한 업로드는 '반복적이거나 대량 생산된 콘텐츠'로 볼 수 있어요. 업로드 수를 줄이고 영상마다 주제와 구성을 다르게 하세요.",
+     tipEn:"Upload volume that looks mass-produced can be treated as repetitive or mass-produced content. Upload fewer videos and vary topic and structure."},
+    {k:"lyrics", srcUrl:"https://help.suno.com/en/articles/2746945", srcKo:"Suno 도움말", srcEn:"Suno help",
+     ko:"가사는 어떻게 만들었나요?",
+     en:"How did you get the lyrics?",
+     opts:[[0,"직접 쓰거나 크게 고쳤어요","Wrote or heavily edited them"],
+           [1,"수노가 써준 그대로 써요","Used Suno's lyrics as they were"],
+           [0,"가사 없는 연주곡이에요","Instrumental, no lyrics"]],
+     tipKo:"수노 도움말은 직접 쓴 가사가 저작권 보호에 도움이 될 수 있다고 안내해요. AI 가사를 그대로 쓰기보다 직접 고쳐 쓰세요.",
+     tipEn:"Suno's help page says lyrics you write yourself may help with copyright protection. Edit AI lyrics rather than using them untouched."},
+    {k:"artist", srcUrl:"", srcKo:"공식 기준은 못 찾았고 2차 자료 기준이에요", srcEn:"No official rule found; based on secondary sources",
+     ko:"프롬프트나 제목에 실제 가수 이름을 넣나요?",
+     en:"Do you put real artists' names in prompts or titles?",
+     opts:[[0,"아니요, 장르와 분위기만 써요","No, only genre and mood"],
+           [2,"네, 특정 가수 스타일로 만들어요","Yes, I aim for a specific artist's sound"]],
+     tipKo:"실제 가수의 목소리나 곡을 흉내 내는 건 분쟁 위험이 커요. 가수 이름 대신 템포, 악기, 분위기 같은 일반 요소로 설명하세요. 무료 프롬프트 스튜디오가 그 방식이에요.",
+     tipEn:"Imitating a real artist's voice or songs raises dispute risk. Describe tempo, instruments and mood instead of names. The free Prompt Studio works this way."},
+    {k:"proof", srcUrl:"https://help.suno.com/en/articles/9601665", srcKo:"Suno 도움말", srcEn:"Suno help",
+     ko:"구독 기간과 곡 생성 기록을 보관하나요?",
+     en:"Do you keep records of your subscription dates and song creation?",
+     opts:[[0,"네, 결제 내역과 생성 기록을 보관해요","Yes, I keep receipts and creation history"],
+           [1,"아니요","No"]],
+     tipKo:"상업 사용권은 구독 중에 만든 곡에 적용돼서, 분쟁이 생기면 그 기간을 증명해야 할 수 있어요. 결제 영수증과 곡 생성 내역을 따로 저장해 두세요.",
+     tipEn:"Commercial rights depend on songs made while subscribed, so in a dispute you may need to prove that. Save receipts and your song history separately."},
+    {k:"label", srcUrl:"https://support.google.com/youtube/answer/14328491", srcKo:"YouTube 공식 안내", srcEn:"YouTube official",
+     ko:"영상 설명에 AI로 만든 음악이라고 밝히나요?",
+     en:"Do you say in the description that the music is AI-made?",
+     opts:[[0,"네, 밝혀요","Yes"],
+           [1,"아니요","No"]],
+     tipKo:"유튜브의 '변형되거나 합성된 콘텐츠' 공개 규정에 AI 음악이 해당하는지는 자료마다 달라요. 아래 공식 페이지 문구를 직접 확인하고, 애매하면 설명란에 AI 사용을 적어 두는 쪽이 안전해요.",
+     tipEn:"Sources disagree on whether AI music falls under YouTube's altered or synthetic content disclosure. Check the official page below, and if unsure, state AI use in the description."}
+  ];
+  // example preselected: one risky, one fine, to show a real result at rest
+  var answers = {plan:0, visual:1, volume:1, lyrics:1, artist:0, proof:1, label:1};
+
+  var FACTS = [
+    {tag:"Suno", ko:"무료 플랜 곡은 개인·비상업용이고, 나중에 구독해도 소급 적용되지 않아요. Pro와 Premier는 구독 중 만든 곡의 상업 사용권이 있고, 해지 후에도 유지돼요.",
+      en:"Free-plan songs are personal and non-commercial, and subscribing later is not retroactive. Pro and Premier grant commercial use for songs made while subscribed, kept after you cancel.",
+      url:"https://help.suno.com/en/articles/2425729"},
+    {tag:"Suno", ko:"Pro/Premier는 곡을 '소유'하지만, 100% AI 곡이 저작권 보호를 받을지는 보장되지 않아요. 곡이 사용자마다 고유하지 않을 수도 있어요.",
+      en:"Pro and Premier users own their songs, but copyright protection for fully AI music is not guaranteed, and outputs may not be unique across users.",
+      url:"https://suno.com/terms"},
+    {tag:"YouTube", ko:"2025년 7월, '반복적 콘텐츠'가 '비진정성 콘텐츠'로 이름이 바뀌었어요. 반복적이거나 대량 생산된 콘텐츠가 수익화에서 제외돼요. 이름이 다시 바뀌었다는 보도도 있으니 공식 페이지의 현재 문구를 확인하세요.",
+      en:"In July 2025 repetitious content was renamed inauthentic content, covering repetitive or mass-produced videos. Some reports say the name changed again, so check the current wording on the official page.",
+      url:"https://support.google.com/youtube/answer/1311392"},
+    {tag:"Suno · 2026", ko:"워너뮤직은 2025년 11월 수노와 합의했어요. UMG와 소니는 소송이 계속 진행 중이에요. 결과에 따라 수노의 다운로드·모델 정책이 바뀔 수 있어요.",
+      en:"Warner Music settled with Suno in November 2025. UMG and Sony are still in litigation, and outcomes could change Suno download and model policies.",
+      url:"https://techcrunch.com/2025/11/25/warner-music-signs-deal-with-ai-music-startup-suno-settles-lawsuit/"},
+    {tag:"unsure", ko:"AI 음악에 유튜브의 '변형되거나 합성된 콘텐츠' 표시가 필요한지는 확인이 엇갈려요. 공식 안내는 '사실적으로 보이는 콘텐츠'에 표시를 요구하는데, AI 음악 포함 여부는 문구를 직접 읽고 판단하세요.",
+      en:"Sources conflict on whether AI music needs YouTube's altered or synthetic content label. The official page asks for labels on realistic-looking content; read its exact wording to decide about AI music.",
+      url:"https://support.google.com/youtube/answer/14328491"}
+  ];
+
+  var form = document.getElementById("form");
+
+  function tt(k){ return T[lang][k]; }
+  function pick(o){ return lang === "ko" ? o.ko : o.en; }
+
+  function renderForm(){
+    form.innerHTML = "";
+    Q.forEach(function(q, qi){
+      var fs = document.createElement("fieldset"); fs.className = "q";
+      var lg = document.createElement("legend");
+      lg.innerHTML = '<span class="num">' + String(qi + 1).padStart(2, "0") + '</span>';
+      lg.appendChild(document.createTextNode(pick(q)));
+      fs.appendChild(lg);
+      var box = document.createElement("div"); box.className = "opts";
+      q.opts.forEach(function(o, oi){
+        var lab = document.createElement("label"); lab.className = "opt";
+        var inp = document.createElement("input");
+        inp.type = "radio"; inp.name = q.k; inp.value = oi;
+        inp.checked = answers[q.k] === oi;
+        inp.addEventListener("change", function(){ answers[q.k] = oi; renderResult(); });
+        var sp = document.createElement("span");
+        sp.textContent = lang === "ko" ? o[1] : o[2];
+        lab.appendChild(inp); lab.appendChild(sp); box.appendChild(lab);
+      });
+      fs.appendChild(box); form.appendChild(fs);
+    });
+  }
+
+  function renderResult(){
+    var total = 0, max = 0, fixes = [];
+    Q.forEach(function(q){
+      var m = 0; q.opts.forEach(function(o){ if(o[0] > m) m = o[0]; });
+      max += m;
+      var sc = q.opts[answers[q.k]][0];
+      total += sc;
+      if(sc > 0) fixes.push({s:sc, q:q});
+    });
+    fixes.sort(function(a, b){ return b.s - a.s; });
+    var lvl = total <= 3 ? "ok" : (total <= 7 ? "warn" : "bad");
+    var res = document.getElementById("result");
+    res.className = "result " + lvl;
+    document.getElementById("badge").textContent = lvl === "ok" ? tt("low") : (lvl === "warn" ? tt("mid") : tt("high"));
+    document.getElementById("meterFill").style.width = Math.round(total / max * 100) + "%";
+    document.getElementById("score").textContent = tt("scoreFmt").replace("{s}", total).replace("{m}", max);
+    var ul = document.getElementById("fixes"); ul.innerHTML = "";
+    if(!fixes.length){
+      var li0 = document.createElement("li"); li0.textContent = tt("noFix"); ul.appendChild(li0);
+    } else {
+      fixes.forEach(function(f){
+        var li = document.createElement("li");
+        var b = document.createElement("b"); b.textContent = pick(f.q);
+        li.appendChild(b);
+        li.appendChild(document.createTextNode(lang === "ko" ? f.q.tipKo : f.q.tipEn));
+        var sl = document.createElement("div"); sl.className = "hint";
+        var st = tt("basis") + ": " + (lang === "ko" ? f.q.srcKo : f.q.srcEn);
+        if(f.q.srcUrl){
+          var a = document.createElement("a"); a.href = f.q.srcUrl; a.target = "_blank"; a.rel = "noopener";
+          a.style.color = "var(--accent)"; a.textContent = st; sl.appendChild(a);
+        } else { sl.textContent = st; }
+        li.appendChild(sl);
+        ul.appendChild(li);
+      });
+    }
+  }
+
+  function renderFacts(){
+    var ul = document.getElementById("facts"); ul.innerHTML = "";
+    FACTS.forEach(function(f){
+      var li = document.createElement("li");
+      if(f.tag === "unsure") li.className = "unsure";
+      var tg = document.createElement("span"); tg.className = "tag";
+      tg.textContent = f.tag === "unsure" ? tt("unsureTag") : f.tag;
+      var p = document.createElement("div"); p.textContent = pick(f);
+      var a = document.createElement("a"); a.href = f.url; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = tt("sourceTag") + ": " + f.url;
+      li.appendChild(tg); li.appendChild(p); li.appendChild(a); ul.appendChild(li);
+    });
+  }
+
+  function applyLang(){
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var v = T[lang][el.getAttribute("data-i18n")];
+      if(v) el.textContent = v;
+    });
+    document.querySelectorAll("#lang button").forEach(function(b){
+      b.classList.toggle("on", b.getAttribute("data-lang") === lang);
+    });
+    renderForm(); renderResult(); renderFacts();
+  }
+
+  document.querySelectorAll("#lang button").forEach(function(b){
+    b.addEventListener("click", function(){
+      lang = b.getAttribute("data-lang");
+      try{ localStorage.setItem("mc_check_lang", lang); }catch(e){}
+      applyLang();
+    });
+  });
+  applyLang();
+})();
+</script>
+
+</body></html>
