@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kkwd21-cloud.github.io/tools/sitemap.xml

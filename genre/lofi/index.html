@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수노 로파이 프롬프트 11개 | 복사해서 바로 쓰는 Suno 스타일 프롬프트</title>
+<meta name="description" content="수노 로파이 프롬프트 11개를 무료로 복사하세요. 한국어 해설, 템포·보컬 필터, 프롬프트 조립기, 가사·제목 생성기까지. 공부·작업·새벽 감성. 보컬 없는 인스트루멘탈이 많아서 배경음악으로 쓰기 좋아요.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/genre/lofi/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="수노 로파이 프롬프트 11개 | 복사해서 바로 쓰는 Suno 스타일 프롬프트">
+<meta property="og:description" content="수노 로파이 프롬프트 11개를 무료로 복사하세요. 한국어 해설, 템포·보컬 필터, 프롬프트 조립기, 가사·제목 생성기까지. 공부·작업·새벽 감성. 보컬 없는 인스트루멘탈이 많아서 배경음악으로 쓰기 좋아요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/genre/lofi/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul 툴킷", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "Suno 프롬프트", "item": "https://kkwd21-cloud.github.io/tools/prompt-studio/"}, {"@type": "ListItem", "position": 3, "name": "수노 로파이 프롬프트", "item": "https://kkwd21-cloud.github.io/tools/genre/lofi/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "로파이에 가사를 넣어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "가능해요. 다만 로파이는 보컬 없는 곡이 대세라, 가사를 넣을 땐 짧은 허밍이나 스포큰워드 정도가 어울려요."}}, {"@type": "Question", "name": "한 시간짜리 영상은 어떻게 만드나요?", "acceptedAnswer": {"@type": "Answer", "text": "곡 여러 개를 모아 플레이리스트 영상으로 만드는 게 보통이에요. MusicCanvas 같은 편집 도구를 쓰면 곡 순서와 배경을 한 번에 정리할 수 있어요."}}, {"@type": "Question", "name": "'avoid:' 부분은 꼭 써야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "필수는 아니에요. Pro/Premier라면 Exclude Styles 칸에 따로 넣을 수 있고, 아니라면 스타일 칸 끝에 그대로 두세요."}}]}</script>
+<style>:root{--accent:#a18cff;--accent2:#c9baff;--rgb:161,140,255}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav" aria-label="장르 선택"><a href="../ballad/">감성 발라드</a><a href="../lofi/" class="on" aria-current="page">Lo-Fi &amp; 칠</a><a href="../cinematic/">시네마틱 &amp; 에픽</a><a href="../pop/">K-팝 &amp; 팝</a><a href="../acoustic/">어쿠스틱 &amp; 포크</a><a href="../ambient/">앰비언트 &amp; 인스트루멘탈</a></nav>
+  <a class="top-all" href="../../prompt-studio/">전체 보기</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Suno 스타일 프롬프트 · Lo-Fi &amp; Chill</p>
+  <h1>수노 로파이 프롬프트</h1>
+  <p class="vibe">공부·작업·새벽 감성. 보컬 없는 인스트루멘탈이 많아서 배경음악으로 쓰기 좋아요.</p>
+  <p class="lead">공부, 작업, 새벽 감성에 맞는 로파이 프롬프트예요. 보컬이 없는 곡이 많아서 배경음악용 플레이리스트에 쓰기 좋아요.</p>
+  <ul class="stats"><li><b>11</b>프롬프트</li><li><b>1</b>초보자 추천</li><li><b>70–92 BPM</b></li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#library">프롬프트 보기 ↓</a>
+    <a class="btn-g" href="#builder">직접 조립하기</a>
+    <button type="button" class="btn-g" id="randBtn">🎲 랜덤 하나 뽑기</button>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+  <p class="use">어울리는 영상: 공부·작업용 플레이리스트, 24시간 라이브 느낌의 긴 영상, 브이로그 배경음악</p>
+</div></section>
+
+<div class="wrap">
+  <div class="how">
+    <div class="step"><div class="n">STEP 01</div><h3>프롬프트 복사</h3><p>마음에 드는 카드의 [복사]를 눌러요. 한국어 해설로 어떤 느낌인지 먼저 확인할 수 있어요.</p></div>
+    <div class="step"><div class="n">STEP 02</div><h3>Suno에 붙여넣기</h3><p>Style of Music 칸에 붙여넣고 곡을 만들어요. Pro/Premier라면 [제외 복사]를 Exclude Styles 칸에 넣어 보세요. <a href="https://suno.com/create" target="_blank" rel="noopener">Suno 열기 ↗</a></p></div>
+    <div class="step"><div class="n">STEP 03</div><h3>영상으로 완성</h3><p>곡이 완성되면 가사 싱크와 이펙트를 넣어 유튜브 영상으로 만들어요. <a href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">MusicCanvas ↗</a></p></div>
+  </div>
+
+  <section class="sec" id="library">
+    <div class="sec-head"><h2>프롬프트<em>11</em></h2><p>♥로 담아 두면 다른 장르 페이지에서 담은 것과 함께 한 번에 복사할 수 있어요. 🔀 변주는 템포와 질감만 살짝 바꿔 줘요.</p></div>
+    <div class="toolbar">
+      <label class="search"><span class="sr">프롬프트 검색</span><input id="q" type="search" placeholder="분위기, 악기, 키워드로 찾기 (예: 비, 피아노, 새벽)" autocomplete="off"></label>
+      <div class="filters"><div class="fgroup"><span class="flabel">보컬</span><button type="button" class="chip" data-group="vocal" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="vocal" data-val="female" aria-pressed="false">여성 보컬</button><button type="button" class="chip" data-group="vocal" data-val="inst" aria-pressed="false">연주 중심</button></div><div class="fgroup"><span class="flabel">추천</span><button type="button" class="chip" data-group="beginner" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="beginner" data-val="1" aria-pressed="false">🔰 초보자 추천</button></div><div class="fgroup"><span class="flabel">보관</span><button type="button" class="chip" data-group="fav" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="fav" data-val="1" aria-pressed="false">♥ 즐겨찾기만</button></div></div>
+      <div class="tb-foot"><span id="count" aria-live="polite"></span><button type="button" id="reset" class="link">필터 초기화</button></div>
+    </div>
+    <div class="grid" id="grid">
+<article class="pcard" data-i="0" data-vocal="inst" data-tempo="mid" data-beginner="1" data-title="새벽 작업"><header class="pc-top"><h3 class="pc-title">새벽 작업</h3><div class="pc-right"><span class="badge-b">🔰 초보자 추천</span><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>82 BPM</span></div><pre class="pc-text" lang="en" translate="no">lofi hip hop instrumental, dusty vinyl crackle, mellow jazz piano chords, soft boom bap drums, tempo 82bpm, warm tape saturation, late night study atmosphere, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 연주곡(보컬 없음) · LP 지직 · 피아노 · 붐뱁 비트 · 드럼·리듬 · 테이프 질감</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="1" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="비 오는 오후"><header class="pc-top"><h3 class="pc-title">비 오는 오후</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>76 BPM</span></div><pre class="pc-text" lang="en" translate="no">chill lofi with soft female humming, muted electric piano, rain sounds in background, tempo 76bpm, gentle vinyl noise, cozy rainy afternoon mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 여성 보컬 · 허밍 · 전자 피아노 · 빗소리 · LP 지직 · 드럼·리듬</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="2" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="재즈 카페"><header class="pc-top"><h3 class="pc-title">재즈 카페</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>88 BPM</span></div><pre class="pc-text" lang="en" translate="no">jazzy lofi instrumental, upright bass and brushed drums, warm saxophone melody, tempo 88bpm, smoky cafe atmosphere, subtle vinyl hiss, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 연주곡(보컬 없음) · 베이스 · 드럼·리듬 · 색소폰 · LP 지직</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="3" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="노을 드라이브"><header class="pc-top"><h3 class="pc-title">노을 드라이브</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>80 BPM</span></div><pre class="pc-text" lang="en" translate="no">dreamy chillhop, soft synth pads, light guitar plucks, gentle female vocal ad-libs, tempo 80bpm, floaty reverb, golden hour drive mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 몽환적인 · 칠합 · 신스·패드 · 여성 보컬 · 애드립 · 리버브(울림) · 드럼·리듬</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="4" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="아침 루틴"><header class="pc-top"><h3 class="pc-title">아침 루틴</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>70 BPM</span></div><pre class="pc-text" lang="en" translate="no">minimal lofi beat, soft kalimba melody, mellow bassline, tempo 70bpm, birdsong ambience, calm morning routine mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 미니멀 편곡 · 로파이 · 드럼·리듬 · 칼림바 · 베이스 · 새소리 · 차분한</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="5" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="일기장"><header class="pc-top"><h3 class="pc-title">일기장</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>74 BPM</span></div><pre class="pc-text" lang="en" translate="no">korean lofi ballad hybrid, soft spoken-word style female vocals, gentle piano loop, tempo 74bpm, warm crackling texture, quiet diary entry mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 발라드 · 스포큰워드 · 여성 보컬 · 피아노 · 차분한 · 드럼·리듬</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="6" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="도시의 밤"><header class="pc-top"><h3 class="pc-title">도시의 밤</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>92 BPM</span></div><pre class="pc-text" lang="en" translate="no">lofi city pop fusion, mellow synth bass, soft electric guitar riffs, tempo 92bpm, night city window view mood, subtle vinyl warmth, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 시티팝 · 신스·패드 · 베이스 · 일렉 기타 · 도시 소리 · 바람 소리</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="7" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="책 읽는 시간"><header class="pc-top"><h3 class="pc-title">책 읽는 시간</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>84 BPM</span></div><pre class="pc-text" lang="en" translate="no">soft lofi instrumental, gentle marimba and rhodes piano, tempo 84bpm, light rain and distant thunder, quiet reading corner mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 연주곡(보컬 없음) · 마림바 · 로즈 피아노 · 피아노 · 빗소리 · 천둥</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="8" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="눈 내리는 밤"><header class="pc-top"><h3 class="pc-title">눈 내리는 밤</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>72 BPM</span></div><pre class="pc-text" lang="en" translate="no">lofi instrumental, soft glockenspiel melody, muffled snow ambience, tempo 72bpm, warm felt piano chords, quiet snowy night mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 연주곡(보컬 없음) · 글로켄슈필 · 눈 오는 분위기 · 피아노 · 차분한 · 드럼·리듬</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="9" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="고양이와 낮잠"><header class="pc-top"><h3 class="pc-title">고양이와 낮잠</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>78 BPM</span></div><pre class="pc-text" lang="en" translate="no">chill lofi beat, soft acoustic guitar mutes, gentle purring cat ambience, tempo 78bpm, warm vinyl crackle, lazy sunday afternoon with a cat mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 드럼·리듬 · 어쿠스틱 기타 · LP 지직</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="10" data-vocal="inst" data-tempo="mid" data-beginner="0" data-title="기차 창밖"><header class="pc-top"><h3 class="pc-title">기차 창밖</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>연주 중심</span><span>86 BPM</span></div><pre class="pc-text" lang="en" translate="no">lofi instrumental, mellow rhodes piano, distant train rumble and rain on windows, tempo 86bpm, soft brushed drums, long train ride at dusk mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps</pre><p class="pc-gloss"><b>이런 느낌</b> 로파이 · 연주곡(보컬 없음) · 로즈 피아노 · 피아노 · 빗소리 · 바람 소리 · 드럼·리듬</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+    </div>
+    <p class="empty" id="empty" hidden>조건에 맞는 프롬프트가 없어요. 필터를 초기화해 보세요.</p>
+  </section>
+
+  <section class="sec" id="builder">
+    <div class="sec-head"><h2>프롬프트 조립기</h2><p>원하는 요소만 고르면 영어 프롬프트가 만들어져요. 영어를 몰라도 괜찮아요. 마음에 드는 조합이 나올 때까지 🎲로 섞어 보세요.</p></div>
+    <div class="bld">
+      <div class="bld-groups" id="bGroups"></div>
+      <div class="bld-side">
+        <div class="tempo" id="bTempo">
+          <div class="tempo-row"><span>템포</span><strong id="bRangeVal"></strong></div>
+          <input id="bRange" type="range" aria-label="템포">
+          <label><input type="checkbox" id="bTempoOn" checked> 프롬프트에 템포 넣기</label>
+        </div>
+        <div class="preview">
+          <div class="pv-label">완성된 프롬프트</div>
+          <pre id="bOut" lang="en" translate="no"></pre>
+          <div class="pv-actions">
+            <button type="button" class="b-main" id="bCopy">복사</button>
+            <button type="button" class="b-sub" id="bRand">🎲 랜덤 조합</button>
+            <label class="chk"><input type="checkbox" id="bAvoidOn" checked> avoid 문구 포함</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="lyrics">
+    <div class="sec-head"><h2>가사 · 제목 생성기</h2><p>Suno의 Lyrics 칸에 붙여넣을 가사 틀과 곡 제목을 만들어요. [Verse], [Chorus] 같은 구조 표시가 들어 있어서 곡의 흐름을 잡기 쉬워요.</p></div>
+    <div class="lyr">
+      <div class="lyr-bar">
+        <div class="seg" id="lyrLang" role="group" aria-label="가사 언어"><button type="button" data-l="ko" aria-pressed="true">한국어</button><button type="button" data-l="en" aria-pressed="false">English</button></div>
+        <button type="button" class="b-main" id="lyrNew">🔀 새로 생성</button>
+      </div>
+      <div class="lyr-title"><span>제목</span><strong id="lyrTitle"></strong><button type="button" class="b-sub" id="lyrTitleCopy">제목 복사</button></div>
+      <pre class="lyr-text" id="lyrText"></pre>
+      <div class="lyr-actions"><button type="button" class="b-main" id="lyrCopy">가사 복사</button></div>
+    </div>
+  </section>
+
+  <section class="sec" id="guide">
+    <div class="sec-head"><h2>Lo-Fi &amp; 칠 프롬프트, 이렇게 쓰세요</h2><p>같은 프롬프트라도 쓰는 방식에 따라 결과가 크게 달라져요. 아래 네 가지만 기억하세요.</p></div>
+    <ul class="tips"><li><h3>질감을 한두 가지만 넣으세요</h3><p>LP 지직, 테이프 히스, 빗소리처럼 질감은 한두 개만 넣어야 깔끔해요. 너무 많으면 소리가 탁해져요.</p></li><li><h3>템포는 70~90bpm 안에서 고르세요</h3><p>로파이 특유의 느긋한 느낌은 이 범위에서 가장 잘 나와요. 카드의 변주 버튼으로 템포를 바꿔 볼 수 있어요.</p></li><li><h3>보컬이 없으면 Instrumental을 켜세요</h3><p>보컬 없는 곡을 원하면 Suno의 Instrumental 옵션을 켜는 게 가장 확실해요.</p></li><li><h3>길이가 중요하면 여러 곡을 이어 붙이세요</h3><p>한 곡은 길지 않아서 긴 영상은 여러 곡을 이어 만드는 방식이 일반적이에요.</p></li></ul>
+    <div class="faq"><details><summary>로파이에 가사를 넣어도 되나요?</summary><p>가능해요. 다만 로파이는 보컬 없는 곡이 대세라, 가사를 넣을 땐 짧은 허밍이나 스포큰워드 정도가 어울려요.</p></details><details><summary>한 시간짜리 영상은 어떻게 만드나요?</summary><p>곡 여러 개를 모아 플레이리스트 영상으로 만드는 게 보통이에요. MusicCanvas 같은 편집 도구를 쓰면 곡 순서와 배경을 한 번에 정리할 수 있어요.</p></details><details><summary>&#x27;avoid:&#x27; 부분은 꼭 써야 하나요?</summary><p>필수는 아니에요. Pro/Premier라면 Exclude Styles 칸에 따로 넣을 수 있고, 아니라면 스타일 칸 끝에 그대로 두세요.</p></details></div>
+  </section>
+
+  <section class="sec" id="proof"><div class="sec-head"><h2>실제 곡이 궁금하다면</h2><p>Dusk Soul 채널은 Suno로 만든 감성 발라드와 앰비언트 곡을 올려요. 프롬프트로 어떤 곡이 나오는지 감을 잡아 보세요.</p></div><a class="chan" href="https://www.youtube.com/@DuskSoul-e4f" target="_blank" rel="noopener">Dusk Soul 채널 둘러보기 ↗</a></section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>다른 장르도 둘러보세요</h2></div>
+    <div class="ogs"><a class="og" style="--c:#ff8f6b" href="../ballad/"><b>감성 발라드</b><span>이별, 그리움, 재회 — 잔잔하게 시작해서 후렴에서 터지는 구조</span></a><a class="og" style="--c:#f0c27a" href="../cinematic/"><b>시네마틱 &amp; 에픽</b><span>웅장한 오케스트라와 합창</span></a><a class="og" style="--c:#ff6fa8" href="../pop/"><b>K-팝 &amp; 팝</b><span>중독성 있는 후렴과 탄탄한 드롭</span></a><a class="og" style="--c:#9bd3a4" href="../acoustic/"><b>어쿠스틱 &amp; 포크</b><span>기타와 목소리 중심의 담백한 곡</span></a><a class="og" style="--c:#7fd1e8" href="../ambient/"><b>앰비언트 &amp; 인스트루멘탈</b><span>보컬 없이 분위기만</span></a></div>
+    <div class="tools">
+      <a class="btn-g" href="../../meta-generator/">유튜브 제목·해시태그 생성기</a>
+      <a class="btn-g" href="../../channel-check/">수노 채널 수익화 체크</a>
+      <a class="btn-g" href="../../prompt-studio/">Prompt Studio 전체 보기</a>
+    </div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>곡이 완성됐다면, 영상은 MusicCanvas로</h2>
+  <p>월 구독 없이 한 번 결제로 쓰는 Windows 프로그램이에요. 곡을 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보낼 수 있어요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+</div></section>
+<footer>Suno, YouTube는 각 회사의 상표예요. 이 페이지는 비공식 도구이며 결과를 보장하지 않아요. 프롬프트는 자유롭게 복사해서 쓰세요.</footer>
+
+<div id="favbar" hidden>
+  <span>♥ <strong id="favCount">0</strong>개 담음</span>
+  <button type="button" class="b-main" id="favCopy">모두 복사</button>
+  <button type="button" class="b-sub" id="favClear" data-arm="0">비우기</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"g": "lofi", "name": "Lo-Fi & 칠", "tempo": [70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 92], "flavors": ["dusty vinyl crackle", "warm tape hiss", "distant city traffic hum", "soft cassette wow and flutter", "gentle rain on a window", "muffled footsteps in the hallway", "faint radio static", "low tape saturation warmth"], "avoid": "harsh digital distortion, overpowering loud drums, sudden tempo jumps", "builder": {"labels": {"base": "기본 스타일", "inst": "악기", "vocal": "보컬", "mood": "분위기·주제", "tex": "질감"}, "groups": {"base": [["로파이 힙합", "lofi hip hop instrumental"], ["칠합", "dreamy chillhop"], ["재지 로파이", "jazzy lofi instrumental"], ["로파이 시티팝", "lofi city pop fusion"], ["미니멀 로파이", "minimal lofi beat"]], "inst": [["재즈 피아노 코드", "mellow jazz piano chords"], ["로즈 피아노", "mellow rhodes piano"], ["칼림바", "soft kalimba melody"], ["어쿠스틱 기타 뮤트", "soft acoustic guitar mutes"], ["글로켄슈필", "soft glockenspiel melody"], ["색소폰", "warm saxophone melody"]], "vocal": [["보컬 없음", "no vocals"], ["여성 허밍", "soft female humming"], ["스포큰워드 보컬", "soft spoken-word style female vocals"], ["보컬 애드립", "gentle female vocal ad-libs"]], "mood": [["새벽 작업", "late night study atmosphere"], ["비 오는 오후", "cozy rainy afternoon mood"], ["노을 드라이브", "golden hour drive mood"], ["아침 루틴", "calm morning routine mood"], ["눈 내리는 밤", "quiet snowy night mood"], ["기차 창밖", "long train ride at dusk mood"], ["책 읽는 시간", "quiet reading corner mood"]], "tex": [["먼지 낀 LP 지직", "dusty vinyl crackle"], ["따뜻한 테이프 히스", "warm tape hiss"], ["먼 도시 소음", "distant city traffic hum"], ["카세트 흔들림", "soft cassette wow and flutter"], ["창가 빗소리", "gentle rain on a window"], ["복도 발소리", "muffled footsteps in the hallway"], ["라디오 잡음", "faint radio static"], ["테이프 포화감", "low tape saturation warmth"]]}, "tempo": [70, 92], "avoid": "harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, "bank": {"ko": {"verse1": ["또 하나의 느린 저녁\n증명할 건 아무것도 없어", "식어버린 커피 한 잔\n그냥 흘러가게 둘래", "시계 소리 저 멀리서\n시간 가는 걸 잊었어", "커튼 사이 흐린 불빛\n바닥 위에 그림자져", "노트북 화면만 바라보다\n어느새 새벽이 왔어", "이어폰 너머로 흘러나오는\n낯익은 멜로디 하나", "책상 위에 쌓인 메모들\n오늘도 그대로 남아있어"], "pre": ["잠깐 머물러도 돼", "천천히 가도 괜찮아", "오늘은 아무것도 안 해도 돼", "오늘 하루도 수고했어", "불 끄고 잠깐 눈 감아봐", "조금만 더 이렇게 있을래"], "chorus": ["음, 잠깐 머물러줘\n음, 괜찮으니까", "천천히 가자 오늘 밤은\n그냥 흘려보내자", "서두를 필요 없어\n숨만 천천히 내쉬어", "오늘은 아무 일도 없어\n음, 잠깐 머물러줘", "오늘 하루도 수고했어\n음, 잠깐 쉬어가자", "불 끄고 잠깐 눈 감아봐\n다 괜찮아질 거야", "이 노래가 끝날 때까지만\n아무 생각 하지 말자"], "verse2": ["조용한 생각 하나가\n스쳐 지나가고 있어", "김 서린 창문 너머로\n가로등을 바라봐", "저 멀리 지나가는 기차\n소리만으로 충분해", "냉장고 돌아가는 소리가\n오늘따라 크게 들려", "책장 넘기는 소리만\n방 안을 가득 채워", "휴대폰 알림도 꺼둔 채\n조용히 시간을 보내"], "bridge": ["설명이 필요 없는 기분이야", "오늘 밤은 이유가 없어도 돼", "시간은 그냥 흐르게 두자", "오늘은 그냥 이대로 있어도 돼", "서두르는 사람은 아무도 없어", "이 시간만큼은 온전히 내 거야", "이 기분이 뭐든, 조금만 더 있어도 괜찮아"], "outro": ["(잔잔한 허밍, 페이드아웃)", "(빗소리, 조용히 사라짐)", "(부드러운 건반, 페이드아웃)", "(키보드 소리, 잦아들며)", "(창밖 가로등 불빛, 흔들리며)", "(작은 하품, 페이드아웃)"], "titleAdj": ["새벽 3시", "느린", "비 오는", "포근한", "빛바랜", "조용한", "포근한 밤", "작은", "머무는"], "titleNoun": ["와 함께", "창가의 생각", "정적", "집중", "한구석", "표류", "책상 위", "불빛 아래", "작은 방"]}, "en": {"verse1": ["Another slow evening / nothing much to prove\nJust the hum of the radiator / and the room in soft blue", "Steam rising off the coffee / that's already gone cold\nI'm not doing anything / just letting the hours unfold", "The clock ticks somewhere distant / but I've stopped keeping time\nJust the sound of pages turning / and a thought I can't quite find", "Streetlights blur through curtains / painting shapes across the floor\nEverything moves slower here / than it does outside the door", "My playlist's stuck on repeat / but I don't mind at all\nSome nights just want the same song / playing soft against the wall", "The rain's been going all day / and I've let it keep me in\nNo plans, no rush, no reason / just this quiet I'm sitting in", "Staring at my laptop screen / and somehow dawn crept in\nI didn't notice the hours pass / lost somewhere within", "A melody drifts through my headphones / one I think I used to know\nFamiliar in a quiet way / though I forget where from", "The notes still pile on my desk / exactly where they've stayed\nI'll get to them tomorrow / or maybe another day"], "pre": ["Mm, stay a while / mm, it's alright", "Take it slow tonight / take it slow", "No need to hurry home / no need at all", "Just breathe it out / just let it go", "Nothing's due tonight / nothing at all", "You did enough today", "Turn off the light, close your eyes a while", "Just a little longer like this"], "chorus": ["Mm, stay a while / mm, it's alright\nNo need to hurry home / no need at all", "Take it slow tonight / take it slow\nJust breathe it out / just let it go", "Nothing's due tonight / nothing at all\nMm, stay a while / mm, it's alright", "You did enough today\nMm, let's just rest a while", "Turn off the light, close your eyes a while\nEverything's gonna be fine", "Until this song is over\nlet's not think of anything at all"], "verse2": ["A quiet thought keeps drifting by / like it always does\nI let it pass without a name / and that's enough because", "The window's fogged up just a little / from the tea I made too hot\nI wipe a circle clean to watch / the streetlights I forgot", "Somewhere a train goes by unseen / a sound I've learned to love\nIt doesn't ask me to be anywhere / it just moves above", "The fridge hums a little louder / than it usually does tonight", "Only the sound of turning pages / fills this quiet room", "Phone's on silent, notifications off / just passing time alone"], "bridge": ["No need to explain this feeling / it already knows the way", "Some nights don't need a reason / just a little static and gray", "Let the hours blur together / nothing's asking to be solved", "This day is fine to leave as it is", "Nobody here is in a hurry", "This hour belongs completely to me", "Whatever this feeling is, it's welcome to stay a little longer"], "outro": ["(soft humming, fade out)", "(vinyl crackle, fade)", "(rain continues, fade to silence)", "(gentle keys, fade out)", "(keyboard clicks, settling down)", "(streetlight outside, swaying gently)", "(a small yawn, fade out)"], "titleAdj": ["3AM", "Slow", "Rainy", "Soft", "Faded", "Quiet", "Half-Awake", "Late-Night", "Warm Night", "Little", "Staying"], "titleNoun": ["and Fine", "Down With Me", "Window Thoughts", "Static", "Focus", "Corner", "Thinking", "Drift", "At My Desk", "Under the Light", "Small Room"]}}};</script>
+<script>
+(function(){
+'use strict';
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function rnd(n){return Math.floor(Math.random()*n);}
+function pick(a){return a[rnd(a.length)];}
+
+/* toast + copy */
+var toastEl=$('#toast'),toastT;
+function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show');},1700);}
+function copyText(text,msg){
+  function ok(){toast(msg||'복사했어요');}
+  function fb(){
+    var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;opacity:0;top:0;left:0';document.body.appendChild(ta);ta.select();
+    var done=false;try{done=document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    if(done)ok();else toast('복사하지 못했어요. 직접 선택해서 복사해 주세요');
+  }
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fb);}else fb();
+  }catch(e){fb();}
+}
+
+/* hero equalizer */
+(function(){
+  var eq=$('#eq');if(!eq)return;
+  for(var i=0;i<56;i++){
+    var s=document.createElement('span');
+    var h=.25+.75*Math.abs(Math.sin(i*.37)*Math.cos(i*.13+1));
+    s.style.setProperty('--h',h.toFixed(2));
+    s.style.setProperty('--d',(-(i%14)*.19).toFixed(2)+'s');
+    eq.appendChild(s);
+  }
+})();
+
+/* favorites */
+var KEY='mc_fav_v1';
+function loadFav(){try{var a=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+function saveFav(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
+var favs=loadFav();
+function fkey(card){return DATA.g+'|'+card.getAttribute('data-i');}
+function isFav(card){var k=fkey(card);return favs.some(function(f){return f.k===k;});}
+var favbar=$('#favbar'),clearT=null;
+function renderFavBar(){
+  var n=favs.length;
+  favbar.hidden=n===0;
+  $('#favCount').textContent=n;
+  $$('.pcard').forEach(function(c){var on=isFav(c);var b=$('.fav',c);b.setAttribute('aria-pressed',on?'true':'false');b.setAttribute('aria-label',on?'즐겨찾기 해제':'즐겨찾기');});
+}
+
+/* cards */
+var grid=$('#grid');
+$$('.pcard').forEach(function(c){c.dataset.base=$('.pc-text',c).textContent;});
+function curText(c){return $('.pc-text',c).textContent;}
+function splitAvoid(t){
+  var i=t.indexOf(', avoid:');
+  if(i<0)return {style:t,excl:''};
+  return {style:t.slice(0,i),excl:t.slice(i+8).trim()};
+}
+function remix(c){
+  var r=c.dataset.base;
+  var ts=DATA.tempo;
+  var m=/tempo\s*\d+\s*bpm/.exec(r);
+  var nb=null;
+  if(ts&&ts.length&&m){nb=pick(ts);r=r.replace(/tempo\s*\d+\s*bpm/,'tempo '+nb+'bpm');}
+  var f=pick(DATA.flavors);
+  if(r.indexOf(f)<0){
+    var i=r.indexOf(', avoid:');
+    r=i>-1?r.slice(0,i)+', '+f+r.slice(i):r+', '+f;
+  }
+  $('.pc-text',c).textContent=r;
+  if(nb){$$('.pc-tags span',c).forEach(function(s){if(/BPM$/.test(s.textContent))s.textContent=nb+' BPM';});}
+  $('[data-act=reset]',c).hidden=false;
+  if(isFav(c)){var k=fkey(c);favs.forEach(function(x){if(x.k===k)x.p=r;});saveFav(favs);}
+}
+function resetCard(c){
+  $('.pc-text',c).textContent=c.dataset.base;
+  var mm=/tempo\s*(\d+)\s*bpm/.exec(c.dataset.base);
+  if(mm){$$('.pc-tags span',c).forEach(function(s){if(/BPM$/.test(s.textContent))s.textContent=mm[1]+' BPM';});}
+  $('[data-act=reset]',c).hidden=true;
+}
+grid.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-act]');if(!b)return;
+  var c=b.closest('.pcard');var act=b.getAttribute('data-act');
+  if(act==='copy')copyText(curText(c),'프롬프트를 복사했어요');
+  else if(act==='style')copyText(splitAvoid(curText(c)).style,'스타일만 복사했어요');
+  else if(act==='excl')copyText(splitAvoid(curText(c)).excl,'제외 문구를 복사했어요 (Exclude Styles 칸용)');
+  else if(act==='remix'){remix(c);toast('살짝 바꿨어요');}
+  else if(act==='reset'){resetCard(c);}
+  else if(act==='fav'){
+    var k=fkey(c);
+    if(isFav(c)){favs=favs.filter(function(f){return f.k!==k;});}
+    else{favs.push({k:k,g:DATA.name,t:c.getAttribute('data-title'),p:curText(c)});}
+    saveFav(favs);renderFavBar();apply();
+  }
+});
+$('#favCopy').addEventListener('click',function(){
+  if(!favs.length)return;
+  copyText(favs.map(function(f){return '['+f.g+' · '+f.t+']\n'+f.p;}).join('\n\n'),favs.length+'개를 복사했어요');
+});
+$('#favClear').addEventListener('click',function(){
+  var b=this;
+  if(b.getAttribute('data-arm')==='1'){favs=[];saveFav(favs);renderFavBar();apply();b.setAttribute('data-arm','0');b.textContent='비우기';return;}
+  b.setAttribute('data-arm','1');b.textContent='정말 비울까요?';
+  clearTimeout(clearT);clearT=setTimeout(function(){b.setAttribute('data-arm','0');b.textContent='비우기';},2500);
+});
+
+/* filters */
+var SYN={'비':['빗소리','rain'],'빗소리':['rain'],'밤':['night','새벽','midnight'],'새벽':['dawn','night','midnight'],'피아노':['piano'],'기타':['guitar'],'바이올린':['violin','strings'],'현악':['strings'],'여자':['female','여성'],'남자':['male','남성'],'이별':['missing','farewell','goodbye','heartbreak'],'사랑':['love'],'슬픈':['sad','melanchol','sorrow'],'슬픔':['sad','melanchol','sorrow'],'공부':['study'],'카페':['cafe','coffee'],'겨울':['winter','snow'],'여름':['summer'],'바다':['ocean','sea','wave'],'우주':['space','cosmic'],'잔잔':['calm','gentle','soft','mellow'],'신나는':['upbeat','energetic'],'드라이브':['drive','driving']};
+var st={vocal:'all',tempo:'all',beginner:'all',fav:'all'};
+var total=$$('.pcard').length;
+function apply(){
+  var q=$('#q').value.trim().toLowerCase(),shown=0;
+  $$('.pcard').forEach(function(c){
+    var ok=true;
+    if(st.vocal!=='all'&&c.dataset.vocal!==st.vocal)ok=false;
+    if(st.tempo!=='all'&&c.dataset.tempo!==st.tempo)ok=false;
+    if(st.beginner==='1'&&c.dataset.beginner!=='1')ok=false;
+    if(st.fav==='1'&&!isFav(c))ok=false;
+    if(ok&&q){
+      var g=$('.pc-gloss',c);
+      var hay=(c.dataset.title+' '+curText(c)+' '+(g?g.textContent:'')).toLowerCase();
+      var alts=[q].concat(SYN[q]||[]);
+      if(!alts.some(function(a){return hay.indexOf(a)>=0;}))ok=false;
+    }
+    c.hidden=!ok;if(ok)shown++;
+  });
+  $('#count').textContent=shown===total?('전체 '+total+'개'):(shown+'개 표시 중 · 전체 '+total+'개');
+  $('#empty').hidden=shown>0;
+}
+$$('.chip[data-group]').forEach(function(ch){
+  ch.addEventListener('click',function(){
+    var g=ch.getAttribute('data-group'),v=ch.getAttribute('data-val');
+    st[g]=v;
+    $$('.chip[data-group="'+g+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===ch?'true':'false');});
+    apply();
+  });
+});
+$('#q').addEventListener('input',apply);
+$('#reset').addEventListener('click',function(){
+  st={vocal:'all',tempo:'all',beginner:'all',fav:'all'};$('#q').value='';
+  $$('.chip[data-group]').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-val')==='all'?'true':'false');});
+  apply();
+});
+var rb=$('#randBtn');
+if(rb)rb.addEventListener('click',function(){
+  var vis=$$('.pcard').filter(function(c){return !c.hidden;});
+  if(!vis.length){toast('조건에 맞는 프롬프트가 없어요');return;}
+  var c=pick(vis);
+  c.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+  c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash');
+  toast('이 프롬프트는 어때요? “'+c.getAttribute('data-title')+'”');
+});
+
+/* builder */
+var B=DATA.builder,KEYS=['base','inst','vocal','mood','tex'];
+var sel={};KEYS.forEach(function(k){sel[k]=0;});
+var tempoOn=!!B.tempo;
+var tempoVal=tempoOn?Math.round((B.tempo[0]+B.tempo[1])/4)*2:0;
+var gHost=$('#bGroups');
+KEYS.forEach(function(k){
+  var wrap=document.createElement('div');
+  var t=document.createElement('div');t.className='bg-title';t.textContent=B.labels[k];wrap.appendChild(t);
+  var row=document.createElement('div');row.className='bg-chips';
+  B.groups[k].forEach(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o[0];
+    b.setAttribute('data-k',k);b.setAttribute('data-i',i);b.setAttribute('aria-pressed',i===0?'true':'false');
+    row.appendChild(b);
+  });
+  wrap.appendChild(row);gHost.appendChild(wrap);
+});
+var range=$('#bRange'),rangeVal=$('#bRangeVal'),tempoChk=$('#bTempoOn'),avoidChk=$('#bAvoidOn');
+if(tempoOn){
+  range.min=B.tempo[0];range.max=B.tempo[1];range.step=2;range.value=tempoVal;
+}else{$('#bTempo').hidden=true;}
+function tempoWord(n){var span=B.tempo[1]-B.tempo[0];var r=(n-B.tempo[0])/span;return r<.34?'느림':r<.67?'보통':'빠름';}
+function compose(){
+  var parts=[];
+  ['base','inst','vocal'].forEach(function(k){if(sel[k]>=0)parts.push(B.groups[k][sel[k]][1]);});
+  if(tempoOn&&tempoChk.checked)parts.push('tempo '+tempoVal+'bpm');
+  ['mood','tex'].forEach(function(k){if(sel[k]>=0)parts.push(B.groups[k][sel[k]][1]);});
+  var t=parts.join(', ');
+  if(avoidChk.checked&&B.avoid)t+=', avoid: '+B.avoid;
+  return t;
+}
+function renderB(){
+  $$('#bGroups .chip').forEach(function(b){
+    b.setAttribute('aria-pressed',sel[b.getAttribute('data-k')]===+b.getAttribute('data-i')?'true':'false');
+  });
+  if(tempoOn){rangeVal.textContent=tempoVal+' BPM · '+tempoWord(tempoVal);}
+  $('#bOut').textContent=compose();
+}
+gHost.addEventListener('click',function(e){
+  var b=e.target.closest('.chip[data-k]');if(!b)return;
+  var k=b.getAttribute('data-k'),i=+b.getAttribute('data-i');
+  sel[k]=(sel[k]===i&&k!=='base')?-1:i;
+  renderB();
+});
+if(tempoOn)range.addEventListener('input',function(){tempoVal=+range.value;renderB();});
+tempoChk.addEventListener('change',renderB);avoidChk.addEventListener('change',renderB);
+$('#bCopy').addEventListener('click',function(){copyText($('#bOut').textContent,'조립한 프롬프트를 복사했어요');});
+$('#bRand').addEventListener('click',function(){
+  KEYS.forEach(function(k){sel[k]=rnd(B.groups[k].length);});
+  if(tempoOn){var steps=Math.floor((B.tempo[1]-B.tempo[0])/2);tempoVal=B.tempo[0]+2*rnd(steps+1);range.value=tempoVal;}
+  renderB();
+});
+renderB();
+
+/* lyrics */
+var lyrLang='ko';
+function genLyr(){
+  var b=DATA.bank[lyrLang];if(!b)return;
+  $('#lyrTitle').textContent=pick(b.titleAdj)+' '+pick(b.titleNoun);
+  var out;
+  if(b.verse1){
+    out='[Verse 1]\n'+pick(b.verse1)+'\n\n[Pre-Chorus]\n'+pick(b.pre)+'\n\n[Chorus]\n'+pick(b.chorus)+'\n\n[Verse 2]\n'+pick(b.verse2)+'\n\n[Bridge]\n'+pick(b.bridge)+'\n\n[Outro]\n'+pick(b.outro);
+  }else{out=b.note||'';}
+  $('#lyrText').textContent=out;
+}
+$('#lyrNew').addEventListener('click',genLyr);
+$('#lyrCopy').addEventListener('click',function(){copyText($('#lyrText').textContent,'가사를 복사했어요');});
+$('#lyrTitleCopy').addEventListener('click',function(){copyText($('#lyrTitle').textContent,'제목을 복사했어요');});
+$$('#lyrLang button').forEach(function(b){
+  b.addEventListener('click',function(){
+    lyrLang=b.getAttribute('data-l');
+    $$('#lyrLang button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    genLyr();
+  });
+});
+genLyr();
+
+renderFavBar();apply();
+})();
+
+</script>
+</body>
+</html>

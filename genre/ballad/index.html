@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수노 발라드 프롬프트 11개 | 복사해서 바로 쓰는 Suno 스타일 프롬프트</title>
+<meta name="description" content="수노 발라드 프롬프트 11개를 무료로 복사하세요. 한국어 해설, 템포·보컬 필터, 프롬프트 조립기, 가사·제목 생성기까지. 이별, 그리움, 재회 — 잔잔하게 시작해서 후렴에서 터지는 구조. Dusk Soul 채널이 가장 많이 쓰는 장르예요.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/genre/ballad/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="수노 발라드 프롬프트 11개 | 복사해서 바로 쓰는 Suno 스타일 프롬프트">
+<meta property="og:description" content="수노 발라드 프롬프트 11개를 무료로 복사하세요. 한국어 해설, 템포·보컬 필터, 프롬프트 조립기, 가사·제목 생성기까지. 이별, 그리움, 재회 — 잔잔하게 시작해서 후렴에서 터지는 구조. Dusk Soul 채널이 가장 많이 쓰는 장르예요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/genre/ballad/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul 툴킷", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "Suno 프롬프트", "item": "https://kkwd21-cloud.github.io/tools/prompt-studio/"}, {"@type": "ListItem", "position": 3, "name": "수노 발라드 프롬프트", "item": "https://kkwd21-cloud.github.io/tools/genre/ballad/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "한국어 가사 발라드는 어떻게 만드나요?", "acceptedAnswer": {"@type": "Answer", "text": "스타일 칸에는 영어 프롬프트를, 가사 칸에는 한국어 가사를 넣으세요. 이 페이지의 가사·제목 생성기에서 한국어 템플릿을 바로 만들 수 있어요."}}, {"@type": "Question", "name": "'avoid:' 부분은 꼭 써야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "필수는 아니에요. Pro/Premier라면 고급설정의 Exclude Styles 칸에 따로 넣을 수 있고, 아니라면 스타일 칸 끝에 그대로 두세요. 카드의 '제외 복사'를 쓰면 분리해서 복사돼요."}}, {"@type": "Question", "name": "가수 이름을 넣어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "실제 아티스트 이름 대신 분위기, 악기, 보컬 톤 같은 일반적인 표현으로 쓰는 걸 권해요. 결과도 더 일정하게 나와요."}}]}</script>
+<style>:root{--accent:#ff8f6b;--accent2:#ffb59c;--rgb:255,143,107}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav" aria-label="장르 선택"><a href="../ballad/" class="on" aria-current="page">감성 발라드</a><a href="../lofi/">Lo-Fi &amp; 칠</a><a href="../cinematic/">시네마틱 &amp; 에픽</a><a href="../pop/">K-팝 &amp; 팝</a><a href="../acoustic/">어쿠스틱 &amp; 포크</a><a href="../ambient/">앰비언트 &amp; 인스트루멘탈</a></nav>
+  <a class="top-all" href="../../prompt-studio/">전체 보기</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Suno 스타일 프롬프트 · Emotional Ballad</p>
+  <h1>수노 발라드 프롬프트</h1>
+  <p class="vibe">이별, 그리움, 재회 — 잔잔하게 시작해서 후렴에서 터지는 구조. Dusk Soul 채널이 가장 많이 쓰는 장르예요.</p>
+  <p class="lead">이별, 그리움, 재회처럼 감정선이 분명한 곡에 맞는 프롬프트예요. 잔잔하게 시작해서 후렴에서 커지는 구조를 한 구절로 적어 두는 게 핵심이에요.</p>
+  <ul class="stats"><li><b>11</b>프롬프트</li><li><b>1</b>초보자 추천</li><li><b>62–80 BPM</b></li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#library">프롬프트 보기 ↓</a>
+    <a class="btn-g" href="#builder">직접 조립하기</a>
+    <button type="button" class="btn-g" id="randBtn">🎲 랜덤 하나 뽑기</button>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+  <p class="use">어울리는 영상: 유튜브 플레이리스트, 감성 쇼츠, 이별·위로 콘셉트 영상</p>
+</div></section>
+
+<div class="wrap">
+  <div class="how">
+    <div class="step"><div class="n">STEP 01</div><h3>프롬프트 복사</h3><p>마음에 드는 카드의 [복사]를 눌러요. 한국어 해설로 어떤 느낌인지 먼저 확인할 수 있어요.</p></div>
+    <div class="step"><div class="n">STEP 02</div><h3>Suno에 붙여넣기</h3><p>Style of Music 칸에 붙여넣고 곡을 만들어요. Pro/Premier라면 [제외 복사]를 Exclude Styles 칸에 넣어 보세요. <a href="https://suno.com/create" target="_blank" rel="noopener">Suno 열기 ↗</a></p></div>
+    <div class="step"><div class="n">STEP 03</div><h3>영상으로 완성</h3><p>곡이 완성되면 가사 싱크와 이펙트를 넣어 유튜브 영상으로 만들어요. <a href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">MusicCanvas ↗</a></p></div>
+  </div>
+
+  <section class="sec" id="library">
+    <div class="sec-head"><h2>프롬프트<em>11</em></h2><p>♥로 담아 두면 다른 장르 페이지에서 담은 것과 함께 한 번에 복사할 수 있어요. 🔀 변주는 템포와 질감만 살짝 바꿔 줘요.</p></div>
+    <div class="toolbar">
+      <label class="search"><span class="sr">프롬프트 검색</span><input id="q" type="search" placeholder="분위기, 악기, 키워드로 찾기 (예: 비, 피아노, 새벽)" autocomplete="off"></label>
+      <div class="filters"><div class="fgroup"><span class="flabel">보컬</span><button type="button" class="chip" data-group="vocal" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="vocal" data-val="female" aria-pressed="false">여성 보컬</button><button type="button" class="chip" data-group="vocal" data-val="male" aria-pressed="false">남성 보컬</button><button type="button" class="chip" data-group="vocal" data-val="duet" aria-pressed="false">듀엣·그룹</button><button type="button" class="chip" data-group="vocal" data-val="vocal" aria-pressed="false">보컬 있음</button></div><div class="fgroup"><span class="flabel">템포</span><button type="button" class="chip" data-group="tempo" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="tempo" data-val="slow" aria-pressed="false">느림</button><button type="button" class="chip" data-group="tempo" data-val="mid" aria-pressed="false">보통</button></div><div class="fgroup"><span class="flabel">추천</span><button type="button" class="chip" data-group="beginner" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="beginner" data-val="1" aria-pressed="false">🔰 초보자 추천</button></div><div class="fgroup"><span class="flabel">보관</span><button type="button" class="chip" data-group="fav" data-val="all" aria-pressed="true">전체</button><button type="button" class="chip" data-group="fav" data-val="1" aria-pressed="false">♥ 즐겨찾기만</button></div></div>
+      <div class="tb-foot"><span id="count" aria-live="polite"></span><button type="button" id="reset" class="link">필터 초기화</button></div>
+    </div>
+    <div class="grid" id="grid">
+<article class="pcard" data-i="0" data-vocal="male" data-tempo="slow" data-beginner="1" data-title="이별 · 그리움"><header class="pc-top"><h3 class="pc-title">이별 · 그리움</h3><div class="pc-right"><span class="badge-b">🔰 초보자 추천</span><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>남성 보컬</span><span>66 BPM</span></div><pre class="pc-text" lang="en" translate="no">emotional korean ballad, soft piano and warm strings, gentle male vocals, slow tempo 66bpm, builds to a full orchestral chorus, lyrics about missing someone you can&#x27;t reach anymore, rain on window ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 발라드 · 피아노 · 현악 · 남성 보컬 · 점점 고조 · 오케스트라 · 빗소리</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="1" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="잔잔한 이별"><header class="pc-top"><h3 class="pc-title">잔잔한 이별</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>70 BPM</span></div><pre class="pc-text" lang="en" translate="no">cinematic emotional ballad, delicate piano intro, breathy female vocals, strings swell in second verse, tempo 70bpm, key change into final chorus, theme of quiet goodbye, warm analog tape texture, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 영화 같은 · 발라드 · 피아노 · 숨소리 섞인 톤 · 여성 보컬 · 현악 · 전조(키 변경)</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="2" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="짝사랑"><header class="pc-top"><h3 class="pc-title">짝사랑</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>74 BPM</span></div><pre class="pc-text" lang="en" translate="no">korean r&amp;b ballad, soulful female vocals with light vibrato, electric piano and soft drums, tempo 74bpm, mellow verse into emotional falsetto chorus, theme of loving someone from a distance, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> R&amp;B · 발라드 · 여성 보컬 · 전자 피아노 · 드럼·리듬 · 가성</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="3" data-vocal="duet" data-tempo="mid" data-beginner="0" data-title="재회"><header class="pc-top"><h3 class="pc-title">재회</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>듀엣·그룹</span><span>78 BPM</span></div><pre class="pc-text" lang="en" translate="no">hopeful ballad, acoustic guitar and warm pad, male and female duet vocals, tempo 78bpm, gentle build with light percussion in chorus, theme of finding each other again after years apart, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 희망적인 · 발라드 · 어쿠스틱 기타 · 신스·패드 · 듀엣 · 점점 고조 · 드럼·리듬</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="4" data-vocal="male" data-tempo="slow" data-beginner="0" data-title="빈 방"><header class="pc-top"><h3 class="pc-title">빈 방</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>남성 보컬</span><span>62 BPM</span></div><pre class="pc-text" lang="en" translate="no">melancholic piano ballad, minimal arrangement, intimate male vocals close to the mic, tempo 62bpm, sparse verses, strings enter only in final chorus, theme of an empty room after someone leaves, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 쓸쓸한 · 피아노 · 발라드 · 미니멀 편곡 · 남성 보컬 · 현악</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="5" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="담담한 이별"><header class="pc-top"><h3 class="pc-title">담담한 이별</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>72 BPM</span></div><pre class="pc-text" lang="en" translate="no">orchestral pop ballad, cinematic string section, powerful female vocals, tempo 72bpm, dramatic dynamic shifts, choir in final chorus, theme of letting go with gratitude instead of regret, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 오케스트라 · 발라드 · 영화 같은 · 현악 섹션 · 여성 보컬 · 합창</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="6" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="첫사랑 회상"><header class="pc-top"><h3 class="pc-title">첫사랑 회상</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>80 BPM</span></div><pre class="pc-text" lang="en" translate="no">korean indie ballad, warm nostalgic synths and soft electric guitar, airy female vocals, tempo 80bpm, dreamy chorus with light reverb, theme of remembering a first love years later, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 발라드 · 향수 · 신스·패드 · 일렉 기타 · 여성 보컬 · 몽환적인 · 리버브(울림)</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="7" data-vocal="male" data-tempo="slow" data-beginner="0" data-title="기다림"><header class="pc-top"><h3 class="pc-title">기다림</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>남성 보컬</span><span>64 BPM</span></div><pre class="pc-text" lang="en" translate="no">slow burn ballad, sparse piano and low strings, deep male vocals, tempo 64bpm, builds through three choruses each bigger than the last, theme of holding on to a promise made long ago, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 천천히 달아오르는 · 발라드 · 피아노 · 현악 · 남성 보컬 · 점점 고조</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="8" data-vocal="vocal" data-tempo="slow" data-beginner="0" data-title="새벽 전화"><header class="pc-top"><h3 class="pc-title">새벽 전화</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>보컬 있음</span><span>68 BPM</span></div><pre class="pc-text" lang="en" translate="no">quiet late night ballad, soft rhodes piano and gentle strings, whispery vocals close to the mic, tempo 68bpm, builds slowly into a hushed falsetto chorus, lyrics about calling someone at 3am just to hear their voice, faint city ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 차분한 · 발라드 · 로즈 피아노 · 피아노 · 현악 · 속삭이는 톤 · 점점 고조</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="9" data-vocal="male" data-tempo="mid" data-beginner="0" data-title="함께 걷던 거리"><header class="pc-top"><h3 class="pc-title">함께 걷던 거리</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>남성 보컬</span><span>76 BPM</span></div><pre class="pc-text" lang="en" translate="no">nostalgic korean ballad, warm acoustic guitar and soft strings, tender male vocals, tempo 76bpm, gentle build into a bittersweet chorus, lyrics about walking past a street that still remembers two people together, light rain ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 향수 · 발라드 · 어쿠스틱 기타 · 현악 · 남성 보컬 · 점점 고조 · 씁쓸달콤한</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+<article class="pcard" data-i="10" data-vocal="female" data-tempo="mid" data-beginner="0" data-title="계절이 지나도"><header class="pc-top"><h3 class="pc-title">계절이 지나도</h3><div class="pc-right"><button type="button" class="fav" data-act="fav" aria-pressed="false" aria-label="즐겨찾기"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div></header><div class="pc-tags"><span>여성 보컬</span><span>71 BPM</span></div><pre class="pc-text" lang="en" translate="no">cinematic ballad, layered strings and soft piano, powerful female vocals building to a soaring bridge, tempo 71bpm, seasons-changing metaphor for lingering love, warm reverb-heavy production, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending</pre><p class="pc-gloss"><b>이런 느낌</b> 영화 같은 · 발라드 · 현악 · 피아노 · 여성 보컬 · 리버브(울림)</p><div class="pc-actions"><button type="button" class="b-main" data-act="copy">복사</button><button type="button" class="b-sub" data-act="remix" title="템포와 질감을 살짝 바꿔요">🔀 변주</button><button type="button" class="b-sub" data-act="reset" hidden>↺ 원래대로</button><button type="button" class="b-sub" data-act="style" title="avoid 부분을 뺀 스타일만 복사">스타일만</button><button type="button" class="b-sub" data-act="excl" title="Exclude Styles 칸에 넣을 부분만 복사">제외 복사</button></div></article>
+    </div>
+    <p class="empty" id="empty" hidden>조건에 맞는 프롬프트가 없어요. 필터를 초기화해 보세요.</p>
+  </section>
+
+  <section class="sec" id="builder">
+    <div class="sec-head"><h2>프롬프트 조립기</h2><p>원하는 요소만 고르면 영어 프롬프트가 만들어져요. 영어를 몰라도 괜찮아요. 마음에 드는 조합이 나올 때까지 🎲로 섞어 보세요.</p></div>
+    <div class="bld">
+      <div class="bld-groups" id="bGroups"></div>
+      <div class="bld-side">
+        <div class="tempo" id="bTempo">
+          <div class="tempo-row"><span>템포</span><strong id="bRangeVal"></strong></div>
+          <input id="bRange" type="range" aria-label="템포">
+          <label><input type="checkbox" id="bTempoOn" checked> 프롬프트에 템포 넣기</label>
+        </div>
+        <div class="preview">
+          <div class="pv-label">완성된 프롬프트</div>
+          <pre id="bOut" lang="en" translate="no"></pre>
+          <div class="pv-actions">
+            <button type="button" class="b-main" id="bCopy">복사</button>
+            <button type="button" class="b-sub" id="bRand">🎲 랜덤 조합</button>
+            <label class="chk"><input type="checkbox" id="bAvoidOn" checked> avoid 문구 포함</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="lyrics">
+    <div class="sec-head"><h2>가사 · 제목 생성기</h2><p>Suno의 Lyrics 칸에 붙여넣을 가사 틀과 곡 제목을 만들어요. [Verse], [Chorus] 같은 구조 표시가 들어 있어서 곡의 흐름을 잡기 쉬워요.</p></div>
+    <div class="lyr">
+      <div class="lyr-bar">
+        <div class="seg" id="lyrLang" role="group" aria-label="가사 언어"><button type="button" data-l="ko" aria-pressed="true">한국어</button><button type="button" data-l="en" aria-pressed="false">English</button></div>
+        <button type="button" class="b-main" id="lyrNew">🔀 새로 생성</button>
+      </div>
+      <div class="lyr-title"><span>제목</span><strong id="lyrTitle"></strong><button type="button" class="b-sub" id="lyrTitleCopy">제목 복사</button></div>
+      <pre class="lyr-text" id="lyrText"></pre>
+      <div class="lyr-actions"><button type="button" class="b-main" id="lyrCopy">가사 복사</button></div>
+    </div>
+  </section>
+
+  <section class="sec" id="guide">
+    <div class="sec-head"><h2>감성 발라드 프롬프트, 이렇게 쓰세요</h2><p>같은 프롬프트라도 쓰는 방식에 따라 결과가 크게 달라져요. 아래 네 가지만 기억하세요.</p></div>
+    <ul class="tips"><li><h3>장르와 악기를 앞에 쓰세요</h3><p>스타일 칸은 앞쪽 단어가 더 크게 반영되는 경우가 많아요. 장르 → 주요 악기 → 보컬 순서로 쓰면 결과가 안정적이에요.</p></li><li><h3>곡의 전개를 한 구절 넣으세요</h3><p>&#x27;builds to a full orchestral chorus&#x27;처럼 전개를 적어 두면 잔잔하게 시작해서 후렴에서 커지는 발라드가 나오기 쉬워요.</p></li><li><h3>보컬 톤은 하나만 고르세요</h3><p>&#x27;gentle male vocals&#x27;처럼 하나만 지정하세요. 여러 톤을 섞으면 곡마다 결과가 크게 흔들릴 수 있어요.</p></li><li><h3>같은 프롬프트로 여러 번 만들어 보세요</h3><p>같은 설정에서도 매번 다른 곡이 나와요. 마음에 드는 하나를 고르는 게 가장 빠른 방법이에요.</p></li></ul>
+    <div class="faq"><details><summary>한국어 가사 발라드는 어떻게 만드나요?</summary><p>스타일 칸에는 영어 프롬프트를, 가사 칸에는 한국어 가사를 넣으세요. 이 페이지의 가사·제목 생성기에서 한국어 템플릿을 바로 만들 수 있어요.</p></details><details><summary>&#x27;avoid:&#x27; 부분은 꼭 써야 하나요?</summary><p>필수는 아니에요. Pro/Premier라면 고급설정의 Exclude Styles 칸에 따로 넣을 수 있고, 아니라면 스타일 칸 끝에 그대로 두세요. 카드의 &#x27;제외 복사&#x27;를 쓰면 분리해서 복사돼요.</p></details><details><summary>가수 이름을 넣어도 되나요?</summary><p>실제 아티스트 이름 대신 분위기, 악기, 보컬 톤 같은 일반적인 표현으로 쓰는 걸 권해요. 결과도 더 일정하게 나와요.</p></details></div>
+  </section>
+
+  <section class="sec" id="proof"><div class="sec-head"><h2>채널에서 만든 발라드 곡 들어보기</h2><p>Dusk Soul 채널에서 Suno로 만들어 올린 감성 발라드예요. 직접 들어 보고 분위기를 가늠해 보세요.</p></div><div class="vids"><a class="vid" href="https://www.youtube.com/watch?v=m1tUdHMFhQ0" target="_blank" rel="noopener"><img loading="lazy" alt="A Letter Written in Tears 썸네일" src="https://i.ytimg.com/vi/m1tUdHMFhQ0/mqdefault.jpg"><span>A Letter Written in Tears</span><em>YouTube에서 듣기 ↗</em></a><a class="vid" href="https://www.youtube.com/watch?v=Lyx-sPo3hmE" target="_blank" rel="noopener"><img loading="lazy" alt="Heart Carried by the Wind 썸네일" src="https://i.ytimg.com/vi/Lyx-sPo3hmE/mqdefault.jpg"><span>Heart Carried by the Wind</span><em>YouTube에서 듣기 ↗</em></a><a class="vid" href="https://www.youtube.com/watch?v=VSYXMjQzcps" target="_blank" rel="noopener"><img loading="lazy" alt="Light Through the Rain 썸네일" src="https://i.ytimg.com/vi/VSYXMjQzcps/mqdefault.jpg"><span>Light Through the Rain</span><em>YouTube에서 듣기 ↗</em></a></div></section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>다른 장르도 둘러보세요</h2></div>
+    <div class="ogs"><a class="og" style="--c:#a18cff" href="../lofi/"><b>Lo-Fi &amp; 칠</b><span>공부·작업·새벽 감성</span></a><a class="og" style="--c:#f0c27a" href="../cinematic/"><b>시네마틱 &amp; 에픽</b><span>웅장한 오케스트라와 합창</span></a><a class="og" style="--c:#ff6fa8" href="../pop/"><b>K-팝 &amp; 팝</b><span>중독성 있는 후렴과 탄탄한 드롭</span></a><a class="og" style="--c:#9bd3a4" href="../acoustic/"><b>어쿠스틱 &amp; 포크</b><span>기타와 목소리 중심의 담백한 곡</span></a><a class="og" style="--c:#7fd1e8" href="../ambient/"><b>앰비언트 &amp; 인스트루멘탈</b><span>보컬 없이 분위기만</span></a></div>
+    <div class="tools">
+      <a class="btn-g" href="../../meta-generator/">유튜브 제목·해시태그 생성기</a>
+      <a class="btn-g" href="../../channel-check/">수노 채널 수익화 체크</a>
+      <a class="btn-g" href="../../prompt-studio/">Prompt Studio 전체 보기</a>
+    </div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>곡이 완성됐다면, 영상은 MusicCanvas로</h2>
+  <p>월 구독 없이 한 번 결제로 쓰는 Windows 프로그램이에요. 곡을 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보낼 수 있어요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+</div></section>
+<footer>Suno, YouTube는 각 회사의 상표예요. 이 페이지는 비공식 도구이며 결과를 보장하지 않아요. 프롬프트는 자유롭게 복사해서 쓰세요.</footer>
+
+<div id="favbar" hidden>
+  <span>♥ <strong id="favCount">0</strong>개 담음</span>
+  <button type="button" class="b-main" id="favCopy">모두 복사</button>
+  <button type="button" class="b-sub" id="favClear" data-arm="0">비우기</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"g": "ballad", "name": "감성 발라드", "tempo": [62, 64, 66, 68, 70, 72, 74, 76, 78, 80], "flavors": ["soft rain on window ambience", "warm analog tape texture", "distant thunder rumble", "delicate music box motif", "gentle wind chime accent", "subtle room reverb", "quiet vinyl crackle", "muted string harmonics", "faint piano pedal noise", "soft breath before the chorus"], "avoid": "flat generic vocal delivery, muddy low end, abrupt awkward ending", "builder": {"labels": {"base": "기본 스타일", "inst": "악기", "vocal": "보컬", "mood": "분위기·주제", "tex": "질감"}, "groups": {"base": [["감성 발라드", "emotional korean ballad"], ["시네마틱 발라드", "cinematic emotional ballad"], ["R&B 발라드", "korean r&b ballad"], ["인디 발라드", "korean indie ballad"], ["오케스트라 팝 발라드", "orchestral pop ballad"], ["슬로우 번 발라드", "slow burn ballad"]], "inst": [["피아노 + 현악", "soft piano and warm strings"], ["어쿠스틱 기타 + 패드", "acoustic guitar and warm pad"], ["전자 피아노 + 소프트 드럼", "electric piano and soft drums"], ["피아노 + 낮은 현악", "sparse piano and low strings"], ["따뜻한 신스 + 일렉 기타", "warm nostalgic synths and soft electric guitar"]], "vocal": [["숨소리 여성 보컬", "breathy female vocals"], ["부드러운 남성 보컬", "gentle male vocals"], ["남녀 듀엣", "male and female duet vocals"], ["깊은 남성 보컬", "deep male vocals"], ["에어리한 여성 보컬", "airy female vocals"], ["마이크 가까운 속삭임", "intimate vocals close to the mic"]], "mood": [["이별 후 그리움", "lyrics about missing someone you can't reach anymore"], ["조용한 작별", "theme of quiet goodbye"], ["짝사랑", "theme of loving someone from a distance"], ["재회", "theme of finding each other again after years apart"], ["빈 방", "theme of an empty room after someone leaves"], ["첫사랑 회상", "theme of remembering a first love years later"], ["감사하며 보내기", "theme of letting go with gratitude instead of regret"]], "tex": [["비 오는 창가 소리", "soft rain on window ambience"], ["따뜻한 아날로그 테이프 질감", "warm analog tape texture"], ["먼 천둥 소리", "distant thunder rumble"], ["오르골 선율", "delicate music box motif"], ["바람 종소리", "gentle wind chime accent"], ["은은한 룸 리버브", "subtle room reverb"], ["은은한 LP 잡음", "quiet vinyl crackle"], ["현악 하모닉스", "muted string harmonics"], ["피아노 페달 소리", "faint piano pedal noise"], ["후렴 전 숨소리", "soft breath before the chorus"]]}, "tempo": [60, 80], "avoid": "flat generic vocal delivery, muddy low end, abrupt awkward ending"}, "bank": {"ko": {"verse1": ["옷장 속 낡은 스웨터엔\n아직 네 향이 남아있어", "커피는 오늘도 식어가고\n너 없인 아침이 낯설어", "빛바랜 사진 한 장을\n책갈피 사이에 숨겨뒀어", "창밖에 내리는 빗소리가\n네 이름을 자꾸 불러", "네가 좋아하던 노래가\n라디오에서 흘러나와", "지갑 속 낡은 티켓 한 장\n그날의 온도를 기억해", "너와 걷던 그 골목길을\n요즘도 자꾸 지나게 돼"], "pre": ["아직도 기다리고 있나 봐", "이별은 끝나지 않았나 봐", "말하지 못한 게 너무 많아서", "아직 못 지운 번호가 하나 있어", "그리움도 습관이 되나 봐", "이 밤엔 유난히 네가 보고 싶어"], "chorus": ["네 이름의 모양만 안고서\n텅 빈 방을 서성여", "다 못한 말들은 접어서\n편지처럼 넣어둘게", "촛불 하나 켜놓은 채로\n네 빈자리를 지켜", "이 노래가 널 찾아가면\n부디 편안하게 들리길", "너와 나눈 계절들을\n가슴 한켠에 접어두고", "빈 의자 하나 남겨둔 채\n그 자리를 맴돌아", "이 노래 끝에 네가 있다면\n조용히 손 흔들어줄게"], "verse2": ["언젠가는 그만 기다릴까\n오늘 밤은 그냥 그리워할게", "낯선 목소리에 네 웃음이\n스쳐 지날 때가 있어", "계절은 자꾸 바뀌는데\n난 아직 여기 멈춰있어", "네가 쓰던 향수 냄새가\n스쳐 지나가는 밤이 있어", "달력 위에 표시해둔 날짜가\n이제는 그냥 숫자일 뿐", "너 없이도 계절은 오고\n나는 조금씩 걸어가"], "bridge": ["혹시 날 떠올린다면 따뜻하게 기억해줘", "이 노래가 닿는 곳에서 잘 지내고 있길 바라", "사랑은 끝나지 않고 모양만 바뀌나 봐", "이 마음이 다 사라지진 않았으면 해", "언젠가 우리도 웃으며 마주치길", "그리움도 사랑의 다른 이름이겠지"], "outro": ["(불빛은 여전히 켜둔 채...)", "(그리움은 멈추지 않고...)", "(조용한 방, 나 혼자...)", "(핸드폰 화면만 바라보다...)", "(달빛 아래 혼자 서서...)", "(마지막 인사도 못 한 채...)"], "titleAdj": ["조용한", "빛바랜", "보내지 못한", "머나먼", "다정한", "끝나지 않은", "잊혀지지 않는", "서툰", "돌아오지 않는"], "titleNoun": ["이별", "지평선", "심장 소리", "메아리", "창가의 빛", "편지", "약속", "계절", "빈 의자"]}, "en": {"verse1": ["I still keep an old sweater / folded on your side of the bed\nThe hallway light still flickers / the way it did back then", "Your name sits quiet on my tongue / like a word I'm scared to lose\nI trace the shape of yesterday / in everything I do", "The coffee's cold again / just like the morning that you left\nI keep one cup too many / out of habit, not by choice", "There's a photograph half-faded / tucked inside a book we shared\nI don't open it too often / but I know it's always there", "The rain remembers better / than I ever could pretend\nEvery drop against the window / spells out how this ends", "I drive past the old café / just to see if it's still there\nSome memories don't need visiting / but I go anyway", "The song you used to love / just came on the radio again\nI didn't change the station / I let it play till the end", "An old ticket stub in my wallet / still holds the warmth of that day\nI don't know why I kept it / I just never threw it away", "I keep walking down that alley / where we used to walk side by side\nI don't need to anymore / but somehow my feet decide"], "pre": ["Maybe I'm still waiting / for a sound that won't come back", "Maybe some goodbyes / don't know how to end", "I keep rewinding moments / that were never mine to keep", "Somewhere between forgetting / and holding on too tight", "If silence had a color / it would look like this", "There's one number I still can't delete", "Maybe missing you just became a habit", "Tonight I miss you more than usual"], "chorus": ["And I hold onto nothing / but the shape of your name\nEvery empty room / still feels the same", "So I'll sing it soft and quiet / so the hurt won't wake\nA love that lingers longer / than the choice we didn't make", "And maybe love was never / meant to stay this long\nBut I still hum the outline / of our unfinished song", "So here's to every almost / and the words we never said\nI'll keep them safe and folded / like a letter left unread", "And still I light the candle / though the room's been dark for years\nSome kind of love just settles / in the quiet of your absence", "So I'll walk this road a little slower / than I used to when you're gone\nHoping every step erases / less of you than one more song", "I fold up every season / that we spent side by side\nAnd keep it in a corner / where the quiet lives inside", "I leave one chair empty / and wander around that space\nHoping if this song reaches you / it finds you in a gentle place", "If you're there when this song ends / I'll wave to you so quiet\nNo need for words between us / just this one last goodbye"], "verse2": ["Maybe someday I'll stop checking / for a message that won't come\nBut tonight I'll let the missing / just be missing, not undone", "I've learned to live around the edges / of the space you used to fill\nIt's not healing, it's not hurting / it's just quiet, and it's still", "Sometimes I catch your laugh / in someone else's voice by chance\nAnd for a second I forget / to remember it's not you", "The seasons keep on turning / like they don't know you're not here\nI'm the only one still counting / how long it's been this year", "I gave your side of silence / a name I never say out loud\nSome things are easier to carry / when you don't call them by their name", "Sometimes I catch the scent / of the perfume you used to wear\nA passing moment in the night / that tells me you were here", "The date I circled on the calendar / means nothing anymore\nJust a number on a page now / not the ache it was before", "The seasons keep on turning / even though you're not around\nAnd step by step without you / I'm still walking steady ground"], "bridge": ["If you ever think of me / I hope it's soft, not sad", "Wherever this song finds you / I hope it finds you well", "I'm not asking you to stay / just asking to be remembered kindly", "Maybe love doesn't end / it just changes shape and stays", "Let this be the version of goodbye / that doesn't hurt to sing", "I hope this feeling never fully fades away", "I hope someday we can smile when we meet again", "Maybe missing is just another name for love"], "outro": ["I still keep the light on...", "Some things you don't stop missing...", "Maybe this is how it stays...", "The room stays quiet, and so do I...", "(just staring at a phone screen...)", "(standing alone under the moonlight...)", "(never got to say the last goodbye...)"], "titleAdj": ["Quiet", "Faded", "Unsent", "Distant", "Gentle", "Unfinished", "Soft", "Lingering", "Unforgettable", "Clumsy", "Unreturning"], "titleNoun": ["Goodbye", "Horizon", "Heartbeat", "Echo", "Window Light", "Letter", "Silence", "Afterglow", "Promise", "Season", "Empty Chair"]}}};</script>
+<script>
+(function(){
+'use strict';
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function rnd(n){return Math.floor(Math.random()*n);}
+function pick(a){return a[rnd(a.length)];}
+
+/* toast + copy */
+var toastEl=$('#toast'),toastT;
+function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show');},1700);}
+function copyText(text,msg){
+  function ok(){toast(msg||'복사했어요');}
+  function fb(){
+    var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;opacity:0;top:0;left:0';document.body.appendChild(ta);ta.select();
+    var done=false;try{done=document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    if(done)ok();else toast('복사하지 못했어요. 직접 선택해서 복사해 주세요');
+  }
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fb);}else fb();
+  }catch(e){fb();}
+}
+
+/* hero equalizer */
+(function(){
+  var eq=$('#eq');if(!eq)return;
+  for(var i=0;i<56;i++){
+    var s=document.createElement('span');
+    var h=.25+.75*Math.abs(Math.sin(i*.37)*Math.cos(i*.13+1));
+    s.style.setProperty('--h',h.toFixed(2));
+    s.style.setProperty('--d',(-(i%14)*.19).toFixed(2)+'s');
+    eq.appendChild(s);
+  }
+})();
+
+/* favorites */
+var KEY='mc_fav_v1';
+function loadFav(){try{var a=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+function saveFav(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
+var favs=loadFav();
+function fkey(card){return DATA.g+'|'+card.getAttribute('data-i');}
+function isFav(card){var k=fkey(card);return favs.some(function(f){return f.k===k;});}
+var favbar=$('#favbar'),clearT=null;
+function renderFavBar(){
+  var n=favs.length;
+  favbar.hidden=n===0;
+  $('#favCount').textContent=n;
+  $$('.pcard').forEach(function(c){var on=isFav(c);var b=$('.fav',c);b.setAttribute('aria-pressed',on?'true':'false');b.setAttribute('aria-label',on?'즐겨찾기 해제':'즐겨찾기');});
+}
+
+/* cards */
+var grid=$('#grid');
+$$('.pcard').forEach(function(c){c.dataset.base=$('.pc-text',c).textContent;});
+function curText(c){return $('.pc-text',c).textContent;}
+function splitAvoid(t){
+  var i=t.indexOf(', avoid:');
+  if(i<0)return {style:t,excl:''};
+  return {style:t.slice(0,i),excl:t.slice(i+8).trim()};
+}
+function remix(c){
+  var r=c.dataset.base;
+  var ts=DATA.tempo;
+  var m=/tempo\s*\d+\s*bpm/.exec(r);
+  var nb=null;
+  if(ts&&ts.length&&m){nb=pick(ts);r=r.replace(/tempo\s*\d+\s*bpm/,'tempo '+nb+'bpm');}
+  var f=pick(DATA.flavors);
+  if(r.indexOf(f)<0){
+    var i=r.indexOf(', avoid:');
+    r=i>-1?r.slice(0,i)+', '+f+r.slice(i):r+', '+f;
+  }
+  $('.pc-text',c).textContent=r;
+  if(nb){$$('.pc-tags span',c).forEach(function(s){if(/BPM$/.test(s.textContent))s.textContent=nb+' BPM';});}
+  $('[data-act=reset]',c).hidden=false;
+  if(isFav(c)){var k=fkey(c);favs.forEach(function(x){if(x.k===k)x.p=r;});saveFav(favs);}
+}
+function resetCard(c){
+  $('.pc-text',c).textContent=c.dataset.base;
+  var mm=/tempo\s*(\d+)\s*bpm/.exec(c.dataset.base);
+  if(mm){$$('.pc-tags span',c).forEach(function(s){if(/BPM$/.test(s.textContent))s.textContent=mm[1]+' BPM';});}
+  $('[data-act=reset]',c).hidden=true;
+}
+grid.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-act]');if(!b)return;
+  var c=b.closest('.pcard');var act=b.getAttribute('data-act');
+  if(act==='copy')copyText(curText(c),'프롬프트를 복사했어요');
+  else if(act==='style')copyText(splitAvoid(curText(c)).style,'스타일만 복사했어요');
+  else if(act==='excl')copyText(splitAvoid(curText(c)).excl,'제외 문구를 복사했어요 (Exclude Styles 칸용)');
+  else if(act==='remix'){remix(c);toast('살짝 바꿨어요');}
+  else if(act==='reset'){resetCard(c);}
+  else if(act==='fav'){
+    var k=fkey(c);
+    if(isFav(c)){favs=favs.filter(function(f){return f.k!==k;});}
+    else{favs.push({k:k,g:DATA.name,t:c.getAttribute('data-title'),p:curText(c)});}
+    saveFav(favs);renderFavBar();apply();
+  }
+});
+$('#favCopy').addEventListener('click',function(){
+  if(!favs.length)return;
+  copyText(favs.map(function(f){return '['+f.g+' · '+f.t+']\n'+f.p;}).join('\n\n'),favs.length+'개를 복사했어요');
+});
+$('#favClear').addEventListener('click',function(){
+  var b=this;
+  if(b.getAttribute('data-arm')==='1'){favs=[];saveFav(favs);renderFavBar();apply();b.setAttribute('data-arm','0');b.textContent='비우기';return;}
+  b.setAttribute('data-arm','1');b.textContent='정말 비울까요?';
+  clearTimeout(clearT);clearT=setTimeout(function(){b.setAttribute('data-arm','0');b.textContent='비우기';},2500);
+});
+
+/* filters */
+var SYN={'비':['빗소리','rain'],'빗소리':['rain'],'밤':['night','새벽','midnight'],'새벽':['dawn','night','midnight'],'피아노':['piano'],'기타':['guitar'],'바이올린':['violin','strings'],'현악':['strings'],'여자':['female','여성'],'남자':['male','남성'],'이별':['missing','farewell','goodbye','heartbreak'],'사랑':['love'],'슬픈':['sad','melanchol','sorrow'],'슬픔':['sad','melanchol','sorrow'],'공부':['study'],'카페':['cafe','coffee'],'겨울':['winter','snow'],'여름':['summer'],'바다':['ocean','sea','wave'],'우주':['space','cosmic'],'잔잔':['calm','gentle','soft','mellow'],'신나는':['upbeat','energetic'],'드라이브':['drive','driving']};
+var st={vocal:'all',tempo:'all',beginner:'all',fav:'all'};
+var total=$$('.pcard').length;
+function apply(){
+  var q=$('#q').value.trim().toLowerCase(),shown=0;
+  $$('.pcard').forEach(function(c){
+    var ok=true;
+    if(st.vocal!=='all'&&c.dataset.vocal!==st.vocal)ok=false;
+    if(st.tempo!=='all'&&c.dataset.tempo!==st.tempo)ok=false;
+    if(st.beginner==='1'&&c.dataset.beginner!=='1')ok=false;
+    if(st.fav==='1'&&!isFav(c))ok=false;
+    if(ok&&q){
+      var g=$('.pc-gloss',c);
+      var hay=(c.dataset.title+' '+curText(c)+' '+(g?g.textContent:'')).toLowerCase();
+      var alts=[q].concat(SYN[q]||[]);
+      if(!alts.some(function(a){return hay.indexOf(a)>=0;}))ok=false;
+    }
+    c.hidden=!ok;if(ok)shown++;
+  });
+  $('#count').textContent=shown===total?('전체 '+total+'개'):(shown+'개 표시 중 · 전체 '+total+'개');
+  $('#empty').hidden=shown>0;
+}
+$$('.chip[data-group]').forEach(function(ch){
+  ch.addEventListener('click',function(){
+    var g=ch.getAttribute('data-group'),v=ch.getAttribute('data-val');
+    st[g]=v;
+    $$('.chip[data-group="'+g+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===ch?'true':'false');});
+    apply();
+  });
+});
+$('#q').addEventListener('input',apply);
+$('#reset').addEventListener('click',function(){
+  st={vocal:'all',tempo:'all',beginner:'all',fav:'all'};$('#q').value='';
+  $$('.chip[data-group]').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-val')==='all'?'true':'false');});
+  apply();
+});
+var rb=$('#randBtn');
+if(rb)rb.addEventListener('click',function(){
+  var vis=$$('.pcard').filter(function(c){return !c.hidden;});
+  if(!vis.length){toast('조건에 맞는 프롬프트가 없어요');return;}
+  var c=pick(vis);
+  c.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+  c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash');
+  toast('이 프롬프트는 어때요? “'+c.getAttribute('data-title')+'”');
+});
+
+/* builder */
+var B=DATA.builder,KEYS=['base','inst','vocal','mood','tex'];
+var sel={};KEYS.forEach(function(k){sel[k]=0;});
+var tempoOn=!!B.tempo;
+var tempoVal=tempoOn?Math.round((B.tempo[0]+B.tempo[1])/4)*2:0;
+var gHost=$('#bGroups');
+KEYS.forEach(function(k){
+  var wrap=document.createElement('div');
+  var t=document.createElement('div');t.className='bg-title';t.textContent=B.labels[k];wrap.appendChild(t);
+  var row=document.createElement('div');row.className='bg-chips';
+  B.groups[k].forEach(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o[0];
+    b.setAttribute('data-k',k);b.setAttribute('data-i',i);b.setAttribute('aria-pressed',i===0?'true':'false');
+    row.appendChild(b);
+  });
+  wrap.appendChild(row);gHost.appendChild(wrap);
+});
+var range=$('#bRange'),rangeVal=$('#bRangeVal'),tempoChk=$('#bTempoOn'),avoidChk=$('#bAvoidOn');
+if(tempoOn){
+  range.min=B.tempo[0];range.max=B.tempo[1];range.step=2;range.value=tempoVal;
+}else{$('#bTempo').hidden=true;}
+function tempoWord(n){var span=B.tempo[1]-B.tempo[0];var r=(n-B.tempo[0])/span;return r<.34?'느림':r<.67?'보통':'빠름';}
+function compose(){
+  var parts=[];
+  ['base','inst','vocal'].forEach(function(k){if(sel[k]>=0)parts.push(B.groups[k][sel[k]][1]);});
+  if(tempoOn&&tempoChk.checked)parts.push('tempo '+tempoVal+'bpm');
+  ['mood','tex'].forEach(function(k){if(sel[k]>=0)parts.push(B.groups[k][sel[k]][1]);});
+  var t=parts.join(', ');
+  if(avoidChk.checked&&B.avoid)t+=', avoid: '+B.avoid;
+  return t;
+}
+function renderB(){
+  $$('#bGroups .chip').forEach(function(b){
+    b.setAttribute('aria-pressed',sel[b.getAttribute('data-k')]===+b.getAttribute('data-i')?'true':'false');
+  });
+  if(tempoOn){rangeVal.textContent=tempoVal+' BPM · '+tempoWord(tempoVal);}
+  $('#bOut').textContent=compose();
+}
+gHost.addEventListener('click',function(e){
+  var b=e.target.closest('.chip[data-k]');if(!b)return;
+  var k=b.getAttribute('data-k'),i=+b.getAttribute('data-i');
+  sel[k]=(sel[k]===i&&k!=='base')?-1:i;
+  renderB();
+});
+if(tempoOn)range.addEventListener('input',function(){tempoVal=+range.value;renderB();});
+tempoChk.addEventListener('change',renderB);avoidChk.addEventListener('change',renderB);
+$('#bCopy').addEventListener('click',function(){copyText($('#bOut').textContent,'조립한 프롬프트를 복사했어요');});
+$('#bRand').addEventListener('click',function(){
+  KEYS.forEach(function(k){sel[k]=rnd(B.groups[k].length);});
+  if(tempoOn){var steps=Math.floor((B.tempo[1]-B.tempo[0])/2);tempoVal=B.tempo[0]+2*rnd(steps+1);range.value=tempoVal;}
+  renderB();
+});
+renderB();
+
+/* lyrics */
+var lyrLang='ko';
+function genLyr(){
+  var b=DATA.bank[lyrLang];if(!b)return;
+  $('#lyrTitle').textContent=pick(b.titleAdj)+' '+pick(b.titleNoun);
+  var out;
+  if(b.verse1){
+    out='[Verse 1]\n'+pick(b.verse1)+'\n\n[Pre-Chorus]\n'+pick(b.pre)+'\n\n[Chorus]\n'+pick(b.chorus)+'\n\n[Verse 2]\n'+pick(b.verse2)+'\n\n[Bridge]\n'+pick(b.bridge)+'\n\n[Outro]\n'+pick(b.outro);
+  }else{out=b.note||'';}
+  $('#lyrText').textContent=out;
+}
+$('#lyrNew').addEventListener('click',genLyr);
+$('#lyrCopy').addEventListener('click',function(){copyText($('#lyrText').textContent,'가사를 복사했어요');});
+$('#lyrTitleCopy').addEventListener('click',function(){copyText($('#lyrTitle').textContent,'제목을 복사했어요');});
+$$('#lyrLang button').forEach(function(b){
+  b.addEventListener('click',function(){
+    lyrLang=b.getAttribute('data-l');
+    $$('#lyrLang button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    genLyr();
+  });
+});
+genLyr();
+
+renderFavBar();apply();
+})();
+
+</script>
+</body>
+</html>

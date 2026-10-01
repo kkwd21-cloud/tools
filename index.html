@@ -1,180 +1,104 @@
-<!doctype html><html lang="ko"><head><title>AI 음악 채널 무료 도구 모음 | Dusk Soul 툴킷</title><meta name="description" content="Suno 프롬프트, 유튜브 제목·해시태그 생성기, 수익화 위험 체크까지. AI 음악 채널을 위한 무료 도구 3개."><meta property="og:type" content="website"><meta property="og:title" content="AI 음악 채널 무료 도구 모음 | Dusk Soul 툴킷"><meta property="og:description" content="Suno 프롬프트, 유튜브 제목·해시태그 생성기, 수익화 위험 체크까지. AI 음악 채널을 위한 무료 도구 3개."><meta name="twitter:card" content="summary"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dusk Soul 툴킷 | Suno 프롬프트 · 유튜브 제목 · 수익화 체크 무료</title>
+<meta name="description" content="AI 음악 채널을 위한 무료 도구 모음. Suno 스타일 프롬프트 70개 이상, 유튜브 제목·해시태그 생성기, 수노 채널 수익화 위험 체크. 가입·설치 없이 바로 사용.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/">
+<meta name="theme-color" content="#f4f1ea">
+<meta property="og:type" content="website"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="Dusk Soul 툴킷 - AI 음악 채널 무료 도구">
+<meta property="og:description" content="Suno 프롬프트 70개+ · 유튜브 제목/해시태그 생성기 · 수익화 위험 체크">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f4f1ea; --card:#ffffff; --ink:#1c2233; --muted:#5b6478; --line:#dad5c8;
-    --a1:#7a4fd6; --a1s:#eee7fb;
-    --a2:#b3531f; --a2s:#fbe9dc;
-    --a3:#0f766e; --a3s:#dff1ee;
-    --cta:#1c2233; --cta-ink:#ffffff;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0f1320; --card:#182033; --ink:#eceff7; --muted:#9aa4bd; --line:#2b3552;
-      --a1:#b9a0ff; --a1s:#2a2250;
-      --a2:#ffab7d; --a2s:#3b2518;
-      --a3:#5fd6c8; --a3s:#12342f;
-      --cta:#eceff7; --cta-ink:#0f1320;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0f1320; --card:#182033; --ink:#eceff7; --muted:#9aa4bd; --line:#2b3552;
-    --a1:#b9a0ff; --a1s:#2a2250;
-    --a2:#ffab7d; --a2s:#3b2518;
-    --a3:#5fd6c8; --a3s:#12342f;
-    --cta:#eceff7; --cta-ink:#0f1320;
-    color-scheme: dark;
-  }
-  *{box-sizing:border-box;}
-  body{background:var(--bg); color:var(--ink); font-family:'Noto Sans KR',system-ui,-apple-system,sans-serif;
-       padding-inline:16px; padding-block:32px 56px; line-height:1.6; font-size:15px; word-break:keep-all; overflow-wrap:anywhere;}
-  .wrap{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:24px;}
-  h1,h2,h3,p{margin:0;}
-  h1{font-size:clamp(28px,6vw,40px); line-height:1.2; font-weight:800; letter-spacing:-.01em; text-wrap:balance;}
-  .top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
-  .eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);}
-  .lang{display:flex; gap:6px;}
-  .lang button{font:inherit; font-size:12px; padding:5px 11px; border-radius:7px; border:1px solid var(--line);
-       background:var(--card); color:var(--muted); cursor:pointer;}
-  .lang button.on{background:var(--ink); border-color:var(--ink); color:var(--bg);}
-  .sub{color:var(--muted); max-width:56ch; font-size:16px;}
-  .tools{display:grid; grid-template-columns:1fr; gap:14px;}
-  .tool{display:flex; flex-direction:column; gap:10px; background:var(--card); border:1px solid var(--line);
-        border-left:5px solid var(--c); border-radius:14px; padding:18px; text-decoration:none; color:inherit;}
-  .tool:hover{border-color:var(--c); box-shadow:0 2px 0 var(--c);}
-  .tool .num{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--c); font-weight:600; letter-spacing:.06em;}
-  .tool h2{font-size:20px; font-weight:800;}
-  .tool p{color:var(--muted); font-size:14.5px;}
-  .tool ul{margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:6px;}
-  .tool li{font-size:12.5px; background:var(--cs); color:var(--ink); padding:3px 10px; border-radius:999px;}
-  .tool .go{font-weight:700; color:var(--c); font-size:14.5px; margin-top:2px;}
-  .t1{--c:var(--a1); --cs:var(--a1s);} .t2{--c:var(--a2); --cs:var(--a2s);} .t3{--c:var(--a3); --cs:var(--a3s);}
-  .flow{font-size:13.5px; color:var(--muted); background:var(--card); border:1px dashed var(--line); border-radius:12px; padding:12px 14px;}
-  .flow b{color:var(--ink);}
-  .cta{background:var(--cta); color:var(--cta-ink); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:12px;}
-  .cta h2{font-size:20px; font-weight:800; text-wrap:balance;}
-  .cta p{opacity:.92; font-size:14.5px;}
-  .btn{display:inline-block; width:fit-content; background:var(--bg); color:var(--ink); font-weight:800; text-decoration:none;
-       padding:12px 20px; border-radius:10px; font-size:15px;}
-  .fine{font-size:12.5px; opacity:.75;}
-  .more{font-size:13.5px; color:var(--muted);}
-  .more a{color:var(--ink); font-weight:600;}
-  footer{font-size:12px; color:var(--muted);}
-  @media (min-width:640px){ .tools{grid-template-columns:1fr;} }
+:root{--bg:#f4f1ea;--card:#fff;--ink:#1c2233;--muted:#5b6478;--line:#dad5c8;--a1:#7a4fd6;--a1s:#eee7fb;--a2:#b3531f;--a2s:#fbe9dc;--a3:#0f766e;--a3s:#dff1ee;--cta:#1c2233;--cta-ink:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1320;--card:#182033;--ink:#eceff7;--muted:#9aa4bd;--line:#2b3552;--a1:#b9a0ff;--a1s:#2a2250;--a2:#ffab7d;--a2s:#3b2518;--a3:#5fd6c8;--a3s:#12342f;--cta:#eceff7;--cta-ink:#0f1320;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',system-ui,sans-serif;padding:32px 16px 56px;line-height:1.6;font-size:15px;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+h1,h2,h3,p{margin:0}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.2;font-weight:800;text-wrap:balance}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sub{color:var(--muted);max-width:56ch;font-size:16px}
+.tools{display:grid;gap:14px}
+.tool{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:14px;padding:18px;text-decoration:none;color:inherit}
+.tool:hover{border-color:var(--c);box-shadow:0 2px 0 var(--c)}
+.tool .num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--c);font-weight:600;letter-spacing:.06em}
+.tool h2{font-size:20px;font-weight:800}
+.tool p{color:var(--muted);font-size:14.5px}
+.tool ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.tool li{font-size:12.5px;background:var(--cs);color:var(--ink);padding:3px 10px;border-radius:999px}
+.tool .go{font-weight:700;color:var(--c);font-size:14.5px}
+.t1{--c:var(--a1);--cs:var(--a1s)}.t2{--c:var(--a2);--cs:var(--a2s)}.t3{--c:var(--a3);--cs:var(--a3s)}
+.genres h2{font-size:17px;font-weight:800;margin-bottom:10px}
+.gl{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:560px){.gl{grid-template-columns:repeat(3,1fr)}}
+.gl a{display:flex;flex-direction:column;gap:2px;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--g);border-radius:12px;padding:12px 14px;text-decoration:none;color:inherit}
+.gl a:hover{box-shadow:0 2px 0 var(--g)}
+.gl b{font-size:15px}.gl span{font-size:12.5px;color:var(--muted)}
+.flow{font-size:13.5px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:12px 14px}
+.flow b{color:var(--ink)}
+.cta{background:var(--cta);color:var(--cta-ink);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.cta h2{font-size:20px;font-weight:800}.cta p{opacity:.92;font-size:14.5px}
+.btn{display:inline-block;width:fit-content;background:var(--bg);color:var(--ink);font-weight:800;text-decoration:none;padding:12px 20px;border-radius:10px;font-size:15px}
+.fine{font-size:12.5px;opacity:.75}
+footer{font-size:12px;color:var(--muted)}
 </style>
-
+</head>
+<body>
 <div class="wrap">
-  <div class="top">
-    <span class="eyebrow">Dusk Soul · free toolkit</span>
-    <div class="lang" id="lang">
-      <button type="button" data-l="ko" class="on">한국어</button>
-      <button type="button" data-l="en">English</button>
-    </div>
-  </div>
-
-  <header style="display:flex;flex-direction:column;gap:12px;">
-    <h1 data-i="title">AI 음악 채널 무료 도구 3개</h1>
-    <p class="sub" data-i="sub">Suno로 곡을 만들고, 유튜브에 올리고, 수익화 위험까지 확인하는 데 필요한 도구를 전부 무료로 모았어요. 가입도 설치도 필요 없어요.</p>
+  <span class="eyebrow">Dusk Soul · free toolkit</span>
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <h1>AI 음악 채널 무료 도구 모음</h1>
+    <p class="sub">Suno로 곡을 만들고, 유튜브에 올리고, 수익화 위험까지 확인하는 데 필요한 도구를 전부 무료로 모았어요. 가입도 설치도 필요 없어요.</p>
   </header>
 
   <div class="tools">
-    <a class="tool t1" href="prompt-studio/">
-      <span class="num">01 · MAKE</span>
-      <h2 data-i="t1h">Prompt Studio</h2>
-      <p data-i="t1p">Suno에 그대로 붙여넣는 스타일 프롬프트 70개 이상. 발라드·로파이·시네마틱·팝·어쿠스틱·앰비언트로 정리했고, 가사와 제목 템플릿도 있어요.</p>
-      <ul><li data-i="t1a">복사 한 번</li><li data-i="t1b">장르 6개</li><li data-i="t1c">가사 · 제목 생성</li></ul>
-      <span class="go" data-i="go1">프롬프트 열기 →</span>
+    <a class="tool t1" href="./prompt-studio/">
+      <span class="num">01 · MAKE</span><h2>Prompt Studio</h2>
+      <p>Suno에 그대로 붙여넣는 스타일 프롬프트 70개 이상. 발라드·로파이·시네마틱·팝·어쿠스틱·앰비언트로 정리했고, 가사와 제목 템플릿도 있어요.</p>
+      <ul><li>복사 한 번</li><li>장르 6개</li><li>가사 · 제목 생성</li></ul>
+      <span class="go">프롬프트 열기 →</span>
     </a>
-
-    <a class="tool t2" href="meta-generator/">
-      <span class="num">02 · UPLOAD</span>
-      <h2 data-i="t2h">유튜브 메타 생성기</h2>
-      <p data-i="t2p">곡 제목과 장르를 고르면 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프까지 만들어요. 유튜브 글자 수 제한에 맞춰서 나와요.</p>
-      <ul><li data-i="t2a">제목 5안</li><li data-i="t2b">해시태그</li><li data-i="t2c">타임스탬프</li></ul>
-      <span class="go" data-i="go2">생성기 열기 →</span>
+    <a class="tool t2" href="./meta-generator/">
+      <span class="num">02 · UPLOAD</span><h2>유튜브 메타 생성기</h2>
+      <p>곡 제목과 장르를 고르면 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프까지 만들어요. 유튜브 글자 수 제한에 맞춰서 나와요.</p>
+      <ul><li>제목 5안</li><li>해시태그</li><li>타임스탬프</li></ul>
+      <span class="go">생성기 열기 →</span>
     </a>
-
-    <a class="tool t3" href="channel-check/">
-      <span class="num">03 · CHECK</span>
-      <h2 data-i="t3h">수노 채널 체크</h2>
-      <p data-i="t3p">Suno로 만든 음악 채널의 수익화 위험을 7문항으로 점검해요. 요금제, 가사, 영상 차별화 같은 항목별로 무엇을 고치면 좋은지 알려줘요.</p>
-      <ul><li data-i="t3a">7문항</li><li data-i="t3b">근거 링크</li><li data-i="t3c">고칠 점 안내</li></ul>
-      <span class="go" data-i="go3">체크하러 가기 →</span>
+    <a class="tool t3" href="./channel-check/">
+      <span class="num">03 · CHECK</span><h2>수노 채널 체크</h2>
+      <p>Suno로 만든 음악 채널의 수익화 위험을 7문항으로 점검해요. 요금제, 가사, 영상 차별화 같은 항목별로 무엇을 고치면 좋은지 알려줘요.</p>
+      <ul><li>7문항</li><li>근거 링크</li><li>고칠 점 안내</li></ul>
+      <span class="go">체크하러 가기 →</span>
     </a>
   </div>
 
-  <p class="flow" data-i="flow"><b>추천 순서:</b> 채널 체크로 위험 확인 → 프롬프트로 곡 만들기 → 메타 생성기로 업로드 문구 만들기</p>
-
-  <section class="cta">
-    <h2 data-i="ctah">곡이 완성됐다면, 영상은 MusicCanvas로</h2>
-    <p data-i="ctap">MusicCanvas는 곡을 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보내 주는 Windows 프로그램이에요. 7일 무료체험으로 먼저 써볼 수 있어요.</p>
-    <a class="btn" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener" data-i="ctab">7일 무료체험 시작 →</a>
-    <span class="fine" data-i="ctaf">Windows · 평생 라이선스 $22</span>
+  <section class="genres">
+    <h2>장르별 Suno 프롬프트 바로가기</h2>
+    <div class="gl">
+      <a href="./genre/ballad/" style="--g:#ff8f6b"><b>감성 발라드</b><span>이별 · 그리움 · 재회</span></a>
+      <a href="./genre/lofi/" style="--g:#a18cff"><b>Lo-Fi &amp; 칠</b><span>공부 · 카페 · 새벽</span></a>
+      <a href="./genre/cinematic/" style="--g:#f0c27a"><b>시네마틱 &amp; 에픽</b><span>오케스트라 · 영화 OST</span></a>
+      <a href="./genre/pop/" style="--g:#ff6fa8"><b>K-팝 &amp; 팝</b><span>밝은 · 신나는</span></a>
+      <a href="./genre/acoustic/" style="--g:#9bd3a4"><b>어쿠스틱 &amp; 포크</b><span>기타 · 따뜻한</span></a>
+      <a href="./genre/ambient/" style="--g:#7fd1e8"><b>앰비언트</b><span>명상 · 수면 · 집중</span></a>
+    </div>
   </section>
 
-  <p class="more"><span data-i="more">실제로 만든 영상이 궁금하다면</span> <a href="https://claude.ai/artifact/4y3KgB8SuBKYhRadmBpdVa" target="_blank" rel="noopener" data-i="moreLink">Dusk Soul 쇼케이스</a></p>
+  <p class="flow"><b>추천 순서:</b> 채널 체크로 위험 확인 → 프롬프트로 곡 만들기 → 메타 생성기로 업로드 문구 만들기</p>
 
-  <footer data-i="foot">Suno, YouTube는 각 회사의 상표예요. 이 도구들은 공식 서비스가 아니고, 수익화 가능 여부를 보장하지 않아요.</footer>
+  <section class="cta">
+    <h2>곡이 완성됐다면, 영상은 MusicCanvas로</h2>
+    <p>MusicCanvas는 곡을 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보내 주는 Windows 프로그램이에요. 7일 무료체험으로 먼저 써볼 수 있어요.</p>
+    <a class="btn" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+    <span class="fine">Windows · 평생 라이선스 $22</span>
+  </section>
+
+  <footer>Suno, YouTube는 각 회사의 상표예요. 이 도구들은 공식 서비스가 아니고, 수익화 가능 여부를 보장하지 않아요. · <a href="https://www.youtube.com/@DuskSoul-e4f" target="_blank" rel="noopener" style="color:inherit">Dusk Soul 채널</a></footer>
 </div>
-
-<script>
-(function(){
-  var T = {
-    ko:{
-      title:"AI 음악 채널 무료 도구 3개",
-      sub:"Suno로 곡을 만들고, 유튜브에 올리고, 수익화 위험까지 확인하는 데 필요한 도구를 전부 무료로 모았어요. 가입도 설치도 필요 없어요.",
-      t1h:"Prompt Studio", t1p:"Suno에 그대로 붙여넣는 스타일 프롬프트 70개 이상. 발라드·로파이·시네마틱·팝·어쿠스틱·앰비언트로 정리했고, 가사와 제목 템플릿도 있어요.",
-      t1a:"복사 한 번", t1b:"장르 6개", t1c:"가사 · 제목 생성", go1:"프롬프트 열기 →",
-      t2h:"유튜브 메타 생성기", t2p:"곡 제목과 장르를 고르면 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프까지 만들어요. 유튜브 글자 수 제한에 맞춰서 나와요.",
-      t2a:"제목 5안", t2b:"해시태그", t2c:"타임스탬프", go2:"생성기 열기 →",
-      t3h:"수노 채널 체크", t3p:"Suno로 만든 음악 채널의 수익화 위험을 7문항으로 점검해요. 요금제, 가사, 영상 차별화 같은 항목별로 무엇을 고치면 좋은지 알려줘요.",
-      t3a:"7문항", t3b:"근거 링크", t3c:"고칠 점 안내", go3:"체크하러 가기 →",
-      flow:"<b>추천 순서:</b> 채널 체크로 위험 확인 → 프롬프트로 곡 만들기 → 메타 생성기로 업로드 문구 만들기",
-      ctah:"곡이 완성됐다면, 영상은 MusicCanvas로",
-      ctap:"MusicCanvas는 곡을 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보내 주는 Windows 프로그램이에요. 7일 무료체험으로 먼저 써볼 수 있어요.",
-      ctab:"7일 무료체험 시작 →", ctaf:"Windows · 평생 라이선스 $22",
-      more:"실제로 만든 영상이 궁금하다면", moreLink:"Dusk Soul 쇼케이스",
-      foot:"Suno, YouTube는 각 회사의 상표예요. 이 도구들은 공식 서비스가 아니고, 수익화 가능 여부를 보장하지 않아요."
-    },
-    en:{
-      title:"3 free tools for AI music channels",
-      sub:"Everything you need to make songs with Suno, upload them to YouTube, and check monetization risk. No sign-up, no install.",
-      t1h:"Prompt Studio", t1p:"70+ style prompts you can paste straight into Suno. Sorted into ballad, lo-fi, cinematic, pop, acoustic and ambient, with lyric and title templates.",
-      t1a:"One-click copy", t1b:"6 genres", t1c:"Lyrics + titles", go1:"Open prompts →",
-      t2h:"YouTube Meta Generator", t2p:"Pick a song title and genre to get 5 title options, a description, hashtags, keyword tags, a pinned comment and timestamps, all within YouTube's length limits.",
-      t2a:"5 title options", t2b:"Hashtags", t2c:"Timestamps", go2:"Open generator →",
-      t3h:"Suno Channel Check", t3p:"A 7-question check of your Suno music channel's monetization risk. Covers plan, lyrics and visual variety, and tells you what to fix.",
-      t3a:"7 questions", t3b:"Source links", t3c:"What to fix", go3:"Start the check →",
-      flow:"<b>Suggested order:</b> Channel check for risks → Prompts to make the song → Meta generator for upload text",
-      ctah:"Song done? Turn it into a video with MusicCanvas",
-      ctap:"MusicCanvas is a Windows app that turns your song into a YouTube-ready video with synced lyrics, effects and text. Try it free for 7 days.",
-      ctab:"Start the 7-day free trial →", ctaf:"Windows · $22 lifetime license",
-      more:"Want to see finished videos?", moreLink:"Dusk Soul showcase",
-      foot:"Suno and YouTube are trademarks of their owners. These tools are unofficial and do not guarantee monetization."
-    }
-  };
-  var box = document.getElementById('lang');
-  function set(l){
-    var d = T[l]; if(!d) return;
-    document.documentElement.lang = l;
-    document.querySelectorAll('[data-i]').forEach(function(el){
-      var k = el.getAttribute('data-i');
-      if(d[k] == null) return;
-      if(k === 'flow') el.innerHTML = d[k]; else el.textContent = d[k];
-    });
-    box.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-l') === l); });
-    try{ localStorage.setItem('mc_hub_lang', l); }catch(e){}
-  }
-  box.addEventListener('click', function(e){
-    var b = e.target.closest('button'); if(b) set(b.getAttribute('data-l'));
-  });
-  var init = 'ko';
-  try{ init = localStorage.getItem('mc_hub_lang') || ((navigator.language||'').toLowerCase().indexOf('ko')===0 ? 'ko' : 'en'); }catch(e){}
-  set(init);
-})();
-</script>
-
-</body></html>
+</body>
+</html>
