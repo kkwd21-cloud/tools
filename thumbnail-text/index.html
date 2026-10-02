@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>유튜브 썸네일 문구 생성기 무료 (AI 음악 채널용, 이미지 저장) | Dusk Soul</title>
+<meta name="description" content="AI 음악 유튜브 채널용 썸네일 문구를 무료로 만들어요. 장르·주제를 고르면 문구 10개가 나오고, 미리보기에서 글자를 얹어 1280×720 PNG로 바로 저장할 수 있어요. 회원가입 없음.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/thumbnail-text/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/thumbnail-text/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/thumbnail-text/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/thumbnail-text/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="유튜브 썸네일 문구 생성기 무료 (AI 음악 채널용, 이미지 저장) | Dusk Soul">
+<meta property="og:description" content="AI 음악 유튜브 채널용 썸네일 문구를 무료로 만들어요. 장르·주제를 고르면 문구 10개가 나오고, 미리보기에서 글자를 얹어 1280×720 PNG로 바로 저장할 수 있어요. 회원가입 없음.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/thumbnail-text/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "유튜브 썸네일 문구 생성기", "item": "https://kkwd21-cloud.github.io/tools/thumbnail-text/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "썸네일 문구 생성기, 무료인가요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 무료이고 회원가입도 필요 없어요. 모든 처리는 내 브라우저 안에서만 이뤄져요."}}, {"@type": "Question", "name": "유튜브 썸네일 크기는 얼마인가요?", "acceptedAnswer": {"@type": "Answer", "text": "권장 규격은 1280×720(16:9)이에요. 이 도구의 PNG 저장도 같은 크기로 만들어져요."}}, {"@type": "Question", "name": "올린 이미지가 서버로 전송되나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 이미지는 내 브라우저 안에서만 읽고 합성해요. 이 사이트는 서버가 없는 정적 페이지예요."}}, {"@type": "Question", "name": "AI로 만든 곡 썸네일에 써도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "문구는 자유롭게 쓰셔도 돼요. 다만 배경 이미지는 사용 권리가 있는 이미지를 쓰세요. 유튜브는 AI 생성 콘텐츠에 대해 공개 표시를 요구하는 경우가 있으니 채널 정책도 확인해 보세요."}}, {"@type": "Question", "name": "문구가 마음에 안 들면요?", "acceptedAnswer": {"@type": "Answer", "text": "[문구 새로 뽑기]를 누르면 새 후보가 나와요. 아래 글자 칸에서 직접 고쳐도 돼요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "유튜브 썸네일 문구 생성기", "url": "https://kkwd21-cloud.github.io/tools/thumbnail-text/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "inLanguage": "ko"}</script>
+
+<style>:root{--accent:#ffb86b;--accent2:#ffd9a8;--rgb:255,184,107}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+.gen{display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:start}
+@media(max-width:900px){.gen{grid-template-columns:1fr}}
+.ctl{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:16px}
+.cg{display:flex;flex-direction:column;gap:8px}
+.cg>.flabel{font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.seg{flex-wrap:wrap}
+.outp{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2 h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.rcard{background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.rtop{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.rtag{font-size:11px;font-weight:700;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 9px}
+.rlen{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);white-space:nowrap}
+.rlen.warn{color:#ffb86b}
+.rtext{margin:0;font-family:'Noto Sans KR',sans-serif;font-weight:800;font-size:19px;line-height:1.35;white-space:pre-line;flex:1;overflow-wrap:anywhere}
+.ractions{display:flex;gap:6px;flex-wrap:wrap}
+.pvwrap{display:flex;flex-direction:column;gap:10px}
+#cv{width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block}
+.pvtext{width:100%;min-height:64px;resize:vertical;font-weight:700;font-size:16px;line-height:1.5}
+.pvctl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.pvctl .fgroup{gap:8px}
+.rng{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.rng input{accent-color:var(--accent);width:120px}
+.filebtn{position:relative;overflow:hidden;display:inline-flex}
+.filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="./" class="on" aria-current="page">썸네일 문구</a><a href="../lyrics-generator/">가사</a><a href="../prompt-studio/">프롬프트</a></nav><a class="top-lang" href="../en/thumbnail-text/" hreflang="en">English</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">유튜브 썸네일 · 무료</p>
+  <h1>유튜브 썸네일 문구 생성기</h1>
+  <p class="vibe">클릭을 부르는 짧은 문구 10개를 뽑고, 그 자리에서 썸네일로 저장해요.</p>
+  <p class="lead">AI 음악 채널에 맞춘 문구예요. 곡 한 곡용, 플레이리스트용, 공부·작업용, 수면용으로 나뉘어 있고, 내 이미지를 넣어서 1280×720 PNG로 저장할 수 있어요.</p>
+  <ul class="stats"><li><b>10</b>문구 후보</li><li><b>4</b>용도</li><li><b>PNG</b>바로 저장</li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#gen">문구 만들기 ↓</a>
+    <a class="btn-g" href="#tips">썸네일 팁</a>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="how"><div class="step"><div class="n">STEP 01</div><h3>장르·주제 고르기</h3><p>곡 분위기에 맞는 장르와 주제를 골라요. 곡 제목을 넣으면 제목과 어울리는 문구도 나와요.</p></div><div class="step"><div class="n">STEP 02</div><h3>문구 고르기</h3><p>마음에 드는 문구의 [미리보기에 적용]을 눌러요. 글자는 직접 고칠 수 있어요.</p></div><div class="step"><div class="n">STEP 03</div><h3>이미지로 저장</h3><p>내 이미지를 배경으로 넣고 [PNG 저장]을 눌러요. 유튜브 썸네일 규격 1280×720이에요.</p></div></div>
+
+  <section class="sec" id="gen">
+    <div class="sec-head"><h2>문구 생성기</h2><p>모든 처리는 내 브라우저 안에서만 이뤄져요. 올린 이미지도 어디로도 전송되지 않아요.</p></div>
+    <div class="gen">
+      <div class="ctl">
+        <div class="cg"><span class="flabel">장르</span><div class="chips" id="genreChips"><button type="button" class="chip" data-g="ballad" aria-pressed="true">발라드</button><button type="button" class="chip" data-g="lofi" aria-pressed="false">로파이</button><button type="button" class="chip" data-g="cinematic" aria-pressed="false">시네마틱</button><button type="button" class="chip" data-g="pop" aria-pressed="false">팝</button><button type="button" class="chip" data-g="acoustic" aria-pressed="false">어쿠스틱</button><button type="button" class="chip" data-g="ambient" aria-pressed="false">앰비언트</button></div></div>
+        <div class="cg"><span class="flabel">주제</span><div class="chips" id="themeChips"><button type="button" class="chip" data-t="breakup" aria-pressed="true">이별</button><button type="button" class="chip" data-t="missing" aria-pressed="false">그리움</button><button type="button" class="chip" data-t="memory" aria-pressed="false">추억</button><button type="button" class="chip" data-t="hope" aria-pressed="false">위로</button><button type="button" class="chip" data-t="night" aria-pressed="false">새벽</button><button type="button" class="chip" data-t="crush" aria-pressed="false">설렘</button><button type="button" class="chip" data-t="summer" aria-pressed="false">여름</button></div></div>
+        <div class="cg"><span class="flabel">용도</span><div class="seg" id="useSeg" style="align-self:flex-start"><button type="button" data-u="single" aria-pressed="true">곡 한 곡</button><button type="button" data-u="playlist" aria-pressed="false">플레이리스트</button><button type="button" data-u="focus" aria-pressed="false">공부·작업</button><button type="button" data-u="sleep" aria-pressed="false">수면</button></div></div>
+        <div class="cg" id="hoursBox" hidden><span class="flabel">시간(플레이리스트용)</span><input class="inp" id="hours" type="number" min="1" max="24" value="1" inputmode="numeric"></div>
+        <div class="cg"><span class="flabel">곡 제목 (선택)</span><input class="inp" id="songTitle" type="text" maxlength="40" placeholder="예: 비 오는 날의 편지" autocomplete="off"></div>
+        <div class="cg"><span class="flabel">문구 언어</span><div class="seg" id="langSeg" style="align-self:flex-start"><button type="button" data-l="ko" aria-pressed="true">한국어</button><button type="button" data-l="en" aria-pressed="false">English</button></div></div>
+        <button type="button" class="b-main b-big" id="genBtn">🎲 문구 새로 뽑기</button>
+      </div>
+
+      <div class="outp">
+        <div class="card2">
+          <h3>문구 후보 10개</h3>
+          <div class="rgrid" id="results"></div>
+        </div>
+        <div class="card2" id="pv">
+          <h3>썸네일 미리보기</h3>
+          <div class="pvwrap">
+            <canvas id="cv" width="1280" height="720" aria-label="썸네일 미리보기"></canvas>
+            <label class="flabel" for="pvText">썸네일에 넣을 글자 (줄바꿈 가능)</label>
+            <textarea class="inp pvtext" id="pvText" rows="2" maxlength="80"></textarea>
+            <div class="pvctl">
+              <div class="fgroup"><span class="flabel">글꼴</span><div class="seg" id="fontSeg"><button type="button" data-f="sans" aria-pressed="true">고딕</button><button type="button" data-f="serif" aria-pressed="false">명조</button></div></div>
+              <div class="fgroup"><span class="flabel">위치</span><div class="seg" id="layoutSeg"><button type="button" data-p="center" aria-pressed="true">가운데</button><button type="button" data-p="left" aria-pressed="false">왼쪽 아래</button></div></div>
+            </div>
+            <div class="pvctl">
+              <div class="fgroup"><span class="flabel">글자색</span><div class="chips" id="colorChips"><button type="button" class="chip" data-c="white" aria-pressed="true">흰색</button><button type="button" class="chip" data-c="gold" aria-pressed="false">골드</button><button type="button" class="chip" data-c="accent" aria-pressed="false">장르색</button><button type="button" class="chip" data-c="mint" aria-pressed="false">민트</button></div></div>
+            </div>
+            <div class="pvctl">
+              <label class="rng">글자 크기 <input type="range" id="size" min="60" max="120" value="100"></label>
+              <label class="rng" id="dimBox" hidden>이미지 어둡게 <input type="range" id="dim" min="0" max="85" value="45"></label>
+            </div>
+            <div class="pvctl">
+              <span class="filebtn b-sub"><span>내 이미지 넣기</span><input type="file" id="imgFile" accept="image/*"></span>
+              <button type="button" class="b-sub" id="imgClear" hidden>이미지 지우기</button>
+              <button type="button" class="b-main" id="dl">PNG 저장 (1280×720)</button>
+            </div>
+            <p class="note">이미지를 넣지 않으면 장르 색의 어두운 배경으로 만들어져요. 이미지는 브라우저 안에서만 처리돼요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="tips">
+    <div class="sec-head"><h2>클릭되는 썸네일 문구, 이것만 지키세요</h2></div>
+    <ul class="tipsg"><li><h3>짧게</h3><p>한글은 12자 안팎, 영어는 4~5단어가 좋아요. 작은 화면에서도 읽혀야 해요.</p></li><li><h3>두 줄 이하</h3><p>세 줄부터는 글자가 작아져서 읽기 어려워요. 줄바꿈으로 두 줄에 맞추세요.</p></li><li><h3>제목을 그대로 반복하지 않기</h3><p>제목과 같은 말보다 감정이나 상황을 한 줄로 더하는 편이 궁금증을 만들어요.</p></li><li><h3>배경과 대비를 크게</h3><p>밝은 이미지에는 어두운 윤곽, 어두운 이미지에는 밝은 글자가 잘 보여요. 이 도구는 윤곽선을 자동으로 넣어요.</p></li><li><h3>플레이리스트는 시간을 크게</h3><p>&quot;1시간&quot;, &quot;3H&quot;처럼 길이가 눈에 띄면 장시간 재생용 영상을 찾는 사람이 눌러요.</p></li><li><h3>같은 채널은 같은 틀로</h3><p>글꼴, 글자색, 위치를 고정하면 영상이 쌓일수록 채널이 한눈에 알아봐져요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>자주 묻는 질문</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>썸네일 문구 생성기, 무료인가요?</summary><p>네. 무료이고 회원가입도 필요 없어요. 모든 처리는 내 브라우저 안에서만 이뤄져요.</p></details><details><summary>유튜브 썸네일 크기는 얼마인가요?</summary><p>권장 규격은 1280×720(16:9)이에요. 이 도구의 PNG 저장도 같은 크기로 만들어져요.</p></details><details><summary>올린 이미지가 서버로 전송되나요?</summary><p>아니요. 이미지는 내 브라우저 안에서만 읽고 합성해요. 이 사이트는 서버가 없는 정적 페이지예요.</p></details><details><summary>AI로 만든 곡 썸네일에 써도 되나요?</summary><p>문구는 자유롭게 쓰셔도 돼요. 다만 배경 이미지는 사용 권리가 있는 이미지를 쓰세요. 유튜브는 AI 생성 콘텐츠에 대해 공개 표시를 요구하는 경우가 있으니 채널 정책도 확인해 보세요.</p></details><details><summary>문구가 마음에 안 들면요?</summary><p>[문구 새로 뽑기]를 누르면 새 후보가 나와요. 아래 글자 칸에서 직접 고쳐도 돼요.</p></details></div>
+  </section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>장르별 수노 프롬프트</h2></div>
+    <div class="ogs"><a class="og" style="--c:#ff8f6b" href="../genre/ballad/"><b>발라드</b></a><a class="og" style="--c:#a18cff" href="../genre/lofi/"><b>로파이</b></a><a class="og" style="--c:#f0c27a" href="../genre/cinematic/"><b>시네마틱</b></a><a class="og" style="--c:#ff6fa8" href="../genre/pop/"><b>팝</b></a><a class="og" style="--c:#9bd3a4" href="../genre/acoustic/"><b>어쿠스틱</b></a><a class="og" style="--c:#7fd1e8" href="../genre/ambient/"><b>앰비언트</b></a></div>
+    <div class="sec-head" style="margin-top:34px"><h2>함께 쓰면 좋은 도구</h2></div>
+    <div class="tools" style="margin-top:0"><a class="btn-g" href="../lyrics-generator/">수노 가사 생성기</a><a class="btn-g" href="../meta-generator/">유튜브 제목·해시태그 생성기</a><a class="btn-g" href="../prompt-studio/">Prompt Studio 전체 보기</a></div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>곡과 썸네일이 있다면, 영상은 MusicCanvas로</h2>
+  <p>월 구독 없이 한 번 결제로 쓰는 Windows 프로그램이에요. 곡과 이미지를 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보낼 수 있어요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+</div></section>
+<footer>YouTube는 Google의 상표예요. 이 페이지는 비공식 도구이며 결과를 보장하지 않아요.</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"lang": "ko", "ui": {"copyFail": "복사에 실패했어요. 직접 선택해서 복사해 주세요.", "newMade": "새 문구가 나왔어요", "copied": "문구 복사됨", "applied": "미리보기에 적용했어요", "copy": "복사", "use": "미리보기에 적용", "chars": "자", "long": "길어요", "notImg": "이미지 파일만 넣을 수 있어요", "dlFail": "저장에 실패했어요", "saved": "PNG로 저장했어요", "sample": "가나다라마바사 ABC 123", "kinds": {"hook": "감성 한 줄", "title": "곡 제목", "titlehook": "제목 + 한 줄", "titlelabel": "제목 + 라벨", "label": "라벨", "playlist": "플레이리스트", "focus": "공부·작업", "sleep": "수면", "combo": "시간 + 한 줄"}}, "themes": {"breakup": {"ko": "이별", "en": "Breakup"}, "missing": {"ko": "그리움", "en": "Missing You"}, "memory": {"ko": "추억", "en": "Memories"}, "hope": {"ko": "위로", "en": "Healing"}, "night": {"ko": "새벽", "en": "Late Night"}, "crush": {"ko": "설렘", "en": "First Crush"}, "summer": {"ko": "여름", "en": "Summer"}}, "genres": {"ballad": {"ko": "발라드", "en": "Ballad", "accent": "#ff8f6b"}, "lofi": {"ko": "로파이", "en": "Lo-Fi", "accent": "#a18cff"}, "cinematic": {"ko": "시네마틱", "en": "Cinematic", "accent": "#f0c27a"}, "pop": {"ko": "팝", "en": "Pop", "accent": "#ff6fa8"}, "acoustic": {"ko": "어쿠스틱", "en": "Acoustic", "accent": "#9bd3a4"}, "ambient": {"ko": "앰비언트", "en": "Ambient", "accent": "#7fd1e8"}}, "hooks": {"breakup": {"ko": ["끝내 하지 못한 말", "안녕, 잘 지내", "보내는 마음", "이별 뒤에 남은 것", "너 없는 밤", "마지막 인사", "돌아보지 않을게", "빈자리", "지워지지 않는 이름", "다 괜찮다고 했는데"], "en": ["Words Left Unsaid", "Goodbye, Be Well", "The Space You Left", "Don't Look Back", "Last Goodbye", "Without You Tonight", "Still Your Name", "It Hurts Quietly", "Letting You Go", "I Said I'm Fine"]}, "missing": {"ko": ["보고 싶다는 말", "오늘도 네 생각", "닿지 않는 마음", "너에게 가는 길", "멀리서 부르는 노래", "잠 못 드는 이유", "한 번만 더", "여전히 기다려", "네가 없는 하루", "그리움의 온도"], "en": ["I Miss You", "Thinking of You Again", "Too Far to Reach", "Come Back Home", "Until You Return", "Still Waiting", "One More Night", "Miles Apart", "Your Name, My Echo", "Missing You Hurts"]}, "memory": {"ko": ["그때 우리", "돌아갈 수 없는 여름", "빛바랜 사진 한 장", "기억 속 그날", "추억이 된 우리", "오래된 노래", "그 시절 그 골목", "잊고 있던 얼굴", "스무 살의 우리", "다시 못 올 날들"], "en": ["Those Were the Days", "The Summer We Lost", "One Old Photograph", "Remember Us", "Golden Days", "Back to Then", "The Old Street", "Faded Memories", "When We Were Young", "Can't Go Back"]}, "hope": {"ko": ["다시 시작해도 돼", "괜찮아, 천천히", "내일은 더 맑을 거야", "지친 너에게", "오늘도 잘 버텼어", "빛이 오고 있어", "울어도 괜찮아", "당신 편이에요", "조금만 더 힘내", "새로운 아침"], "en": ["Start Again", "It's Okay, Slowly", "Better Days Ahead", "For the Weary", "You Made It Today", "Light Is Coming", "Healing Starts Here", "You're Not Alone", "Keep Going", "A New Morning"]}, "night": {"ko": ["잠 못 드는 밤", "새벽 세 시", "불 꺼진 방", "한밤의 노래", "혼자인 밤에", "밤에 듣는 위로", "고요한 새벽", "도시의 불빛 아래", "깨어 있는 사람에게", "밤이 깊어지면"], "en": ["Can't Sleep", "3 AM Thoughts", "Lights Out", "Midnight Songs", "Alone Tonight", "Comfort After Dark", "Quiet Dawn", "City Lights", "For the Sleepless", "When Night Falls"]}, "crush": {"ko": ["설레는 마음", "이게 사랑일까", "네가 웃을 때", "두근두근", "말 못 한 고백", "오늘도 너야", "나비가 날아", "자꾸 생각나", "첫 설렘", "마음이 간질간질"], "en": ["Butterflies", "Is This Love?", "When You Smile", "Heart Racing", "Unspoken Words", "It's Always You", "Falling for You", "Can't Stop Thinking", "First Crush", "Tiny Heartbeat"]}, "summer": {"ko": ["여름이 오면", "바다가 보고 싶다", "한여름의 노래", "끝나지 않는 여름", "창문을 열고", "노을빛 여름", "여름밤 드라이브", "햇살 가득한 날", "그해 여름", "시원한 바람처럼"], "en": ["Summer Is Here", "Take Me to the Sea", "Endless Summer", "Windows Down", "Sunset Summer", "Summer Night Drive", "Sun-Kissed Days", "That Summer", "Cool Breeze", "Golden Hour"]}}, "labels": {"single": {"ko": ["{genre} · AI 노래", "AI {theme} 노래", "신곡 · {genre}", "{theme}의 밤"], "en": ["{genre} · Made with AI", "AI {theme} Song", "New Song · {genre}", "{theme} Vibes"]}, "playlist": {"ko": ["{N}시간 {theme} 플레이리스트", "{theme} 노래 모음", "{genre} {N}시간 연속 재생", "{N}시간 · {genre} 모음", "{theme}에 듣는 {genre}"], "en": ["{N} Hour {genre} Playlist", "{theme} Songs · {N}H", "{N}H of {genre}", "{theme} Playlist", "{N} Hours of {genre}"]}, "focus": {"ko": ["공부할 때 듣는 {genre}", "집중 {N}시간 BGM", "작업용 {genre} 플레이리스트", "{N}시간 집중 {genre}", "카페 같은 {N}시간"], "en": ["Study with {genre}", "{N} Hour Focus BGM", "Work Playlist · {genre}", "Deep Focus · {N}H", "Cafe Vibes · {N}H"]}, "sleep": {"ko": ["잠들기 전 {N}시간", "불 끄고 듣는 {genre}", "푹 자는 밤 BGM", "{N}시간 수면 {genre}", "조용히 잠드는 밤"], "en": ["Sleep Music · {N}H", "Lights Off · {genre}", "Fall Asleep Fast", "{N} Hour Sleep {genre}", "Peaceful Night"]}}, "tails": {"ko": ["{N}시간", "{genre}", "{N}H", "플레이리스트"], "en": ["{N} HOUR", "{genre}", "{N}H", "PLAYLIST"]}};</script>
+<script>
+(function(){
+'use strict';
+var D=DATA,U=D.ui,$=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var st={genre:'ballad',theme:'breakup',use:'single',lang:D.lang,hours:1,title:'',results:[],font:'sans',color:'white',layout:'center',size:1,dim:.45,img:null,fav:[]};
+var timer;
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(timer);timer=setTimeout(function(){t.classList.remove('show')},1700)}
+function copy(text,msg){
+  function fb(){var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast(msg)}catch(e){toast(U.copyFail)}document.body.removeChild(ta)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast(msg)},fb)}else fb();
+}
+function fill(t){
+  var L=st.lang;
+  return t.replace(/\{N\}/g,st.hours).replace(/\{theme\}/g,D.themes[st.theme][L]).replace(/\{genre\}/g,D.genres[st.genre][L]);
+}
+function gen(){
+  var L=st.lang, hooks=shuffle(D.hooks[st.theme][L]), out=[], seen={};
+  function add(text,kind){text=text.replace(/^\s+|\s+$/g,'');if(!text||seen[text])return;seen[text]=1;out.push({text:text,kind:kind})}
+  var title=st.title.replace(/^\s+|\s+$/g,'');
+  if(st.use==='single'){
+    if(title){add(title,'title');add(title+'\n'+hooks[0],'titlehook');add(title+'\n'+fill(rnd(D.labels.single[L])),'titlelabel')}
+    for(var i=0;i<6;i++)add(hooks[i+1]||hooks[i],'hook');
+    shuffle(D.labels.single[L]).forEach(function(t){add(fill(t),'label')});
+  }else{
+    var k=st.use; // playlist, focus, sleep
+    shuffle(D.labels[k][L]).forEach(function(t){add(fill(t),k)});
+    for(var j=0;j<4;j++){add(fill(rnd(D.tails[L]))+'\n'+hooks[j],'combo')}
+    if(title)add(title+'\n'+fill(rnd(D.labels[k][L])),'titlelabel');
+  }
+  var n=0;while(out.length<10&&n<hooks.length){add(hooks[n++],'hook')}
+  st.results=out.slice(0,10);
+}
+function maxLine(t){return Math.max.apply(null,t.split('\n').map(function(s){return s.length}))}
+function renderResults(){
+  var box=$('#results');box.innerHTML='';
+  st.results.forEach(function(r,i){
+    var c=document.createElement('article');c.className='rcard';c.dataset.i=i;
+    var tag=document.createElement('span');tag.className='rtag';tag.textContent=U.kinds[r.kind]||'';
+    var p=document.createElement('p');p.className='rtext';p.textContent=r.text;
+    var ml=maxLine(r.text),lim=st.lang==='ko'?14:24;
+    var m=document.createElement('span');m.className='rlen'+(ml>lim?' warn':'');m.textContent=ml+U.chars+(ml>lim?' · '+U.long:'');
+    var a=document.createElement('div');a.className='ractions';
+    var b1=document.createElement('button');b1.type='button';b1.className='b-main';b1.dataset.act='copy';b1.textContent=U.copy;
+    var b2=document.createElement('button');b2.type='button';b2.className='b-sub';b2.dataset.act='use';b2.textContent=U.use;
+    a.appendChild(b1);a.appendChild(b2);
+    var top=document.createElement('div');top.className='rtop';top.appendChild(tag);top.appendChild(m);
+    c.appendChild(top);c.appendChild(p);c.appendChild(a);box.appendChild(c);
+  });
+}
+// ---- preview canvas
+var cv=$('#cv'),cx=cv.getContext('2d'),W=1280,H=720;
+function accent(){var g=D.genres[st.genre];return g.accent}
+function splitAuto(t){
+  if(t.indexOf('\n')>=0)return t.split('\n');
+  var lim=st.lang==='ko'?12:22; if(t.length<=lim)return [t];
+  var mid=Math.floor(t.length/2),best=-1,bd=99;
+  for(var i=0;i<t.length;i++){if(t[i]===' '&&Math.abs(i-mid)<bd){bd=Math.abs(i-mid);best=i}}
+  if(best>0)return [t.slice(0,best),t.slice(best+1)];
+  return [t.slice(0,mid),t.slice(mid)];
+}
+function fontStr(px){return (st.font==='serif'?'700 ':'800 ')+px+'px '+(st.font==='serif'?'"Noto Serif KR",serif':'"Noto Sans KR",sans-serif')}
+function colorVal(){return st.color==='gold'?'#ffd86b':st.color==='accent'?accent():st.color==='mint'?'#8ff0d0':'#ffffff'}
+function draw(){
+  var acc=accent();
+  cx.clearRect(0,0,W,H);
+  if(st.img){
+    var r=Math.max(W/st.img.width,H/st.img.height),w=st.img.width*r,h=st.img.height*r;
+    cx.drawImage(st.img,(W-w)/2,(H-h)/2,w,h);
+    cx.fillStyle='rgba(0,0,0,'+st.dim+')';cx.fillRect(0,0,W,H);
+  }else{
+    var g=cx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#0a0e1d');g.addColorStop(1,'#1a1330');cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    var rg=cx.createRadialGradient(W*.78,H*.2,20,W*.78,H*.2,W*.6);rg.addColorStop(0,hexA(acc,.45));rg.addColorStop(1,hexA(acc,0));cx.fillStyle=rg;cx.fillRect(0,0,W,H);
+  }
+  var text=$('#pvText').value||' ',lines=splitAuto(text);
+  var maxW=st.layout==='center'?W*.84:W*.72, px=170;
+  cx.font=fontStr(px);var wmax=0;lines.forEach(function(l){wmax=Math.max(wmax,cx.measureText(l).width)});
+  px=Math.min(170,Math.floor(px*maxW/Math.max(wmax,1)));
+  px=Math.floor(px*st.size);
+  cx.font=fontStr(px);cx.lineJoin='round';cx.textBaseline='middle';
+  var lh=px*1.22,total=lh*lines.length,x,y0;
+  if(st.layout==='center'){cx.textAlign='center';x=W/2;y0=H/2-total/2+lh/2}
+  else{cx.textAlign='left';x=W*.07;y0=H-H*.1-total+lh/2}
+  lines.forEach(function(l,i){
+    var y=y0+i*lh;
+    cx.lineWidth=Math.max(6,px*.09);cx.strokeStyle='rgba(0,0,0,.85)';cx.strokeText(l,x,y);
+    cx.fillStyle=colorVal();cx.fillText(l,x,y);
+  });
+}
+function hexA(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')'}
+function setText(t){$('#pvText').value=t;draw()}
+function loadFonts(){
+  if(!document.fonts||!document.fonts.load){draw();return}
+  var s=U.sample;
+  Promise.all([document.fonts.load('800 60px "Noto Sans KR"',s),document.fonts.load('700 60px "Noto Serif KR"',s)]).then(draw,draw);
+}
+// ---- events
+function press(sel,key,val){$$(sel).forEach(function(b){b.setAttribute('aria-pressed',b.dataset[key]===val?'true':'false')})}
+$('#genreChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.genre=b.dataset.g;press('#genreChips button','g',st.genre);gen();renderResults();draw()});
+$('#themeChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.theme=b.dataset.t;press('#themeChips button','t',st.theme);gen();renderResults()});
+$('#useSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.use=b.dataset.u;press('#useSeg button','u',st.use);$('#hoursBox').hidden=st.use==='single';gen();renderResults()});
+$('#langSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.lang=b.dataset.l;press('#langSeg button','l',st.lang);gen();renderResults();if(st.results[0])setText(st.results[0].text)});
+$('#hours').addEventListener('input',function(e){var v=parseInt(e.target.value,10);if(!(v>0))v=1;st.hours=Math.min(24,v);});
+$('#hours').addEventListener('change',function(){gen();renderResults()});
+$('#songTitle').addEventListener('input',function(e){st.title=e.target.value.slice(0,40)});
+$('#songTitle').addEventListener('change',function(){gen();renderResults()});
+$('#genBtn').addEventListener('click',function(){st.title=$('#songTitle').value.slice(0,40);gen();renderResults();if(st.results[0])setText(st.results[0].text);toast(U.newMade)});
+$('#results').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-act]');if(!b)return;var i=+b.closest('.rcard').dataset.i,r=st.results[i];
+  if(b.dataset.act==='copy')copy(r.text.replace(/\n/g,' '),U.copied);
+  else{setText(r.text);toast(U.applied);$('#pv').scrollIntoView({behavior:'smooth',block:'center'})}
+});
+$('#pvText').addEventListener('input',draw);
+$('#fontSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.font=b.dataset.f;press('#fontSeg button','f',st.font);draw()});
+$('#colorChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.color=b.dataset.c;press('#colorChips button','c',st.color);draw()});
+$('#layoutSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.layout=b.dataset.p;press('#layoutSeg button','p',st.layout);draw()});
+$('#size').addEventListener('input',function(e){st.size=e.target.value/100;draw()});
+$('#dim').addEventListener('input',function(e){st.dim=e.target.value/100;draw()});
+$('#imgFile').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  if(!/^image\//.test(f.type)){toast(U.notImg);return}
+  var rd=new FileReader();rd.onload=function(){var im=new Image();im.onload=function(){st.img=im;$('#dimBox').hidden=false;$('#imgClear').hidden=false;draw()};im.onerror=function(){toast(U.notImg)};im.src=rd.result};rd.readAsDataURL(f);
+});
+$('#imgClear').addEventListener('click',function(){st.img=null;$('#imgFile').value='';$('#dimBox').hidden=true;$('#imgClear').hidden=true;draw()});
+$('#dl').addEventListener('click',function(){
+  draw();
+  try{cv.toBlob(function(b){if(!b){toast(U.dlFail);return}var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='thumbnail.png';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(a.href)},2000);toast(U.saved)},'image/png')}catch(e){toast(U.dlFail)}
+});
+var eq=$('#eq');if(eq){var h='';for(var i=0;i<48;i++){var v=(.25+.75*Math.abs(Math.sin(i*.37)*Math.cos(i*.13))).toFixed(2);h+='<span style="--h:'+v+';--d:-'+(i*.11).toFixed(2)+'s"></span>'}eq.innerHTML=h}
+gen();renderResults();setText(st.results[0].text);loadFonts();
+})();
+
+</script>
+</body>
+</html>
