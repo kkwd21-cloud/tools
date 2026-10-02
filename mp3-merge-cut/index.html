@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>mp3 합치기·자르기 – 무료, 가입 없이 브라우저에서 | Dusk Soul</title>
+<meta name="description" content="여러 노래를 mp3 파일 하나로 합치거나, 한 곡에서 필요한 부분만 잘라 저장하는 무료 도구예요. 가입도 업로드도 없이 내 컴퓨터 안에서만 처리되고, 곡 사이를 부드럽게 잇는 기능과 곡별 시작 시간표도 만들어 줘요.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/mp3-merge-cut/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/mp3-merge-cut/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/mp3-merge-cut/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/mp3-merge-cut/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="mp3 합치기·자르기 – 무료, 가입 없이 브라우저에서 | Dusk Soul">
+<meta property="og:description" content="여러 노래를 mp3 파일 하나로 합치거나, 한 곡에서 필요한 부분만 잘라 저장하는 무료 도구예요. 가입도 업로드도 없이 내 컴퓨터 안에서만 처리되고, 곡 사이를 부드럽게 잇는 기능과 곡별 시작 시간표도 만들어 줘요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/mp3-merge-cut/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "mp3 합치기·자르기", "item": "https://kkwd21-cloud.github.io/tools/mp3-merge-cut/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "이 mp3 합치기·자르기는 무료인가요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 무료이고 가입도 필요 없어요. 모든 처리가 브라우저 안에서 이뤄져요."}}, {"@type": "Question", "name": "음악 파일이 서버에 올라가나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 이 사이트는 서버가 없는 정적 페이지라서 파일이 어디에도 전송되지 않아요. 내 컴퓨터나 폰 안에서만 처리돼요."}}, {"@type": "Question", "name": "음질이 나빠지나요?", "acceptedAnswer": {"@type": "Answer", "text": "MP3로 다시 저장하면 한 번 더 압축되어 아주 미세한 차이가 생길 수 있어요. 기본은 192kbps이고, 더 높은 음질이 필요하면 320kbps를 고르거나 WAV로 저장하세요."}}, {"@type": "Question", "name": "어떤 파일을 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "브라우저가 재생할 수 있는 mp3, wav, m4a, ogg, flac 같은 파일이에요. 저장 형식은 MP3와 WAV 중에서 고를 수 있어요."}}, {"@type": "Question", "name": "몇 곡까지 합칠 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "정해진 개수는 없어요. 곡을 하나씩 처리하고 버리는 방식이라 곡이 많아도 비교적 가벼워요. 다만 아주 많으면 시간이 걸려요."}}, {"@type": "Question", "name": "곡 하나만 자를 수도 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 한 곡만 넣고 시작·끝 시간을 정한 뒤 저장하면 그 부분만 잘라 낸 파일이 만들어져요."}}, {"@type": "Question", "name": "합친 파일에서 곡마다 시작 시간을 알 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 합치기가 끝나면 \"곡별 시작 시간표\"가 만들어져요. 유튜브 설명란에 그대로 붙여 넣을 수 있어요."}}, {"@type": "Question", "name": "폰에서도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "짧은 곡 몇 개는 되지만 곡이 길거나 많으면 메모리가 부족할 수 있어요. 컴퓨터를 추천해요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "mp3 합치기·자르기", "url": "https://kkwd21-cloud.github.io/tools/mp3-merge-cut/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "inLanguage": "ko"}</script>
+
+<style>:root{--accent:#7fd1e8;--accent2:#b8e6f2;--rgb:127,209,232}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.drop{word-break:normal;overflow-wrap:anywhere}
+.mlist{max-height:460px}
+.mrow{display:grid;grid-template-columns:30px minmax(0,1fr) auto auto auto;gap:8px;align-items:center;padding:6px;border-radius:10px;border:1px solid var(--line);background:var(--panel)}
+.mname{font-weight:600}
+.mtimes{display:inline-flex;gap:8px}
+.mt{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.mt .lt{width:74px}
+.pbtn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:36px;height:34px;font-size:13px}
+.pbtn:hover,.pbtn.on{border-color:var(--accent2);color:var(--accent2)}
+.sumline{font-weight:700;color:var(--text)}
+.pbar{height:10px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+select.inp{width:auto}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:13.5px;pointer-events:none;transition:.2s;z-index:50;max-width:90vw}
+#toast.show{opacity:1;transform:translateX(-50%)}
+@media(max-width:700px){.mrow{grid-template-columns:30px minmax(0,1fr) auto}.mtimes{grid-column:1/-1;order:5}.lbtns{grid-column:2/-1;order:6;justify-content:flex-end}.pbtn{order:3}}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="./" class="on" aria-current="page">mp3 합치기·자르기</a><a href="../lrc-maker/">가사 자막</a><a href="../thumbnail-text/">썸네일 문구</a></nav><a class="top-lang" href="../en/mp3-merge-cut/" hreflang="en">English</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">무료 · 가입 없음 · 업로드 없음</p>
+  <h1>mp3 합치기·자르기</h1>
+  <p class="vibe">노래를 넣고, 필요한 만큼 자르고, 하나로 합쳐 저장하세요.</p>
+  <p class="lead">여러 곡을 파일 하나로 이어 붙이거나, 한 곡의 앞뒤를 잘라 내고 싶을 때 쓰는 도구예요. 프로그램을 설치할 필요 없이 이 페이지에서 바로 되고, 음악 파일은 내 컴퓨터 밖으로 나가지 않아요.</p>
+  <ul class="stats"><li><b>합치기</b>여러 곡을 하나로</li><li><b>자르기</b>필요한 부분만</li><li><b>0원</b>가입·업로드 없음</li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#tool">시작하기 ↓</a>
+    <a class="btn-g" href="#tips">잘 쓰는 팁</a>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="how"><div class="step"><div class="n">STEP 01</div><h3>노래 넣기</h3><p>합치고 싶은 노래 파일을 한꺼번에 끌어다 놓으세요. 한 곡만 넣으면 자르기용으로 쓸 수 있어요.</p></div><div class="step"><div class="n">STEP 02</div><h3>순서와 자를 곳 정하기</h3><p>위아래 버튼으로 순서를 바꾸고, 자르고 싶으면 시작·끝 시간을 적어요. ▶ 버튼으로 먼저 들어 볼 수 있어요.</p></div><div class="step"><div class="n">STEP 03</div><h3>합쳐서 저장하기</h3><p>시작을 누르면 하나의 mp3 파일이 만들어져요. 들어 보고 마음에 들면 저장하세요.</p></div></div>
+
+  <section class="sec" id="tool">
+    <div class="sec-head"><h2>mp3 합치기·자르기</h2><p>음악 파일은 내 브라우저 안에서만 처리돼요. 어디에도 올라가지 않아요.</p></div>
+    <div class="lrcw">
+      <div class="card2" id="s1">
+        <h3>1. 노래 넣기</h3>
+        <label class="drop" id="drop"><input type="file" id="files" multiple accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac,.opus"><span>여기를 눌러 노래 파일을 고르거나 끌어다 놓으세요 (mp3, wav, m4a 등 여러 개 가능)</span></label>
+        <p class="note" id="loadInfo" hidden></p>
+        <p class="note">파일 이름 순서대로 정렬돼요. 나중에 순서는 바꿀 수 있어요.</p>
+      </div>
+
+      <div class="card2" id="s2" hidden>
+        <h3>2. 순서와 자를 곳 정하기</h3>
+        <p class="note">자르지 않을 곡은 그대로 두세요. 시간은 1:23 처럼 적거나 83 처럼 초로 적어도 돼요.</p>
+        <div class="lines mlist" id="list" role="list"></div>
+        <p class="note sumline" id="sum"></p>
+        <div class="drow"><button type="button" class="b-sub" id="clearAll">모두 지우기</button></div>
+        <details class="adv"><summary>고급 설정 (곡 사이 간격·부드럽게 잇기·음량 등)</summary>
+          <div class="drow">
+            <label class="rng">곡 사이 쉬는 시간(초) <input class="inp sm t" id="optGap" type="text" inputmode="decimal" value="0"></label>
+            <label class="rng">부드럽게 이어지기(초) <input class="inp sm t" id="optXf" type="text" inputmode="decimal" value="0"></label>
+            <label class="rng">맨 끝 서서히 작아지기(초) <input class="inp sm t" id="optFo" type="text" inputmode="decimal" value="0"></label>
+          </div>
+          <div class="opts">
+            <label><input type="checkbox" id="optNorm"><span>곡마다 소리 크기 비슷하게 맞추기</span></label>
+          </div>
+          <div class="drow">
+            <label class="rng">저장 형식 <select class="inp sm" id="optFmt"><option value="mp3">MP3</option><option value="wav">WAV</option></select></label>
+            <label class="rng" id="kbpsWrap">MP3 음질(kbps) <select class="inp sm" id="optKbps"><option value="128">128</option><option value="192" selected>192</option><option value="320">320</option></select></label>
+          </div>
+          <p class="note">부드럽게 이어지기를 켜면 앞 곡 끝과 다음 곡 시작이 겹쳐서 자연스럽게 넘어가요. 이때는 쉬는 시간이 쓰이지 않아요. WAV는 파일이 아주 커서 긴 음악에는 MP3를 추천해요.</p>
+        </details>
+      </div>
+
+      <div class="card2" id="s3" hidden>
+        <h3>3. 합쳐서 저장하기</h3>
+        <button type="button" class="b-main b-big" id="go">합치기 시작</button>
+        <div id="prog" hidden>
+          <div class="pbar"><span id="pfill"></span></div>
+          <p class="note" id="ptxt"></p>
+          <div class="drow"><button type="button" class="b-sub" id="cancel">취소</button></div>
+        </div>
+        <div id="result" hidden>
+          <audio id="rau" controls preload="metadata" style="width:100%"></audio>
+          <p class="note" id="rinfo"></p>
+          <div class="drow"><button type="button" class="b-main b-big" id="save">파일 저장</button></div>
+          <details class="adv"><summary>곡별 시작 시간표 (유튜브 설명란용)</summary>
+            <p class="note">합친 파일 안에서 각 곡이 시작하는 시간이에요. 영상 설명란에 붙여 넣으면 시청자가 듣고 싶은 곡으로 바로 갈 수 있어요.</p>
+            <textarea class="inp out" id="tl" rows="8" readonly aria-label="list"></textarea>
+            <div class="drow"><button type="button" class="b-sub" id="cpTl">시간표 복사</button></div>
+          </details>
+        </div>
+        <p class="note warn" id="err" hidden></p>
+      </div>
+      <audio id="pv" preload="auto" hidden></audio>
+    </div>
+  </section>
+
+  <section class="sec" id="use">
+    <div class="sec-head"><h2>합친 파일은 이렇게 써요</h2></div>
+    <ul class="tipsg"><li><h3>유튜브 플레이리스트 영상</h3><p>곡을 하나로 합치면 영상 만들 때 파일 하나만 넣으면 돼요. 시간표는 설명란에 붙이세요.</p></li><li><h3>휴대폰이나 mp3 플레이어</h3><p>좋아하는 곡만 이어 붙여 하나의 파일로 만들어 두면 끊김 없이 들을 수 있어요.</p></li><li><h3>MusicCanvas에서</h3><p>합친 파일을 넣고 이미지와 이펙트를 입히면 긴 음악 영상으로 내보낼 수 있어요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="tips">
+    <div class="sec-head"><h2>잘 쓰는 팁</h2></div>
+    <ul class="tipsg"><li><h3>자를 때는 ▶로 먼저 들어요</h3><p>시작·끝 시간을 적은 뒤 ▶를 누르면 그 구간만 들려요. 마음에 들 때까지 고치세요.</p></li><li><h3>끝이 뚝 끊기면 서서히 작아지게</h3><p>고급 설정의 &quot;맨 끝 서서히 작아지기&quot;를 2~3초로 하면 마지막이 자연스러워요.</p></li><li><h3>곡 사이는 부드럽게</h3><p>&quot;부드럽게 이어지기&quot;를 2~4초로 하면 곡이 겹치며 넘어가요. 플레이리스트에 잘 어울려요.</p></li><li><h3>곡마다 소리가 다르면</h3><p>&quot;소리 크기 비슷하게 맞추기&quot;를 켜면 어떤 곡만 유난히 큰 일이 줄어요.</p></li><li><h3>긴 음악은 컴퓨터에서</h3><p>곡이 많거나 길면 메모리를 많이 써요. 폰보다 컴퓨터에서 하는 걸 추천해요.</p></li><li><h3>원본은 그대로 남아요</h3><p>이 도구는 새 파일을 만들 뿐이라 원래 파일은 바뀌지 않아요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>자주 묻는 질문</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>이 mp3 합치기·자르기는 무료인가요?</summary><p>네. 무료이고 가입도 필요 없어요. 모든 처리가 브라우저 안에서 이뤄져요.</p></details><details><summary>음악 파일이 서버에 올라가나요?</summary><p>아니요. 이 사이트는 서버가 없는 정적 페이지라서 파일이 어디에도 전송되지 않아요. 내 컴퓨터나 폰 안에서만 처리돼요.</p></details><details><summary>음질이 나빠지나요?</summary><p>MP3로 다시 저장하면 한 번 더 압축되어 아주 미세한 차이가 생길 수 있어요. 기본은 192kbps이고, 더 높은 음질이 필요하면 320kbps를 고르거나 WAV로 저장하세요.</p></details><details><summary>어떤 파일을 쓸 수 있나요?</summary><p>브라우저가 재생할 수 있는 mp3, wav, m4a, ogg, flac 같은 파일이에요. 저장 형식은 MP3와 WAV 중에서 고를 수 있어요.</p></details><details><summary>몇 곡까지 합칠 수 있나요?</summary><p>정해진 개수는 없어요. 곡을 하나씩 처리하고 버리는 방식이라 곡이 많아도 비교적 가벼워요. 다만 아주 많으면 시간이 걸려요.</p></details><details><summary>곡 하나만 자를 수도 있나요?</summary><p>네. 한 곡만 넣고 시작·끝 시간을 정한 뒤 저장하면 그 부분만 잘라 낸 파일이 만들어져요.</p></details><details><summary>합친 파일에서 곡마다 시작 시간을 알 수 있나요?</summary><p>네. 합치기가 끝나면 &quot;곡별 시작 시간표&quot;가 만들어져요. 유튜브 설명란에 그대로 붙여 넣을 수 있어요.</p></details><details><summary>폰에서도 되나요?</summary><p>짧은 곡 몇 개는 되지만 곡이 길거나 많으면 메모리가 부족할 수 있어요. 컴퓨터를 추천해요.</p></details></div>
+  </section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>함께 쓰면 좋은 도구</h2></div>
+    <div class="tools" style="margin-top:0"><a class="btn-g" href="../lrc-maker/">노래 가사 자막 만들기</a><a class="btn-g" href="../thumbnail-text/">썸네일 문구 생성기</a><a class="btn-g" href="../meta-generator/">유튜브 제목·설명 생성기</a></div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>합친 음악으로 영상까지 만들고 싶다면</h2>
+  <p>MusicCanvas는 음악과 이미지를 넣으면 이펙트와 가사가 들어간 유튜브용 영상으로 내보내 줘요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">기능·가격·자주 묻는 질문 보기 →</a></p>
+</div></section>
+<footer>MP3 인코딩에는 LAME(lamejs, LGPL)을 사용해요. 이 페이지는 비공식 도구예요.</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"lang": "ko", "lame": "../assets/lame.min.js", "ui": {"untitled": "제목 없음", "notAudio": "음악 파일만 올릴 수 있어요", "reading": "파일 길이를 읽는 중이에요… {a}/{b}", "readDone": "{n}곡을 불러왔어요", "readBad": "읽지 못한 파일이 {n}개 있어요. 다른 형식으로 바꿔서 다시 올려 보세요.", "nameLbl": "곡 이름", "fromLbl": "시작", "toLbl": "끝", "listen": "이 구간 듣기", "up": "위로", "down": "아래로", "rm": "지우기", "badTime": "시간 형식이 맞지 않아요 (예: 1:23 또는 83)", "badRange": "시작은 끝보다 앞이어야 해요", "sum": "{n}곡 · 합친 길이 약 {t}", "loadingEnc": "MP3 변환 준비 중…", "noLame": "MP3 변환 도구를 불러오지 못해 WAV로 저장해요.", "working": "{a}/{b} 곡 처리 중 · {name}", "done": "완성! 길이 {t} · 크기 {s}MB. 아래에서 들어 보고 저장하세요.", "finished": "완료", "canceled": "취소했어요", "decodeFail": "\"{name}\" 파일을 열지 못했어요. 다른 형식으로 바꿔 보세요.", "fail": "처리하지 못했어요. 파일이 너무 크면 곡 수를 줄여 보세요.", "nothing": "저장할 내용이 없어요", "saved": "파일을 저장했어요", "copied": "시간표를 복사했어요", "copyFail": "복사에 실패했어요. 직접 선택해서 복사해 주세요.", "fileMerged": "합친 음악", "fileCut": "(자름)"}};</script>
+<script>
+(function(){
+'use strict';
+var U=DATA.ui,$=function(s){return document.querySelector(s)};
+var tracks=[],nid=1,busy=false,cancelFlag=false,resultUrl=null,pvUrl=null,pvTrack=null;
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show')},2400)}
+function pad(n){return n<10?'0'+n:''+n}
+function fmtT(sec){sec=Math.max(0,sec);var r=Math.round(sec*10)/10,h=Math.floor(r/3600),m=Math.floor(r%3600/60),s=r%60;var ss=(s<10?'0':'')+s.toFixed(s%1?1:0);return h?h+':'+pad(m)+':'+ss:m+':'+ss}
+function fmtL(sec){sec=Math.round(sec);var h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h?h+':'+pad(m)+':'+pad(s):m+':'+pad(s)}
+function parseTime(s){
+  s=String(s==null?'':s).trim().replace(/\s+/g,''); if(!s)return null;
+  var m=s.match(/^(?:(\d+):)?(\d{1,3}):(\d{1,2}(?:[.,]\d+)?)$/); if(m)return (+(m[1]||0))*3600+(+m[2])*60+parseFloat(m[3].replace(',','.'));
+  m=s.match(/^(\d+(?:[.,]\d+)?)(?:s|초)?$/i); if(m)return parseFloat(m[1].replace(',','.'));
+  return NaN;
+}
+function num(id,def){var v=parseFloat(String($(id).value).replace(',','.'));return isFinite(v)&&v>=0?v:def}
+function cleanName(n){return n.replace(/\.[A-Za-z0-9]{2,5}$/,'').replace(/_+/g,' ').replace(/^\s*(?:track\s*)?\d{1,3}\s*[-._)\]]\s*/i,'').trim()||U.untitled}
+function readDur(file){
+  return new Promise(function(res){
+    var url=URL.createObjectURL(file),a=new Audio(),done=false,tried=false;
+    function fin(v){if(done)return;done=true;try{URL.revokeObjectURL(url)}catch(_){}res(v)}
+    function viaDecode(){
+      if(tried||done)return;tried=true;
+      var AC=window.AudioContext||window.webkitAudioContext; if(!AC){fin(null);return}
+      file.arrayBuffer().then(function(b){var c=new AC();return c.decodeAudioData(b).then(function(buf){try{c.close()}catch(_){}fin(buf.duration)})}).catch(function(){fin(null)});
+    }
+    a.preload='metadata'; a.src=url;
+    a.addEventListener('loadedmetadata',function(){if(isFinite(a.duration)&&a.duration>0)fin(a.duration);else viaDecode()});
+    a.addEventListener('error',viaDecode);
+    setTimeout(function(){if(!done)viaDecode()},8000);
+  });
+}
+async function addFiles(list){
+  var arr=Array.prototype.slice.call(list||[]).filter(function(f){return /^audio\//.test(f.type)||/\.(mp3|wav|m4a|aac|ogg|flac|opus)$/i.test(f.name)});
+  if(!arr.length){toast(U.notAudio);return}
+  arr.sort(function(a,b){return a.name.localeCompare(b.name,undefined,{numeric:true})});
+  var info=$('#loadInfo');info.hidden=false;var bad=0;
+  for(var i=0;i<arr.length;i++){
+    info.textContent=U.reading.replace('{a}',i+1).replace('{b}',arr.length);
+    var d=await readDur(arr[i]); if(d==null){bad++;continue}
+    tracks.push({id:nid++,file:arr[i],name:cleanName(arr[i].name),dur:d,start:0,end:d});
+  }
+  info.textContent=bad?U.readBad.replace('{n}',bad):U.readDone.replace('{n}',arr.length);
+  render();
+}
+function segLen(t){return Math.max(0,t.end-t.start)}
+function totals(){
+  var gap=num('#optGap',0),xf=num('#optXf',0),sum=0;
+  tracks.forEach(function(t,i){sum+=segLen(t); if(i>0){ if(xf>0)sum-=Math.min(xf,segLen(t),segLen(tracks[i-1])); else sum+=gap }});
+  return Math.max(0,sum);
+}
+function stopPv(){var pv=$('#pv');pv.pause();document.querySelectorAll('.pbtn.on').forEach(function(b){b.classList.remove('on');b.textContent='▶'})}
+function render(){
+  stopPv();
+  var has=tracks.length>0;
+  $('#s2').hidden=!has;$('#s3').hidden=!has; if(!has){hideResult();return}
+  var list=$('#list');list.innerHTML='';
+  tracks.forEach(function(t,i){
+    var r=document.createElement('div');r.className='mrow';r.setAttribute('role','listitem');
+    var n=document.createElement('span');n.className='li';n.textContent=(i+1);
+    var x=document.createElement('input');x.className='ltx mname';x.type='text';x.value=t.name;x.setAttribute('aria-label',U.nameLbl);
+    x.addEventListener('input',function(){t.name=x.value});
+    var g=document.createElement('span');g.className='mtimes';
+    function tf(lbl,key){
+      var w=document.createElement('label');w.className='mt';var s=document.createElement('span');s.textContent=lbl;
+      var inp=document.createElement('input');inp.className='lt';inp.type='text';inp.inputMode='decimal';inp.value=fmtT(t[key]);
+      inp.addEventListener('change',function(){
+        var v=parseTime(inp.value); if(v==null||isNaN(v)){toast(U.badTime);inp.value=fmtT(t[key]);return}
+        v=Math.min(Math.max(0,v),t.dur);
+        if(key==='start'&&v>=t.end-0.1){toast(U.badRange);inp.value=fmtT(t.start);return}
+        if(key==='end'&&v<=t.start+0.1){toast(U.badRange);inp.value=fmtT(t.end);return}
+        t[key]=v;inp.value=fmtT(v);sumUpdate();hideResult();
+      });
+      w.appendChild(s);w.appendChild(inp);return w;
+    }
+    g.appendChild(tf(U.fromLbl,'start'));g.appendChild(tf(U.toLbl,'end'));
+    var p=document.createElement('button');p.type='button';p.className='pbtn';p.textContent='▶';p.title=U.listen;p.setAttribute('aria-label',U.listen);
+    p.addEventListener('click',function(){preview(t,p)});
+    var b=document.createElement('span');b.className='lbtns';
+    [['↑',U.up,function(){mv(i,-1)}],['↓',U.down,function(){mv(i,1)}],['✕',U.rm,function(){tracks.splice(i,1);render()}]].forEach(function(a){var bt=document.createElement('button');bt.type='button';bt.textContent=a[0];bt.title=a[1];bt.setAttribute('aria-label',a[1]);bt.addEventListener('click',a[2]);b.appendChild(bt)});
+    r.appendChild(n);r.appendChild(x);r.appendChild(g);r.appendChild(p);r.appendChild(b);list.appendChild(r);
+  });
+  sumUpdate();
+}
+function sumUpdate(){$('#sum').textContent=U.sum.replace('{n}',tracks.length).replace('{t}',fmtL(totals()))}
+function mv(i,d){var j=i+d;if(j<0||j>=tracks.length)return;var t=tracks[i];tracks[i]=tracks[j];tracks[j]=t;hideResult();render()}
+function preview(t,btn){
+  var pv=$('#pv');
+  if(btn.classList.contains('on')){stopPv();return}
+  stopPv();
+  if(pvUrl){try{URL.revokeObjectURL(pvUrl)}catch(_){}}
+  pvUrl=URL.createObjectURL(t.file);pv.src=pvUrl;pvTrack=t;
+  pv.onloadedmetadata=function(){pv.currentTime=t.start;pv.play().catch(function(){})};
+  pv.ontimeupdate=function(){if(pv.currentTime>=t.end-0.02){stopPv()}};
+  pv.onended=stopPv;
+  btn.classList.add('on');btn.textContent='■';
+  pv.load();
+}
+['#optGap','#optXf'].forEach(function(s){$(s).addEventListener('change',function(){sumUpdate();hideResult()})});
+['#optFo','#optNorm','#optFmt','#optKbps'].forEach(function(s){$(s).addEventListener('change',function(){hideResult();fmtUi()})});
+function fmtUi(){$('#kbpsWrap').style.display=$('#optFmt').value==='mp3'?'':'none'}
+fmtUi();
+$('#files').addEventListener('change',function(e){hideResult();addFiles(e.target.files);e.target.value=''});
+var dz=$('#drop');
+['dragenter','dragover'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add('over')})});
+['dragleave','drop'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove('over')})});
+dz.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files){hideResult();addFiles(e.dataTransfer.files)}});
+$('#clearAll').addEventListener('click',function(){tracks=[];$('#loadInfo').hidden=true;render()});
+
+// ---------- export
+function hideResult(){
+  if(busy)return;
+  $('#result').hidden=true;$('#err').hidden=true;
+  var a=$('#rau');try{a.pause()}catch(_){} a.removeAttribute('src');
+  if(resultUrl){try{URL.revokeObjectURL(resultUrl)}catch(_){}resultUrl=null}
+}
+function showErr(m){var e=$('#err');e.hidden=false;e.textContent=m}
+function loadLame(){
+  return new Promise(function(res){
+    if(window.lamejs&&window.lamejs.Mp3Encoder){res(true);return}
+    var s=document.createElement('script');s.src=DATA.lame;s.onload=function(){res(!!(window.lamejs&&window.lamejs.Mp3Encoder))};s.onerror=function(){res(false)};document.head.appendChild(s);
+  });
+}
+function tick(){return new Promise(function(r){setTimeout(r,0)})}
+function setProg(p,txt){$('#pfill').style.width=Math.round(p*100)+'%';$('#ptxt').textContent=txt}
+function toI16(f){var o=new Int16Array(f.length);for(var i=0;i<f.length;i++){var v=f[i];v=v<-1?-1:v>1?1:v;o[i]=v<0?v*32768:v*32767}return o}
+function wavHeader(n,sr){var b=new ArrayBuffer(44),d=new DataView(b);function w(o,s){for(var i=0;i<s.length;i++)d.setUint8(o+i,s.charCodeAt(i))}
+  var len=n*4;w(0,'RIFF');d.setUint32(4,36+len,true);w(8,'WAVE');w(12,'fmt ');d.setUint32(16,16,true);d.setUint16(20,1,true);d.setUint16(22,2,true);d.setUint32(24,sr,true);d.setUint32(28,sr*4,true);d.setUint16(32,4,true);d.setUint16(34,16,true);w(36,'data');d.setUint32(40,len,true);return b}
+$('#cancel').addEventListener('click',function(){cancelFlag=true});
+$('#go').addEventListener('click',async function(){
+  if(busy||!tracks.length)return;
+  busy=true;cancelFlag=false;hideResultForce();stopPv();
+  $('#go').disabled=true;$('#prog').hidden=false;$('#err').hidden=true;
+  try{
+    var fmt=$('#optFmt').value,kbps=parseInt($('#optKbps').value,10)||192;
+    var AC=window.AudioContext||window.webkitAudioContext;
+    var ctx;try{ctx=new AC({sampleRate:44100})}catch(_){ctx=new AC()}
+    var sr=ctx.sampleRate;
+    var enc=null;
+    if(fmt==='mp3'){
+      setProg(0,U.loadingEnc);
+      var ok=await loadLame();
+      if(!ok){fmt='wav';showErr(U.noLame)}
+      else enc=new window.lamejs.Mp3Encoder(2,sr,kbps);
+    }
+    var gap=num('#optGap',0),xf=num('#optXf',0),fo=num('#optFo',0),norm=$('#optNorm').checked;
+    var gapN=Math.round(gap*sr),xfN=Math.round(xf*sr);
+    var outParts=[],pcmFrames=0,tl=[];
+    var tailL=null,tailR=null; // pending tail (crossfade)
+    function emit(L,R){
+      if(!L.length)return;
+      pcmFrames+=L.length;
+      var l=toI16(L),r=toI16(R);
+      if(enc){
+        for(var i=0;i<l.length;i+=1152*16){
+          var c=enc.encodeBuffer(l.subarray(i,i+1152*16),r.subarray(i,i+1152*16));
+          if(c.length)outParts.push(new Uint8Array(c.buffer.slice(c.byteOffset,c.byteOffset+c.length)));
+        }
+      }else{
+        var buf=new Int16Array(l.length*2);for(var k=0;k<l.length;k++){buf[2*k]=l[k];buf[2*k+1]=r[k]}
+        outParts.push(buf);
+      }
+    }
+    var totalSeg=tracks.reduce(function(a,t){return a+segLen(t)},0)||1,doneSeg=0;
+    for(var ti=0;ti<tracks.length;ti++){
+      if(cancelFlag)throw new Error('cancel');
+      var t=tracks[ti];
+      setProg(doneSeg/totalSeg,U.working.replace('{a}',ti+1).replace('{b}',tracks.length).replace('{name}',t.name));
+      await tick();
+      var ab=await t.file.arrayBuffer();
+      var buf;try{buf=await ctx.decodeAudioData(ab)}catch(e){throw new Error('decode:'+t.name)}
+      ab=null;
+      var s0=Math.max(0,Math.floor(t.start*buf.sampleRate)),s1=Math.min(buf.length,Math.ceil(t.end*buf.sampleRate));
+      var n=Math.max(0,s1-s0);
+      var cl=buf.getChannelData(0).subarray(s0,s1),cr=(buf.numberOfChannels>1?buf.getChannelData(1):buf.getChannelData(0)).subarray(s0,s1);
+      var L=new Float32Array(n),R=new Float32Array(n);L.set(cl);R.set(cr);
+      buf=null;
+      if(norm&&n){
+        var ss=0,pk=0;for(var q=0;q<n;q+=4){var a=L[q],b=R[q];ss+=a*a+b*b;var m=Math.max(Math.abs(a),Math.abs(b));if(m>pk)pk=m}
+        var rms=Math.sqrt(ss/(n/4*2)||0)||1e-4,g=0.126/rms; if(pk>0)g=Math.min(g,0.98/pk); g=Math.max(0.2,Math.min(g,4));
+        for(var q2=0;q2<n;q2++){L[q2]*=g;R[q2]*=g}
+      }
+      var startSamples,next=ti<tracks.length-1;
+      if(ti>0&&xfN>0&&tailL&&n>0){
+        var ov=Math.min(xfN,tailL.length,n);
+        emit(tailL.subarray(0,tailL.length-ov),tailR.subarray(0,tailR.length-ov));
+        startSamples=pcmFrames;
+        var oL=new Float32Array(ov),oR=new Float32Array(ov),tb=tailL.length-ov;
+        for(var j=0;j<ov;j++){var f=(j+1)/(ov+1);oL[j]=tailL[tb+j]*(1-f)+L[j]*f;oR[j]=tailR[tb+j]*(1-f)+R[j]*f}
+        emit(oL,oR);
+        L=L.subarray(ov);R=R.subarray(ov);
+      }else{
+        if(ti>0){
+          if(tailL)emit(tailL,tailR);
+          if(gapN>0)emit(new Float32Array(gapN),new Float32Array(gapN));
+        }
+        startSamples=pcmFrames;
+      }
+      tailL=null;tailR=null;
+      tl.push({name:t.name,at:startSamples/sr});
+      if(next&&xfN>0&&L.length>0){
+        var keep=Math.min(xfN,L.length);
+        emit(L.subarray(0,L.length-keep),R.subarray(0,R.length-keep));
+        tailL=new Float32Array(L.subarray(L.length-keep));tailR=new Float32Array(R.subarray(R.length-keep));
+      }else{
+        if(!next&&fo>0&&L.length){var fn=Math.min(Math.round(fo*sr),L.length);L=new Float32Array(L);R=new Float32Array(R);for(var z=0;z<fn;z++){var fg=1-(z+1)/fn,ix=L.length-fn+z;L[ix]*=fg;R[ix]*=fg}}
+        emit(L,R);
+      }
+      doneSeg+=segLen(t);
+      await tick();
+    }
+    if(tailL)emit(tailL,tailR);
+    var blob,ext;
+    if(enc){var fl=enc.flush();if(fl.length)outParts.push(new Uint8Array(fl.buffer.slice(fl.byteOffset,fl.byteOffset+fl.length)));blob=new Blob(outParts,{type:'audio/mpeg'});ext='mp3'}
+    else{blob=new Blob([wavHeader(pcmFrames,sr)].concat(outParts),{type:'audio/wav'});ext='wav'}
+    try{ctx.close()}catch(_){}
+    resultUrl=URL.createObjectURL(blob);
+    var ra=$('#rau');ra.src=resultUrl;
+    var dur=pcmFrames/sr;
+    $('#rinfo').textContent=U.done.replace('{t}',fmtL(dur)).replace('{s}',(blob.size/1048576).toFixed(1));
+    $('#result').hidden=false;$('#result').dataset.ext=ext;
+    var tlText=tl.map(function(x){var h=dur>=3600;var s=Math.floor(x.at+1e-6),H=Math.floor(s/3600),M=Math.floor(s%3600/60),S=s%60;return (h?H+':'+pad(M)+':'+pad(S):pad(M)+':'+pad(S))+' '+x.name}).join('\n');
+    $('#tl').value=tlText;
+    setProg(1,U.finished);
+    $('#prog').hidden=true;
+    $('#result').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){
+    var msg=String(e&&e.message||e);
+    if(msg==='cancel')toast(U.canceled);
+    else if(msg.indexOf('decode:')===0)showErr(U.decodeFail.replace('{name}',msg.slice(7)));
+    else showErr(U.fail+' ('+msg+')');
+    $('#prog').hidden=true;
+  }finally{
+    busy=false;$('#go').disabled=false;
+  }
+});
+function hideResultForce(){busy=false;hideResult();busy=true}
+$('#save').addEventListener('click',function(){
+  if(!resultUrl){toast(U.nothing);return}
+  var ext=$('#result').dataset.ext||'mp3';
+  var a=document.createElement('a');a.href=resultUrl;a.download=(tracks.length>1?U.fileMerged:cleanName(tracks[0].name)+' '+U.fileCut)+'.'+ext;
+  document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a)},500);toast(U.saved);
+});
+$('#cpTl').addEventListener('click',function(){
+  var v=$('#tl').value;if(!v){toast(U.nothing);return}
+  function fb(){var o=$('#tl');o.removeAttribute('readonly');o.select();try{document.execCommand('copy');toast(U.copied)}catch(_){toast(U.copyFail)}o.setAttribute('readonly','')}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(function(){toast(U.copied)},fb);else fb();
+});
+var eq=$('#eq'); if(eq){var hh='';for(var q=0;q<48;q++){var vv=(.25+.75*Math.abs(Math.sin(q*.37)*Math.cos(q*.13))).toFixed(2);hh+='<span style="--h:'+vv+';--d:-'+(q*.11).toFixed(2)+'s"></span>'}eq.innerHTML=hh}
+})();
+
+</script>
+</body>
+</html>
