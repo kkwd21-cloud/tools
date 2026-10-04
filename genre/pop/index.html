@@ -256,6 +256,7 @@ body.lg-open{overflow:hidden}
     <a class="btn-g" href="#builder">직접 조립하기</a>
     <button type="button" class="btn-g" id="randBtn">🎲 랜덤 하나 뽑기</button>
     <button type="button" class="btn-g" id="logGo"></button>
+    <a class="btn-g" id="saGo" href="../../song-analyzer/"></a>
   </div>
   <div class="eq" id="eq" aria-hidden="true"></div>
   <p class="use">어울리는 영상: 쇼츠·릴스 배경음악, 댄스·여행 영상, 팝 플레이리스트</p>
@@ -629,7 +630,7 @@ var L=Object.assign({
   fromLyr:'가사 도우미의 가사 불러오기',fromBld:'조합기',empty:'아직 기록이 없어요. 프롬프트의 "기록" 버튼으로 첫 기록을 남겨 보세요.',
   stat:'기록 {n}개 · 좋아요 {g} · 보통 {o} · 별로 {b}',goodW:'잘 나온 단어',badW:'별로였던 단어',wHint:'같은 단어가 2번 이상 쌓이면 여기에 보여요.',
   del:'삭제',delSure:'정말 삭제?',copyStyle:'스타일 복사',copyAll:'기록 전체 복사',showLyr:'가사 보기',noName:'(이름 없음)',full:'저장 공간이 부족해요. 오래된 기록을 지워 주세요.',locale:'ko-KR',
-  copiedAll:'기록을 복사했어요',memoSave:'메모 저장'
+  copiedAll:'기록을 복사했어요',memoSave:'메모 저장',saBtn:'내 노래로 프롬프트 찾기'
 },(DATA.ui&&DATA.ui.log)||{});
 var LK='dusk_log_v1';
 function load(){try{var a=JSON.parse(localStorage.getItem(LK)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
@@ -643,6 +644,7 @@ if(sec){
   $('#logH').textContent=L.h;$('#logP').textContent=L.p;
 }
 /* hero button */
+var sg=$('#saGo');if(sg)sg.textContent=L.saBtn;
 var go=$('#logGo');if(go){go.textContent=L.navBtn;go.addEventListener('click',function(){var s=$('#log');if(s){s.scrollIntoView({behavior:'smooth',block:'start'});}});}
 /* modal */
 var dlg=null,cur=null,rateSel=null;

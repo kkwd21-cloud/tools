@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Song Analyzer: Find a Suno Prompt That Matches – Free | Dusk Soul</title>
+<meta name="description" content="Add your song and get its BPM, key and structure, plus the 3 closest Suno prompts out of 154, already set to your BPM. Free, no sign-up, and everything stays in your browser.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/en/song-analyzer/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/song-analyzer/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/song-analyzer/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/song-analyzer/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Song Analyzer: Find a Suno Prompt That Matches – Free | Dusk Soul">
+<meta property="og:description" content="Add your song and get its BPM, key and structure, plus the 3 closest Suno prompts out of 154, already set to your BPM. Free, no sign-up, and everything stays in your browser.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/en/song-analyzer/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/en/"}, {"@type": "ListItem", "position": 2, "name": "Find a Suno Prompt That Matches Your Song", "item": "https://kkwd21-cloud.github.io/tools/en/song-analyzer/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this song analyzer free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is free, needs no sign-up, and all analysis happens in your browser."}}, {"@type": "Question", "name": "Is my audio uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. This site is a static page with no server, so your files are never sent anywhere."}}, {"@type": "Question", "name": "How are the similar prompts chosen?", "acceptedAnswer": {"@type": "Answer", "text": "It calculates the song's BPM, loudness, brightness and major or minor feel, then compares them with the tempo and mood words in each prompt. It is a calculation, not an AI writing names or lyrics."}}, {"@type": "Question", "name": "Does it make titles and lyrics too?", "acceptedAnswer": {"@type": "Answer", "text": "This tool does analysis and prompt matching. Lyrics can be made in the lyrics helper from a theme and genre, and you can use them with the structure template."}}, {"@type": "Question", "name": "Are the BPM and sections accurate?", "acceptedAnswer": {"@type": "Answer", "text": "They are estimated from the sound and can be wrong. BPM sometimes comes out double or half, so there are buttons to fix it."}}, {"@type": "Question", "name": "Which files can I use?", "acceptedAnswer": {"@type": "Answer", "text": "Any file your browser can play, such as mp3, wav, m4a, ogg or flac."}}, {"@type": "Question", "name": "Can I use a YouTube link?", "acceptedAnswer": {"@type": "Answer", "text": "No. It needs an audio file, so add a file you own."}}, {"@type": "Question", "name": "Does it work on a phone?", "acceptedAnswer": {"@type": "Answer", "text": "Short songs work, but long ones can run out of memory. A computer is recommended."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Find a Suno Prompt That Matches Your Song", "url": "https://kkwd21-cloud.github.io/tools/en/song-analyzer/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "inLanguage": "en"}</script>
+
+<style>:root{--accent:#7fd1e8;--accent2:#b8e6f2;--rgb:127,209,232}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.drop{word-break:normal;overflow-wrap:anywhere}
+.fgroup{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.fgroup>span:last-child{display:inline-flex;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12.5px;color:var(--muted);min-width:56px}
+.sumchips{display:flex;flex-wrap:wrap;gap:8px}
+.sumchips li{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:flex;flex-direction:column;min-width:84px}
+.sumchips span{font-size:11.5px;color:var(--muted)}
+.sumchips b{font-family:'IBM Plex Mono',monospace;font-size:18px}
+.mcards{display:flex;flex-direction:column;gap:12px}
+.mcards .pcard{margin:0}
+.stbl{border-collapse:collapse;width:100%;font-size:13px;min-width:420px}
+.stbl th,.stbl td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+.stbl th{color:var(--muted);font-weight:600}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:13.5px;pointer-events:none;transition:.2s;z-index:50}
+#toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="./" class="on" aria-current="page">Song analyzer</a><a href="../lrc-maker/">Lyric subtitles</a><a href="../thumbnail-text/">Thumbnail text</a></nav><a class="top-lang" href="../../song-analyzer/" hreflang="ko">한국어</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">free · no sign-up · no upload</p>
+  <h1>Find a Suno Prompt That Matches Your Song</h1>
+  <p class="vibe">Add a song file and get style prompts that fit it.</p>
+  <p class="lead">Use this when you want to make a Suno song with the tempo and flow of a track you like. It analyzes the BPM, key and structure (intro, verse, chorus), then picks the closest prompts from this site&#x27;s library and sets the BPM for you. Your audio never leaves your device.</p>
+  <ul class="stats"><li><b>Analyze</b>BPM · key · structure</li><li><b>Match</b>3 of 154 prompts</li><li><b>$0</b>no sign-up, no upload</li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#tool">Get started ↓</a>
+    <a class="btn-g" href="#tips">Tips</a>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="how"><div class="step"><div class="n">STEP 01</div><h3>Add a song</h3><p>Drop one audio file or click to choose it. A 3-minute song takes a few seconds.</p></div><div class="step"><div class="n">STEP 02</div><h3>Copy a prompt</h3><p>Three similar prompts appear. Press Copy on the one you like. The BPM is already set to your song.</p></div><div class="step"><div class="n">STEP 03</div><h3>Paste into Suno</h3><p>Turn on Custom in Suno and paste it into the Style of Music box. The structure template below can go in the Lyrics box.</p></div></div>
+
+  <section class="sec" id="tool">
+    <div class="sec-head"><h2>Song analysis · prompt match</h2><p>Your audio is analyzed only inside your browser. It is never uploaded anywhere.</p></div>
+    <div class="lrcw">
+      <div class="card2" id="s1">
+        <h3>1. Add a song</h3>
+        <label class="drop" id="drop"><input type="file" id="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac,.opus"><span>Click to choose an audio file, or drag it here (mp3, wav, m4a and more, one song)</span></label>
+        <p class="note" id="stat" role="status" aria-live="polite">Analysis starts as soon as you add the file. The options below are optional.</p>
+        <div class="fgroup"><span class="flabel">Vocal</span><span id="vchips"></span></div>
+        <div class="fgroup"><span class="flabel">Genre</span><span id="gchips"></span></div>
+      </div>
+
+      <div class="card2" id="res" hidden>
+        <h3>2. Analysis and matching prompts</h3>
+        <ul class="sumchips" id="sum"></ul>
+        <div class="drow">
+          <button type="button" class="b-sub" id="bpmHalf">Halve BPM</button>
+          <button type="button" class="b-sub" id="bpmDbl">Double BPM</button>
+          <label class="chk"><input type="checkbox" id="optKey"><span>Also put the key (e.g. A minor) in the prompt</span></label>
+        </div>
+        <p class="note">BPM is estimated automatically and can come out half or double. If the beat feels different when you listen, fix it with the buttons above. Suno does not always follow the key, so treat it as a hint.</p>
+        <div id="cards" class="mcards"></div>
+        <p class="note" id="moreg"></p>
+      </div>
+
+      <div class="card2" id="res2" hidden>
+        <h3>3. Song flow and structure template</h3>
+        <canvas id="chart" class="wave" role="img" aria-label="Per-second loudness graph with sections"></canvas>
+        <p class="note">Taller bars mean louder sound. The labels on top are song sections (intro, verse, chorus and so on). Section names are estimates and can be wrong.</p>
+        <textarea class="inp out" id="struct" rows="9" readonly aria-label="Song structure template for the Suno lyrics box"></textarea>
+        <div class="drow"><button type="button" class="b-main" id="cpStruct">Copy template</button><a class="b-sub" href="../lyrics-generator/">Go to the lyrics helper →</a></div>
+        <p class="note">Paste this into Suno&#x27;s Lyrics box. Write lyrics under each tag, or paste lyrics made with the lyrics helper. Suno is reported to read section tags like [Verse] and [Chorus] better than second-by-second instructions.</p>
+        <details class="adv"><summary>Show section table</summary><div style="overflow-x:auto"><table class="stbl" id="stbl"></table></div></details>
+      </div>
+      <p class="note warn" id="err" hidden></p>
+    </div>
+  </section>
+
+  <section class="sec" id="use">
+    <div class="sec-head"><h2>Ways to use it</h2></div>
+    <ul class="tipsg"><li><h3>Match the vibe of a song you like</h3><p>Add a file you own, then make a new song from a prompt in the same tempo range. Do not use artist names or lyrics.</p></li><li><h3>Recreate your own Suno song</h3><p>Check the BPM and flow of a song you made in Suno, then generate more with a similar feel.</p></li><li><h3>Lyrics too</h3><p>Paste the structure template in the Lyrics box, then put lyrics from the lyrics helper under each tag.</p></li></ul>
+  </section>
+
+  <section class="sec" id="tips">
+    <div class="sec-head"><h2>Tips</h2></div>
+    <ul class="tipsg"><li><h3>Pick a genre if you know it</h3><p>If Auto is not what you want, press a genre to get matches only from that genre.</p></li><li><h3>Choose a vocal type</h3><p>Pick female, male, duet or instrumental and prompts with that vocal come first.</p></li><li><h3>Fix odd BPM right away</h3><p>A slow song can come out at double speed. Tap along, and if it does not match, press Halve or Double.</p></li><li><h3>Listen to all three</h3><p>The same song gives different results with each prompt. Make each one and pick your favorite.</p></li><li><h3>Copyright</h3><p>When you make a Suno song from someone else&#x27;s track, do not copy the artist name, lyrics or melody. This tool only uses tempo and mood.</p></li><li><h3>Results are a guide</h3><p>Section names, BPM and key are estimated from the sound and can be wrong.</p></li></ul>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>Questions</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>Is this song analyzer free?</summary><p>Yes. It is free, needs no sign-up, and all analysis happens in your browser.</p></details><details><summary>Is my audio uploaded to a server?</summary><p>No. This site is a static page with no server, so your files are never sent anywhere.</p></details><details><summary>How are the similar prompts chosen?</summary><p>It calculates the song&#x27;s BPM, loudness, brightness and major or minor feel, then compares them with the tempo and mood words in each prompt. It is a calculation, not an AI writing names or lyrics.</p></details><details><summary>Does it make titles and lyrics too?</summary><p>This tool does analysis and prompt matching. Lyrics can be made in the lyrics helper from a theme and genre, and you can use them with the structure template.</p></details><details><summary>Are the BPM and sections accurate?</summary><p>They are estimated from the sound and can be wrong. BPM sometimes comes out double or half, so there are buttons to fix it.</p></details><details><summary>Which files can I use?</summary><p>Any file your browser can play, such as mp3, wav, m4a, ogg or flac.</p></details><details><summary>Can I use a YouTube link?</summary><p>No. It needs an audio file, so add a file you own.</p></details><details><summary>Does it work on a phone?</summary><p>Short songs work, but long ones can run out of memory. A computer is recommended.</p></details></div>
+  </section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>Tools that go with it</h2></div>
+    <div class="tools" style="margin-top:0"><a class="btn-g" href="../lyrics-generator/">Suno lyrics helper</a><a class="btn-g" href="../../prompt-studio/">Suno prompt library</a><a class="btn-g" href="../lrc-maker/">Lyric subtitle maker</a></div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>Want a video from the song you made?</h2>
+  <p>MusicCanvas turns your music and images into a YouTube-ready video with effects and lyrics.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">Start the 7-day free trial →</a>
+  <p class="fine">Windows · lifetime license $22</p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">See features, price and FAQ →</a></p>
+</div></section>
+<footer>This is an unofficial tool. Suno is a trademark of its owner.</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"lang": "en", "ui": {"copy": "Copy", "styleOnly": "Style only", "excl": "Copy excludes", "copied": "Copied", "copyFail": "Copy failed. Select the text and copy it manually.", "moreGenre": "More prompts in this genre →", "notAudio": "Only audio files work", "reading": "Reading the file…", "analyzing": "Analyzing… (a 3-minute song takes a few seconds)", "done": "Analysis done", "fail": "Could not read this file. Try an mp3 or wav.", "auto": "Auto", "vocals": [["any", "Any"], ["female", "Female"], ["male", "Male"], ["duet", "Duet"], ["inst", "Instrumental"]], "cLen": "Length", "cBpm": "BPM (est.)", "cKey": "Key (est.)", "cSec": "Sections", "wBpm": "Prompt {p} BPM ≈ your song {b} BPM", "wFree": "Slow, free-flowing", "wCalm": "Quiet, soft mood", "wHard": "Strong, big mood", "wMid": "Medium-energy mood", "wMinor": "Wistful minor feel", "wMajor": "Bright major feel", "wVocal": "Matches your vocal choice", "none": "No matching prompts. Try changing the genre or vocal choice.", "moreg": "Change genre or vocal for the same song and the matches update right away.", "th": ["Section", "Time", "Feel"]}, "genres": {"ballad": "Emotional Ballad", "lofi": "Lo-Fi & Chill", "cinematic": "Cinematic & Epic", "pop": "K-pop & Pop", "acoustic": "Acoustic & Folk", "ambient": "Ambient & Instrumental"}, "genreBase": "../genre/", "prompts": [{"g": "acoustic", "v": "male", "t": "Hometown", "p": "warm acoustic folk, fingerpicked guitar, soft harmonica, tempo 84bpm, gentle male vocals, small town nostalgia mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Confession", "p": "intimate acoustic ballad, single guitar and soft female vocals, minimal production, tempo 70bpm, close mic warmth, quiet confession mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "duet", "t": "Road Trip", "p": "upbeat folk pop, strummed acoustic guitar, hand claps and tambourine, tempo 104bpm, cheerful duet vocals, road trip with friends mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "vocal", "t": "Lullaby", "p": "gentle acoustic lullaby, soft nylon guitar, warm humming vocals, tempo 60bpm, quiet and tender, parent singing to a child mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Autumn Afternoon", "p": "acoustic indie folk, layered guitars and soft strings, breathy female vocals, tempo 88bpm, wistful autumn afternoon mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "Looking Back", "p": "folk storytelling ballad, acoustic guitar and soft banjo, warm male vocals, tempo 76bpm, narrative verses building to reflective chorus, looking back on youth mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "vocal", "t": "Morning Walk", "p": "bright acoustic pop folk, ukulele and light percussion, cheerful vocals, tempo 112bpm, sunny morning walk mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "Farewell to a Friend", "p": "melancholic acoustic folk, slide guitar and soft strings, weathered male vocals, tempo 66bpm, saying goodbye to an old friend mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "First Date", "p": "acoustic coffeehouse pop, warm strummed guitar chords, soft cajon percussion, tempo 96bpm, breathy male vocals, nervous excitement of a first date mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "duet", "t": "Harvest Festival", "p": "rustic bluegrass-tinged acoustic, interplay of mandolin and banjo, upbeat handclap rhythm, tempo 120bpm, cheerful group vocals, harvest festival celebration mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Kitchen Waltz", "p": "wistful acoustic waltz in 3/4 time, gentle guitar arpeggios, soft accordion touches, tempo 92bpm, tender female vocals, dancing slowly in the kitchen at night mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Knitting by the Fire", "p": "acoustic lo-fi folk, soft nylon guitar harmonics, gentle wool-needle clicking ambience, tempo 68bpm, warm female vocals, grandmother knitting by the fireplace mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "By the River", "p": "acoustic folk ballad, fingerstyle guitar over soft upright bass, tempo 82bpm, breathy male vocals, skipping stones by the river at dusk mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "duet", "t": "Class Reunion", "p": "warm acoustic pop, strummed guitar and soft piano, layered group harmonies, tempo 98bpm, nostalgic reunion with old classmates mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "Campfire Night", "p": "campfire acoustic folk, warm strummed guitar and soft hand percussion, tempo 80bpm, male vocals with gentle harmony, crackling fire ambience, camping night mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Cafe Morning", "p": "acoustic coffeehouse pop, soft fingerstyle guitar, light shaker, tempo 100bpm, breathy female vocals, quiet morning cafe mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "Train Journey", "p": "country-tinged acoustic folk, steady strumming and brushed snare, tempo 108bpm, warm male vocals, train ride through countryside mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "duet", "t": "Seaside Sunset", "p": "acoustic ukulele pop, soft guitar and light claps, tempo 96bpm, relaxed duet vocals, sunset by the sea mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Grandmother's House", "p": "nostalgic acoustic folk, nylon guitar and soft accordion, tempo 78bpm, gentle female vocals, grandmother's house in summer mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "Rainy Day Guitar", "p": "acoustic indie ballad, close-mic fingerstyle guitar, tempo 72bpm, soft male vocals, rain tapping on a window ambience, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "vocal", "t": "Spring Picnic", "p": "bright acoustic pop, bouncy strummed acoustic guitar and tambourine, tempo 110bpm, cheerful vocals, picnic under cherry blossoms mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "duet", "t": "Christmas Eve", "p": "warm acoustic holiday ballad, soft guitar and warm strings, tempo 74bpm, gentle duet vocals, quiet Christmas eve mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "vocal", "t": "Village Bus", "p": "acoustic folk pop, light mandolin and guitar, tempo 100bpm, easygoing vocals, small town bus ride mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "duet", "t": "Harmony Night", "p": "a cappella-style acoustic folk, soft acoustic guitar with lush vocal harmonies, tempo 88bpm, warm group vocals, friends singing together at night mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "female", "t": "Letter Reading", "p": "spoken-word acoustic ballad, sparse guitar and gentle strings, tempo 68bpm, soft female voice reading a letter, quiet bedroom mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "acoustic", "v": "male", "t": "Late Night Folk", "p": "late night acoustic folk, fingerpicked guitar with soft piano touches, tempo 64bpm, hushed male vocals, insomnia thoughts mood, avoid: over-processed autotuned vocals, excessive reverb, stiff mechanical timing"}, {"g": "ambient", "v": "inst", "t": "Still Water", "p": "ambient instrumental, soft evolving pads, distant piano notes, no drums, tempo-free, spacious reverb, floating in still water mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Empty Space", "p": "dark ambient instrumental, deep drones, sparse metallic textures, no percussion, slow evolving atmosphere, abandoned space at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Meditation", "p": "meditative ambient, soft singing bowl tones, gentle wind chimes, very slow tempo, deep relaxation and breathing mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Night Snow", "p": "ambient piano instrumental, sparse minimalist notes, long reverb tails, no beat, quiet snowfall at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Sunset Alone", "p": "cinematic ambient instrumental, soft strings and warm synth textures, gentle swell, no percussion, watching the sunset alone mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Deep Sleep", "p": "sleep ambient instrumental, very slow soft pads, occasional distant chimes, no rhythm, deep sleep and calm mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Forest Path", "p": "nature-inspired ambient instrumental, soft flute over warm pads, forest wind texture, tempo-free, walking alone in an old forest mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Deep Work", "p": "focus ambient instrumental, subtle rhythmic pulse, soft airy pads, no vocals, steady and unobtrusive, deep work session mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Morning Fog", "p": "ambient instrumental, soft breathy pads, distant muted flute-like tones, no drums, slow evolving texture, walking through morning fog mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Starfall Night", "p": "ambient instrumental, shimmering bell-like synth textures, soft sustained pads, no percussion, wide spacious reverb, lying under a sky full of stars mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Rainy Afternoon", "p": "ambient instrumental, warm mellow synth pads, soft muted piano notes, no beat, gentle rain-window mood, quiet unhurried afternoon, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "vocal", "t": "Lighthouse", "p": "ambient instrumental, deep foghorn-like drone, soft shimmering high synth tones, no percussion, slow pulsing beacon in the fog mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Greenhouse", "p": "ambient instrumental, warm soft pads, faint dripping water texture, no beat, humid greenhouse filled with plants mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Desert Night", "p": "ambient instrumental, wide desert wind texture, sparse distant synth tones, no drums, vast starlit desert night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Deep Forest Morning", "p": "nature ambient instrumental, soft pads with light birdsong layers, no percussion, tempo-free, sunlight through tall trees mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Waterfall Meditation", "p": "meditative ambient, soft sustained drones, gentle waterfall texture, no beat, calm mind and slow breathing mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Space Drift", "p": "space ambient instrumental, slow evolving synth waves, deep sub drone, no drums, floating weightless between planets mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Snowy Dawn", "p": "minimal ambient piano, sparse soft notes with long reverb, no beat, snow-covered quiet dawn mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Library at Night", "p": "calm ambient study instrumental, warm low pads and faint piano, no percussion, hushed library at night mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Mist over the Lake", "p": "ambient instrumental, breathy pads and distant bell tones, no drums, tempo-free, mist over a still lake mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Attic Rain", "p": "cozy ambient instrumental, soft piano pads and gentle rain texture, no beat, rainy attic window mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Moonlit Walk", "p": "dreamy ambient instrumental, shimmering high pads and warm low drone, no percussion, slow moonlit walk mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Yoga Breathing", "p": "ambient yoga instrumental, soft singing bowls and warm pads, very slow tempo, gentle breath-led relaxation mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Underground Cave", "p": "dark ambient cavern, deep resonant drone and dripping echoes, no drums, slow evolving darkness mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Dawn Train", "p": "ambient instrumental, smooth pad progression with faint distant train hum, no beat, quiet early morning journey mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ambient", "v": "inst", "t": "Aurora", "p": "ethereal ambient instrumental, glassy shimmering pads and soft choir-like tones, no percussion, northern lights over snow mood, avoid: drums, sudden loud transients, abrupt jarring cutoff"}, {"g": "ballad", "v": "male", "t": "Parting & Longing", "p": "emotional korean ballad, soft piano and warm strings, gentle male vocals, slow tempo 66bpm, builds to a full orchestral chorus, lyrics about missing someone you can't reach anymore, rain on window ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Quiet Goodbye", "p": "cinematic emotional ballad, delicate piano intro, breathy female vocals, strings swell in second verse, tempo 70bpm, key change into final chorus, theme of quiet goodbye, warm analog tape texture, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Unrequited Love", "p": "korean r&b ballad, soulful female vocals with light vibrato, electric piano and soft drums, tempo 74bpm, mellow verse into emotional falsetto chorus, theme of loving someone from a distance, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "duet", "t": "Reunion", "p": "hopeful ballad, acoustic guitar and warm pad, male and female duet vocals, tempo 78bpm, gentle build with light percussion in chorus, theme of finding each other again after years apart, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Empty Room", "p": "melancholic piano ballad, minimal arrangement, intimate male vocals close to the mic, tempo 62bpm, sparse verses, strings enter only in final chorus, theme of an empty room after someone leaves, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Letting Go", "p": "orchestral pop ballad, cinematic string section, powerful female vocals, tempo 72bpm, dramatic dynamic shifts, choir in final chorus, theme of letting go with gratitude instead of regret, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "First Love Memory", "p": "korean indie ballad, warm nostalgic synths and soft electric guitar, airy female vocals, tempo 80bpm, dreamy chorus with light reverb, theme of remembering a first love years later, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Waiting", "p": "slow burn ballad, sparse piano and low strings, deep male vocals, tempo 64bpm, builds through three choruses each bigger than the last, theme of holding on to a promise made long ago, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "vocal", "t": "3 AM Phone Call", "p": "quiet late night ballad, soft rhodes piano and gentle strings, whispery vocals close to the mic, tempo 68bpm, builds slowly into a hushed falsetto chorus, lyrics about calling someone at 3am just to hear their voice, faint city ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "The Street We Walked", "p": "nostalgic korean ballad, warm acoustic guitar and soft strings, tender male vocals, tempo 76bpm, gentle build into a bittersweet chorus, lyrics about walking past a street that still remembers two people together, light rain ambience, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Even as Seasons Pass", "p": "cinematic ballad, layered strings and soft piano, powerful female vocals building to a soaring bridge, tempo 71bpm, seasons-changing metaphor for lingering love, warm reverb-heavy production, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Drama OST", "p": "korean drama ost ballad, grand piano and sweeping strings, emotional female vocals, tempo 68bpm, restrained verse into a soaring chorus, theme of a love that arrives too late, warm hall reverb, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Rock Ballad", "p": "korean rock ballad, clean electric guitar arpeggios and live drums, raspy male vocals, tempo 72bpm, explosive guitar solo before the last chorus, theme of shouting out what you never said, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "duet", "t": "Harmony Chorus", "p": "emotional ballad with layered vocal harmonies, soft piano bed, male and female vocals trading lines, tempo 66bpm, chorus built from stacked harmonies, theme of a farewell letter read aloud, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Rainy Bus Stop", "p": "melancholic korean ballad, lonely piano and cello, soft male vocals, tempo 64bpm, rain on a bus shelter ambience, theme of waiting for a bus that will not bring someone back, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "A Letter", "p": "tender piano ballad, handwritten-letter mood, intimate female vocals, tempo 69bpm, strings added only in the last chorus, theme of a letter that never got sent, warm tape texture, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Birthday Call", "p": "gentle acoustic ballad, nylon guitar and soft strings, warm male vocals, tempo 73bpm, bittersweet chorus, theme of a birthday call to someone who no longer picks up, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "To Mom", "p": "heartfelt korean ballad, soft piano and warm cello, sincere female vocals, tempo 67bpm, builds slowly to a tearful chorus, theme of thanking a mother you rarely said it to, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Last Warm Day", "p": "indie folk ballad, fingerpicked guitar and light strings, airy male vocals, tempo 77bpm, fading outro, theme of the last warm day before autumn arrives, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "duet", "t": "Departure Gate", "p": "cinematic pop ballad, soft piano with ambient pads, emotional duet vocals, tempo 75bpm, distant airport announcement ambience, theme of saying goodbye at a departure gate, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Rooftop", "p": "minimal piano ballad, close-mic male vocals, tempo 63bpm, sparse arrangement, city lights below ambience, theme of sitting on a rooftop thinking about what could have been, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Love to the End", "p": "powerful ballad, big drums and full orchestra in the chorus, soulful female vocals with belting climax, tempo 70bpm, theme of loving someone even though it is over, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Old Photograph", "p": "soft nostalgic ballad, warm electric piano and gentle strings, soft male vocals, tempo 71bpm, film grain warmth, theme of finding an old photo in a drawer, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "female", "t": "Walking Away", "p": "delicate acoustic ballad, solo guitar with soft cello, whispery female vocals, tempo 65bpm, hushed chorus, theme of watching someone walk away without turning around, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "ballad", "v": "male", "t": "Winter Goodbye", "p": "wintry ballad, soft piano and warm strings, gentle male vocals, tempo 62bpm, snow-muffled atmosphere, theme of a breakup on the first snowy night, avoid: flat generic vocal delivery, muddy low end, abrupt awkward ending"}, {"g": "cinematic", "v": "inst", "t": "Trailer", "p": "epic cinematic orchestral, full choir and brass, powerful timpani hits, tempo 100bpm, builds from quiet strings to massive climax, trailer style, heroic and triumphant mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Eve of Battle", "p": "dark epic orchestral, low brass drones, tense string ostinato, war drums, tempo 92bpm, building tension throughout, battle before the storm mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Bittersweet Victory", "p": "emotional cinematic score, solo violin over soft strings, gentle harp, tempo 68bpm, slow swell into full orchestra, bittersweet victory mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Adventure Begins", "p": "fantasy adventure orchestral, playful woodwinds and light strings, tempo 112bpm, adventurous and curious mood, journey beginning theme, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Product Reveal", "p": "epic hybrid trailer music, orchestral strings layered with modern synth bass, powerful percussion hits, tempo 96bpm, cinematic riser and impact, product reveal mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Remembrance", "p": "melancholic epic orchestral, solo cello theme, choir enters in final section, tempo 60bpm, slow and majestic, memorial and remembrance mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "End Credits", "p": "triumphant epic finale, full orchestra and choir, ascending key changes, tempo 104bpm, glorious ending theme, credits roll mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Ruins Discovery", "p": "mysterious cinematic ambient orchestral, sparse piano and eerie strings, distant choir whispers, tempo 66bpm, ancient ruins discovery mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Space Exploration", "p": "cinematic sci-fi orchestral, shimmering synth pads layered with strings, slow swelling brass, tempo 76bpm, awe and wonder mood, deep space discovery theme, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Moment of Judgment", "p": "tense cinematic orchestral, staccato strings and low piano hits, sparse percussion, tempo 88bpm, building suspense, moment of judgment mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Homecoming", "p": "emotional cinematic orchestral, warm strings and solo horn theme, tempo 64bpm, slow uplifting swell, soldier's homecoming mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Villain Rises", "p": "dark cinematic orchestral, ominous pipe organ, deep choir chants, tempo 84bpm, slow menacing build to a distorted brass climax, villain's rise to power mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Into the Deep", "p": "cinematic ambient orchestral, deep cello drones, shimmering underwater synth textures, tempo 58bpm, slow weightless swell, descending into the ocean depths mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Coronation", "p": "grand ceremonial orchestral, regal brass fanfare, resonant cathedral bells, tempo 108bpm, stately processional rhythm building to full choir, royal coronation mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Western Frontier", "p": "cinematic western orchestral, twangy electric guitar over low strings, tempo 84bpm, lonely harmonica line, slow-burn showdown at dusk mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "School of Magic", "p": "magical fantasy orchestral, celesta and glockenspiel with warm strings, tempo 96bpm, wonder-filled melody, first day at a hidden school of magic mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "vocal", "t": "Before the Race", "p": "intense cinematic hybrid, pulsing synth bass, tense strings and snare rolls, tempo 120bpm, adrenaline before a race mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Snowy Mountain", "p": "epic cinematic orchestral, slow horns and wide strings, tempo 60bpm, vast snowy mountain panorama, solitary climb mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "vocal", "t": "Farewell Scene", "p": "emotional cinematic piano and strings, solo piano theme, tempo 62bpm, slow rising cello, quiet farewell scene mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Chase Scene", "p": "driving cinematic action orchestral, fast staccato strings and heavy percussion, tempo 140bpm, relentless chase scene mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Pirate Seas", "p": "adventurous orchestral sea shanty-inspired score, accordion and strings, tempo 108bpm, bold brass, high seas adventure mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Detective Night", "p": "noir cinematic jazz orchestral, muted trumpet and brushed drums, tempo 78bpm, smoky city detective night mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "War of the Gods", "p": "mythic epic orchestral, thunderous choir and massive drums, tempo 98bpm, gods clashing in the sky mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Morning of Hope", "p": "uplifting cinematic orchestral, warm strings and gentle piano, tempo 72bpm, slow sunrise swell, new beginning after hardship mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Silent Space Station", "p": "minimal cinematic sci-fi, soft synth pulses and sparse piano, tempo 64bpm, quiet hum of a space station, loneliness among the stars mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "cinematic", "v": "inst", "t": "Final Battle", "p": "dark epic orchestral, relentless war drums and brass, tempo 110bpm, choir rises to a heroic final stand mood, avoid: thin underpowered strings, weak percussion hits, unresolved abrupt ending"}, {"g": "lofi", "v": "inst", "t": "Late Night Work", "p": "lofi hip hop instrumental, dusty vinyl crackle, mellow jazz piano chords, soft boom bap drums, tempo 82bpm, warm tape saturation, late night study atmosphere, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "female", "t": "Rainy Afternoon", "p": "chill lofi with soft female humming, muted electric piano, rain sounds in background, tempo 76bpm, gentle vinyl noise, cozy rainy afternoon mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Jazz Cafe", "p": "jazzy lofi instrumental, upright bass and brushed drums, warm saxophone melody, tempo 88bpm, smoky cafe atmosphere, subtle vinyl hiss, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "female", "t": "Sunset Drive", "p": "dreamy chillhop, soft synth pads, light guitar plucks, gentle female vocal ad-libs, tempo 80bpm, floaty reverb, golden hour drive mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Morning Routine", "p": "minimal lofi beat, soft kalimba melody, mellow bassline, tempo 70bpm, birdsong ambience, calm morning routine mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "female", "t": "Diary Page", "p": "korean lofi ballad hybrid, soft spoken-word style female vocals, gentle piano loop, tempo 74bpm, warm crackling texture, quiet diary entry mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "City Night", "p": "lofi city pop fusion, mellow synth bass, soft electric guitar riffs, tempo 92bpm, night city window view mood, subtle vinyl warmth, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Reading Time", "p": "soft lofi instrumental, gentle marimba and rhodes piano, tempo 84bpm, light rain and distant thunder, quiet reading corner mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Snowy Night", "p": "lofi instrumental, soft glockenspiel melody, muffled snow ambience, tempo 72bpm, warm felt piano chords, quiet snowy night mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Nap with a Cat", "p": "chill lofi beat, soft acoustic guitar mutes, gentle purring cat ambience, tempo 78bpm, warm vinyl crackle, lazy sunday afternoon with a cat mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Train Window", "p": "lofi instrumental, mellow rhodes piano, distant train rumble and rain on windows, tempo 86bpm, soft brushed drums, long train ride at dusk mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Rainy Window Study", "p": "lofi hip hop instrumental, mellow rhodes chords, soft boom bap drums, tempo 80bpm, rain on glass ambience, warm study desk lamp mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "3 AM Convenience Store", "p": "lofi chillhop instrumental, muted guitar loops, soft pad swells, tempo 84bpm, faint convenience store hum ambience, 3am snack run mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Seaside Cabin", "p": "lofi beach instrumental, soft ukulele-like plucks and mellow keys, gentle wave ambience, tempo 78bpm, warm sun-faded tape texture, seaside cabin afternoon mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Bookstore", "p": "cozy lofi instrumental, upright piano and soft double bass, brushed drums, tempo 82bpm, pages-turning ambience, quiet bookstore corner mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Subway Commute Home", "p": "lofi city instrumental, smooth rhodes and mellow synth bass, tempo 90bpm, distant subway rumble, tired but peaceful commute home mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Summer Night Fan", "p": "summer night lofi, soft electric piano, gentle bossa-inspired guitar, tempo 86bpm, whirring fan and cicada ambience, humid summer night mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Game Loading Screen", "p": "chill lofi chiptune hybrid, soft 8-bit melody over warm lofi drums, tempo 88bpm, relaxed nostalgic mood, no harsh sounds, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Study Cafe", "p": "lofi study beat, calm piano loop, soft hi-hats and kick, tempo 76bpm, subtle keyboard typing ambience, focused library mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Old Radio", "p": "lofi radio instrumental, crackling AM radio texture, warm jazz guitar, tempo 74bpm, old tape wobble, grandfather's radio on a porch mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Snowflakes Outside", "p": "winter lofi instrumental, soft celesta melody, mellow felt piano, tempo 70bpm, quiet snowfall ambience, cozy blanket and warm tea mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Jazzy Hip Hop Morning", "p": "jazzy lofi hip hop, bright upright bass and warm trumpet, laid-back drums, tempo 92bpm, fresh morning coffee mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Stargazing Rooftop", "p": "dreamy lofi instrumental, floaty synth pads and sparse piano, tempo 72bpm, faint night breeze ambience, stargazing on a rooftop mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "Dog Walk", "p": "lofi acoustic instrumental, light guitar plucks and soft claps, tempo 90bpm, birdsong ambience, relaxed afternoon walk with a dog mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "lofi", "v": "inst", "t": "After the Rain", "p": "lofi ambient hybrid, wet-street reverb, soft piano and warm pads, tempo 68bpm, distant dripping ambience, calm after the rain mood, avoid: harsh digital distortion, overpowering loud drums, sudden tempo jumps"}, {"g": "pop", "v": "duet", "t": "Summer Title Track", "p": "upbeat kpop pop, punchy synth bass, bright pluck synths, tempo 128bpm, catchy pre-chorus into anthemic drop chorus, confident and energetic mood, female group vocals, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "male", "t": "Retro Synth", "p": "retro synthwave pop, groovy bassline, nostalgic 80s synths, tempo 118bpm, smooth male vocals, night drive with neon lights mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Festival", "p": "dreamy dance pop, airy female vocals, four on the floor beat, tempo 122bpm, shimmering synth arpeggios, festival sunset mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Party", "p": "funky disco pop, groovy slap bass, bright horn stabs, tempo 116bpm, confident female lead vocals, dancefloor celebration mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "male", "t": "Late Night Texts", "p": "soft kpop r&b, smooth electric piano, laid back trap drums, tempo 90bpm, sultry male vocals with light autotune, late night text conversation mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "duet", "t": "First Day of Summer", "p": "bright bubblegum pop, playful synth melody, claps and light percussion, tempo 130bpm, cheerful duet vocals, first day of summer mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Cheer Anthem", "p": "powerful pop anthem, driving drums, soaring strings layered with synths, tempo 100bpm, empowering female vocals, standing up after a hard year mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "Travel Vlog", "p": "chill tropical pop, marimba melody, soft reggae-influenced guitar, tempo 100bpm, relaxed vocals, beach vacation mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Chasing the Dream", "p": "anthemic pop rock hybrid, driving electric guitar riffs, pounding stadium drums, tempo 124bpm, confident female vocals, chasing a dream against the odds mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "duet", "t": "Crush Text", "p": "y2k inspired pop, bright vocoder hooks, bouncy synth bass, tempo 120bpm, playful duet vocals, texting your crush past midnight mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Breakup Comeback", "p": "moody electro pop, dark pulsing synth bass, glitchy percussion, tempo 108bpm, sultry confident female vocals, turning a breakup into a power anthem mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "duet", "t": "Carnival Date", "p": "carnival pop, bright chiptune-esque synth melody, bouncy percussion, tempo 126bpm, playful duet vocals, falling for someone at a carnival mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "Graduation", "p": "nostalgic graduation pop anthem, warm synth pads layered with light guitar, tempo 96bpm, bittersweet uplifting vocals, saying goodbye to your school days mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "Workout", "p": "high energy workout pop, driving four on the floor beat, punchy synth stabs, tempo 132bpm, motivational shouted vocal ad-libs, pushing through the last rep mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "City Pop Drive", "p": "korean city pop, slap bass and shiny electric guitar, bright brass hits, tempo 112bpm, smooth female vocals, night drive through the city mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "duet", "t": "Fresh Teen Pop", "p": "fresh teen pop, bouncy synth bass, clap-driven beat, tempo 124bpm, bright duet vocals, school rooftop after class mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "duet", "t": "Girl Crush", "p": "bold kpop dance track, heavy 808 bass and sharp synth stabs, tempo 130bpm, confident rap verse into anthemic chorus, powerful group vocals, unstoppable mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "male", "t": "Acoustic Pop", "p": "acoustic pop with light beat, strummed guitar and finger snaps, tempo 104bpm, warm male vocals, easy sunny afternoon mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Latin Pop", "p": "latin pop groove, nylon guitar and congas, tempo 98bpm, sunny female vocals, beach dance mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "4 AM Synth Pop", "p": "dreamy synth pop, glossy pads and pulsing bass, tempo 110bpm, ethereal vocals, empty neon street at 4am mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Festival Dance Drop", "p": "uplifting dance pop with festival drop, big bright synth lead, tempo 126bpm, anthemic female vocal hook, hands in the air mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "duet", "t": "Confession Song", "p": "sweet pop ballad-leaning, soft piano and light beat, tempo 92bpm, boy and girl duet vocals, nervous confession on a school path mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "New Jack Swing", "p": "new jack swing kpop revival, punchy snare, bright synth bass, tempo 108bpm, playful vocals, retro dance floor mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "Pop Rock", "p": "pop rock anthem, crunchy guitars and big drums, tempo 120bpm, catchy sing-along chorus, windows-down summer drive mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "female", "t": "Bedroom Pop", "p": "lofi bedroom pop, warm detuned synths and soft drum machine, tempo 100bpm, breathy female vocals, cozy bedroom dance mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}, {"g": "pop", "v": "vocal", "t": "Performance Intro", "p": "dark kpop performance track, deep sub bass and stuttering synths, tempo 134bpm, intense whisper-to-shout vocals, stage spotlight mood, avoid: muddy mix, weak underwhelming drop, generic filler lyrics"}]};</script>
+<script>
+(function(){
+'use strict';
+var U=DATA.ui,$=function(q){return document.querySelector(q)};
+const KEYS=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const MAJ=[6.35,2.23,3.48,2.33,4.38,4.09,2.52,5.19,2.39,3.66,2.29,2.88];
+const MIN=[6.33,2.68,3.52,5.38,2.60,3.53,2.54,4.75,3.98,2.69,3.34,3.17];
+/*ANALYSIS_START*/
+function fft(re,im){const n=re.length;
+  for(let i=1,j=0;i<n;i++){let bit=n>>1;for(;j&bit;bit>>=1)j^=bit;j^=bit;if(i<j){let t=re[i];re[i]=re[j];re[j]=t;t=im[i];im[i]=im[j];im[j]=t;}}
+  for(let len=2;len<=n;len<<=1){const ang=-2*Math.PI/len,wr=Math.cos(ang),wi=Math.sin(ang),h=len>>1;
+    for(let i=0;i<n;i+=len){let cr=1,ci=0;for(let k=0;k<h;k++){const a=i+k,b=a+h;const xr=re[b]*cr-im[b]*ci,xi=re[b]*ci+im[b]*cr;re[b]=re[a]-xr;im[b]=im[a]-xi;re[a]+=xr;im[a]+=xi;const t=cr*wr-ci*wi;ci=cr*wi+ci*wr;cr=t;}}}}
+const med=a=>{const s=[...a].sort((x,y)=>x-y);return s.length?s[Math.floor(s.length/2)]:0};
+const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+function smooth(a,w){const o=new Float32Array(a.length);for(let i=0;i<a.length;i++){let s=0,c=0;for(let j=Math.max(0,i-w);j<=Math.min(a.length-1,i+w);j++){s+=a[j];c++;}o[i]=s/c;}return o}
+function quant(a,q){const s=[...a].sort((x,y)=>x-y);return s[Math.min(s.length-1,Math.max(0,Math.floor(q*(s.length-1))))]}
+
+function analyze(buf,progress){
+  const sr0=buf.sampleRate,nch=buf.numberOfChannels,len0=buf.length;
+  const f=Math.max(1,Math.round(sr0/11025)),sr=sr0/f,len=Math.floor(len0/f);
+  const mono=new Float32Array(len);
+  for(let c=0;c<nch;c++){const d=buf.getChannelData(c);for(let i=0;i<len;i++){let s=0;for(let k=0;k<f;k++)s+=d[i*f+k];mono[i]+=s/f/nch;}}
+  const dur=len0/sr0,N=4096,H=512,nf=Math.max(0,Math.floor((len-N)/H)+1);
+  const win=new Float32Array(N);for(let i=0;i<N;i++)win[i]=0.5-0.5*Math.cos(2*Math.PI*i/(N-1));
+  const re=new Float32Array(N),im=new Float32Array(N),prev=new Float32Array(N/2);
+  const T=Math.ceil(dur),secRms=new Float32Array(T).fill(0),secCent=new Float32Array(T),secFlux=new Float32Array(T),secN=new Float32Array(T);
+  const secChroma=Array.from({length:T},()=>new Float32Array(12));
+  const flux=new Float32Array(nf),chromaAll=new Float32Array(12),binHz=sr/N;
+  const kLo=Math.floor(110/binHz),kHi=Math.floor(2000/binHz),kCent=Math.floor(5000/binHz);
+  for(let i=0;i<nf;i++){
+    let e=0;for(let k=0;k<N;k++){const v=mono[i*H+k]*win[k];re[k]=v;im[k]=0;e+=v*v;}
+    fft(re,im);
+    let fl=0,cs=0,ms=0;const ch=new Float32Array(12);
+    for(let k=1;k<N/2;k++){const m=Math.sqrt(re[k]*re[k]+im[k]*im[k]),lm=Math.log1p(m*20);
+      if(k<=kHi){const d=lm-prev[k];if(d>0)fl+=d;}
+      prev[k]=lm;
+      if(k<=kCent){cs+=k*binHz*m;ms+=m;}
+      if(k>=kLo&&k<=kHi){const pc=((Math.round(12*Math.log2(k*binHz/440)+69))%12+12)%12;ch[pc]+=m;}}
+    flux[i]=fl;
+    const t=(i*H+N/2)/sr,s=Math.min(T-1,Math.floor(t));
+    secRms[s]+=e/N;secCent[s]+=ms>0?cs/ms:0;secFlux[s]+=fl;secN[s]++;
+    for(let p=0;p<12;p++){secChroma[s][p]+=ch[p];chromaAll[p]+=ch[p];}
+    if(progress&&i%400===0)progress(i/nf);
+  }
+  const rmsDb=new Float32Array(T),cent=new Float32Array(T),fx=new Float32Array(T);
+  for(let s=0;s<T;s++){const n=secN[s]||1;rmsDb[s]=10*Math.log10(secRms[s]/n+1e-12);cent[s]=secCent[s]/n;fx[s]=secFlux[s]/n;}
+  // BPM
+  const fs=sr/H,ma=smooth(flux,Math.round(fs*0.5)),env=new Float32Array(nf);
+  for(let i=0;i<nf;i++)env[i]=Math.max(0,flux[i]-ma[i]);
+  const lagMin=Math.floor(fs*60/200),lagMax=Math.ceil(fs*60/60),r=new Float32Array(lagMax+2);
+  let r0=0;for(let i=0;i<nf;i++)r0+=env[i]*env[i];
+  for(let l=lagMin-1;l<=lagMax+1;l++){let s=0;for(let i=0;i+l<nf;i++)s+=env[i]*env[i+l];r[l]=s/(r0||1);}
+  let bestL=lagMin,bestV=-1;
+  for(let l=lagMin;l<=lagMax;l++){const bpm=60*fs/l,prior=Math.exp(-0.5*Math.pow(Math.log2(bpm/115)/0.8,2)),v=r[l]*prior;if(v>bestV&&r[l]>=r[l-1]&&r[l]>=r[l+1]){bestV=v;bestL=l;}}
+  let lag=bestL;const a=r[bestL-1],b=r[bestL],c=r[bestL+1],dn=a-2*b+c;if(dn!==0)lag=bestL+0.5*(a-c)/dn;
+  const bpm=nf>10?60*fs/lag:0;
+  // Key
+  let bk=0,bm=0,bs=-9;const cs=[...chromaAll];
+  for(let t=0;t<12;t++){for(const [prof,mode] of [[MAJ,0],[MIN,1]]){
+    let sx=0,sy=0,sxy=0,sxx=0,syy=0;for(let p=0;p<12;p++){const x=cs[(p+t)%12],y=prof[p];sx+=x;sy+=y;sxy+=x*y;sxx+=x*x;syy+=y*y;}
+    const co=(12*sxy-sx*sy)/(Math.sqrt((12*sxx-sx*sx)*(12*syy-sy*sy))||1);if(co>bs){bs=co;bk=t;bm=mode;}}}
+  const key=KEYS[bk]+(bm?' minor':' major');
+  const loud=med(Array.from(rmsDb).filter(v=>v>-70));
+  const sections=segment(rmsDb,cent,fx,secChroma,dur);
+  return {dur,T,bpm,key,loud,rmsDb,cent,fx,sections,keyScore:bs};
+}
+
+function segment(rmsDb,cent,fx,chroma,dur){
+  const T=rmsDb.length,sm=(a)=>smooth(a,1);
+  const raw=[sm(rmsDb),sm(Float32Array.from(cent,v=>Math.log(v+50))),sm(fx)];
+  const feats=raw.map(a=>{const m=mean(a),sd=Math.sqrt(mean(Array.from(a,v=>(v-m)*(v-m))))||1;return Float32Array.from(a,v=>(v-m)/sd)});
+  const chS=chroma.map(c=>{const n=Math.sqrt(c.reduce((s,v)=>s+v*v,0))||1;return Float32Array.from(c,v=>v/n*2)});
+  for(let p=0;p<12;p++){const col=smooth(Float32Array.from(chS,c=>c[p]),2);for(let s=0;s<T;s++)chS[s][p]=col[s];}
+  const vec=s=>{const v=[feats[0][s],feats[1][s],feats[2][s]];for(let p=0;p<12;p++)v.push(chS[s][p]);return v};
+  const V=Array.from({length:T},(_,s)=>vec(s));
+  const dist=(i,j)=>{let d=0;for(let k=0;k<V[i].length;k++){const x=V[i][k]-V[j][k];d+=x*x;}return Math.sqrt(d)};
+  const ds=[];for(let i=0;i<T;i+=3)for(let j=i+3;j<T;j+=7)ds.push(dist(i,j));
+  const sig=med(ds)||1,L=Math.max(5,Math.min(10,Math.round(dur/24)));
+  const nov=new Float32Array(T);
+  for(let t=L;t<T-L;t++){let s=0;for(let i=-L;i<L;i++)for(let j=-L;j<L;j++){const sg=(i<0?-1:1)*(j<0?-1:1);const d=dist(t+i,t+j);s+=sg*Math.exp(-d*d/(2*sig*sig));}nov[t]=s;}
+  const ns=smooth(nov,1),peaks=[];
+  for(let t=L;t<T-L;t++)if(ns[t]>=ns[t-1]&&ns[t]>=ns[t+1])peaks.push(t);
+  const nm=mean(Array.from(ns).slice(L,T-L)),nsd=Math.sqrt(mean(Array.from(ns).slice(L,T-L).map(v=>(v-nm)*(v-nm))))||1;
+  const maxN=Math.max(3,Math.round(dur/22)),minGap=9;
+  const pick=th=>{const cand=peaks.filter(t=>ns[t]>nm+th*nsd).sort((a,b)=>ns[b]-ns[a]),sel=[];
+    for(const t of cand){if(sel.length>=maxN)break;if(t<6||T-t<6)continue;if(sel.every(u=>Math.abs(u-t)>=minGap))sel.push(t);}return sel.sort((a,b)=>a-b)};
+  let sel=pick(0.15);if(sel.length<2&&dur>70)sel=pick(0);
+  const b=[0,...sel,T],secs=[];
+  for(let i=0;i<b.length-1;i++){const s=b[i],e=b[i+1],r=Array.from(rmsDb).slice(s,e),cc=Array.from(cent).slice(s,e),ff=Array.from(fx).slice(s,e);
+    let sl=0;if(r.length>2){const mx=(r.length-1)/2,my=mean(r);let nu=0,de=0;r.forEach((y,k)=>{nu+=(k-mx)*(y-my);de+=(k-mx)*(k-mx)});sl=de?nu/de:0;}
+    secs.push({start:s,end:e,dur:e-s,e:mean(r),cent:mean(cc),flux:mean(ff),slope:sl});}
+  label(secs);return secs;
+}
+const WORD={intro:'Intro',verse:'Verse',prechorus:'Pre-Chorus',chorus:'Chorus',bridge:'Bridge',outro:'Outro',inst:'Instrumental Break'};
+const KR={intro:'도입부',verse:'벌스',prechorus:'프리코러스',chorus:'후렴',bridge:'브릿지',outro:'아웃트로',inst:'간주'};
+function label(secs){
+  const n=secs.length,es=secs.map(s=>s.e),medE=med(es),thr=quant(es,0.65);
+  secs.forEach(s=>s.label='verse');
+  let ch=secs.map((s,i)=>s.e>=thr&&s.e>=medE+1&&!(n>=4&&(i===0||i===n-1)));
+  if(!ch.some(x=>x)){const top=es.indexOf(Math.max(...es));ch[top]=true;}
+  secs.forEach((s,i)=>{if(ch[i])s.label='chorus';});
+  if(secs[0].label!=='chorus'&&secs[0].dur<=32)secs[0].label='intro';
+  const L=secs[n-1];if(L.label!=='chorus'&&n>2&&L.dur<=40)L.label='outro';
+  let firstCh=secs.findIndex(s=>s.label==='chorus'),bi=-1,bv=1e9;
+  secs.forEach((s,i)=>{if(s.label==='verse'&&i>firstCh&&firstCh>=0&&s.start/ (secs[n-1].end)>=0.5&&s.e<medE&&s.e<bv){bv=s.e;bi=i;}});
+  if(bi>=0)secs[bi].label='bridge';
+  secs.forEach((s,i)=>{if(s.label==='verse'&&secs[i+1]&&secs[i+1].label==='chorus'&&s.dur<=16&&i>0&&secs[i-1].label!=='intro')s.label='prechorus';});
+  const mc=med(secs.map(s=>s.cent)),mf=med(secs.map(s=>s.flux));
+  secs.forEach(s=>{
+    const d=s.e-medE,w=[],k=[];
+    if(d<-2.5){w.push('soft, hushed');k.push('아주 여림');}else if(d<-0.7){w.push('gentle, restrained');k.push('여림');}
+    else if(d<1.2){w.push('moderate, steady');k.push('보통');}else if(d<3){w.push('full, emotional');k.push('풍성함');}else{w.push('powerful, soaring');k.push('강함');}
+    if(s.cent<mc*0.88){w.push('warm, dark timbre');k.push('따뜻한 음색');}else if(s.cent>mc*1.12){w.push('bright, airy');k.push('밝고 트임');}
+    if(s.flux<mf*0.8){w.push('sparse arrangement');k.push('성김');}else if(s.flux>mf*1.25){w.push('dense, rhythmic');k.push('촘촘·리듬감');}
+    const ch=s.slope*s.dur;if(ch>2.5){w.push('building');k.push('점점 커짐');}else if(ch<-2.5){w.push('fading');k.push('점점 작아짐');}
+    s.en=w.join(', ');s.kr=k.join(' · ');s.d=d;});
+}
+
+var GN=DATA.genres,P=DATA.prompts;
+var R=null,bpm=0,vocal='any',genre='auto',busy=false;
+function fmt(s){return Math.floor(s/60)+':'+String(Math.round(s%60)).padStart(2,'0')}
+function toast(m){var t=$('#toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show')},1800)}
+function copyText(txt,msg){
+  function fb(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);toast(ok?msg:U.copyFail)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast(msg)},fb)}else fb();
+}
+function mkChips(box,items,cur,on){
+  box.innerHTML='';
+  items.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=it[1];b.setAttribute('aria-pressed',it[0]===cur?'true':'false');
+    b.onclick=function(){on(it[0]);mkChips(box,items,it[0],on)};box.appendChild(b)});
+}
+/* ---------- features ---------- */
+var CALM=/\b(soft|gentle|slow|intimate|warm|ambient|lo-?fi|dreamy|sparse|quiet|hush\w*|tender|calm|peaceful|minimal|lullaby|floating|drifting|slowly)\b/g;
+var HARD=/\b(powerful|epic|driving|energetic|anthemic|uptempo|soaring|dramatic|bold|upbeat|dance|big|massive|intense|triumphant|punchy|groove|danceable|bouncy|fast)\b/g;
+var MINOR=/\b(melancholic|sad|longing|dark|nostalgic|bittersweet|sorrow\w*|rain|tears|haunting|lonely|heartbreak|farewell|grief|yearning|regret)\b/g;
+var MAJOR=/\b(uplifting|cheerful|happy|sunny|bright|joyful|hopeful|playful|sweet|warm summer|lively)\b/g;
+function cnt(s,re){var m=s.match(re);return m?m.length:0}
+function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
+function feats(){
+  var r=Array.from(R.rmsDb),dyn=quant(r,0.9)-quant(r,0.1),c=med(Array.from(R.cent));
+  var tN=clamp((bpm-60)/70,0,1),dN=clamp(dyn/18,0,1),bN=clamp((c-1000)/2500,0,1);
+  return {energy:0.5*tN+0.3*dN+0.2*bN,minor:/minor/.test(R.key),calm:tN<0.25&&dN<0.45};
+}
+function pBpm(p){var m=p.match(/tempo\s*(\d+)\s*bpm/i);return m?+m[1]:0}
+function score(p,f){
+  var s=0,why=[],low=p.p.toLowerCase(),pb=pBpm(low),pe,calm=cnt(low,CALM),hard=cnt(low,HARD);
+  if(pb){var d=Math.abs(pb-bpm);s+=45*Math.max(0,1-d/30);if(d<=8)why.push(U.wBpm.replace('{p}',pb).replace('{b}',Math.round(bpm)))}
+  else{s+=f.energy<0.3?30:5;if(f.energy<0.3)why.push(U.wFree)}
+  pe=clamp(0.5+0.12*hard-0.1*calm+(pb?(pb-90)/150:-0.25),0,1);
+  var dd=Math.abs(pe-f.energy);s+=30*clamp(1-dd*1.6,0,1);
+  if(dd<0.2)why.push(f.energy<0.4?U.wCalm:f.energy>0.6?U.wHard:U.wMid);
+  var mi=cnt(low,MINOR),ma=cnt(low,MAJOR);
+  if(f.minor&&mi){s+=10;why.push(U.wMinor)}else if(!f.minor&&ma){s+=10;why.push(U.wMajor)}
+  if(vocal!=='any'){if(p.v===vocal){s+=20;why.push(U.wVocal)}else if(p.v==='vocal'&&(vocal==='female'||vocal==='male'))s+=8;else s-=40}
+  return {s:s,why:why.slice(0,3)};
+}
+function personalize(txt){
+  var b=Math.round(bpm),out=txt;
+  if(/tempo\s*\d+\s*bpm/i.test(out))out=out.replace(/tempo\s*\d+\s*bpm/i,'tempo '+b+'bpm');
+  else{var i=out.indexOf(', avoid:');var add=', tempo '+b+'bpm';out=i>=0?out.slice(0,i)+add+out.slice(i):out+add}
+  if($('#optKey').checked){var i2=out.indexOf(', avoid:');var k=', '+R.key+' key';out=i2>=0?out.slice(0,i2)+k+out.slice(i2):out+k}
+  return out;
+}
+function pick(){
+  var f=feats(),list=P.filter(function(p){return genre==='auto'||p.g===genre}).map(function(p){var r=score(p,f);return {p:p,s:r.s,why:r.why}}).sort(function(a,b){return b.s-a.s});
+  var out=[],per={};
+  for(var i=0;i<list.length&&out.length<3;i++){var g=list[i].p.g;if((per[g]||0)>=2&&genre==='auto')continue;per[g]=(per[g]||0)+1;out.push(list[i])}
+  return out;
+}
+/* ---------- render ---------- */
+function names(){var v=0;return R.sections.map(function(s){if(s.label==='verse'){v++;return DATA.lang==='ko'?'벌스 '+v:'Verse '+v}return DATA.lang==='ko'?KR[s.label]:WORD[s.label]})}
+function enNames(){var v=0;return R.sections.map(function(s){if(s.label==='verse'){v++;return 'Verse '+v}return WORD[s.label]})}
+function renderSum(){
+  var chips=[[U.cLen,fmt(R.dur)],[U.cBpm,Math.round(bpm)],[U.cKey,R.key],[U.cSec,R.sections.length]];
+  var ul=$('#sum');ul.innerHTML='';
+  chips.forEach(function(c){var li=document.createElement('li');var s=document.createElement('span');s.textContent=c[0];var b=document.createElement('b');b.textContent=c[1];li.appendChild(s);li.appendChild(b);ul.appendChild(li)});
+}
+function renderCards(){
+  var box=$('#cards');box.innerHTML='';var top=pick();
+  if(!top.length){var p=document.createElement('p');p.className='note';p.textContent=U.none;box.appendChild(p);return}
+  top.forEach(function(r,i){
+    var art=document.createElement('article');art.className='pcard';
+    var h=document.createElement('header');h.className='pc-top';
+    var h3=document.createElement('h3');h3.className='pc-title';h3.textContent=(i+1)+'. '+r.p.t;h.appendChild(h3);
+    var right=document.createElement('div');right.className='pc-right';var gb=document.createElement('span');gb.className='badge-b';gb.textContent=GN[r.p.g];right.appendChild(gb);h.appendChild(right);art.appendChild(h);
+    if(r.why.length){var w=document.createElement('div');w.className='pc-tags';r.why.forEach(function(x){var sp=document.createElement('span');sp.textContent=x;w.appendChild(sp)});art.appendChild(w)}
+    var txt=personalize(r.p.p);
+    var pre=document.createElement('pre');pre.className='pc-text';pre.setAttribute('lang','en');pre.setAttribute('translate','no');pre.textContent=txt;art.appendChild(pre);
+    var acts=document.createElement('div');acts.className='pc-actions';
+    function btn(cls,label,fn){var b=document.createElement('button');b.type='button';b.className=cls;b.textContent=label;b.onclick=fn;acts.appendChild(b)}
+    btn('b-main',U.copy,function(){copyText(txt,U.copied)});
+    var ai=txt.indexOf(', avoid:');
+    if(ai>=0){btn('b-sub',U.styleOnly,function(){copyText(txt.slice(0,ai),U.copied)});btn('b-sub',U.excl,function(){copyText(txt.slice(ai+2).replace(/^avoid:\s*/i,''),U.copied)})}
+    var a=document.createElement('a');a.className='b-sub';a.href=DATA.genreBase+r.p.g+'/';a.textContent=U.moreGenre;acts.appendChild(a);
+    art.appendChild(acts);box.appendChild(art);
+  });
+}
+function structText(){
+  var en=enNames();
+  return R.sections.map(function(s,i){var tag='['+en[i]+(s.en?': '+s.en:'')+']';var inst=(s.label==='intro'||s.label==='outro'||s.label==='inst')?'\n[Instrumental]':'';return tag+inst+'\n'}).join('\n');
+}
+function levels(){var lo=quant(R.rmsDb,0.05),hi=quant(R.rmsDb,0.95),rg=(hi-lo)||1;return Array.from(R.rmsDb,function(v){return clamp(Math.round(9*(v-lo)/rg),0,9)})}
+function drawChart(){
+  if(!R)return;var c=$('#chart'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;if(!w)return;c.width=w*dpr;c.height=h*dpr;
+  var g=c.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,w,h);
+  var lv=levels(),T=lv.length,bw=w/T,top=22,base=h-16,hh=base-top,nm=names();
+  var col={chorus:'#ff9a5c',verse:'#9a8cff',prechorus:'#9a8cff',bridge:'#8fe0b0',intro:'#98a2c4',outro:'#98a2c4',inst:'#8fe0b0'};
+  R.sections.forEach(function(s,i){g.globalAlpha=.9;g.fillStyle=col[s.label];
+    for(var t=s.start;t<s.end&&t<T;t++){var bh=Math.max(2,hh*(lv[t]+.5)/9.5);g.fillRect(t*bw+.5,base-bh,Math.max(1,bw-1),bh)}
+    g.globalAlpha=1;g.strokeStyle='#34417a';g.beginPath();g.moveTo(s.start*bw,top-4);g.lineTo(s.start*bw,base);g.stroke();
+    g.fillStyle='#f3f0e8';g.font='11px "Noto Sans KR",sans-serif';g.textBaseline='top';
+    if((s.end-s.start)*bw>(DATA.lang==='ko'?34:46))g.fillText(nm[i],s.start*bw+4,4)});
+  g.fillStyle='#98a2c4';g.font='10px "IBM Plex Mono",monospace';g.textBaseline='alphabetic';
+  var step=T>200?30:T>100?20:10;for(var t2=0;t2<=T;t2+=step)g.fillText(t2+'s',Math.min(w-22,t2*bw+2),h-3);
+}
+function renderTable(){
+  var t=$('#stbl'),nm=names();t.innerHTML='';
+  var hr=document.createElement('tr');U.th.forEach(function(x){var th=document.createElement('th');th.textContent=x;hr.appendChild(th)});t.appendChild(hr);
+  R.sections.forEach(function(s,i){var tr=document.createElement('tr');[nm[i],fmt(s.start)+' – '+fmt(s.end),DATA.lang==='ko'?s.kr:s.en].forEach(function(x){var td=document.createElement('td');td.textContent=x;tr.appendChild(td)});t.appendChild(tr)});
+}
+function renderAll(){
+  renderSum();renderCards();$('#struct').value=structText();renderTable();
+  $('#res').hidden=false;$('#res2').hidden=false;drawChart();
+  $('#moreg').textContent=U.moreg;
+}
+/* ---------- file ---------- */
+async function handle(file){
+  if(busy||!file)return;
+  if(!/^audio\//.test(file.type)&&!/\.(mp3|wav|m4a|aac|ogg|flac|opus)$/i.test(file.name)){$('#stat').textContent=U.notAudio;return}
+  busy=true;$('#err').hidden=true;$('#stat').textContent=U.reading;
+  try{
+    var ab=await file.arrayBuffer(),AC=window.AudioContext||window.webkitAudioContext,ctx=new AC();
+    var buf=await ctx.decodeAudioData(ab);if(ctx.close)ctx.close();
+    $('#stat').textContent=U.analyzing;await new Promise(function(r){setTimeout(r,30)});
+    R=analyze(buf,function(){});bpm=R.bpm;
+    $('#stat').textContent=file.name+' · '+U.done;renderAll();
+    try{$('#res').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
+  }catch(e){console.error('SAERR',e&&e.message);$('#stat').textContent='';$('#err').textContent=U.fail;$('#err').hidden=false}
+  busy=false;
+}
+function init(){
+  mkChips($('#vchips'),U.vocals,vocal,function(v){vocal=v;if(R)renderCards()});
+  mkChips($('#gchips'),[['auto',U.auto]].concat(Object.keys(GN).map(function(k){return [k,GN[k]]})),genre,function(g){genre=g;if(R)renderCards()});
+  var dz=$('#drop'),fi=$('#file');
+  fi.onchange=function(){handle(fi.files[0]);fi.value=''};
+  ['dragenter','dragover'].forEach(function(e){dz.addEventListener(e,function(ev){ev.preventDefault();dz.classList.add('over')})});
+  ['dragleave','drop'].forEach(function(e){dz.addEventListener(e,function(ev){ev.preventDefault();dz.classList.remove('over')})});
+  dz.addEventListener('drop',function(ev){var f=ev.dataTransfer&&ev.dataTransfer.files&&ev.dataTransfer.files[0];handle(f)});
+  $('#bpmHalf').onclick=function(){if(R){bpm=bpm/2;renderSum();renderCards()}};
+  $('#bpmDbl').onclick=function(){if(R){bpm=bpm*2;renderSum();renderCards()}};
+  $('#optKey').onchange=function(){if(R)renderCards()};
+  $('#cpStruct').onclick=function(){copyText($('#struct').value,U.copied)};
+  window.addEventListener('resize',function(){if(R)drawChart()});
+}
+init();
+})();
+
+</script>
+</body>
+</html>
