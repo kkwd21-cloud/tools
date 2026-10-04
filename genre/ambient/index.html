@@ -208,6 +208,32 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
 @media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
 
 .top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -229,6 +255,7 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
     <a class="btn-p" href="#library">프롬프트 보기 ↓</a>
     <a class="btn-g" href="#builder">직접 조립하기</a>
     <button type="button" class="btn-g" id="randBtn">🎲 랜덤 하나 뽑기</button>
+    <button type="button" class="btn-g" id="logGo"></button>
   </div>
   <div class="eq" id="eq" aria-hidden="true"></div>
   <p class="use">어울리는 영상: 명상·수면 영상, 집중용 배경음악, 풍경·자연 영상</p>
@@ -238,7 +265,7 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
   <div class="how">
     <div class="step"><div class="n">STEP 01</div><h3>프롬프트 복사</h3><p>마음에 드는 카드의 [복사]를 눌러요. 한국어 해설로 어떤 느낌인지 먼저 확인할 수 있어요.</p></div>
     <div class="step"><div class="n">STEP 02</div><h3>Suno에 붙여넣기</h3><p>Style of Music 칸에 붙여넣고 곡을 만들어요. Pro/Premier라면 [제외 복사]를 Exclude Styles 칸에 넣어 보세요. <a href="https://suno.com/create" target="_blank" rel="noopener">Suno 열기 ↗</a></p></div>
-    <div class="step"><div class="n">STEP 03</div><h3>영상으로 완성</h3><p>곡이 완성되면 가사 싱크와 이펙트를 넣어 유튜브 영상으로 만들어요. <a href="../../musiccanvas/">MusicCanvas →</a></p></div>
+    <div class="step"><div class="n">STEP 03</div><h3>영상으로 완성</h3><p>곡이 완성되면 가사 싱크와 이펙트를 넣어 유튜브 영상으로 만들어요. <a href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">MusicCanvas ↗</a></p></div>
   </div>
 
   <section class="sec" id="library">
@@ -315,6 +342,12 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
     </div>
   </section>
 
+  <section class="sec" id="log" hidden>
+    <div class="sec-head"><h2 id="logH"></h2><p id="logP"></p></div>
+    <div id="logStats"></div>
+    <div id="logList"></div>
+  </section>
+
   <section class="sec" id="guide">
     <div class="sec-head"><h2>앰비언트 &amp; 인스트루멘탈 프롬프트, 이렇게 쓰세요</h2><p>같은 프롬프트라도 쓰는 방식에 따라 결과가 크게 달라져요. 아래 네 가지만 기억하세요.</p></div>
     <ul class="tips"><li><h3>&#x27;no drums&#x27;, &#x27;tempo-free&#x27;를 활용하세요</h3><p>드럼 없이 흐르는 곡을 원하면 이 표현을 넣으세요. 템포 대신 공간감과 질감을 적는 게 앰비언트에는 더 잘 맞아요.</p></li><li><h3>가사 대신 Instrumental을 켜세요</h3><p>앰비언트는 보통 보컬이 없어요. Suno에서 가사를 비우고 Instrumental 옵션을 켜는 게 가장 확실해요.</p></li><li><h3>장면 하나를 정하세요</h3><p>&#x27;floating in still water&#x27;, &#x27;walking through morning fog&#x27;처럼 장면 하나를 정하면 곡의 분위기가 일정해져요.</p></li><li><h3>긴 곡은 이어 붙이세요</h3><p>수면용이나 집중용처럼 긴 영상이 필요하면 여러 곡을 이어 붙여 만드는 게 일반적이에요.</p></li></ul>
@@ -340,7 +373,6 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
   <p>월 구독 없이 한 번 결제로 쓰는 Windows 프로그램이에요. 곡을 넣으면 가사 싱크, 이펙트, 텍스트까지 들어간 유튜브용 영상으로 내보낼 수 있어요.</p>
   <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
   <p class="fine">Windows · 평생 라이선스 $22</p>
-  <p class="fine"><a href="../../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">기능·가격·자주 묻는 질문 보기 →</a></p>
 </div></section>
 <footer>Suno, YouTube는 각 회사의 상표예요. 이 페이지는 비공식 도구이며 결과를 보장하지 않아요. 프롬프트는 자유롭게 복사해서 쓰세요.</footer>
 
@@ -359,7 +391,7 @@ function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAl
 function rnd(n){return Math.floor(Math.random()*n);}
 function pick(a){return a[rnd(a.length)];}
 
-var U=DATA.ui||{copied:'복사했어요',copyFail:'복사하지 못했어요. 직접 선택해서 복사해 주세요',fav:'즐겨찾기',unfav:'즐겨찾기 해제',pCopied:'프롬프트를 복사했어요',sCopied:U.sCopied,eCopied:U.eCopied,remixed:'살짝 바꿨어요',favCopied:function(n){return n+'개를 복사했어요';},clear:'비우기',clearSure:'정말 비울까요?',count:function(s,t){return s===t?('전체 '+t+'개'):(s+'개 표시 중 · 전체 '+t+'개');},none:'조건에 맞는 프롬프트가 없어요',pick:function(t){return '이 프롬프트는 어때요? “'+t+'”';},slow:'느림',mid:'보통',fast:'빠름',bCopied:U.bCopied,lCopied:U.lCopied,tCopied:U.tCopied};
+var U=DATA.ui||{copied:'복사했어요',copyFail:'복사하지 못했어요. 직접 선택해서 복사해 주세요',fav:'즐겨찾기',unfav:'즐겨찾기 해제',pCopied:'프롬프트를 복사했어요',sCopied:'스타일만 복사했어요',eCopied:'제외 문구를 복사했어요 (Exclude Styles 칸용)',remixed:'살짝 바꿨어요',favCopied:function(n){return n+'개를 복사했어요';},clear:'비우기',clearSure:'정말 비울까요?',count:function(s,t){return s===t?('전체 '+t+'개'):(s+'개 표시 중 · 전체 '+t+'개');},none:'조건에 맞는 프롬프트가 없어요',pick:function(t){return '이 프롬프트는 어때요? “'+t+'”';},slow:'느림',mid:'보통',fast:'빠름',bCopied:'조립한 프롬프트를 복사했어요',lCopied:'가사를 복사했어요',tCopied:'제목을 복사했어요'};
 if(DATA.ui){var X=DATA.ui;U=Object.assign({},U,X);U.favCopied=function(n){return X.favFmt.replace('{n}',n);};U.count=function(a,t){return a===t?X.countAll.replace('{t}',t):X.countSome.replace('{s}',a).replace('{t}',t);};U.pick=function(t){return X.pickFmt.replace('{t}',t);};}
 /* toast + copy */
 var toastEl=$('#toast'),toastT;
@@ -586,6 +618,128 @@ $$('#lyrLang button').forEach(function(b){
   });
 });
 genLyr();
+
+
+/* ===== 내 기록장 (localStorage, 서버 없음) ===== */
+(function(){
+var L=Object.assign({
+  btn:'기록',btnT:'이 프롬프트로 만든 곡의 결과를 기록해요',navBtn:'내 기록장',h:'내 기록장',p:'수노에서 곡을 만들어 들어 본 뒤, 결과를 남겨 두세요. 쌓이면 어떤 단어가 잘 나오는지 보여 줘요. 기록은 이 브라우저에만 저장되고 어디에도 올라가지 않아요.',
+  dlgH:'결과 기록하기',style:'스타일 (Style of Music)',title:'제목 (곡 이름)',lyr:'가사 (붙여넣기)',lyrPh:'수노에 넣은 가사를 붙여 두면 기록장에서 같이 볼 수 있어요 (선택)',memo:'메모',memoPh:'예: 후렴이 약함, 보컬이 마음에 듦',
+  rate:'평가',good:'좋아요',ok:'보통',bad:'별로',save:'저장',cancel:'닫기',saved:'기록장에 저장했어요',needRate:'좋아요 / 보통 / 별로 중 하나를 골라 주세요',
+  fromLyr:'가사 도우미의 가사 불러오기',fromBld:'조합기',empty:'아직 기록이 없어요. 프롬프트의 "기록" 버튼으로 첫 기록을 남겨 보세요.',
+  stat:'기록 {n}개 · 좋아요 {g} · 보통 {o} · 별로 {b}',goodW:'잘 나온 단어',badW:'별로였던 단어',wHint:'같은 단어가 2번 이상 쌓이면 여기에 보여요.',
+  del:'삭제',delSure:'정말 삭제?',copyStyle:'스타일 복사',copyAll:'기록 전체 복사',showLyr:'가사 보기',noName:'(이름 없음)',full:'저장 공간이 부족해요. 오래된 기록을 지워 주세요.',locale:'ko-KR',
+  copiedAll:'기록을 복사했어요',memoSave:'메모 저장'
+},(DATA.ui&&DATA.ui.log)||{});
+var LK='dusk_log_v1';
+function load(){try{var a=JSON.parse(localStorage.getItem(LK)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+var logs=load(),store=true;
+function save(){try{localStorage.setItem(LK,JSON.stringify(logs));return true;}catch(e){return false;}}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+var RL={good:L.good,ok:L.ok,bad:L.bad};
+/* section */
+var sec=$('#log');
+if(sec){
+  $('#logH').textContent=L.h;$('#logP').textContent=L.p;
+}
+/* hero button */
+var go=$('#logGo');if(go){go.textContent=L.navBtn;go.addEventListener('click',function(){var s=$('#log');if(s){s.scrollIntoView({behavior:'smooth',block:'start'});}});}
+/* modal */
+var dlg=null,cur=null,rateSel=null;
+function build(){
+  dlg=el('div','lg-modal');dlg.hidden=true;dlg.setAttribute('role','dialog');dlg.setAttribute('aria-modal','true');dlg.setAttribute('aria-labelledby','lgH');
+  var box=el('div','lg-box');dlg.appendChild(box);
+  var h=el('h3',null,L.dlgH);h.id='lgH';box.appendChild(h);
+  function fld(label,node){var w=el('label','lg-fld');w.appendChild(el('span',null,label));w.appendChild(node);box.appendChild(w);return node;}
+  var st=el('textarea','lg-in');st.rows=3;st.id='lgStyle';fld(L.style,st);
+  var ti=el('input','lg-in');ti.type='text';ti.id='lgTitle';fld(L.title,ti);
+  var ly=el('textarea','lg-in');ly.rows=5;ly.id='lgLyr';ly.placeholder=L.lyrPh;fld(L.lyr,ly);
+  var lyBtn=el('button','b-sub',L.fromLyr);lyBtn.type='button';lyBtn.id='lgFromLyr';box.appendChild(lyBtn);
+  var rw=el('div','lg-rate');rw.setAttribute('role','group');rw.setAttribute('aria-label',L.rate);
+  ['good','ok','bad'].forEach(function(k){var b=el('button','lg-r',RL[k]);b.type='button';b.setAttribute('data-r',k);b.setAttribute('aria-pressed','false');rw.appendChild(b);});
+  box.appendChild(rw);
+  var me=el('input','lg-in');me.type='text';me.id='lgMemo';me.placeholder=L.memoPh;fld(L.memo,me);
+  var msg=el('p','lg-msg');msg.id='lgMsg';msg.setAttribute('aria-live','polite');box.appendChild(msg);
+  var act=el('div','lg-act');var sv=el('button','b-main',L.save);sv.type='button';sv.id='lgSave';var cl=el('button','b-sub',L.cancel);cl.type='button';cl.id='lgClose';act.appendChild(sv);act.appendChild(cl);box.appendChild(act);
+  document.body.appendChild(dlg);
+  rw.addEventListener('click',function(e){var b=e.target.closest('.lg-r');if(!b)return;rateSel=b.getAttribute('data-r');$$('.lg-r',rw).forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});$('#lgMsg').textContent='';});
+  cl.addEventListener('click',close);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dlg&&!dlg.hidden)close();});
+  lyBtn.addEventListener('click',function(){var t=$('#lyrTitle'),x=$('#lyrText');if(t&&!$('#lgTitle').value)$('#lgTitle').value=t.textContent.trim();if(x)$('#lgLyr').value=x.textContent.trim();});
+  sv.addEventListener('click',onSave);
+}
+function open(style,src){
+  if(!dlg)build();cur={src:src};rateSel=null;
+  $$('.lg-r',dlg).forEach(function(x){x.setAttribute('aria-pressed','false');});
+  $('#lgStyle').value=style;$('#lgTitle').value='';$('#lgLyr').value='';$('#lgMemo').value='';$('#lgMsg').textContent='';
+  var t=$('#lyrTitle'),x=$('#lyrText');
+  $('#lgFromLyr').hidden=!(t&&x);
+  dlg.hidden=false;document.body.classList.add('lg-open');
+  setTimeout(function(){var g=$('.lg-r',dlg);if(g)g.focus();},30);
+}
+function close(){if(dlg)dlg.hidden=true;document.body.classList.remove('lg-open');}
+function onSave(){
+  if(!rateSel){$('#lgMsg').textContent=L.needRate;return;}
+  var e={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),at:Date.now(),g:DATA.name,r:rateSel,t:$('#lgTitle').value.trim(),s:$('#lgStyle').value.trim(),l:$('#lgLyr').value.trim(),m:$('#lgMemo').value.trim()};
+  logs.unshift(e);if(logs.length>300)logs.length=300;
+  if(!save()){logs.shift();$('#lgMsg').textContent=L.full;return;}
+  close();toast(L.saved);render();
+  var s=$('#log');if(s){s.hidden=false;}
+}
+/* card + builder buttons */
+$$('.pcard').forEach(function(c){
+  var acts=$('.pc-actions',c);if(!acts)return;
+  var b=el('button','b-sub',L.btn);b.type='button';b.title=L.btnT;b.setAttribute('data-act','log');
+  b.addEventListener('click',function(ev){ev.stopPropagation();open(curText(c),'card');});
+  acts.appendChild(b);
+});
+(function(){var bc=$('#bCopy');if(!bc)return;var b=el('button','b-sub',L.btn);b.type='button';b.title=L.btnT;
+  b.addEventListener('click',function(){var o=$('#bOut');open(o?o.textContent:'','builder');});bc.parentNode.insertBefore(b,bc.nextSibling);})();
+/* list */
+function words(){
+  var w={};logs.forEach(function(l){
+    var seen={};String(l.s||'').split(/,\s*avoid:/i)[0].split(/,\s*/).forEach(function(k){k=k.trim().toLowerCase();if(!k||/avoid:/.test(k)||/^\d+\s*bpm$/.test(k)||/tempo\s*\d+/.test(k)||/^[a-g][#b]?\s*(major|minor)(\s*key)?$/.test(k)||k.length>40)return;seen[k]=1;});
+    Object.keys(seen).forEach(function(k){var o=w[k]||(w[k]={g:0,b:0});if(l.r==='good')o.g++;else if(l.r==='bad')o.b++;});});
+  var a=Object.keys(w).map(function(k){return [k,w[k]];});
+  return {good:a.filter(function(x){return x[1].g>=2&&x[1].g>x[1].b;}).sort(function(p,q){return (q[1].g-q[1].b)-(p[1].g-p[1].b);}).slice(0,8).map(function(x){return x[0]+' ('+x[1].g+')';}),
+          bad:a.filter(function(x){return x[1].b>=2&&x[1].b>x[1].g;}).sort(function(p,q){return (q[1].b-q[1].g)-(p[1].b-p[1].g);}).slice(0,8).map(function(x){return x[0]+' ('+x[1].b+')';})};
+}
+function render(){
+  if(!sec)return;var n=logs.length;
+  var gc=$('#logGo');if(gc)gc.textContent=L.navBtn+(n?' ('+n+')':'');
+  sec.hidden=false;
+  var c=function(r){return logs.filter(function(l){return l.r===r;}).length;};
+  var stEl=$('#logStats');stEl.innerHTML='';
+  if(!n){$('#logList').innerHTML='';var e0=el('p','note',L.empty);$('#logList').appendChild(e0);return;}
+  stEl.appendChild(el('p','lg-sum',L.stat.replace('{n}',n).replace('{g}',c('good')).replace('{o}',c('ok')).replace('{b}',c('bad'))));
+  var W=words();
+  function mk(t,a){if(!a.length)return;var p=el('p','note');var b=el('b',null,t+' ');p.appendChild(b);p.appendChild(document.createTextNode(a.join(', ')));stEl.appendChild(p);}
+  mk(L.goodW,W.good);mk(L.badW,W.bad);
+  if(!W.good.length&&!W.bad.length&&n>=3)stEl.appendChild(el('p','note',L.wHint));
+  var ca=el('button','b-sub',L.copyAll);ca.type='button';ca.addEventListener('click',function(){
+    copyText(logs.map(function(l){return '['+(RL[l.r]||'')+'] '+(l.t||L.noName)+' · '+l.g+'\n'+l.s+(l.l?'\n\n'+l.l:'')+(l.m?'\n(memo) '+l.m:'');}).join('\n\n----\n\n'),L.copiedAll);});
+  stEl.appendChild(ca);
+  var list=$('#logList');list.innerHTML='';
+  logs.forEach(function(l){
+    var d=el('div','lg-item');
+    var top=el('div','lg-top');top.appendChild(el('b',null,l.t||L.noName));
+    var rt=el('span','lg-meta');rt.appendChild(el('span','lg-badge '+l.r,RL[l.r]||''));rt.appendChild(el('span','tag',l.g+' · '+new Date(l.at).toLocaleDateString(L.locale)));top.appendChild(rt);d.appendChild(top);
+    var rate=el('div','lg-rate sm');rate.setAttribute('role','group');
+    ['good','ok','bad'].forEach(function(k){var b=el('button','lg-r',RL[k]);b.type='button';b.setAttribute('aria-pressed',String(l.r===k));b.addEventListener('click',function(){l.r=k;save();render();});rate.appendChild(b);});
+    d.appendChild(rate);
+    d.appendChild(el('pre','lg-style',l.s));
+    if(l.l){var dt=document.createElement('details');dt.appendChild(el('summary',null,L.showLyr));dt.appendChild(el('pre','lg-lyr',l.l));d.appendChild(dt);}
+    var mr=el('div','lg-memorow');var mi=el('input','lg-in');mi.type='text';mi.value=l.m||'';mi.placeholder=L.memoPh;mi.setAttribute('aria-label',L.memo);
+    var mb=el('button','b-sub',L.memoSave);mb.type='button';mb.addEventListener('click',function(){l.m=mi.value.trim();save();toast(L.saved);});mr.appendChild(mi);mr.appendChild(mb);d.appendChild(mr);
+    var act=el('div','lg-act');
+    var cp=el('button','b-sub',L.copyStyle);cp.type='button';cp.addEventListener('click',function(){copyText(l.s);});act.appendChild(cp);
+    var del=el('button','b-sub',L.del);del.type='button';var armed=false;del.addEventListener('click',function(){if(!armed){armed=true;del.textContent=L.delSure;setTimeout(function(){armed=false;del.textContent=L.del;},2500);return;}logs=logs.filter(function(x){return x.id!==l.id;});save();render();});act.appendChild(del);
+    d.appendChild(act);list.appendChild(d);
+  });
+}
+render();
+})();
 
 renderFavBar();apply();
 })();
