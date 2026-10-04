@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Free Suno Prompt &amp; Lyrics Checker: Fix Mistakes Before You Generate | Dusk Soul</title>
+<meta name="description" content="Check your Suno style prompt and lyrics before you generate. Finds character limit overruns, artist names, clashing genres and tag typos, and shows how to fix them. Free, no sign-up, nothing uploaded.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/en/suno-checker/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/suno-checker/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/suno-checker/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/suno-checker/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Free Suno Prompt &amp; Lyrics Checker: Fix Mistakes Before You Generate | Dusk Soul">
+<meta property="og:description" content="Check your Suno style prompt and lyrics before you generate. Finds character limit overruns, artist names, clashing genres and tag typos, and shows how to fix them. Free, no sign-up, nothing uploaded.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/en/suno-checker/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/en/"}, {"@type": "ListItem", "position": 2, "name": "Check Your Suno Prompt and Lyrics Before You Generate", "item": "https://kkwd21-cloud.github.io/tools/en/suno-checker/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this checker free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is free, needs no sign-up, and all checking happens in your browser."}}, {"@type": "Question", "name": "Is my text uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. This site is a static page with no server, so your text is never sent anywhere."}}, {"@type": "Question", "name": "Does an AI do the checking?", "acceptedAnswer": {"@type": "Answer", "text": "No. It uses fixed rules such as character count, the number of comma-separated keywords, repeated words and tag spelling. That makes it fast and consistent."}}, {"@type": "Question", "name": "Is the result guaranteed to be right?", "acceptedAnswer": {"@type": "Answer", "text": "No. How Suno reads a prompt changes by version. Treat the result as a guide, because Suno may still react differently after you fix things."}}, {"@type": "Question", "name": "What are the character limits?", "acceptedAnswer": {"@type": "Answer", "text": "They depend on the Suno model. This tool lets you choose between a newer model (1,000 style and 5,000 lyric characters) and an older one (200 style and 3,000 lyric characters). Go by the limit you see in Suno."}}, {"@type": "Question", "name": "Does it save Suno credits?", "acceptedAnswer": {"@type": "Answer", "text": "It only helps you avoid mistakes before you generate. It does not save credits by itself."}}, {"@type": "Question", "name": "Do I have to write in English?", "acceptedAnswer": {"@type": "Answer", "text": "English keywords tend to work better in the style box. Lyrics can be in other languages. To get Korean singing, add sung in Korean to the style."}}, {"@type": "Question", "name": "What does the cleaned version change?", "acceptedAnswer": {"@type": "Answer", "text": "It removes duplicate keywords, takes out [tags] and time stamps, and splits off the avoid: part. It does not change the meaning."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Check Your Suno Prompt and Lyrics Before You Generate", "url": "https://kkwd21-cloud.github.io/tools/en/suno-checker/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "inLanguage": "en"}</script>
+
+<style>:root{--accent:#7fd1e8;--accent2:#b8e6f2;--rgb:127,209,232}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.fgroup{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.fgroup>span:last-child{display:inline-flex;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12.5px;color:var(--muted);min-width:56px}
+.sumchips{display:flex;flex-wrap:wrap;gap:8px}
+.sumchips li{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:flex;flex-direction:column;min-width:84px}
+.sumchips span{font-size:11.5px;color:var(--muted)}
+.sumchips b{font-family:'IBM Plex Mono',monospace;font-size:18px}
+.sv-bad b{color:#ff8f8f}.sv-warn b{color:#f0c27a}.sv-good b{color:#8fe0b0}
+.items{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--line2);border-radius:12px;padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.item.sv-bad{border-left-color:#ff8f8f}.item.sv-warn{border-left-color:#f0c27a}.item.sv-good{border-left-color:#8fe0b0}.item.sv-note{border-left-color:#98a2c4}
+.it-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:14.5px}
+.it-tag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:1px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--text)}
+.sv-bad .it-tag{color:#ff8f8f;border-color:#ff8f8f}.sv-warn .it-tag{color:#f0c27a;border-color:#f0c27a}.sv-good .it-tag{color:#8fe0b0;border-color:#8fe0b0}
+.it-f{font-size:11.5px;color:var(--muted)}
+.item p{font-size:13.5px;color:var(--muted);line-height:1.7}
+textarea.inp{resize:vertical;line-height:1.6}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:13.5px;pointer-events:none;transition:.2s;z-index:50}
+#toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="./" class="on" aria-current="page">Prompt checker</a><a href="../song-analyzer/">Song analyzer</a><a href="../lyrics-generator/">Lyrics helper</a></nav><a class="top-lang" href="../../suno-checker/" hreflang="ko">한국어</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Free · no sign-up · nothing sent to a server</p>
+  <h1>Check Your Suno Prompt and Lyrics Before You Generate</h1>
+  <p class="vibe">Paste them in and get mistakes pointed out. Suno spends credits on every run.</p>
+  <p class="lead">Paste your style prompt and lyrics to find character limit overruns, artist names, clashing words and tag typos, with a tip for each fix. This is not an AI. It uses fixed rules, so results are instant and the same every time. Your text never leaves your browser.</p>
+  <ul class="stats"><li><b>Checks</b>Style · Lyrics</li><li><b>Fix</b>Copy the cleaned version</li><li><b>$0</b>No sign-up, no upload</li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#tool">Start checking ↓</a>
+    <a class="btn-g" href="#tips">Common mistakes</a>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="how"><div class="step"><div class="n">STEP 01</div><h3>Paste</h3><p>Paste the style prompt and lyrics you were about to use in Suno. An example is filled in below, so clear it and paste yours.</p></div><div class="step"><div class="n">STEP 02</div><h3>Read the results</h3><p>Results are grouped into problems, cautions and good points. Fix the problems first.</p></div><div class="step"><div class="n">STEP 03</div><h3>Copy the cleaned version</h3><p>Copy the cleaned style, with repeated words removed and the avoid: part split out, into Suno.</p></div></div>
+
+  <section class="sec" id="tool">
+    <div class="sec-head"><h2>Prompt and lyrics checker</h2><p>Your text is checked only inside your browser. Nothing is sent anywhere.</p></div>
+    <div class="lrcw">
+      <div class="card2" id="s1">
+        <h3>1. Paste</h3>
+        <div class="fgroup"><span class="flabel">Suno version</span><span id="vchips"></span></div>
+        <label class="flabel" for="inStyle">Style of Music (style prompt)</label>
+        <textarea class="inp" id="inStyle" rows="3" spellcheck="false" lang="en" translate="no"></textarea>
+        <p class="note" id="cStyle"></p>
+        <label class="flabel" for="inLyr">Lyrics</label>
+        <textarea class="inp" id="inLyr" rows="10" spellcheck="false"></textarea>
+        <p class="note" id="cLyr"></p>
+        <div class="drow"><button type="button" class="b-sub" id="btnEx">Load example</button><button type="button" class="b-sub" id="btnClr">Clear all</button></div>
+        <p class="note">Character limits depend on the Suno model. If the limit shown in Suno differs, switch the model above. Results follow fixed rules as a guide, and Suno may not always react the same way.</p>
+      </div>
+
+      <div class="card2" id="res">
+        <h3>2. Results</h3>
+        <ul class="sumchips" id="sum"></ul>
+        <div id="items" class="items"></div>
+      </div>
+
+      <div class="card2" id="fix" hidden>
+        <h3>3. Cleaned version</h3>
+        <p class="note">Repeated words are removed, [tags] and time stamps are taken out, and the part after avoid: is split off. Read it once more before you use it.</p>
+        <label class="flabel" for="outStyle">Style of Music</label>
+        <textarea class="inp out" id="outStyle" rows="3" readonly translate="no" lang="en"></textarea>
+        <div class="drow"><button type="button" class="b-main" id="cpStyle">Copy style</button></div>
+        <div id="exclBox" hidden>
+          <label class="flabel" for="outExcl">Exclude Styles</label>
+          <textarea class="inp out" id="outExcl" rows="2" readonly translate="no" lang="en"></textarea>
+          <div class="drow"><button type="button" class="b-main" id="cpExcl">Copy exclude text</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="use">
+    <div class="sec-head"><h2>When to use it</h2></div>
+    <ul class="tipsg"><li><h3>A last check before you generate</h3><p>Suno spends credits on every run. A quick check before you paste can cut down wasted runs.</p></li><li><h3>When results keep coming out odd</h3><p>Clashing words in the style or a misspelled lyric tag are common causes. Find them with the checker first.</p></li><li><h3>When using someone else&#x27;s prompt</h3><p>Check whether a prompt copied from the web has artist names or too many keywords.</p></li></ul>
+  </section>
+
+  <section class="sec" id="tips">
+    <div class="sec-head"><h2>Common mistakes</h2></div>
+    <ul class="tipsg"><li><h3>Naming an artist</h3><p>Suno often rejects or ignores styles that name real artists. Describe the voice, genre and mood instead.</p></li><li><h3>Too many keywords</h3><p>Past about 10, the later words tend to fade. Try 4 to 7.</p></li><li><h3>Mixing calm and intense words</h3><p>Use one for the whole song and split the rest with section tags like [Verse: soft] and [Chorus: powerful].</p></li><li><h3>Misspelled tags</h3><p>A tag like [Choruss] may be read as plain words. Spell it exactly.</p></li><li><h3>A different chorus every time</h3><p>A chorus sticks when it repeats exactly.</p></li><li><h3>Putting what you want removed in the style</h3><p>Writing no drums can make it count the other way. Put it in the Exclude Styles box.</p></li></ul>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>Questions</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>Is this checker free?</summary><p>Yes. It is free, needs no sign-up, and all checking happens in your browser.</p></details><details><summary>Is my text uploaded to a server?</summary><p>No. This site is a static page with no server, so your text is never sent anywhere.</p></details><details><summary>Does an AI do the checking?</summary><p>No. It uses fixed rules such as character count, the number of comma-separated keywords, repeated words and tag spelling. That makes it fast and consistent.</p></details><details><summary>Is the result guaranteed to be right?</summary><p>No. How Suno reads a prompt changes by version. Treat the result as a guide, because Suno may still react differently after you fix things.</p></details><details><summary>What are the character limits?</summary><p>They depend on the Suno model. This tool lets you choose between a newer model (1,000 style and 5,000 lyric characters) and an older one (200 style and 3,000 lyric characters). Go by the limit you see in Suno.</p></details><details><summary>Does it save Suno credits?</summary><p>It only helps you avoid mistakes before you generate. It does not save credits by itself.</p></details><details><summary>Do I have to write in English?</summary><p>English keywords tend to work better in the style box. Lyrics can be in other languages. To get Korean singing, add sung in Korean to the style.</p></details><details><summary>What does the cleaned version change?</summary><p>It removes duplicate keywords, takes out [tags] and time stamps, and splits off the avoid: part. It does not change the meaning.</p></details></div>
+  </section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>Tools that go with it</h2></div>
+    <div class="tools" style="margin-top:0"><a class="btn-g" href="../song-analyzer/">Song analyzer → find a prompt</a><a class="btn-g" href="../lyrics-generator/">Suno lyrics helper</a><a class="btn-g" href="../../prompt-studio/">Suno prompt library</a></div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>Want a video from the song you made?</h2>
+  <p>MusicCanvas turns your music and images into a YouTube-ready video with effects and lyrics.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">Start the 7-day free trial →</a>
+  <p class="fine">Windows · lifetime license $22</p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">See features, price and FAQ →</a></p>
+</div></section>
+<footer>This is an unofficial tool. Suno is a trademark of its owner.</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"lang": "en", "ui": {"copied": "Copied", "copyFail": "Copy failed. Select the text and copy it manually.", "ch": " chars", "vers": [["new", "Newer model"], ["old", "Older model"]], "sev": {"bad": "Problem", "warn": "Caution", "good": "Good", "note": "Note"}, "fs": "Style", "fl": "Lyrics", "emptyAll": "Paste a style or lyrics and it is checked right away.", "noStyle": "The style box is empty. Add a style and it is checked too.", "m": {"s_len_bad": ["Style is too long ({n}/{l} chars)", "Past the limit, the end can get cut off. Keep only the keywords you need."], "s_len_warn": ["Style is close to the limit ({n}/{l} chars)", "A little more and it goes over. Trim the least important words first."], "s_few": ["Only {n} keyword(s)", "Aim for about 4 to 7 comma-separated keywords covering genre, instruments, mood and vocals so Suno has a clear direction."], "s_many": ["{n} keywords is a lot", "With too many, the later ones tend to be ignored. Try 4 to 7. The best count varies by Suno version."], "g_cnt": ["Good number of keywords ({n})", "Clear direction without being too long."], "s_artist": ["Artist name found: {x}", "Suno often rejects or ignores styles that name real artists. Describe the voice, genre and mood instead."], "s_gender": ["Female and male vocals both appear", "Keep one unless it is a duet. If it is a duet, write duet."], "s_energy": ["Calm and intense words together: {x}", "If both describe the whole song, Suno cannot tell which to follow. Split them with section tags in the lyrics, such as [Verse: soft] and [Chorus: powerful]."], "s_mood": ["Sad and happy words together: {x}", "Mixed moods tend to give a vague song. Pick one."], "s_genre": ["Soft and hard genres together: {x}", "They pull against each other and the result can land in between. Choose one main genre."], "s_bpm_multi": ["More than one BPM: {x}", "Keep just one."], "s_bpm_range": ["BPM {x} is outside the usual range", "Usually between 40 and 220."], "s_bpm_mis": ["BPM {n} does not match '{x}'", "Slow songs are usually 60 to 85 BPM and fast ones 120 or more. Fix the number or the word."], "g_bpm": ["A BPM is included ({n})", "A number helps Suno settle on a tempo."], "s_dup": ["Repeated words: {x}", "Say it once. Repeating does not guarantee a stronger effect."], "s_hangul": ["Korean text in the style box", "English keywords tend to work better in the style box. To get Korean singing, add sung in Korean."], "s_neg": ["Negative phrase found: {x}", "Writing something like no drums can make that word count in the wrong way. Put things you want gone in the Exclude Styles box (paid plans)."], "s_tags": ["[Tags] inside the style box", "Section tags like [Verse] belong in the lyrics box. Remove them from the style."], "s_time": ["Time stamp found ({x})", "Section tags like [Verse] and [Chorus] are known to work better than time stamps."], "s_vocal_conf": ["You added lyrics but wrote instrumental", "Fix one of them. Remove instrumental if you want vocals."], "s_avoid": ["Move the part after avoid: elsewhere", "Text after avoid: belongs in the Exclude Styles box. The cleaned version below lets you copy them separately."], "g_vocal": ["Vocal is described", "Describing the voice makes results vary less."], "g_ok": ["The style looks clean", "No obvious problems found."], "l_empty": ["The lyrics box is empty", "Fine for an instrumental. Paste lyrics to have them checked too."], "l_len_bad": ["Lyrics are too long ({n}/{l} chars)", "Past the limit, the end can get cut off. Shorten it to the verse and chorus."], "l_len_warn": ["Lyrics are close to the limit ({n}/{l} chars)", "A little more and it goes over."], "l_bracket": ["Brackets do not match", "The number of [ and ] differs. Find the missing one and close it."], "l_notag": ["No section tags", "Tags like [Verse] and [Chorus] help Suno follow the song's flow."], "l_typo": ["Possible tag typo: {x}", "Spell tags exactly, like [Chorus]. A misspelled tag may be read as plain words."], "l_hint": ["Tag description is too long: {x}", "One or two words after the colon is enough. Long ones may get sung out loud."], "l_emptysec": ["Empty section: {x}", "There is a tag but no lyrics. For an instrumental part, use [Instrumental]."], "l_nochorus": ["No chorus", "The song can feel flat. Add one main chorus."], "l_chorus_same": ["The chorus repeats exactly", "An identical chorus is what makes a hook stick."], "l_chorus_diff": ["The chorus appears {n} times but differs", "A chorus sticks when it repeats exactly. Match them unless the change is on purpose."], "l_long": ["{n} line(s) are very long", "Shorter lines are easier to sing on the beat. For example: {x}"], "l_end": ["An [End] tag is there", "It helps the song finish cleanly."], "l_noend": ["Try adding [End] at the bottom", "It helps the song stop instead of dragging on."]}}, "ex": {"style": "emotional ballad, powerful, soft piano, slow tempo 140bpm, sad, happy, male vocals, female vocals, Taylor Swift style, no drums, emotional, avoid: autotune, harsh synth", "lyr": "[Verse 1]\nWe walked down that old familiar street together and now I come back alone every night and your name just keeps coming back to me\n\n[Choruss: very emotional and powerful with big drums and a key change at the end]\nLove couldn't make it to the end\nBut I will choose this ache\n\n[Chorus]\nLove couldn't make it to the end\nAnd that's okay"}};</script>
+<script>
+(function(){
+'use strict';
+var D=DATA,U=D.ui,M=U.m,$=function(q){return document.querySelector(q)};
+var LIM={new:{style:1000,lyr:5000},old:{style:200,lyr:3000}};
+var ver='new',tm=null;
+function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o&&o[k]!=null?o[k]:''})}
+function toast(m){var t=$('#toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show')},1800)}
+function copyText(txt,msg){
+  function fb(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);toast(ok?msg:U.copyFail)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast(msg)},fb)}else fb();
+}
+function mkChips(box,items,cur,on){
+  box.innerHTML='';
+  items.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=it[1];b.setAttribute('aria-pressed',it[0]===cur?'true':'false');
+    b.onclick=function(){on(it[0]);mkChips(box,items,it[0],on)};box.appendChild(b)});
+}
+/* ---------- helpers ---------- */
+var CALM=/\b(soft|gentle|slow|intimate|ambient|lo-?fi|dreamy|sparse|quiet|hush\w*|tender|calm|peaceful|minimal|lullaby|mellow)\b/gi;
+var HARD=/\b(powerful|epic|driving|energetic|anthemic|uptempo|aggressive|intense|punchy|heavy|hard|loud|fast|explosive|thunderous)\b/gi;
+var SAD=/\b(sad|melancholic|melancholy|sorrowful|heartbreak|tearful|lonely|grief|depressing|dark)\b/gi;
+var HAPPY=/\b(happy|cheerful|joyful|upbeat|sunny|playful|bright|fun|party)\b/gi;
+var SLOW=/\b(slow|ballad|lullaby|downtempo)\b/i, FAST=/\b(fast|uptempo|up-tempo|dance|energetic|rave|high-energy)\b/i;
+var SOFTG=/\b(lo-?fi|ambient|acoustic|folk|classical|piano ballad|lullaby|chillout|chill)\b/i;
+var HARDG=/\b(edm|hardstyle|metal|death metal|trap|dubstep|drum and bass|dnb|punk|hardcore|techno)\b/i;
+var ARTISTS=['taylor swift','ariana grande','billie eilish','ed sheeran','adele','drake','beyonce','beyoncé','rihanna','eminem','coldplay','imagine dragons','the weeknd','bruno mars','justin bieber','lady gaga','katy perry','dua lipa','olivia rodrigo','harry styles','post malone','kanye','travis scott','the beatles','michael jackson','elvis','bts','blackpink','newjeans','aespa','stray kids','bigbang','iu','아이유','방탄소년단','블랙핑크','뉴진스','태연','임영웅','성시경','박효신','이문세','김광석','폴킴','10cm'];
+var KNOWN=['intro','verse','prechorus','chorus','postchorus','bridge','outro','hook','interlude','instrumental','instrumentalbreak','solo','break','drop','build','finalchorus','lastchorus','end','fadeout','spoken','spokenword','whisper','refrain','prebridge','ending'];
+function uniq(a){var s={},o=[];a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x)}});return o}
+function matches(s,re){var m=s.match(re);return m?uniq(m.map(function(x){return x.toLowerCase()})):[]}
+function splitStyle(s){var m=s.search(/,?\s*avoid\s*:/i);return m>=0?{main:s.slice(0,m),avoid:s.slice(m).replace(/^,?\s*avoid\s*:\s*/i,'')}:{main:s,avoid:''}}
+function toks(s){return s.split(/[,\n]+/).map(function(x){return x.trim()}).filter(Boolean)}
+function lev(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++){d[i]=[i]}for(j=0;j<=n;j++)d[0][j]=j;for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
+function stem(t){return t.split(':')[0].toLowerCase().replace(/[^a-z]/g,'')}
+function artistHit(low){
+  var out=[];ARTISTS.forEach(function(a){
+    var hit=/[가-힣]/.test(a)?low.indexOf(a)>=0:new RegExp('(^|[^a-z])'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)').test(low);
+    if(hit)out.push(a)});
+  return out;
+}
+/* ---------- checks ---------- */
+function checkStyle(raw,hasLyr,L){
+  var out=[],P=splitStyle(raw),main=P.main,low=main.toLowerCase(),t=toks(main),n=t.length,len=raw.length;
+  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'s'})}
+  if(len>L.style)add('bad','s_len_bad',{n:len,l:L.style});else if(len>L.style*0.9)add('warn','s_len_warn',{n:len,l:L.style});
+  if(n<=2)add('warn','s_few',{n:n});else if(n>=11)add('warn','s_many',{n:n});else if(n>=4&&n<=8)add('good','g_cnt',{n:n});
+  var ar=artistHit(low);if(ar.length)add('bad','s_artist',{x:ar.join(', ')});
+  var fe=/\bfemale\b|여성|여자/i.test(main),ma=/(^|[^a-z])male\b|남성|남자/i.test(main.replace(/female/ig,'')),duet=/duet|듀엣|\bduo\b|choir|합창|group vocals/i.test(main);
+  if(fe&&ma&&!duet)add('warn','s_gender');
+  var c=matches(main,CALM),h=matches(main,HARD);if(c.length&&h.length)add('warn','s_energy',{x:c[0]+' / '+h[0]});
+  var s1=matches(main,SAD),h1=matches(main,HAPPY);if(s1.length&&h1.length)add('warn','s_mood',{x:s1[0]+' / '+h1[0]});
+  var g1=low.match(SOFTG),g2=low.match(HARDG);if(g1&&g2)add('warn','s_genre',{x:g1[0]+' / '+g2[0]});
+  var bp=[];(main.match(/\b(\d{2,3})\s*-?\s*bpm\b/ig)||[]).forEach(function(x){bp.push(+x.match(/\d+/)[0])});bp=uniq(bp);
+  if(bp.length>1)add('warn','s_bpm_multi',{x:bp.join(', ')});
+  else if(bp.length===1){var b=bp[0];
+    if(b<40||b>220)add('warn','s_bpm_range',{x:b});
+    else if(b>=120&&SLOW.test(main))add('warn','s_bpm_mis',{n:b,x:main.match(SLOW)[0]});
+    else if(b<=80&&FAST.test(main))add('warn','s_bpm_mis',{n:b,x:main.match(FAST)[0]});
+    else add('good','g_bpm',{n:b})}
+  var seen={},dups=[];t.forEach(function(x){var k=x.toLowerCase();if(seen[k]&&dups.indexOf(x)<0)dups.push(x);seen[k]=1});
+  var words=low.match(/[a-z]+/g)||[],wc={};words.forEach(function(w){if(w.length>3)wc[w]=(wc[w]||0)+1});
+  Object.keys(wc).forEach(function(w){if(wc[w]>=3&&dups.indexOf(w)<0)dups.push(w)});
+  if(dups.length)add('warn','s_dup',{x:dups.slice(0,3).join(', ')});
+  if(/[가-힣]/.test(main))add('warn','s_hangul');
+  var ng=main.match(/\b(no|without|don'?t|not)\s+[a-z]+/i);if(ng&&!/\bno vocals?\b/i.test(ng[0]))add('warn','s_neg',{x:ng[0]});
+  if(/\[[^\]]*\]/.test(raw))add('bad','s_tags');
+  var tt=raw.match(/\b\d{1,2}:\d{2}\b/);if(tt)add('warn','s_time',{x:tt[0]});
+  if(hasLyr&&/\binstrumental\b|연주곡/i.test(main))add('bad','s_vocal_conf');
+  if(/[a-z가-힣]/i.test(P.avoid))add('note','s_avoid');
+  if(/vocal|vocals|sung|보컬|choir|duet|듀엣/i.test(main))add('good','g_vocal');
+  return out;
+}
+function parseLyr(raw){
+  var lines=raw.split(/\r?\n/),secs=[],cur=null,tags=[];
+  lines.forEach(function(ln){
+    var m=ln.trim().match(/^\[([^\]]*)\]?\s*(.*)$/);
+    if(m&&ln.trim().charAt(0)==='['){cur={tag:m[1],body:[]};secs.push(cur);tags.push(m[1]);if(m[2]&&ln.indexOf(']')>=0)cur.body.push(m[2])}
+    else if(cur&&ln.trim())cur.body.push(ln.trim());
+    else if(!cur&&ln.trim()){cur={tag:null,body:[ln.trim()]};secs.push(cur)}
+  });
+  return {secs:secs,tags:tags};
+}
+function checkLyr(raw,L){
+  var out=[],len=raw.length;
+  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'l'})}
+  if(!raw.trim()){add('note','l_empty');return out}
+  if(len>L.lyr)add('bad','l_len_bad',{n:len,l:L.lyr});else if(len>L.lyr*0.9)add('warn','l_len_warn',{n:len,l:L.lyr});
+  var open=(raw.match(/\[/g)||[]).length,close=(raw.match(/\]/g)||[]).length;
+  if(open!==close)add('bad','l_bracket');
+  var P=parseLyr(raw),tagged=P.secs.filter(function(s){return s.tag!==null});
+  if(!tagged.length){add('warn','l_notag')}
+  else{
+    var typos=[],hints=[],chorus=[],empty=[];
+    tagged.forEach(function(s){
+      var st=stem(s.tag),base=st.replace(/\d+$/,'');
+      if(st&&KNOWN.indexOf(base)<0&&base.length>=4){
+        for(var i=0;i<KNOWN.length;i++){if(KNOWN[i].length>=4&&lev(base,KNOWN[i])<=2){typos.push('['+s.tag.split(':')[0]+']');break}}
+      }
+      var ci=s.tag.indexOf(':');if(ci>=0){var hint=s.tag.slice(ci+1).trim();if(hint.split(/\s+/).length>6||hint.length>45)hints.push('['+s.tag.slice(0,30)+(s.tag.length>30?'…':'')+']')}
+      var key=base.replace(/^final|^last/,'');
+      if(base==='chorus'&&s.body.length)chorus.push(s.body.join('\n').toLowerCase().replace(/\s+/g,' ').trim());
+      if(['verse','chorus','bridge','prechorus','hook'].indexOf(base)>=0&&!s.body.length)empty.push('['+s.tag.split(':')[0]+']');
+    });
+    if(typos.length)add('warn','l_typo',{x:uniq(typos).slice(0,3).join(', ')});
+    if(hints.length)add('warn','l_hint',{x:hints.slice(0,2).join(', ')});
+    if(empty.length)add('warn','l_emptysec',{x:uniq(empty).slice(0,3).join(', ')});
+    var hasCh=tagged.some(function(s){var b=stem(s.tag).replace(/\d+$/,'');return b==='chorus'||b==='hook'||b==='finalchorus'||b==='lastchorus'});
+    if(!hasCh)add('warn','l_nochorus');
+    else if(chorus.length>=2){var same=chorus.every(function(x){return x===chorus[0]});if(same)add('good','l_chorus_same');else add('warn','l_chorus_diff',{n:chorus.length})}
+  }
+  var longs=[];
+  P.secs.forEach(function(s){s.body.forEach(function(ln){var w=ln.split(/\s+/).length,ko=ln.replace(/[^가-힣]/g,'').length;if(w>12||ln.replace(/\s/g,'').length>50||ko>32)longs.push(ln)})});
+  if(longs.length)add('warn','l_long',{n:longs.length,x:'"'+longs[0].slice(0,24)+(longs[0].length>24?'…':'')+'"'});
+  if(/\b\d{1,2}:\d{2}\b/.test(raw))add('warn','s_time',{x:raw.match(/\b\d{1,2}:\d{2}\b/)[0]});
+  if(/\[end\]/i.test(raw))add('good','l_end');else if(tagged.length)add('note','l_noend');
+  return out;
+}
+/* ---------- cleaning ---------- */
+function clean(raw){
+  var P=splitStyle(raw),s=P.main.replace(/\[[^\]]*\]/g,' ').replace(/\b\d{1,2}:\d{2}\b/g,' ');
+  var t=toks(s),seen={},o=[];t.forEach(function(x){var k=x.toLowerCase();if(!seen[k]){seen[k]=1;o.push(x.replace(/\s+/g,' '))}});
+  return {style:o.join(', '),excl:toks(P.avoid).join(', ')};
+}
+/* ---------- render ---------- */
+var SEVLBL={bad:U.sev.bad,warn:U.sev.warn,good:U.sev.good,note:U.sev.note},ORDER=['bad','warn','note','good'];
+function run(){
+  var st=$('#inStyle').value,ly=$('#inLyr').value,L=LIM[ver];
+  $('#cStyle').textContent=st.length.toLocaleString()+' / '+L.style.toLocaleString()+U.ch;$('#cStyle').className='note'+(st.length>L.style?' warn':'');
+  $('#cLyr').textContent=ly.length.toLocaleString()+' / '+L.lyr.toLocaleString()+U.ch;$('#cLyr').className='note'+(ly.length>L.lyr?' warn':'');
+  var res=[];
+  if(st.trim())res=res.concat(checkStyle(st,!!ly.trim(),L));
+  res=res.concat(checkLyr(ly,L));
+  var cnt={bad:0,warn:0,good:0,note:0};res.forEach(function(r){cnt[r.sev]++});
+  var sum=$('#sum');sum.innerHTML='';
+  [['bad',U.sev.bad],['warn',U.sev.warn],['good',U.sev.good]].forEach(function(c){var li=document.createElement('li');li.className='sv-'+c[0];var s=document.createElement('span');s.textContent=c[1];var b=document.createElement('b');b.textContent=cnt[c[0]];li.appendChild(s);li.appendChild(b);sum.appendChild(li)});
+  var box=$('#items');box.innerHTML='';
+  if(!st.trim()&&!ly.trim()){var p=document.createElement('p');p.className='note';p.textContent=U.emptyAll;box.appendChild(p)}
+  else{
+    if(!st.trim()){var q=document.createElement('p');q.className='note';q.textContent=U.noStyle;box.appendChild(q)}
+    else if(cnt.bad+cnt.warn===0&&!res.some(function(r){return r.f==='s'&&r.sev==='note'})){res.unshift({sev:'good',t:M.g_ok[0],d:M.g_ok[1],f:'s'})}
+    ORDER.forEach(function(sv){res.filter(function(r){return r.sev===sv}).forEach(function(r){
+      var d=document.createElement('div');d.className='item sv-'+sv;
+      var h=document.createElement('div');h.className='it-h';
+      var tag=document.createElement('span');tag.className='it-tag';tag.textContent=SEVLBL[sv];
+      var fl=document.createElement('span');fl.className='it-f';fl.textContent=r.f==='s'?U.fs:U.fl;
+      var tt=document.createElement('b');tt.textContent=r.t;
+      h.appendChild(tag);h.appendChild(fl);h.appendChild(tt);d.appendChild(h);
+      var pp=document.createElement('p');pp.textContent=r.d;d.appendChild(pp);box.appendChild(d)})});
+  }
+  var fx=$('#fix');
+  if(st.trim()){var c=clean(st);fx.hidden=false;$('#outStyle').value=c.style;$('#exclBox').hidden=!c.excl;$('#outExcl').value=c.excl}
+  else fx.hidden=true;
+}
+function sched(){clearTimeout(tm);tm=setTimeout(run,160)}
+function init(){
+  mkChips($('#vchips'),U.vers,ver,function(v){ver=v;run()});
+  $('#inStyle').addEventListener('input',sched);$('#inLyr').addEventListener('input',sched);
+  $('#btnEx').onclick=function(){$('#inStyle').value=D.ex.style;$('#inLyr').value=D.ex.lyr;run()};
+  $('#btnClr').onclick=function(){$('#inStyle').value='';$('#inLyr').value='';run();$('#inStyle').focus()};
+  $('#cpStyle').onclick=function(){copyText($('#outStyle').value,U.copied)};
+  $('#cpExcl').onclick=function(){copyText($('#outExcl').value,U.copied)};
+  $('#inStyle').value=D.ex.style;$('#inLyr').value=D.ex.lyr;
+  run();
+}
+init();
+})();
+
+</script>
+</body>
+</html>

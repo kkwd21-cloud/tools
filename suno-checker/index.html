@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수노 프롬프트·가사 점검기 – 돌리기 전에 무료로 확인 | Dusk Soul</title>
+<meta name="description" content="수노(Suno)를 돌리기 전에 스타일 프롬프트와 가사를 점검해요. 글자 수 초과, 가수 이름, 서로 부딪치는 장르, 태그 철자 같은 실수를 찾아 고치는 방법을 알려 줘요. 무료, 가입·업로드 없음.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/suno-checker/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/suno-checker/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/suno-checker/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/suno-checker/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="수노 프롬프트·가사 점검기 – 돌리기 전에 무료로 확인 | Dusk Soul">
+<meta property="og:description" content="수노(Suno)를 돌리기 전에 스타일 프롬프트와 가사를 점검해요. 글자 수 초과, 가수 이름, 서로 부딪치는 장르, 태그 철자 같은 실수를 찾아 고치는 방법을 알려 줘요. 무료, 가입·업로드 없음.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/suno-checker/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "수노 돌리기 전에, 프롬프트·가사 점검", "item": "https://kkwd21-cloud.github.io/tools/suno-checker/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "이 점검기는 무료인가요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 무료이고 가입도 필요 없어요. 모든 검사는 내 브라우저 안에서 이뤄져요."}}, {"@type": "Question", "name": "내가 쓴 가사가 서버에 올라가나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 이 사이트는 서버가 없는 정적 페이지라서 글이 어디에도 전송되지 않아요."}}, {"@type": "Question", "name": "AI가 점검하나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 글자 수, 쉼표로 나눈 키워드 수, 겹친 말, 태그 철자 같은 정해진 규칙으로 검사해요. 그래서 결과가 항상 같고 빨라요."}}, {"@type": "Question", "name": "점검 결과가 맞는지 보장되나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 수노가 어떻게 읽을지는 버전에 따라 달라요. 결과는 참고용이고, 고친 뒤에도 수노가 다르게 반응할 수 있어요."}}, {"@type": "Question", "name": "글자 수 한도는 얼마인가요?", "acceptedAnswer": {"@type": "Answer", "text": "수노 모델에 따라 달라요. 이 도구는 최신 모델(스타일 1,000자·가사 5,000자)과 이전 모델(스타일 200자·가사 3,000자) 중에서 고르게 했어요. 수노 화면에 보이는 한도를 기준으로 하세요."}}, {"@type": "Question", "name": "수노 크레딧을 아낄 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "돌리기 전에 실수를 줄여 주는 도구일 뿐이에요. 크레딧을 직접 아껴 주지는 않아요."}}, {"@type": "Question", "name": "영어로만 써야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "스타일 칸은 영어 키워드가 더 잘 통하는 편이에요. 가사는 한국어도 돼요. 한국어로 부르게 하려면 스타일에 sung in Korean을 넣어 보세요."}}, {"@type": "Question", "name": "정리본은 무엇을 바꾸나요?", "acceptedAnswer": {"@type": "Answer", "text": "같은 키워드의 중복을 지우고, [태그]와 시간 표시를 빼고, avoid: 뒤 문구를 따로 나눠요. 내용 자체는 바꾸지 않아요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "수노 돌리기 전에, 프롬프트·가사 점검", "url": "https://kkwd21-cloud.github.io/tools/suno-checker/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "inLanguage": "ko"}</script>
+
+<style>:root{--accent:#7fd1e8;--accent2:#b8e6f2;--rgb:127,209,232}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.fgroup{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.fgroup>span:last-child{display:inline-flex;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12.5px;color:var(--muted);min-width:56px}
+.sumchips{display:flex;flex-wrap:wrap;gap:8px}
+.sumchips li{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:flex;flex-direction:column;min-width:84px}
+.sumchips span{font-size:11.5px;color:var(--muted)}
+.sumchips b{font-family:'IBM Plex Mono',monospace;font-size:18px}
+.sv-bad b{color:#ff8f8f}.sv-warn b{color:#f0c27a}.sv-good b{color:#8fe0b0}
+.items{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--line2);border-radius:12px;padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.item.sv-bad{border-left-color:#ff8f8f}.item.sv-warn{border-left-color:#f0c27a}.item.sv-good{border-left-color:#8fe0b0}.item.sv-note{border-left-color:#98a2c4}
+.it-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:14.5px}
+.it-tag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:1px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--text)}
+.sv-bad .it-tag{color:#ff8f8f;border-color:#ff8f8f}.sv-warn .it-tag{color:#f0c27a;border-color:#f0c27a}.sv-good .it-tag{color:#8fe0b0;border-color:#8fe0b0}
+.it-f{font-size:11.5px;color:var(--muted)}
+.item p{font-size:13.5px;color:var(--muted);line-height:1.7}
+textarea.inp{resize:vertical;line-height:1.6}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:13.5px;pointer-events:none;transition:.2s;z-index:50}
+#toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="./" class="on" aria-current="page">프롬프트 점검</a><a href="../song-analyzer/">곡 분석</a><a href="../lyrics-generator/">가사 도우미</a></nav><a class="top-lang" href="../en/suno-checker/" hreflang="en">English</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">무료 · 가입 없음 · 서버 전송 없음</p>
+  <h1>수노 돌리기 전에, 프롬프트·가사 점검</h1>
+  <p class="vibe">붙여넣으면 실수를 바로 짚어 줘요. 수노는 돌릴 때마다 크레딧이 쓰이니까요.</p>
+  <p class="lead">스타일 프롬프트와 가사를 붙여넣으면 글자 수 초과, 가수 이름, 서로 부딪치는 말, 태그 철자 실수 같은 것을 찾아서 고치는 방법을 알려 줘요. 이 도구는 AI가 아니라 정해진 규칙으로 검사해요. 쓴 글은 내 브라우저 밖으로 나가지 않아요.</p>
+  <ul class="stats"><li><b>검사</b>스타일 · 가사</li><li><b>고치기</b>정리본 바로 복사</li><li><b>0원</b>가입·업로드 없음</li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#tool">점검하기 ↓</a>
+    <a class="btn-g" href="#tips">자주 하는 실수</a>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="how"><div class="step"><div class="n">STEP 01</div><h3>붙여넣기</h3><p>수노에 넣으려던 스타일 문구와 가사를 아래 칸에 붙여넣어요. 아래에 예시가 들어 있으니 지우고 쓰세요.</p></div><div class="step"><div class="n">STEP 02</div><h3>결과 보기</h3><p>문제, 주의, 좋은 점으로 나눠서 보여 줘요. 문제부터 고치면 돼요.</p></div><div class="step"><div class="n">STEP 03</div><h3>정리본 복사</h3><p>겹친 말을 지우고 avoid: 뒤 문구를 따로 나눈 정리본을 복사해서 수노에 붙여넣으세요.</p></div></div>
+
+  <section class="sec" id="tool">
+    <div class="sec-head"><h2>프롬프트·가사 점검</h2><p>입력한 글은 내 브라우저 안에서만 검사돼요. 어디에도 전송되지 않아요.</p></div>
+    <div class="lrcw">
+      <div class="card2" id="s1">
+        <h3>1. 붙여넣기</h3>
+        <div class="fgroup"><span class="flabel">수노 버전</span><span id="vchips"></span></div>
+        <label class="flabel" for="inStyle">Style of Music (스타일 프롬프트)</label>
+        <textarea class="inp" id="inStyle" rows="3" spellcheck="false" lang="en" translate="no"></textarea>
+        <p class="note" id="cStyle"></p>
+        <label class="flabel" for="inLyr">Lyrics (가사)</label>
+        <textarea class="inp" id="inLyr" rows="10" spellcheck="false"></textarea>
+        <p class="note" id="cLyr"></p>
+        <div class="drow"><button type="button" class="b-sub" id="btnEx">예시 불러오기</button><button type="button" class="b-sub" id="btnClr">모두 지우기</button></div>
+        <p class="note">글자 수 한도는 수노 모델에 따라 달라요. 수노 화면에 나온 한도와 다르면 위에서 모델을 바꿔 보세요. 점검 결과는 규칙에 따른 참고용이고, 수노가 항상 같은 방식으로 반응하는 것은 아니에요.</p>
+      </div>
+
+      <div class="card2" id="res">
+        <h3>2. 점검 결과</h3>
+        <ul class="sumchips" id="sum"></ul>
+        <div id="items" class="items"></div>
+      </div>
+
+      <div class="card2" id="fix" hidden>
+        <h3>3. 정리본</h3>
+        <p class="note">겹친 말을 없애고, [태그]와 시간 표시를 빼고, avoid: 뒤의 문구를 따로 나눈 거예요. 내용은 직접 한 번 더 읽어 보고 쓰세요.</p>
+        <label class="flabel" for="outStyle">Style of Music</label>
+        <textarea class="inp out" id="outStyle" rows="3" readonly translate="no" lang="en"></textarea>
+        <div class="drow"><button type="button" class="b-main" id="cpStyle">스타일 복사</button></div>
+        <div id="exclBox" hidden>
+          <label class="flabel" for="outExcl">Exclude Styles</label>
+          <textarea class="inp out" id="outExcl" rows="2" readonly translate="no" lang="en"></textarea>
+          <div class="drow"><button type="button" class="b-main" id="cpExcl">제외 문구 복사</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="use">
+    <div class="sec-head"><h2>이럴 때 써 보세요</h2></div>
+    <ul class="tipsg"><li><h3>돌리기 전 마지막 확인</h3><p>수노는 돌릴 때마다 크레딧이 쓰여요. 붙여넣기 전에 한 번 점검하면 헛돌리는 횟수가 줄어요.</p></li><li><h3>결과가 자꾸 이상할 때</h3><p>스타일에 서로 부딪치는 말이 있거나 가사 태그가 틀린 경우가 많아요. 점검기로 원인을 먼저 찾아보세요.</p></li><li><h3>남이 만든 프롬프트를 쓸 때</h3><p>인터넷에서 가져온 프롬프트에 가수 이름이나 너무 많은 키워드가 들어 있는지 확인하세요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="tips">
+    <div class="sec-head"><h2>자주 하는 실수</h2></div>
+    <ul class="tipsg"><li><h3>가수 이름을 쓴다</h3><p>수노는 실제 가수 이름이 들어간 스타일을 거부하거나 무시하는 경우가 많아요. 목소리·장르·분위기로 풀어 쓰세요.</p></li><li><h3>키워드가 너무 많다</h3><p>10개가 넘으면 뒤쪽 말이 흐려지기 쉬워요. 4~7개로 줄여 보세요.</p></li><li><h3>조용한 말과 센 말을 섞는다</h3><p>곡 전체 설명에는 하나만 쓰고, 구간 태그로 [Verse: soft] [Chorus: powerful]처럼 나누세요.</p></li><li><h3>태그 철자가 틀린다</h3><p>[Choruss]처럼 틀리면 그냥 글자로 읽힐 수 있어요. 정확히 쓰세요.</p></li><li><h3>후렴을 매번 다르게 쓴다</h3><p>후렴은 똑같이 반복해야 귀에 남아요.</p></li><li><h3>뺄 것을 스타일에 쓴다</h3><p>no drums처럼 쓰면 반대로 반영되기도 해요. 뺄 것은 Exclude Styles 칸에 넣으세요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>자주 묻는 질문</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>이 점검기는 무료인가요?</summary><p>네. 무료이고 가입도 필요 없어요. 모든 검사는 내 브라우저 안에서 이뤄져요.</p></details><details><summary>내가 쓴 가사가 서버에 올라가나요?</summary><p>아니요. 이 사이트는 서버가 없는 정적 페이지라서 글이 어디에도 전송되지 않아요.</p></details><details><summary>AI가 점검하나요?</summary><p>아니요. 글자 수, 쉼표로 나눈 키워드 수, 겹친 말, 태그 철자 같은 정해진 규칙으로 검사해요. 그래서 결과가 항상 같고 빨라요.</p></details><details><summary>점검 결과가 맞는지 보장되나요?</summary><p>아니요. 수노가 어떻게 읽을지는 버전에 따라 달라요. 결과는 참고용이고, 고친 뒤에도 수노가 다르게 반응할 수 있어요.</p></details><details><summary>글자 수 한도는 얼마인가요?</summary><p>수노 모델에 따라 달라요. 이 도구는 최신 모델(스타일 1,000자·가사 5,000자)과 이전 모델(스타일 200자·가사 3,000자) 중에서 고르게 했어요. 수노 화면에 보이는 한도를 기준으로 하세요.</p></details><details><summary>수노 크레딧을 아낄 수 있나요?</summary><p>돌리기 전에 실수를 줄여 주는 도구일 뿐이에요. 크레딧을 직접 아껴 주지는 않아요.</p></details><details><summary>영어로만 써야 하나요?</summary><p>스타일 칸은 영어 키워드가 더 잘 통하는 편이에요. 가사는 한국어도 돼요. 한국어로 부르게 하려면 스타일에 sung in Korean을 넣어 보세요.</p></details><details><summary>정리본은 무엇을 바꾸나요?</summary><p>같은 키워드의 중복을 지우고, [태그]와 시간 표시를 빼고, avoid: 뒤 문구를 따로 나눠요. 내용 자체는 바꾸지 않아요.</p></details></div>
+  </section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>함께 쓰면 좋은 도구</h2></div>
+    <div class="tools" style="margin-top:0"><a class="btn-g" href="../song-analyzer/">곡 분석 → 프롬프트 찾기</a><a class="btn-g" href="../lyrics-generator/">수노 가사 도우미</a><a class="btn-g" href="../prompt-studio/">Suno 프롬프트 모음</a></div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>만든 노래로 영상까지 만들고 싶다면</h2>
+  <p>MusicCanvas는 음악과 이미지를 넣으면 이펙트와 가사가 들어간 유튜브용 영상으로 내보내 줘요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">기능·가격·자주 묻는 질문 보기 →</a></p>
+</div></section>
+<footer>이 페이지는 비공식 도구예요. Suno는 각 소유자의 상표입니다.</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={"lang": "ko", "ui": {"copied": "복사했어요", "copyFail": "복사하지 못했어요. 글을 직접 선택해 복사하세요.", "ch": "자", "vers": [["new", "최신 모델"], ["old", "이전 모델"]], "sev": {"bad": "문제", "warn": "주의", "good": "좋음", "note": "참고"}, "fs": "스타일", "fl": "가사", "emptyAll": "스타일이나 가사를 붙여넣으면 바로 점검해요.", "noStyle": "스타일 칸이 비어 있어요. 스타일을 넣으면 함께 점검해요.", "m": {"s_len_bad": ["스타일이 너무 길어요 ({n}/{l}자)", "한도를 넘으면 뒤쪽이 잘릴 수 있어요. 꼭 필요한 키워드만 남기세요."], "s_len_warn": ["스타일이 한도에 거의 찼어요 ({n}/{l}자)", "조금만 더 쓰면 넘어가요. 덜 중요한 말부터 줄이세요."], "s_few": ["키워드가 {n}개뿐이에요", "장르·악기·분위기·보컬을 쉼표로 나눠 4~7개쯤 넣으면 수노가 방향을 잡기 쉬워요."], "s_many": ["키워드가 {n}개로 많아요", "너무 많으면 뒤쪽 말이 무시되기 쉬워요. 4~7개로 줄여 보세요. 정확한 개수는 수노 버전마다 달라요."], "g_cnt": ["키워드 개수가 알맞아요 ({n}개)", "이 정도면 방향이 분명하면서 너무 길지 않아요."], "s_artist": ["가수 이름이 들어 있어요: {x}", "수노는 실제 가수 이름이 들어간 스타일을 거부하거나 무시하는 경우가 많아요. 이름 대신 목소리·장르·분위기로 풀어 쓰세요."], "s_gender": ["여성·남성 보컬이 같이 있어요", "듀엣이 아니라면 하나만 남기세요. 듀엣이면 duet이라고 적어 주세요."], "s_energy": ["조용한 말과 센 말이 같이 있어요: {x}", "곡 전체 설명에 둘 다 있으면 수노가 어느 쪽을 따를지 몰라요. 가사의 구간 태그로 나누세요. 예: [Verse: soft], [Chorus: powerful]"], "s_mood": ["슬픈 말과 밝은 말이 같이 있어요: {x}", "분위기가 섞이면 애매한 곡이 나오기 쉬워요. 하나로 정하세요."], "s_genre": ["부드러운 장르와 센 장르가 같이 있어요: {x}", "서로 끌어당겨서 어중간한 곡이 나오기 쉬워요. 하나를 주 장르로 하세요."], "s_bpm_multi": ["BPM이 여러 개예요: {x}", "하나만 남기세요."], "s_bpm_range": ["BPM {x}은 일반적인 범위를 벗어나요", "보통 40~220 사이로 넣어요."], "s_bpm_mis": ["BPM {n}과 '{x}'가 안 맞아요", "느린 곡은 보통 60~85, 빠른 곡은 120 이상이에요. 숫자나 말 하나를 고치세요."], "g_bpm": ["BPM이 들어 있어요 ({n})", "템포를 숫자로 알려 주면 수노가 속도를 잡기 쉬워요."], "s_dup": ["같은 말이 겹쳐요: {x}", "한 번만 쓰세요. 겹쳐 쓴다고 더 강하게 반영된다는 보장은 없어요."], "s_hangul": ["스타일에 한글이 있어요", "스타일 칸은 영어 키워드가 더 잘 통하는 편이에요. 한국어로 부르게 하려면 sung in Korean을 넣으세요."], "s_neg": ["부정 표현이 있어요: {x}", "no drums처럼 쓰면 오히려 그 말이 반영되는 경우가 있어요. 빼고 싶은 건 Exclude Styles 칸(유료 플랜)에 따로 넣으세요."], "s_tags": ["스타일에 [태그]가 들어 있어요", "[Verse] 같은 구간 태그는 가사 칸에 쓰는 거예요. 스타일 칸에서는 빼세요."], "s_time": ["시간 표시({x})가 있어요", "초 단위 지시보다 [Verse] [Chorus] 같은 구간 태그가 더 잘 읽히는 것으로 알려져 있어요."], "s_vocal_conf": ["가사를 넣었는데 연주곡(instrumental)이라고 적었어요", "둘 중 하나를 고치세요. 가사를 쓰려면 instrumental을 빼세요."], "s_avoid": ["avoid: 뒤의 말은 따로 넣으세요", "avoid: 뒤의 문구는 Exclude Styles 칸에 넣는 게 맞아요. 아래 '정리본'에서 나눠서 복사할 수 있어요."], "g_vocal": ["보컬 설명이 있어요", "목소리 느낌을 적어 두면 결과가 덜 흔들려요."], "g_ok": ["스타일 문구가 깔끔해요", "눈에 띄는 문제를 찾지 못했어요."], "l_empty": ["가사 칸이 비어 있어요", "연주곡이면 괜찮아요. 가사까지 점검받으려면 붙여넣으세요."], "l_len_bad": ["가사가 너무 길어요 ({n}/{l}자)", "한도를 넘으면 뒤쪽이 잘릴 수 있어요. 1절과 후렴 중심으로 줄이세요."], "l_len_warn": ["가사가 한도에 거의 찼어요 ({n}/{l}자)", "조금만 더 쓰면 넘어가요."], "l_bracket": ["대괄호가 짝이 안 맞아요", "[ 와 ] 개수가 달라요. 빠진 곳을 찾아 닫아 주세요."], "l_notag": ["구간 태그가 없어요", "[Verse] [Chorus] 같은 태그를 넣으면 수노가 곡의 흐름을 잡기 쉬워요."], "l_typo": ["태그 철자가 의심돼요: {x}", "[Chorus]처럼 정확히 쓰세요. 틀리면 그냥 글자로 읽힐 수 있어요."], "l_hint": ["태그 안 설명이 너무 길어요: {x}", "콜론 뒤에는 한두 단어면 충분해요. 길면 그대로 불러 버릴 수 있어요."], "l_emptysec": ["내용이 빈 구간: {x}", "태그만 있고 가사가 없어요. 연주 구간이면 [Instrumental]을 쓰세요."], "l_nochorus": ["후렴(Chorus)이 없어요", "노래가 밋밋해지기 쉬워요. 중심이 되는 후렴을 하나 넣어 보세요."], "l_chorus_same": ["후렴이 똑같이 반복돼요", "후렴을 똑같이 쓰면 귀에 오래 남아요."], "l_chorus_diff": ["후렴이 {n}번 나오는데 내용이 달라요", "후렴은 똑같이 반복해야 귀에 남아요. 일부러 바꾼 게 아니라면 맞춰 주세요."], "l_long": ["너무 긴 줄이 {n}개 있어요", "한 줄을 짧게 끊으면 박자에 맞춰 부르기 쉬워요. 예: {x}"], "l_end": ["[End] 태그가 있어요", "곡이 깔끔하게 끝나도록 도와요."], "l_noend": ["마지막에 [End]를 넣어 보세요", "곡이 늘어지지 않고 끝나도록 도와요."]}}, "ex": {"style": "emotional ballad, powerful, soft piano, slow tempo 140bpm, sad, happy, male vocals, female vocals, IU style, no drums, emotional, avoid: autotune, harsh synth", "lyr": "[Verse 1]\n우리가 함께 걷던 그 오래된 골목길을 지나서 다시 혼자 돌아오는 밤이면 너의 이름이 떠올라\n\n[Choruss: very emotional and powerful with big drums and a key change at the end]\n사랑은 끝까지 가지 못해도\n난 이 아픔을 고를 거야\n\n[Chorus]\n사랑은 끝까지 가지 못해도\n그래도 괜찮아"}};</script>
+<script>
+(function(){
+'use strict';
+var D=DATA,U=D.ui,M=U.m,$=function(q){return document.querySelector(q)};
+var LIM={new:{style:1000,lyr:5000},old:{style:200,lyr:3000}};
+var ver='new',tm=null;
+function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o&&o[k]!=null?o[k]:''})}
+function toast(m){var t=$('#toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show')},1800)}
+function copyText(txt,msg){
+  function fb(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);toast(ok?msg:U.copyFail)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast(msg)},fb)}else fb();
+}
+function mkChips(box,items,cur,on){
+  box.innerHTML='';
+  items.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=it[1];b.setAttribute('aria-pressed',it[0]===cur?'true':'false');
+    b.onclick=function(){on(it[0]);mkChips(box,items,it[0],on)};box.appendChild(b)});
+}
+/* ---------- helpers ---------- */
+var CALM=/\b(soft|gentle|slow|intimate|ambient|lo-?fi|dreamy|sparse|quiet|hush\w*|tender|calm|peaceful|minimal|lullaby|mellow)\b/gi;
+var HARD=/\b(powerful|epic|driving|energetic|anthemic|uptempo|aggressive|intense|punchy|heavy|hard|loud|fast|explosive|thunderous)\b/gi;
+var SAD=/\b(sad|melancholic|melancholy|sorrowful|heartbreak|tearful|lonely|grief|depressing|dark)\b/gi;
+var HAPPY=/\b(happy|cheerful|joyful|upbeat|sunny|playful|bright|fun|party)\b/gi;
+var SLOW=/\b(slow|ballad|lullaby|downtempo)\b/i, FAST=/\b(fast|uptempo|up-tempo|dance|energetic|rave|high-energy)\b/i;
+var SOFTG=/\b(lo-?fi|ambient|acoustic|folk|classical|piano ballad|lullaby|chillout|chill)\b/i;
+var HARDG=/\b(edm|hardstyle|metal|death metal|trap|dubstep|drum and bass|dnb|punk|hardcore|techno)\b/i;
+var ARTISTS=['taylor swift','ariana grande','billie eilish','ed sheeran','adele','drake','beyonce','beyoncé','rihanna','eminem','coldplay','imagine dragons','the weeknd','bruno mars','justin bieber','lady gaga','katy perry','dua lipa','olivia rodrigo','harry styles','post malone','kanye','travis scott','the beatles','michael jackson','elvis','bts','blackpink','newjeans','aespa','stray kids','bigbang','iu','아이유','방탄소년단','블랙핑크','뉴진스','태연','임영웅','성시경','박효신','이문세','김광석','폴킴','10cm'];
+var KNOWN=['intro','verse','prechorus','chorus','postchorus','bridge','outro','hook','interlude','instrumental','instrumentalbreak','solo','break','drop','build','finalchorus','lastchorus','end','fadeout','spoken','spokenword','whisper','refrain','prebridge','ending'];
+function uniq(a){var s={},o=[];a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x)}});return o}
+function matches(s,re){var m=s.match(re);return m?uniq(m.map(function(x){return x.toLowerCase()})):[]}
+function splitStyle(s){var m=s.search(/,?\s*avoid\s*:/i);return m>=0?{main:s.slice(0,m),avoid:s.slice(m).replace(/^,?\s*avoid\s*:\s*/i,'')}:{main:s,avoid:''}}
+function toks(s){return s.split(/[,\n]+/).map(function(x){return x.trim()}).filter(Boolean)}
+function lev(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++){d[i]=[i]}for(j=0;j<=n;j++)d[0][j]=j;for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
+function stem(t){return t.split(':')[0].toLowerCase().replace(/[^a-z]/g,'')}
+function artistHit(low){
+  var out=[];ARTISTS.forEach(function(a){
+    var hit=/[가-힣]/.test(a)?low.indexOf(a)>=0:new RegExp('(^|[^a-z])'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)').test(low);
+    if(hit)out.push(a)});
+  return out;
+}
+/* ---------- checks ---------- */
+function checkStyle(raw,hasLyr,L){
+  var out=[],P=splitStyle(raw),main=P.main,low=main.toLowerCase(),t=toks(main),n=t.length,len=raw.length;
+  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'s'})}
+  if(len>L.style)add('bad','s_len_bad',{n:len,l:L.style});else if(len>L.style*0.9)add('warn','s_len_warn',{n:len,l:L.style});
+  if(n<=2)add('warn','s_few',{n:n});else if(n>=11)add('warn','s_many',{n:n});else if(n>=4&&n<=8)add('good','g_cnt',{n:n});
+  var ar=artistHit(low);if(ar.length)add('bad','s_artist',{x:ar.join(', ')});
+  var fe=/\bfemale\b|여성|여자/i.test(main),ma=/(^|[^a-z])male\b|남성|남자/i.test(main.replace(/female/ig,'')),duet=/duet|듀엣|\bduo\b|choir|합창|group vocals/i.test(main);
+  if(fe&&ma&&!duet)add('warn','s_gender');
+  var c=matches(main,CALM),h=matches(main,HARD);if(c.length&&h.length)add('warn','s_energy',{x:c[0]+' / '+h[0]});
+  var s1=matches(main,SAD),h1=matches(main,HAPPY);if(s1.length&&h1.length)add('warn','s_mood',{x:s1[0]+' / '+h1[0]});
+  var g1=low.match(SOFTG),g2=low.match(HARDG);if(g1&&g2)add('warn','s_genre',{x:g1[0]+' / '+g2[0]});
+  var bp=[];(main.match(/\b(\d{2,3})\s*-?\s*bpm\b/ig)||[]).forEach(function(x){bp.push(+x.match(/\d+/)[0])});bp=uniq(bp);
+  if(bp.length>1)add('warn','s_bpm_multi',{x:bp.join(', ')});
+  else if(bp.length===1){var b=bp[0];
+    if(b<40||b>220)add('warn','s_bpm_range',{x:b});
+    else if(b>=120&&SLOW.test(main))add('warn','s_bpm_mis',{n:b,x:main.match(SLOW)[0]});
+    else if(b<=80&&FAST.test(main))add('warn','s_bpm_mis',{n:b,x:main.match(FAST)[0]});
+    else add('good','g_bpm',{n:b})}
+  var seen={},dups=[];t.forEach(function(x){var k=x.toLowerCase();if(seen[k]&&dups.indexOf(x)<0)dups.push(x);seen[k]=1});
+  var words=low.match(/[a-z]+/g)||[],wc={};words.forEach(function(w){if(w.length>3)wc[w]=(wc[w]||0)+1});
+  Object.keys(wc).forEach(function(w){if(wc[w]>=3&&dups.indexOf(w)<0)dups.push(w)});
+  if(dups.length)add('warn','s_dup',{x:dups.slice(0,3).join(', ')});
+  if(/[가-힣]/.test(main))add('warn','s_hangul');
+  var ng=main.match(/\b(no|without|don'?t|not)\s+[a-z]+/i);if(ng&&!/\bno vocals?\b/i.test(ng[0]))add('warn','s_neg',{x:ng[0]});
+  if(/\[[^\]]*\]/.test(raw))add('bad','s_tags');
+  var tt=raw.match(/\b\d{1,2}:\d{2}\b/);if(tt)add('warn','s_time',{x:tt[0]});
+  if(hasLyr&&/\binstrumental\b|연주곡/i.test(main))add('bad','s_vocal_conf');
+  if(/[a-z가-힣]/i.test(P.avoid))add('note','s_avoid');
+  if(/vocal|vocals|sung|보컬|choir|duet|듀엣/i.test(main))add('good','g_vocal');
+  return out;
+}
+function parseLyr(raw){
+  var lines=raw.split(/\r?\n/),secs=[],cur=null,tags=[];
+  lines.forEach(function(ln){
+    var m=ln.trim().match(/^\[([^\]]*)\]?\s*(.*)$/);
+    if(m&&ln.trim().charAt(0)==='['){cur={tag:m[1],body:[]};secs.push(cur);tags.push(m[1]);if(m[2]&&ln.indexOf(']')>=0)cur.body.push(m[2])}
+    else if(cur&&ln.trim())cur.body.push(ln.trim());
+    else if(!cur&&ln.trim()){cur={tag:null,body:[ln.trim()]};secs.push(cur)}
+  });
+  return {secs:secs,tags:tags};
+}
+function checkLyr(raw,L){
+  var out=[],len=raw.length;
+  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'l'})}
+  if(!raw.trim()){add('note','l_empty');return out}
+  if(len>L.lyr)add('bad','l_len_bad',{n:len,l:L.lyr});else if(len>L.lyr*0.9)add('warn','l_len_warn',{n:len,l:L.lyr});
+  var open=(raw.match(/\[/g)||[]).length,close=(raw.match(/\]/g)||[]).length;
+  if(open!==close)add('bad','l_bracket');
+  var P=parseLyr(raw),tagged=P.secs.filter(function(s){return s.tag!==null});
+  if(!tagged.length){add('warn','l_notag')}
+  else{
+    var typos=[],hints=[],chorus=[],empty=[];
+    tagged.forEach(function(s){
+      var st=stem(s.tag),base=st.replace(/\d+$/,'');
+      if(st&&KNOWN.indexOf(base)<0&&base.length>=4){
+        for(var i=0;i<KNOWN.length;i++){if(KNOWN[i].length>=4&&lev(base,KNOWN[i])<=2){typos.push('['+s.tag.split(':')[0]+']');break}}
+      }
+      var ci=s.tag.indexOf(':');if(ci>=0){var hint=s.tag.slice(ci+1).trim();if(hint.split(/\s+/).length>6||hint.length>45)hints.push('['+s.tag.slice(0,30)+(s.tag.length>30?'…':'')+']')}
+      var key=base.replace(/^final|^last/,'');
+      if(base==='chorus'&&s.body.length)chorus.push(s.body.join('\n').toLowerCase().replace(/\s+/g,' ').trim());
+      if(['verse','chorus','bridge','prechorus','hook'].indexOf(base)>=0&&!s.body.length)empty.push('['+s.tag.split(':')[0]+']');
+    });
+    if(typos.length)add('warn','l_typo',{x:uniq(typos).slice(0,3).join(', ')});
+    if(hints.length)add('warn','l_hint',{x:hints.slice(0,2).join(', ')});
+    if(empty.length)add('warn','l_emptysec',{x:uniq(empty).slice(0,3).join(', ')});
+    var hasCh=tagged.some(function(s){var b=stem(s.tag).replace(/\d+$/,'');return b==='chorus'||b==='hook'||b==='finalchorus'||b==='lastchorus'});
+    if(!hasCh)add('warn','l_nochorus');
+    else if(chorus.length>=2){var same=chorus.every(function(x){return x===chorus[0]});if(same)add('good','l_chorus_same');else add('warn','l_chorus_diff',{n:chorus.length})}
+  }
+  var longs=[];
+  P.secs.forEach(function(s){s.body.forEach(function(ln){var w=ln.split(/\s+/).length,ko=ln.replace(/[^가-힣]/g,'').length;if(w>12||ln.replace(/\s/g,'').length>50||ko>32)longs.push(ln)})});
+  if(longs.length)add('warn','l_long',{n:longs.length,x:'"'+longs[0].slice(0,24)+(longs[0].length>24?'…':'')+'"'});
+  if(/\b\d{1,2}:\d{2}\b/.test(raw))add('warn','s_time',{x:raw.match(/\b\d{1,2}:\d{2}\b/)[0]});
+  if(/\[end\]/i.test(raw))add('good','l_end');else if(tagged.length)add('note','l_noend');
+  return out;
+}
+/* ---------- cleaning ---------- */
+function clean(raw){
+  var P=splitStyle(raw),s=P.main.replace(/\[[^\]]*\]/g,' ').replace(/\b\d{1,2}:\d{2}\b/g,' ');
+  var t=toks(s),seen={},o=[];t.forEach(function(x){var k=x.toLowerCase();if(!seen[k]){seen[k]=1;o.push(x.replace(/\s+/g,' '))}});
+  return {style:o.join(', '),excl:toks(P.avoid).join(', ')};
+}
+/* ---------- render ---------- */
+var SEVLBL={bad:U.sev.bad,warn:U.sev.warn,good:U.sev.good,note:U.sev.note},ORDER=['bad','warn','note','good'];
+function run(){
+  var st=$('#inStyle').value,ly=$('#inLyr').value,L=LIM[ver];
+  $('#cStyle').textContent=st.length.toLocaleString()+' / '+L.style.toLocaleString()+U.ch;$('#cStyle').className='note'+(st.length>L.style?' warn':'');
+  $('#cLyr').textContent=ly.length.toLocaleString()+' / '+L.lyr.toLocaleString()+U.ch;$('#cLyr').className='note'+(ly.length>L.lyr?' warn':'');
+  var res=[];
+  if(st.trim())res=res.concat(checkStyle(st,!!ly.trim(),L));
+  res=res.concat(checkLyr(ly,L));
+  var cnt={bad:0,warn:0,good:0,note:0};res.forEach(function(r){cnt[r.sev]++});
+  var sum=$('#sum');sum.innerHTML='';
+  [['bad',U.sev.bad],['warn',U.sev.warn],['good',U.sev.good]].forEach(function(c){var li=document.createElement('li');li.className='sv-'+c[0];var s=document.createElement('span');s.textContent=c[1];var b=document.createElement('b');b.textContent=cnt[c[0]];li.appendChild(s);li.appendChild(b);sum.appendChild(li)});
+  var box=$('#items');box.innerHTML='';
+  if(!st.trim()&&!ly.trim()){var p=document.createElement('p');p.className='note';p.textContent=U.emptyAll;box.appendChild(p)}
+  else{
+    if(!st.trim()){var q=document.createElement('p');q.className='note';q.textContent=U.noStyle;box.appendChild(q)}
+    else if(cnt.bad+cnt.warn===0&&!res.some(function(r){return r.f==='s'&&r.sev==='note'})){res.unshift({sev:'good',t:M.g_ok[0],d:M.g_ok[1],f:'s'})}
+    ORDER.forEach(function(sv){res.filter(function(r){return r.sev===sv}).forEach(function(r){
+      var d=document.createElement('div');d.className='item sv-'+sv;
+      var h=document.createElement('div');h.className='it-h';
+      var tag=document.createElement('span');tag.className='it-tag';tag.textContent=SEVLBL[sv];
+      var fl=document.createElement('span');fl.className='it-f';fl.textContent=r.f==='s'?U.fs:U.fl;
+      var tt=document.createElement('b');tt.textContent=r.t;
+      h.appendChild(tag);h.appendChild(fl);h.appendChild(tt);d.appendChild(h);
+      var pp=document.createElement('p');pp.textContent=r.d;d.appendChild(pp);box.appendChild(d)})});
+  }
+  var fx=$('#fix');
+  if(st.trim()){var c=clean(st);fx.hidden=false;$('#outStyle').value=c.style;$('#exclBox').hidden=!c.excl;$('#outExcl').value=c.excl}
+  else fx.hidden=true;
+}
+function sched(){clearTimeout(tm);tm=setTimeout(run,160)}
+function init(){
+  mkChips($('#vchips'),U.vers,ver,function(v){ver=v;run()});
+  $('#inStyle').addEventListener('input',sched);$('#inLyr').addEventListener('input',sched);
+  $('#btnEx').onclick=function(){$('#inStyle').value=D.ex.style;$('#inLyr').value=D.ex.lyr;run()};
+  $('#btnClr').onclick=function(){$('#inStyle').value='';$('#inLyr').value='';run();$('#inStyle').focus()};
+  $('#cpStyle').onclick=function(){copyText($('#outStyle').value,U.copied)};
+  $('#cpExcl').onclick=function(){copyText($('#outExcl').value,U.copied)};
+  $('#inStyle').value=D.ex.style;$('#inLyr').value=D.ex.lyr;
+  run();
+}
+init();
+})();
+
+</script>
+</body>
+</html>
