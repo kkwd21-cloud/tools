@@ -315,6 +315,8 @@ body.lg-open{overflow:hidden}
 .it-tag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:1px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--text)}
 .sv-bad .it-tag{color:#ff8f8f;border-color:#ff8f8f}.sv-warn .it-tag{color:#f0c27a;border-color:#f0c27a}.sv-good .it-tag{color:#8fe0b0;border-color:#8fe0b0}
 .it-f{font-size:11.5px;color:var(--muted)}
+.it-fx{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.b-main.sm{padding:6px 12px;font-size:13px;border-radius:9px}
 .item p{font-size:13.5px;color:var(--muted);line-height:1.7}
 textarea.inp{resize:vertical;line-height:1.6}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:13.5px;pointer-events:none;transition:.2s;z-index:50}
@@ -364,6 +366,7 @@ textarea.inp{resize:vertical;line-height:1.6}
       <div class="card2" id="res">
         <h3>2. Results</h3>
         <ul class="sumchips" id="sum"></ul>
+        <button type="button" class="b-sub" id="btnUndo" hidden>↩ Undo last fix</button>
         <div id="items" class="items"></div>
       </div>
 
@@ -413,7 +416,7 @@ textarea.inp{resize:vertical;line-height:1.6}
 </div></section>
 <footer>This is an unofficial tool. Suno is a trademark of its owner.</footer>
 <div id="toast" role="status" aria-live="polite"></div>
-<script>var DATA={"lang": "en", "ui": {"copied": "Copied", "copyFail": "Copy failed. Select the text and copy it manually.", "ch": " chars", "vers": [["new", "Newer model"], ["old", "Older model"]], "sev": {"bad": "Problem", "warn": "Caution", "good": "Good", "note": "Note"}, "fs": "Style", "fl": "Lyrics", "emptyAll": "Paste a style or lyrics and it is checked right away.", "noStyle": "The style box is empty. Add a style and it is checked too.", "m": {"s_len_bad": ["Style is too long ({n}/{l} chars)", "Past the limit, the end can get cut off. Keep only the keywords you need."], "s_len_warn": ["Style is close to the limit ({n}/{l} chars)", "A little more and it goes over. Trim the least important words first."], "s_few": ["Only {n} keyword(s)", "Aim for about 4 to 7 comma-separated keywords covering genre, instruments, mood and vocals so Suno has a clear direction."], "s_many": ["{n} keywords is a lot", "With too many, the later ones tend to be ignored. Try 4 to 7. The best count varies by Suno version."], "g_cnt": ["Good number of keywords ({n})", "Clear direction without being too long."], "s_artist": ["Artist name found: {x}", "Suno often rejects or ignores styles that name real artists. Describe the voice, genre and mood instead."], "s_gender": ["Female and male vocals both appear", "Keep one unless it is a duet. If it is a duet, write duet."], "s_energy": ["Calm and intense words together: {x}", "If both describe the whole song, Suno cannot tell which to follow. Split them with section tags in the lyrics, such as [Verse: soft] and [Chorus: powerful]."], "s_mood": ["Sad and happy words together: {x}", "Mixed moods tend to give a vague song. Pick one."], "s_genre": ["Soft and hard genres together: {x}", "They pull against each other and the result can land in between. Choose one main genre."], "s_bpm_multi": ["More than one BPM: {x}", "Keep just one."], "s_bpm_range": ["BPM {x} is outside the usual range", "Usually between 40 and 220."], "s_bpm_mis": ["BPM {n} does not match '{x}'", "Slow songs are usually 60 to 85 BPM and fast ones 120 or more. Fix the number or the word."], "g_bpm": ["A BPM is included ({n})", "A number helps Suno settle on a tempo."], "s_dup": ["Repeated words: {x}", "Say it once. Repeating does not guarantee a stronger effect."], "s_hangul": ["Korean text in the style box", "English keywords tend to work better in the style box. To get Korean singing, add sung in Korean."], "s_neg": ["Negative phrase found: {x}", "Writing something like no drums can make that word count in the wrong way. Put things you want gone in the Exclude Styles box (paid plans)."], "s_tags": ["[Tags] inside the style box", "Section tags like [Verse] belong in the lyrics box. Remove them from the style."], "s_time": ["Time stamp found ({x})", "Section tags like [Verse] and [Chorus] are known to work better than time stamps."], "s_vocal_conf": ["You added lyrics but wrote instrumental", "Fix one of them. Remove instrumental if you want vocals."], "s_avoid": ["Move the part after avoid: elsewhere", "Text after avoid: belongs in the Exclude Styles box. The cleaned version below lets you copy them separately."], "g_vocal": ["Vocal is described", "Describing the voice makes results vary less."], "g_ok": ["The style looks clean", "No obvious problems found."], "l_empty": ["The lyrics box is empty", "Fine for an instrumental. Paste lyrics to have them checked too."], "l_len_bad": ["Lyrics are too long ({n}/{l} chars)", "Past the limit, the end can get cut off. Shorten it to the verse and chorus."], "l_len_warn": ["Lyrics are close to the limit ({n}/{l} chars)", "A little more and it goes over."], "l_bracket": ["Brackets do not match", "The number of [ and ] differs. Find the missing one and close it."], "l_notag": ["No section tags", "Tags like [Verse] and [Chorus] help Suno follow the song's flow."], "l_typo": ["Possible tag typo: {x}", "Spell tags exactly, like [Chorus]. A misspelled tag may be read as plain words."], "l_hint": ["Tag description is too long: {x}", "One or two words after the colon is enough. Long ones may get sung out loud."], "l_emptysec": ["Empty section: {x}", "There is a tag but no lyrics. For an instrumental part, use [Instrumental]."], "l_nochorus": ["No chorus", "The song can feel flat. Add one main chorus."], "l_chorus_same": ["The chorus repeats exactly", "An identical chorus is what makes a hook stick."], "l_chorus_diff": ["The chorus appears {n} times but differs", "A chorus sticks when it repeats exactly. Match them unless the change is on purpose."], "l_long": ["{n} line(s) are very long", "Shorter lines are easier to sing on the beat. For example: {x}"], "l_end": ["An [End] tag is there", "It helps the song finish cleanly."], "l_noend": ["Try adding [End] at the bottom", "It helps the song stop instead of dragging on."]}}, "ex": {"style": "emotional ballad, powerful, soft piano, slow tempo 140bpm, sad, happy, male vocals, female vocals, Taylor Swift style, no drums, emotional, avoid: autotune, harsh synth", "lyr": "[Verse 1]\nWe walked down that old familiar street together and now I come back alone every night and your name just keeps coming back to me\n\n[Choruss: very emotional and powerful with big drums and a key change at the end]\nLove couldn't make it to the end\nBut I will choose this ache\n\n[Chorus]\nLove couldn't make it to the end\nAnd that's okay"}};</script>
+<script>var DATA={"lang": "en", "ui": {"copied": "Copied", "copyFail": "Copy failed. Select the text and copy it manually.", "ch": " chars", "vers": [["new", "Newer model"], ["old", "Older model"]], "sev": {"bad": "Problem", "warn": "Caution", "good": "Good", "note": "Note"}, "fs": "Style", "fl": "Lyrics", "fx": {"artist": "Remove artist name", "neg": "Move to exclude", "dup": "Remove repeats", "tags": "Remove [tags]", "time": "Remove time stamps", "many": "Keep first 7", "len": "Trim to the limit", "male": "Keep male only", "female": "Keep female only", "duet": "Make it a duet", "inst": "Remove instrumental", "typo": "Fix spelling", "hint": "Shorten description", "long": "Split long lines", "end": "Add [End]", "chorus": "Make choruses identical"}, "emptyAll": "Paste a style or lyrics and it is checked right away.", "noStyle": "The style box is empty. Add a style and it is checked too.", "m": {"s_len_bad": ["Style is too long ({n}/{l} chars)", "Past the limit, the end can get cut off. Keep only the keywords you need."], "s_len_warn": ["Style is close to the limit ({n}/{l} chars)", "A little more and it goes over. Trim the least important words first."], "s_few": ["Only {n} keyword(s)", "Aim for about 4 to 7 comma-separated keywords covering genre, instruments, mood and vocals so Suno has a clear direction."], "s_many": ["{n} keywords is a lot", "With too many, the later ones tend to be ignored. Try 4 to 7. The best count varies by Suno version."], "g_cnt": ["Good number of keywords ({n})", "Clear direction without being too long."], "s_artist": ["Artist name found: {x}", "Suno often rejects or ignores styles that name real artists. Describe the voice, genre and mood instead."], "s_gender": ["Female and male vocals both appear", "Keep one unless it is a duet. If it is a duet, write duet."], "s_energy": ["Calm and intense words together: {x}", "If both describe the whole song, Suno cannot tell which to follow. Split them with section tags in the lyrics, such as [Verse: soft] and [Chorus: powerful]."], "s_mood": ["Sad and happy words together: {x}", "Mixed moods tend to give a vague song. Pick one."], "s_genre": ["Soft and hard genres together: {x}", "They pull against each other and the result can land in between. Choose one main genre."], "s_bpm_multi": ["More than one BPM: {x}", "Keep just one."], "s_bpm_range": ["BPM {x} is outside the usual range", "Usually between 40 and 220."], "s_bpm_mis": ["BPM {n} does not match '{x}'", "Slow songs are usually 60 to 85 BPM and fast ones 120 or more. Fix the number or the word."], "g_bpm": ["A BPM is included ({n})", "A number helps Suno settle on a tempo."], "s_dup": ["Repeated words: {x}", "Say it once. Repeating does not guarantee a stronger effect."], "s_hangul": ["Korean text in the style box", "English keywords tend to work better in the style box. To get Korean singing, add sung in Korean."], "s_neg": ["Negative phrase found: {x}", "Writing something like no drums can make that word count in the wrong way. Put things you want gone in the Exclude Styles box (paid plans)."], "s_tags": ["[Tags] inside the style box", "Section tags like [Verse] belong in the lyrics box. Remove them from the style."], "s_time": ["Time stamp found ({x})", "Section tags like [Verse] and [Chorus] are known to work better than time stamps."], "s_vocal_conf": ["You added lyrics but wrote instrumental", "Fix one of them. Remove instrumental if you want vocals."], "s_avoid": ["Move the part after avoid: elsewhere", "Text after avoid: belongs in the Exclude Styles box. The cleaned version below lets you copy them separately."], "g_vocal": ["Vocal is described", "Describing the voice makes results vary less."], "g_ok": ["The style looks clean", "No obvious problems found."], "l_empty": ["The lyrics box is empty", "Fine for an instrumental. Paste lyrics to have them checked too."], "l_len_bad": ["Lyrics are too long ({n}/{l} chars)", "Past the limit, the end can get cut off. Shorten it to the verse and chorus."], "l_len_warn": ["Lyrics are close to the limit ({n}/{l} chars)", "A little more and it goes over."], "l_bracket": ["Brackets do not match", "The number of [ and ] differs. Find the missing one and close it."], "l_notag": ["No section tags", "Tags like [Verse] and [Chorus] help Suno follow the song's flow."], "l_typo": ["Possible tag typo: {x}", "Spell tags exactly, like [Chorus]. A misspelled tag may be read as plain words."], "l_hint": ["Tag description is too long: {x}", "One or two words after the colon is enough. Long ones may get sung out loud."], "l_emptysec": ["Empty section: {x}", "There is a tag but no lyrics. For an instrumental part, use [Instrumental]."], "l_nochorus": ["No chorus", "The song can feel flat. Add one main chorus."], "l_chorus_same": ["The chorus repeats exactly", "An identical chorus is what makes a hook stick."], "l_chorus_diff": ["The chorus appears {n} times but differs", "A chorus sticks when it repeats exactly. Match them unless the change is on purpose."], "l_long": ["{n} line(s) are very long", "Shorter lines are easier to sing on the beat. For example: {x}"], "l_end": ["An [End] tag is there", "It helps the song finish cleanly."], "l_noend": ["Try adding [End] at the bottom", "It helps the song stop instead of dragging on."]}}, "ex": {"style": "emotional ballad, powerful, soft piano, slow tempo 140bpm, sad, happy, male vocals, female vocals, Taylor Swift style, no drums, emotional, avoid: autotune, harsh synth", "lyr": "[Verse 1]\nWe walked down that old familiar street together and now I come back alone every night and your name just keeps coming back to me\n\n[Choruss: very emotional and powerful with big drums and a key change at the end]\nLove couldn't make it to the end\nBut I will choose this ache\n\n[Chorus]\nLove couldn't make it to the end\nAnd that's okay"}};</script>
 <script>
 (function(){
 'use strict';
@@ -453,15 +456,56 @@ function artistHit(low){
     if(hit)out.push(a)});
   return out;
 }
+/* ---------- fixes ---------- */
+var PROPER={intro:'Intro',verse:'Verse',prechorus:'Pre-Chorus',chorus:'Chorus',postchorus:'Post-Chorus',bridge:'Bridge',outro:'Outro',hook:'Hook',interlude:'Interlude',instrumental:'Instrumental',instrumentalbreak:'Instrumental Break',solo:'Solo',break:'Break',drop:'Drop',build:'Build',finalchorus:'Final Chorus',lastchorus:'Last Chorus',end:'End',fadeout:'Fade Out',spoken:'Spoken',spokenword:'Spoken Word',whisper:'Whisper',refrain:'Refrain',prebridge:'Pre-Bridge',ending:'Ending'};
+var TIMERE=/\b\d{1,2}:\d{2}\b/g;
+function setStyleVal(t,a){$('#inStyle').value=t.join(', ')+(a.length?', avoid: '+a.join(', '):'')}
+function mutStyle(fn){var P=splitStyle($('#inStyle').value),t=toks(P.main),a=toks(P.avoid);fn(t,a);setStyleVal(t,a)}
+function fxApply(fn){snap={style:$('#inStyle').value,lyr:$('#inLyr').value};fn();run()}
+function fixTag(inner){
+  var ci=inner.indexOf(':'),head=ci>=0?inner.slice(0,ci):inner,hint=ci>=0?inner.slice(ci+1).trim():'';
+  var base=stem(head).replace(/\d+$/,''),num=(head.match(/\d+/)||[''])[0],best=null,bd=9;
+  if(KNOWN.indexOf(base)<0&&base.length>=4){KNOWN.forEach(function(k){if(k.length>=4){var d=lev(base,k);if(d<bd){bd=d;best=k}}})}
+  if(KNOWN.indexOf(base)>=0)best=base;else if(!best||bd>2)return inner;
+  return PROPER[best]+(num?' '+num:'')+(hint?': '+hint:'');
+}
+function shortHint(inner){var ci=inner.indexOf(':');if(ci<0)return inner;var h=inner.slice(ci+1).trim();if(h.split(/\s+/).length>6||h.length>45)h=h.split(/\s+/).slice(0,2).join(' ');return inner.slice(0,ci)+': '+h}
+function splitLong(raw){
+  return raw.split(/\r?\n/).map(function(ln){
+    var tl=ln.trim();if(!tl||tl.charAt(0)==='[')return ln;
+    var w=tl.split(/\s+/),ko=tl.replace(/[^가-힣]/g,'').length;
+    if(!(w.length>12||tl.replace(/\s/g,'').length>50||ko>32)||w.length<4)return ln;
+    var n=Math.ceil(w.length/9),sz=Math.ceil(w.length/n),o=[];
+    for(var i=0;i<w.length;i+=sz)o.push(w.slice(i,i+sz).join(' '));
+    return o.join('\n');
+  }).join('\n');
+}
+function sameChorus(raw){
+  var segs=[],cur={head:null,body:[]},first=null,out=[];
+  raw.split(/\r?\n/).forEach(function(ln){if(/^\s*\[/.test(ln)){segs.push(cur);cur={head:ln,body:[]}}else cur.body.push(ln)});segs.push(cur);
+  segs.forEach(function(sg){
+    if(sg.head&&stem(sg.head.replace(/^\s*\[|\].*$/g,'')).replace(/\d+$/,'')==='chorus'){
+      var b=sg.body.slice(),trail=[];while(b.length&&!b[b.length-1].trim())trail.push(b.pop());
+      if(first===null)first=b.slice();else sg.body=first.slice().concat(trail);
+    }
+  });
+  segs.forEach(function(sg){if(sg.head!==null)out.push(sg.head);sg.body.forEach(function(l){out.push(l)})});
+  return out.join('\n');
+}
+var snap=null;
+function F(k,fn){return {l:U.fx[k],f:function(){fxApply(fn)}}}
 /* ---------- checks ---------- */
 function checkStyle(raw,hasLyr,L){
   var out=[],P=splitStyle(raw),main=P.main,low=main.toLowerCase(),t=toks(main),n=t.length,len=raw.length;
-  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'s'})}
-  if(len>L.style)add('bad','s_len_bad',{n:len,l:L.style});else if(len>L.style*0.9)add('warn','s_len_warn',{n:len,l:L.style});
-  if(n<=2)add('warn','s_few',{n:n});else if(n>=11)add('warn','s_many',{n:n});else if(n>=4&&n<=8)add('good','g_cnt',{n:n});
-  var ar=artistHit(low);if(ar.length)add('bad','s_artist',{x:ar.join(', ')});
+  function add(sev,id,o,fx){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'s',fx:fx||[]})}
+  if(len>L.style)add('bad','s_len_bad',{n:len,l:L.style},[F('len',function(){mutStyle(function(t,a){while(t.length>1&&(t.join(', ')+(a.length?', avoid: '+a.join(', '):'')).length>L.style)t.pop()})})]);else if(len>L.style*0.9)add('warn','s_len_warn',{n:len,l:L.style});
+  if(n<=2)add('warn','s_few',{n:n});else if(n>=11)add('warn','s_many',{n:n},[F('many',function(){mutStyle(function(t){t.splice(7)})})]);else if(n>=4&&n<=8)add('good','g_cnt',{n:n});
+  var ar=artistHit(low);if(ar.length)add('bad','s_artist',{x:ar.join(', ')},[F('artist',function(){mutStyle(function(t){var k=t.filter(function(x){return !artistHit(x.toLowerCase()).length});t.length=0;k.forEach(function(x){t.push(x)})})})]);
   var fe=/\bfemale\b|여성|여자/i.test(main),ma=/(^|[^a-z])male\b|남성|남자/i.test(main.replace(/female/ig,'')),duet=/duet|듀엣|\bduo\b|choir|합창|group vocals/i.test(main);
-  if(fe&&ma&&!duet)add('warn','s_gender');
+  if(fe&&ma&&!duet)add('warn','s_gender',null,[
+    F('male',function(){mutStyle(function(t){var k=t.filter(function(x){return !/\bfemale\b|여성|여자/i.test(x)});t.length=0;k.forEach(function(x){t.push(x)})})}),
+    F('female',function(){mutStyle(function(t){var k=t.filter(function(x){return !(/(^|[^a-z])male\b|남성|남자/i.test(x.replace(/female/ig,'')))});t.length=0;k.forEach(function(x){t.push(x)})})}),
+    F('duet',function(){mutStyle(function(t){var k=t.filter(function(x){return !/\bfemale\b|여성|여자/i.test(x)&&!(/(^|[^a-z])male\b|남성|남자/i.test(x.replace(/female/ig,'')))});t.length=0;k.forEach(function(x){t.push(x)});t.push('male and female duet vocals')})})]);
   var c=matches(main,CALM),h=matches(main,HARD);if(c.length&&h.length)add('warn','s_energy',{x:c[0]+' / '+h[0]});
   var s1=matches(main,SAD),h1=matches(main,HAPPY);if(s1.length&&h1.length)add('warn','s_mood',{x:s1[0]+' / '+h1[0]});
   var g1=low.match(SOFTG),g2=low.match(HARDG);if(g1&&g2)add('warn','s_genre',{x:g1[0]+' / '+g2[0]});
@@ -475,12 +519,12 @@ function checkStyle(raw,hasLyr,L){
   var seen={},dups=[];t.forEach(function(x){var k=x.toLowerCase();if(seen[k]&&dups.indexOf(x)<0)dups.push(x);seen[k]=1});
   var words=low.match(/[a-z]+/g)||[],wc={};words.forEach(function(w){if(w.length>3)wc[w]=(wc[w]||0)+1});
   Object.keys(wc).forEach(function(w){if(wc[w]>=3&&dups.indexOf(w)<0)dups.push(w)});
-  if(dups.length)add('warn','s_dup',{x:dups.slice(0,3).join(', ')});
+  if(dups.length)add('warn','s_dup',{x:dups.slice(0,3).join(', ')},[F('dup',function(){mutStyle(function(t){var sn={},k=[];t.forEach(function(x){var q=x.toLowerCase();if(!sn[q]){sn[q]=1;k.push(x)}});t.length=0;k.forEach(function(x){t.push(x)})})})]);
   if(/[가-힣]/.test(main))add('warn','s_hangul');
-  var ng=main.match(/\b(no|without|don'?t|not)\s+[a-z]+/i);if(ng&&!/\bno vocals?\b/i.test(ng[0]))add('warn','s_neg',{x:ng[0]});
-  if(/\[[^\]]*\]/.test(raw))add('bad','s_tags');
-  var tt=raw.match(/\b\d{1,2}:\d{2}\b/);if(tt)add('warn','s_time',{x:tt[0]});
-  if(hasLyr&&/\binstrumental\b|연주곡/i.test(main))add('bad','s_vocal_conf');
+  var ng=main.match(/\b(no|without|don'?t|not)\s+[a-z]+/i);if(ng&&!/\bno vocals?\b/i.test(ng[0]))add('warn','s_neg',{x:ng[0]},[F('neg',function(){mutStyle(function(t,a){var k=[];t.forEach(function(x){var m=x.match(/^(no|without|don'?t|not)\s+(.+)$/i);if(m&&!/^no vocals?$/i.test(x))a.push(m[2]);else k.push(x)});t.length=0;k.forEach(function(x){t.push(x)})})})]);
+  if(/\[[^\]]*\]/.test(raw))add('bad','s_tags',null,[F('tags',function(){$('#inStyle').value=$('#inStyle').value.replace(/\[[^\]]*\]/g,' ');mutStyle(function(){})})]);
+  var tt=raw.match(/\b\d{1,2}:\d{2}\b/);if(tt)add('warn','s_time',{x:tt[0]},[F('time',function(){$('#inStyle').value=$('#inStyle').value.replace(TIMERE,' ');mutStyle(function(){})})]);
+  if(hasLyr&&/\binstrumental\b|연주곡/i.test(main))add('bad','s_vocal_conf',null,[F('inst',function(){mutStyle(function(t){var k=t.filter(function(x){return !/\binstrumental\b|연주곡/i.test(x)});t.length=0;k.forEach(function(x){t.push(x)})})})]);
   if(/[a-z가-힣]/i.test(P.avoid))add('note','s_avoid');
   if(/vocal|vocals|sung|보컬|choir|duet|듀엣/i.test(main))add('good','g_vocal');
   return out;
@@ -497,7 +541,7 @@ function parseLyr(raw){
 }
 function checkLyr(raw,L){
   var out=[],len=raw.length;
-  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'l'})}
+  function add(sev,id,o,fx){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'l',fx:fx||[]})}
   if(!raw.trim()){add('note','l_empty');return out}
   if(len>L.lyr)add('bad','l_len_bad',{n:len,l:L.lyr});else if(len>L.lyr*0.9)add('warn','l_len_warn',{n:len,l:L.lyr});
   var open=(raw.match(/\[/g)||[]).length,close=(raw.match(/\]/g)||[]).length;
@@ -516,18 +560,18 @@ function checkLyr(raw,L){
       if(base==='chorus'&&s.body.length)chorus.push(s.body.join('\n').toLowerCase().replace(/\s+/g,' ').trim());
       if(['verse','chorus','bridge','prechorus','hook'].indexOf(base)>=0&&!s.body.length)empty.push('['+s.tag.split(':')[0]+']');
     });
-    if(typos.length)add('warn','l_typo',{x:uniq(typos).slice(0,3).join(', ')});
-    if(hints.length)add('warn','l_hint',{x:hints.slice(0,2).join(', ')});
+    if(typos.length)add('warn','l_typo',{x:uniq(typos).slice(0,3).join(', ')},[F('typo',function(){$('#inLyr').value=$('#inLyr').value.replace(/\[([^\]]*)\]/g,function(m,i){return '['+fixTag(i)+']'})})]);
+    if(hints.length)add('warn','l_hint',{x:hints.slice(0,2).join(', ')},[F('hint',function(){$('#inLyr').value=$('#inLyr').value.replace(/\[([^\]]*)\]/g,function(m,i){return '['+shortHint(i)+']'})})]);
     if(empty.length)add('warn','l_emptysec',{x:uniq(empty).slice(0,3).join(', ')});
     var hasCh=tagged.some(function(s){var b=stem(s.tag).replace(/\d+$/,'');return b==='chorus'||b==='hook'||b==='finalchorus'||b==='lastchorus'});
     if(!hasCh)add('warn','l_nochorus');
-    else if(chorus.length>=2){var same=chorus.every(function(x){return x===chorus[0]});if(same)add('good','l_chorus_same');else add('warn','l_chorus_diff',{n:chorus.length})}
+    else if(chorus.length>=2){var same=chorus.every(function(x){return x===chorus[0]});if(same)add('good','l_chorus_same');else add('warn','l_chorus_diff',{n:chorus.length},[F('chorus',function(){$('#inLyr').value=sameChorus($('#inLyr').value)})])}
   }
   var longs=[];
   P.secs.forEach(function(s){s.body.forEach(function(ln){var w=ln.split(/\s+/).length,ko=ln.replace(/[^가-힣]/g,'').length;if(w>12||ln.replace(/\s/g,'').length>50||ko>32)longs.push(ln)})});
-  if(longs.length)add('warn','l_long',{n:longs.length,x:'"'+longs[0].slice(0,24)+(longs[0].length>24?'…':'')+'"'});
-  if(/\b\d{1,2}:\d{2}\b/.test(raw))add('warn','s_time',{x:raw.match(/\b\d{1,2}:\d{2}\b/)[0]});
-  if(/\[end\]/i.test(raw))add('good','l_end');else if(tagged.length)add('note','l_noend');
+  if(longs.length)add('warn','l_long',{n:longs.length,x:'"'+longs[0].slice(0,24)+(longs[0].length>24?'…':'')+'"'},[F('long',function(){$('#inLyr').value=splitLong($('#inLyr').value)})]);
+  if(/\b\d{1,2}:\d{2}\b/.test(raw))add('warn','s_time',{x:raw.match(/\b\d{1,2}:\d{2}\b/)[0]},[F('time',function(){$('#inLyr').value=$('#inLyr').value.replace(TIMERE,'').replace(/[ \t]+$/gm,'')})]);
+  if(/\[end\]/i.test(raw))add('good','l_end');else if(tagged.length)add('note','l_noend',null,[F('end',function(){$('#inLyr').value=$('#inLyr').value.replace(/\s+$/,'')+'\n\n[End]'})]);
   return out;
 }
 /* ---------- cleaning ---------- */
@@ -560,8 +604,11 @@ function run(){
       var fl=document.createElement('span');fl.className='it-f';fl.textContent=r.f==='s'?U.fs:U.fl;
       var tt=document.createElement('b');tt.textContent=r.t;
       h.appendChild(tag);h.appendChild(fl);h.appendChild(tt);d.appendChild(h);
-      var pp=document.createElement('p');pp.textContent=r.d;d.appendChild(pp);box.appendChild(d)})});
+      var pp=document.createElement('p');pp.textContent=r.d;d.appendChild(pp);
+      if(r.fx&&r.fx.length){var fr=document.createElement('div');fr.className='it-fx';r.fx.forEach(function(x){var bt=document.createElement('button');bt.type='button';bt.className='b-main sm';bt.textContent=x.l;bt.onclick=x.f;fr.appendChild(bt)});d.appendChild(fr)}
+      box.appendChild(d)})});
   }
+  $('#btnUndo').hidden=!snap;
   var fx=$('#fix');
   if(st.trim()){var c=clean(st);fx.hidden=false;$('#outStyle').value=c.style;$('#exclBox').hidden=!c.excl;$('#outExcl').value=c.excl}
   else fx.hidden=true;
@@ -571,6 +618,7 @@ function init(){
   mkChips($('#vchips'),U.vers,ver,function(v){ver=v;run()});
   $('#inStyle').addEventListener('input',sched);$('#inLyr').addEventListener('input',sched);
   $('#btnEx').onclick=function(){$('#inStyle').value=D.ex.style;$('#inLyr').value=D.ex.lyr;run()};
+  $('#btnUndo').onclick=function(){if(!snap)return;$('#inStyle').value=snap.style;$('#inLyr').value=snap.lyr;snap=null;run()};
   $('#btnClr').onclick=function(){$('#inStyle').value='';$('#inLyr').value='';run();$('#inStyle').focus()};
   $('#cpStyle').onclick=function(){copyText($('#outStyle').value,U.copied)};
   $('#cpExcl').onclick=function(){copyText($('#outExcl').value,U.copied)};

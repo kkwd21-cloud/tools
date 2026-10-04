@@ -315,6 +315,8 @@ body.lg-open{overflow:hidden}
 .it-tag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:1px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--text)}
 .sv-bad .it-tag{color:#ff8f8f;border-color:#ff8f8f}.sv-warn .it-tag{color:#f0c27a;border-color:#f0c27a}.sv-good .it-tag{color:#8fe0b0;border-color:#8fe0b0}
 .it-f{font-size:11.5px;color:var(--muted)}
+.it-fx{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.b-main.sm{padding:6px 12px;font-size:13px;border-radius:9px}
 .item p{font-size:13.5px;color:var(--muted);line-height:1.7}
 textarea.inp{resize:vertical;line-height:1.6}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:13.5px;pointer-events:none;transition:.2s;z-index:50}
@@ -364,6 +366,7 @@ textarea.inp{resize:vertical;line-height:1.6}
       <div class="card2" id="res">
         <h3>2. 점검 결과</h3>
         <ul class="sumchips" id="sum"></ul>
+        <button type="button" class="b-sub" id="btnUndo" hidden>↩ 고치기 되돌리기</button>
         <div id="items" class="items"></div>
       </div>
 
@@ -413,7 +416,7 @@ textarea.inp{resize:vertical;line-height:1.6}
 </div></section>
 <footer>이 페이지는 비공식 도구예요. Suno는 각 소유자의 상표입니다.</footer>
 <div id="toast" role="status" aria-live="polite"></div>
-<script>var DATA={"lang": "ko", "ui": {"copied": "복사했어요", "copyFail": "복사하지 못했어요. 글을 직접 선택해 복사하세요.", "ch": "자", "vers": [["new", "최신 모델"], ["old", "이전 모델"]], "sev": {"bad": "문제", "warn": "주의", "good": "좋음", "note": "참고"}, "fs": "스타일", "fl": "가사", "emptyAll": "스타일이나 가사를 붙여넣으면 바로 점검해요.", "noStyle": "스타일 칸이 비어 있어요. 스타일을 넣으면 함께 점검해요.", "m": {"s_len_bad": ["스타일이 너무 길어요 ({n}/{l}자)", "한도를 넘으면 뒤쪽이 잘릴 수 있어요. 꼭 필요한 키워드만 남기세요."], "s_len_warn": ["스타일이 한도에 거의 찼어요 ({n}/{l}자)", "조금만 더 쓰면 넘어가요. 덜 중요한 말부터 줄이세요."], "s_few": ["키워드가 {n}개뿐이에요", "장르·악기·분위기·보컬을 쉼표로 나눠 4~7개쯤 넣으면 수노가 방향을 잡기 쉬워요."], "s_many": ["키워드가 {n}개로 많아요", "너무 많으면 뒤쪽 말이 무시되기 쉬워요. 4~7개로 줄여 보세요. 정확한 개수는 수노 버전마다 달라요."], "g_cnt": ["키워드 개수가 알맞아요 ({n}개)", "이 정도면 방향이 분명하면서 너무 길지 않아요."], "s_artist": ["가수 이름이 들어 있어요: {x}", "수노는 실제 가수 이름이 들어간 스타일을 거부하거나 무시하는 경우가 많아요. 이름 대신 목소리·장르·분위기로 풀어 쓰세요."], "s_gender": ["여성·남성 보컬이 같이 있어요", "듀엣이 아니라면 하나만 남기세요. 듀엣이면 duet이라고 적어 주세요."], "s_energy": ["조용한 말과 센 말이 같이 있어요: {x}", "곡 전체 설명에 둘 다 있으면 수노가 어느 쪽을 따를지 몰라요. 가사의 구간 태그로 나누세요. 예: [Verse: soft], [Chorus: powerful]"], "s_mood": ["슬픈 말과 밝은 말이 같이 있어요: {x}", "분위기가 섞이면 애매한 곡이 나오기 쉬워요. 하나로 정하세요."], "s_genre": ["부드러운 장르와 센 장르가 같이 있어요: {x}", "서로 끌어당겨서 어중간한 곡이 나오기 쉬워요. 하나를 주 장르로 하세요."], "s_bpm_multi": ["BPM이 여러 개예요: {x}", "하나만 남기세요."], "s_bpm_range": ["BPM {x}은 일반적인 범위를 벗어나요", "보통 40~220 사이로 넣어요."], "s_bpm_mis": ["BPM {n}과 '{x}'가 안 맞아요", "느린 곡은 보통 60~85, 빠른 곡은 120 이상이에요. 숫자나 말 하나를 고치세요."], "g_bpm": ["BPM이 들어 있어요 ({n})", "템포를 숫자로 알려 주면 수노가 속도를 잡기 쉬워요."], "s_dup": ["같은 말이 겹쳐요: {x}", "한 번만 쓰세요. 겹쳐 쓴다고 더 강하게 반영된다는 보장은 없어요."], "s_hangul": ["스타일에 한글이 있어요", "스타일 칸은 영어 키워드가 더 잘 통하는 편이에요. 한국어로 부르게 하려면 sung in Korean을 넣으세요."], "s_neg": ["부정 표현이 있어요: {x}", "no drums처럼 쓰면 오히려 그 말이 반영되는 경우가 있어요. 빼고 싶은 건 Exclude Styles 칸(유료 플랜)에 따로 넣으세요."], "s_tags": ["스타일에 [태그]가 들어 있어요", "[Verse] 같은 구간 태그는 가사 칸에 쓰는 거예요. 스타일 칸에서는 빼세요."], "s_time": ["시간 표시({x})가 있어요", "초 단위 지시보다 [Verse] [Chorus] 같은 구간 태그가 더 잘 읽히는 것으로 알려져 있어요."], "s_vocal_conf": ["가사를 넣었는데 연주곡(instrumental)이라고 적었어요", "둘 중 하나를 고치세요. 가사를 쓰려면 instrumental을 빼세요."], "s_avoid": ["avoid: 뒤의 말은 따로 넣으세요", "avoid: 뒤의 문구는 Exclude Styles 칸에 넣는 게 맞아요. 아래 '정리본'에서 나눠서 복사할 수 있어요."], "g_vocal": ["보컬 설명이 있어요", "목소리 느낌을 적어 두면 결과가 덜 흔들려요."], "g_ok": ["스타일 문구가 깔끔해요", "눈에 띄는 문제를 찾지 못했어요."], "l_empty": ["가사 칸이 비어 있어요", "연주곡이면 괜찮아요. 가사까지 점검받으려면 붙여넣으세요."], "l_len_bad": ["가사가 너무 길어요 ({n}/{l}자)", "한도를 넘으면 뒤쪽이 잘릴 수 있어요. 1절과 후렴 중심으로 줄이세요."], "l_len_warn": ["가사가 한도에 거의 찼어요 ({n}/{l}자)", "조금만 더 쓰면 넘어가요."], "l_bracket": ["대괄호가 짝이 안 맞아요", "[ 와 ] 개수가 달라요. 빠진 곳을 찾아 닫아 주세요."], "l_notag": ["구간 태그가 없어요", "[Verse] [Chorus] 같은 태그를 넣으면 수노가 곡의 흐름을 잡기 쉬워요."], "l_typo": ["태그 철자가 의심돼요: {x}", "[Chorus]처럼 정확히 쓰세요. 틀리면 그냥 글자로 읽힐 수 있어요."], "l_hint": ["태그 안 설명이 너무 길어요: {x}", "콜론 뒤에는 한두 단어면 충분해요. 길면 그대로 불러 버릴 수 있어요."], "l_emptysec": ["내용이 빈 구간: {x}", "태그만 있고 가사가 없어요. 연주 구간이면 [Instrumental]을 쓰세요."], "l_nochorus": ["후렴(Chorus)이 없어요", "노래가 밋밋해지기 쉬워요. 중심이 되는 후렴을 하나 넣어 보세요."], "l_chorus_same": ["후렴이 똑같이 반복돼요", "후렴을 똑같이 쓰면 귀에 오래 남아요."], "l_chorus_diff": ["후렴이 {n}번 나오는데 내용이 달라요", "후렴은 똑같이 반복해야 귀에 남아요. 일부러 바꾼 게 아니라면 맞춰 주세요."], "l_long": ["너무 긴 줄이 {n}개 있어요", "한 줄을 짧게 끊으면 박자에 맞춰 부르기 쉬워요. 예: {x}"], "l_end": ["[End] 태그가 있어요", "곡이 깔끔하게 끝나도록 도와요."], "l_noend": ["마지막에 [End]를 넣어 보세요", "곡이 늘어지지 않고 끝나도록 도와요."]}}, "ex": {"style": "emotional ballad, powerful, soft piano, slow tempo 140bpm, sad, happy, male vocals, female vocals, IU style, no drums, emotional, avoid: autotune, harsh synth", "lyr": "[Verse 1]\n우리가 함께 걷던 그 오래된 골목길을 지나서 다시 혼자 돌아오는 밤이면 너의 이름이 떠올라\n\n[Choruss: very emotional and powerful with big drums and a key change at the end]\n사랑은 끝까지 가지 못해도\n난 이 아픔을 고를 거야\n\n[Chorus]\n사랑은 끝까지 가지 못해도\n그래도 괜찮아"}};</script>
+<script>var DATA={"lang": "ko", "ui": {"copied": "복사했어요", "copyFail": "복사하지 못했어요. 글을 직접 선택해 복사하세요.", "ch": "자", "vers": [["new", "최신 모델"], ["old", "이전 모델"]], "sev": {"bad": "문제", "warn": "주의", "good": "좋음", "note": "참고"}, "fs": "스타일", "fl": "가사", "fx": {"artist": "가수 이름 지우기", "neg": "제외 칸으로 옮기기", "dup": "겹친 말 지우기", "tags": "[태그] 지우기", "time": "시간 표시 지우기", "many": "앞 7개만 남기기", "len": "한도에 맞게 줄이기", "male": "남성만 남기기", "female": "여성만 남기기", "duet": "듀엣으로 바꾸기", "inst": "instrumental 지우기", "typo": "철자 고치기", "hint": "설명 줄이기", "long": "긴 줄 나누기", "end": "[End] 넣기", "chorus": "후렴 똑같이 맞추기"}, "emptyAll": "스타일이나 가사를 붙여넣으면 바로 점검해요.", "noStyle": "스타일 칸이 비어 있어요. 스타일을 넣으면 함께 점검해요.", "m": {"s_len_bad": ["스타일이 너무 길어요 ({n}/{l}자)", "한도를 넘으면 뒤쪽이 잘릴 수 있어요. 꼭 필요한 키워드만 남기세요."], "s_len_warn": ["스타일이 한도에 거의 찼어요 ({n}/{l}자)", "조금만 더 쓰면 넘어가요. 덜 중요한 말부터 줄이세요."], "s_few": ["키워드가 {n}개뿐이에요", "장르·악기·분위기·보컬을 쉼표로 나눠 4~7개쯤 넣으면 수노가 방향을 잡기 쉬워요."], "s_many": ["키워드가 {n}개로 많아요", "너무 많으면 뒤쪽 말이 무시되기 쉬워요. 4~7개로 줄여 보세요. 정확한 개수는 수노 버전마다 달라요."], "g_cnt": ["키워드 개수가 알맞아요 ({n}개)", "이 정도면 방향이 분명하면서 너무 길지 않아요."], "s_artist": ["가수 이름이 들어 있어요: {x}", "수노는 실제 가수 이름이 들어간 스타일을 거부하거나 무시하는 경우가 많아요. 이름 대신 목소리·장르·분위기로 풀어 쓰세요."], "s_gender": ["여성·남성 보컬이 같이 있어요", "듀엣이 아니라면 하나만 남기세요. 듀엣이면 duet이라고 적어 주세요."], "s_energy": ["조용한 말과 센 말이 같이 있어요: {x}", "곡 전체 설명에 둘 다 있으면 수노가 어느 쪽을 따를지 몰라요. 가사의 구간 태그로 나누세요. 예: [Verse: soft], [Chorus: powerful]"], "s_mood": ["슬픈 말과 밝은 말이 같이 있어요: {x}", "분위기가 섞이면 애매한 곡이 나오기 쉬워요. 하나로 정하세요."], "s_genre": ["부드러운 장르와 센 장르가 같이 있어요: {x}", "서로 끌어당겨서 어중간한 곡이 나오기 쉬워요. 하나를 주 장르로 하세요."], "s_bpm_multi": ["BPM이 여러 개예요: {x}", "하나만 남기세요."], "s_bpm_range": ["BPM {x}은 일반적인 범위를 벗어나요", "보통 40~220 사이로 넣어요."], "s_bpm_mis": ["BPM {n}과 '{x}'가 안 맞아요", "느린 곡은 보통 60~85, 빠른 곡은 120 이상이에요. 숫자나 말 하나를 고치세요."], "g_bpm": ["BPM이 들어 있어요 ({n})", "템포를 숫자로 알려 주면 수노가 속도를 잡기 쉬워요."], "s_dup": ["같은 말이 겹쳐요: {x}", "한 번만 쓰세요. 겹쳐 쓴다고 더 강하게 반영된다는 보장은 없어요."], "s_hangul": ["스타일에 한글이 있어요", "스타일 칸은 영어 키워드가 더 잘 통하는 편이에요. 한국어로 부르게 하려면 sung in Korean을 넣으세요."], "s_neg": ["부정 표현이 있어요: {x}", "no drums처럼 쓰면 오히려 그 말이 반영되는 경우가 있어요. 빼고 싶은 건 Exclude Styles 칸(유료 플랜)에 따로 넣으세요."], "s_tags": ["스타일에 [태그]가 들어 있어요", "[Verse] 같은 구간 태그는 가사 칸에 쓰는 거예요. 스타일 칸에서는 빼세요."], "s_time": ["시간 표시({x})가 있어요", "초 단위 지시보다 [Verse] [Chorus] 같은 구간 태그가 더 잘 읽히는 것으로 알려져 있어요."], "s_vocal_conf": ["가사를 넣었는데 연주곡(instrumental)이라고 적었어요", "둘 중 하나를 고치세요. 가사를 쓰려면 instrumental을 빼세요."], "s_avoid": ["avoid: 뒤의 말은 따로 넣으세요", "avoid: 뒤의 문구는 Exclude Styles 칸에 넣는 게 맞아요. 아래 '정리본'에서 나눠서 복사할 수 있어요."], "g_vocal": ["보컬 설명이 있어요", "목소리 느낌을 적어 두면 결과가 덜 흔들려요."], "g_ok": ["스타일 문구가 깔끔해요", "눈에 띄는 문제를 찾지 못했어요."], "l_empty": ["가사 칸이 비어 있어요", "연주곡이면 괜찮아요. 가사까지 점검받으려면 붙여넣으세요."], "l_len_bad": ["가사가 너무 길어요 ({n}/{l}자)", "한도를 넘으면 뒤쪽이 잘릴 수 있어요. 1절과 후렴 중심으로 줄이세요."], "l_len_warn": ["가사가 한도에 거의 찼어요 ({n}/{l}자)", "조금만 더 쓰면 넘어가요."], "l_bracket": ["대괄호가 짝이 안 맞아요", "[ 와 ] 개수가 달라요. 빠진 곳을 찾아 닫아 주세요."], "l_notag": ["구간 태그가 없어요", "[Verse] [Chorus] 같은 태그를 넣으면 수노가 곡의 흐름을 잡기 쉬워요."], "l_typo": ["태그 철자가 의심돼요: {x}", "[Chorus]처럼 정확히 쓰세요. 틀리면 그냥 글자로 읽힐 수 있어요."], "l_hint": ["태그 안 설명이 너무 길어요: {x}", "콜론 뒤에는 한두 단어면 충분해요. 길면 그대로 불러 버릴 수 있어요."], "l_emptysec": ["내용이 빈 구간: {x}", "태그만 있고 가사가 없어요. 연주 구간이면 [Instrumental]을 쓰세요."], "l_nochorus": ["후렴(Chorus)이 없어요", "노래가 밋밋해지기 쉬워요. 중심이 되는 후렴을 하나 넣어 보세요."], "l_chorus_same": ["후렴이 똑같이 반복돼요", "후렴을 똑같이 쓰면 귀에 오래 남아요."], "l_chorus_diff": ["후렴이 {n}번 나오는데 내용이 달라요", "후렴은 똑같이 반복해야 귀에 남아요. 일부러 바꾼 게 아니라면 맞춰 주세요."], "l_long": ["너무 긴 줄이 {n}개 있어요", "한 줄을 짧게 끊으면 박자에 맞춰 부르기 쉬워요. 예: {x}"], "l_end": ["[End] 태그가 있어요", "곡이 깔끔하게 끝나도록 도와요."], "l_noend": ["마지막에 [End]를 넣어 보세요", "곡이 늘어지지 않고 끝나도록 도와요."]}}, "ex": {"style": "emotional ballad, powerful, soft piano, slow tempo 140bpm, sad, happy, male vocals, female vocals, IU style, no drums, emotional, avoid: autotune, harsh synth", "lyr": "[Verse 1]\n우리가 함께 걷던 그 오래된 골목길을 지나서 다시 혼자 돌아오는 밤이면 너의 이름이 떠올라\n\n[Choruss: very emotional and powerful with big drums and a key change at the end]\n사랑은 끝까지 가지 못해도\n난 이 아픔을 고를 거야\n\n[Chorus]\n사랑은 끝까지 가지 못해도\n그래도 괜찮아"}};</script>
 <script>
 (function(){
 'use strict';
@@ -453,15 +456,56 @@ function artistHit(low){
     if(hit)out.push(a)});
   return out;
 }
+/* ---------- fixes ---------- */
+var PROPER={intro:'Intro',verse:'Verse',prechorus:'Pre-Chorus',chorus:'Chorus',postchorus:'Post-Chorus',bridge:'Bridge',outro:'Outro',hook:'Hook',interlude:'Interlude',instrumental:'Instrumental',instrumentalbreak:'Instrumental Break',solo:'Solo',break:'Break',drop:'Drop',build:'Build',finalchorus:'Final Chorus',lastchorus:'Last Chorus',end:'End',fadeout:'Fade Out',spoken:'Spoken',spokenword:'Spoken Word',whisper:'Whisper',refrain:'Refrain',prebridge:'Pre-Bridge',ending:'Ending'};
+var TIMERE=/\b\d{1,2}:\d{2}\b/g;
+function setStyleVal(t,a){$('#inStyle').value=t.join(', ')+(a.length?', avoid: '+a.join(', '):'')}
+function mutStyle(fn){var P=splitStyle($('#inStyle').value),t=toks(P.main),a=toks(P.avoid);fn(t,a);setStyleVal(t,a)}
+function fxApply(fn){snap={style:$('#inStyle').value,lyr:$('#inLyr').value};fn();run()}
+function fixTag(inner){
+  var ci=inner.indexOf(':'),head=ci>=0?inner.slice(0,ci):inner,hint=ci>=0?inner.slice(ci+1).trim():'';
+  var base=stem(head).replace(/\d+$/,''),num=(head.match(/\d+/)||[''])[0],best=null,bd=9;
+  if(KNOWN.indexOf(base)<0&&base.length>=4){KNOWN.forEach(function(k){if(k.length>=4){var d=lev(base,k);if(d<bd){bd=d;best=k}}})}
+  if(KNOWN.indexOf(base)>=0)best=base;else if(!best||bd>2)return inner;
+  return PROPER[best]+(num?' '+num:'')+(hint?': '+hint:'');
+}
+function shortHint(inner){var ci=inner.indexOf(':');if(ci<0)return inner;var h=inner.slice(ci+1).trim();if(h.split(/\s+/).length>6||h.length>45)h=h.split(/\s+/).slice(0,2).join(' ');return inner.slice(0,ci)+': '+h}
+function splitLong(raw){
+  return raw.split(/\r?\n/).map(function(ln){
+    var tl=ln.trim();if(!tl||tl.charAt(0)==='[')return ln;
+    var w=tl.split(/\s+/),ko=tl.replace(/[^가-힣]/g,'').length;
+    if(!(w.length>12||tl.replace(/\s/g,'').length>50||ko>32)||w.length<4)return ln;
+    var n=Math.ceil(w.length/9),sz=Math.ceil(w.length/n),o=[];
+    for(var i=0;i<w.length;i+=sz)o.push(w.slice(i,i+sz).join(' '));
+    return o.join('\n');
+  }).join('\n');
+}
+function sameChorus(raw){
+  var segs=[],cur={head:null,body:[]},first=null,out=[];
+  raw.split(/\r?\n/).forEach(function(ln){if(/^\s*\[/.test(ln)){segs.push(cur);cur={head:ln,body:[]}}else cur.body.push(ln)});segs.push(cur);
+  segs.forEach(function(sg){
+    if(sg.head&&stem(sg.head.replace(/^\s*\[|\].*$/g,'')).replace(/\d+$/,'')==='chorus'){
+      var b=sg.body.slice(),trail=[];while(b.length&&!b[b.length-1].trim())trail.push(b.pop());
+      if(first===null)first=b.slice();else sg.body=first.slice().concat(trail);
+    }
+  });
+  segs.forEach(function(sg){if(sg.head!==null)out.push(sg.head);sg.body.forEach(function(l){out.push(l)})});
+  return out.join('\n');
+}
+var snap=null;
+function F(k,fn){return {l:U.fx[k],f:function(){fxApply(fn)}}}
 /* ---------- checks ---------- */
 function checkStyle(raw,hasLyr,L){
   var out=[],P=splitStyle(raw),main=P.main,low=main.toLowerCase(),t=toks(main),n=t.length,len=raw.length;
-  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'s'})}
-  if(len>L.style)add('bad','s_len_bad',{n:len,l:L.style});else if(len>L.style*0.9)add('warn','s_len_warn',{n:len,l:L.style});
-  if(n<=2)add('warn','s_few',{n:n});else if(n>=11)add('warn','s_many',{n:n});else if(n>=4&&n<=8)add('good','g_cnt',{n:n});
-  var ar=artistHit(low);if(ar.length)add('bad','s_artist',{x:ar.join(', ')});
+  function add(sev,id,o,fx){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'s',fx:fx||[]})}
+  if(len>L.style)add('bad','s_len_bad',{n:len,l:L.style},[F('len',function(){mutStyle(function(t,a){while(t.length>1&&(t.join(', ')+(a.length?', avoid: '+a.join(', '):'')).length>L.style)t.pop()})})]);else if(len>L.style*0.9)add('warn','s_len_warn',{n:len,l:L.style});
+  if(n<=2)add('warn','s_few',{n:n});else if(n>=11)add('warn','s_many',{n:n},[F('many',function(){mutStyle(function(t){t.splice(7)})})]);else if(n>=4&&n<=8)add('good','g_cnt',{n:n});
+  var ar=artistHit(low);if(ar.length)add('bad','s_artist',{x:ar.join(', ')},[F('artist',function(){mutStyle(function(t){var k=t.filter(function(x){return !artistHit(x.toLowerCase()).length});t.length=0;k.forEach(function(x){t.push(x)})})})]);
   var fe=/\bfemale\b|여성|여자/i.test(main),ma=/(^|[^a-z])male\b|남성|남자/i.test(main.replace(/female/ig,'')),duet=/duet|듀엣|\bduo\b|choir|합창|group vocals/i.test(main);
-  if(fe&&ma&&!duet)add('warn','s_gender');
+  if(fe&&ma&&!duet)add('warn','s_gender',null,[
+    F('male',function(){mutStyle(function(t){var k=t.filter(function(x){return !/\bfemale\b|여성|여자/i.test(x)});t.length=0;k.forEach(function(x){t.push(x)})})}),
+    F('female',function(){mutStyle(function(t){var k=t.filter(function(x){return !(/(^|[^a-z])male\b|남성|남자/i.test(x.replace(/female/ig,'')))});t.length=0;k.forEach(function(x){t.push(x)})})}),
+    F('duet',function(){mutStyle(function(t){var k=t.filter(function(x){return !/\bfemale\b|여성|여자/i.test(x)&&!(/(^|[^a-z])male\b|남성|남자/i.test(x.replace(/female/ig,'')))});t.length=0;k.forEach(function(x){t.push(x)});t.push('male and female duet vocals')})})]);
   var c=matches(main,CALM),h=matches(main,HARD);if(c.length&&h.length)add('warn','s_energy',{x:c[0]+' / '+h[0]});
   var s1=matches(main,SAD),h1=matches(main,HAPPY);if(s1.length&&h1.length)add('warn','s_mood',{x:s1[0]+' / '+h1[0]});
   var g1=low.match(SOFTG),g2=low.match(HARDG);if(g1&&g2)add('warn','s_genre',{x:g1[0]+' / '+g2[0]});
@@ -475,12 +519,12 @@ function checkStyle(raw,hasLyr,L){
   var seen={},dups=[];t.forEach(function(x){var k=x.toLowerCase();if(seen[k]&&dups.indexOf(x)<0)dups.push(x);seen[k]=1});
   var words=low.match(/[a-z]+/g)||[],wc={};words.forEach(function(w){if(w.length>3)wc[w]=(wc[w]||0)+1});
   Object.keys(wc).forEach(function(w){if(wc[w]>=3&&dups.indexOf(w)<0)dups.push(w)});
-  if(dups.length)add('warn','s_dup',{x:dups.slice(0,3).join(', ')});
+  if(dups.length)add('warn','s_dup',{x:dups.slice(0,3).join(', ')},[F('dup',function(){mutStyle(function(t){var sn={},k=[];t.forEach(function(x){var q=x.toLowerCase();if(!sn[q]){sn[q]=1;k.push(x)}});t.length=0;k.forEach(function(x){t.push(x)})})})]);
   if(/[가-힣]/.test(main))add('warn','s_hangul');
-  var ng=main.match(/\b(no|without|don'?t|not)\s+[a-z]+/i);if(ng&&!/\bno vocals?\b/i.test(ng[0]))add('warn','s_neg',{x:ng[0]});
-  if(/\[[^\]]*\]/.test(raw))add('bad','s_tags');
-  var tt=raw.match(/\b\d{1,2}:\d{2}\b/);if(tt)add('warn','s_time',{x:tt[0]});
-  if(hasLyr&&/\binstrumental\b|연주곡/i.test(main))add('bad','s_vocal_conf');
+  var ng=main.match(/\b(no|without|don'?t|not)\s+[a-z]+/i);if(ng&&!/\bno vocals?\b/i.test(ng[0]))add('warn','s_neg',{x:ng[0]},[F('neg',function(){mutStyle(function(t,a){var k=[];t.forEach(function(x){var m=x.match(/^(no|without|don'?t|not)\s+(.+)$/i);if(m&&!/^no vocals?$/i.test(x))a.push(m[2]);else k.push(x)});t.length=0;k.forEach(function(x){t.push(x)})})})]);
+  if(/\[[^\]]*\]/.test(raw))add('bad','s_tags',null,[F('tags',function(){$('#inStyle').value=$('#inStyle').value.replace(/\[[^\]]*\]/g,' ');mutStyle(function(){})})]);
+  var tt=raw.match(/\b\d{1,2}:\d{2}\b/);if(tt)add('warn','s_time',{x:tt[0]},[F('time',function(){$('#inStyle').value=$('#inStyle').value.replace(TIMERE,' ');mutStyle(function(){})})]);
+  if(hasLyr&&/\binstrumental\b|연주곡/i.test(main))add('bad','s_vocal_conf',null,[F('inst',function(){mutStyle(function(t){var k=t.filter(function(x){return !/\binstrumental\b|연주곡/i.test(x)});t.length=0;k.forEach(function(x){t.push(x)})})})]);
   if(/[a-z가-힣]/i.test(P.avoid))add('note','s_avoid');
   if(/vocal|vocals|sung|보컬|choir|duet|듀엣/i.test(main))add('good','g_vocal');
   return out;
@@ -497,7 +541,7 @@ function parseLyr(raw){
 }
 function checkLyr(raw,L){
   var out=[],len=raw.length;
-  function add(sev,id,o){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'l'})}
+  function add(sev,id,o,fx){out.push({sev:sev,t:fill(M[id][0],o),d:fill(M[id][1],o),f:'l',fx:fx||[]})}
   if(!raw.trim()){add('note','l_empty');return out}
   if(len>L.lyr)add('bad','l_len_bad',{n:len,l:L.lyr});else if(len>L.lyr*0.9)add('warn','l_len_warn',{n:len,l:L.lyr});
   var open=(raw.match(/\[/g)||[]).length,close=(raw.match(/\]/g)||[]).length;
@@ -516,18 +560,18 @@ function checkLyr(raw,L){
       if(base==='chorus'&&s.body.length)chorus.push(s.body.join('\n').toLowerCase().replace(/\s+/g,' ').trim());
       if(['verse','chorus','bridge','prechorus','hook'].indexOf(base)>=0&&!s.body.length)empty.push('['+s.tag.split(':')[0]+']');
     });
-    if(typos.length)add('warn','l_typo',{x:uniq(typos).slice(0,3).join(', ')});
-    if(hints.length)add('warn','l_hint',{x:hints.slice(0,2).join(', ')});
+    if(typos.length)add('warn','l_typo',{x:uniq(typos).slice(0,3).join(', ')},[F('typo',function(){$('#inLyr').value=$('#inLyr').value.replace(/\[([^\]]*)\]/g,function(m,i){return '['+fixTag(i)+']'})})]);
+    if(hints.length)add('warn','l_hint',{x:hints.slice(0,2).join(', ')},[F('hint',function(){$('#inLyr').value=$('#inLyr').value.replace(/\[([^\]]*)\]/g,function(m,i){return '['+shortHint(i)+']'})})]);
     if(empty.length)add('warn','l_emptysec',{x:uniq(empty).slice(0,3).join(', ')});
     var hasCh=tagged.some(function(s){var b=stem(s.tag).replace(/\d+$/,'');return b==='chorus'||b==='hook'||b==='finalchorus'||b==='lastchorus'});
     if(!hasCh)add('warn','l_nochorus');
-    else if(chorus.length>=2){var same=chorus.every(function(x){return x===chorus[0]});if(same)add('good','l_chorus_same');else add('warn','l_chorus_diff',{n:chorus.length})}
+    else if(chorus.length>=2){var same=chorus.every(function(x){return x===chorus[0]});if(same)add('good','l_chorus_same');else add('warn','l_chorus_diff',{n:chorus.length},[F('chorus',function(){$('#inLyr').value=sameChorus($('#inLyr').value)})])}
   }
   var longs=[];
   P.secs.forEach(function(s){s.body.forEach(function(ln){var w=ln.split(/\s+/).length,ko=ln.replace(/[^가-힣]/g,'').length;if(w>12||ln.replace(/\s/g,'').length>50||ko>32)longs.push(ln)})});
-  if(longs.length)add('warn','l_long',{n:longs.length,x:'"'+longs[0].slice(0,24)+(longs[0].length>24?'…':'')+'"'});
-  if(/\b\d{1,2}:\d{2}\b/.test(raw))add('warn','s_time',{x:raw.match(/\b\d{1,2}:\d{2}\b/)[0]});
-  if(/\[end\]/i.test(raw))add('good','l_end');else if(tagged.length)add('note','l_noend');
+  if(longs.length)add('warn','l_long',{n:longs.length,x:'"'+longs[0].slice(0,24)+(longs[0].length>24?'…':'')+'"'},[F('long',function(){$('#inLyr').value=splitLong($('#inLyr').value)})]);
+  if(/\b\d{1,2}:\d{2}\b/.test(raw))add('warn','s_time',{x:raw.match(/\b\d{1,2}:\d{2}\b/)[0]},[F('time',function(){$('#inLyr').value=$('#inLyr').value.replace(TIMERE,'').replace(/[ \t]+$/gm,'')})]);
+  if(/\[end\]/i.test(raw))add('good','l_end');else if(tagged.length)add('note','l_noend',null,[F('end',function(){$('#inLyr').value=$('#inLyr').value.replace(/\s+$/,'')+'\n\n[End]'})]);
   return out;
 }
 /* ---------- cleaning ---------- */
@@ -560,8 +604,11 @@ function run(){
       var fl=document.createElement('span');fl.className='it-f';fl.textContent=r.f==='s'?U.fs:U.fl;
       var tt=document.createElement('b');tt.textContent=r.t;
       h.appendChild(tag);h.appendChild(fl);h.appendChild(tt);d.appendChild(h);
-      var pp=document.createElement('p');pp.textContent=r.d;d.appendChild(pp);box.appendChild(d)})});
+      var pp=document.createElement('p');pp.textContent=r.d;d.appendChild(pp);
+      if(r.fx&&r.fx.length){var fr=document.createElement('div');fr.className='it-fx';r.fx.forEach(function(x){var bt=document.createElement('button');bt.type='button';bt.className='b-main sm';bt.textContent=x.l;bt.onclick=x.f;fr.appendChild(bt)});d.appendChild(fr)}
+      box.appendChild(d)})});
   }
+  $('#btnUndo').hidden=!snap;
   var fx=$('#fix');
   if(st.trim()){var c=clean(st);fx.hidden=false;$('#outStyle').value=c.style;$('#exclBox').hidden=!c.excl;$('#outExcl').value=c.excl}
   else fx.hidden=true;
@@ -571,6 +618,7 @@ function init(){
   mkChips($('#vchips'),U.vers,ver,function(v){ver=v;run()});
   $('#inStyle').addEventListener('input',sched);$('#inLyr').addEventListener('input',sched);
   $('#btnEx').onclick=function(){$('#inStyle').value=D.ex.style;$('#inLyr').value=D.ex.lyr;run()};
+  $('#btnUndo').onclick=function(){if(!snap)return;$('#inStyle').value=snap.style;$('#inLyr').value=snap.lyr;snap=null;run()};
   $('#btnClr').onclick=function(){$('#inStyle').value='';$('#inLyr').value='';run();$('#inStyle').focus()};
   $('#cpStyle').onclick=function(){copyText($('#outStyle').value,U.copied)};
   $('#cpExcl').onclick=function(){copyText($('#outExcl').value,U.copied)};
