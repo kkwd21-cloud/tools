@@ -212,6 +212,32 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
 
 .top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
 
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
+
 .lrcw{display:flex;flex-direction:column;gap:14px}
 .card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
@@ -337,6 +363,7 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
         <p class="note">BPM은 자동으로 추정한 값이라 절반이나 두 배로 나올 수 있어요. 들었을 때 박자가 다르게 느껴지면 위 버튼으로 고치세요. 키는 수노가 항상 따르는 건 아니라서 참고용이에요.</p>
         <div id="cards" class="mcards"></div>
         <p class="note" id="moreg"></p>
+        <div class="drow"><a class="b-main goLyr" href="../lyrics-generator/?from=sa">이 곡 정보로 가사 만들기 →</a></div>
       </div>
 
       <div class="card2" id="res2" hidden>
@@ -344,7 +371,7 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
         <canvas id="chart" class="wave" role="img" aria-label="초 단위 음량 그래프와 구간"></canvas>
         <p class="note">막대가 높을수록 소리가 커요. 위 글자는 곡의 구간(도입부·벌스·후렴 등)이에요. 구간 이름은 추정이라 틀릴 수 있어요.</p>
         <textarea class="inp out" id="struct" rows="9" readonly aria-label="수노 가사 칸에 쓸 곡 구조 틀"></textarea>
-        <div class="drow"><button type="button" class="b-main" id="cpStruct">구조 틀 복사</button><a class="b-sub" href="../lyrics-generator/">가사 도우미로 가기 →</a></div>
+        <div class="drow"><button type="button" class="b-main" id="cpStruct">구조 틀 복사</button><a class="b-main goLyr" href="../lyrics-generator/?from=sa">이 곡 정보로 가사 만들기 →</a></div>
         <p class="note">이 틀은 수노 가사(Lyrics) 칸에 붙여넣어요. 태그 아래에 가사를 직접 쓰거나, 가사 도우미로 만든 가사를 넣으세요. 수노는 초 단위 지시보다 [Verse] [Chorus] 같은 구간 태그를 더 잘 읽는 것으로 알려져 있어요.</p>
         <details class="adv"><summary>구간 표 보기</summary><div style="overflow-x:auto"><table class="stbl" id="stbl"></table></div></details>
       </div>
@@ -604,6 +631,14 @@ function renderTable(){
   var hr=document.createElement('tr');U.th.forEach(function(x){var th=document.createElement('th');th.textContent=x;hr.appendChild(th)});t.appendChild(hr);
   R.sections.forEach(function(s,i){var tr=document.createElement('tr');[nm[i],fmt(s.start)+' – '+fmt(s.end),DATA.lang==='ko'?s.kr:s.en].forEach(function(x){var td=document.createElement('td');td.textContent=x;tr.appendChild(td)});t.appendChild(tr)});
 }
+function saveHandoff(){
+  if(!R)return;
+  var c=pick(),g=genre!=='auto'?genre:(c[0]?c[0].p.g:''),v=0,ch=0,has={};
+  R.sections.forEach(function(s){has[s.label]=1;if(s.label==='verse')v++;if(s.label==='chorus')ch++});
+  var gr=[];
+  if(has.intro)gr.push('intro');if(v>=1)gr.push('verse1');if(has.prechorus)gr.push('pre');if(ch>=1)gr.push('chorus');if(v>=2)gr.push('verse2');if(has.bridge)gr.push('bridge');if(ch>=3||(ch>=2&&has.bridge))gr.push('chorusF');if(has.outro)gr.push('outro');
+  try{localStorage.setItem('dusk_sa_handoff',JSON.stringify({genre:g,groups:gr,bpm:Math.round(bpm),key:$('#optKey').checked?R.key:'',ts:Date.now()}))}catch(e){}
+}
 function renderAll(){
   renderSum();renderCards();$('#struct').value=structText();renderTable();
   $('#res').hidden=false;$('#res2').hidden=false;drawChart();
@@ -635,6 +670,7 @@ function init(){
   $('#bpmHalf').onclick=function(){if(R){bpm=bpm/2;renderSum();renderCards()}};
   $('#bpmDbl').onclick=function(){if(R){bpm=bpm*2;renderSum();renderCards()}};
   $('#optKey').onchange=function(){if(R)renderCards()};
+  Array.prototype.forEach.call(document.querySelectorAll('.goLyr'),function(a){a.addEventListener('click',saveHandoff)});
   $('#cpStruct').onclick=function(){copyText($('#struct').value,U.copied)};
   window.addEventListener('resize',function(){if(R)drawChart()});
 }
