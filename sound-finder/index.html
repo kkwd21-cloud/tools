@@ -952,9 +952,43 @@ function lRoll(only,missing){
   lKeys().forEach(function(k){if(LS.locked[k])return;if(only&&only!==k)return;if(missing&&LS.texts[k])return;LS.texts[k]=lPick(k,k==='verse2'?LS.texts.verse1:null)});
   if(LS.texts.verse1&&LS.texts.verse1===LS.texts.verse2&&!LS.locked.verse2)LS.texts.verse2=lPick('verse2',LS.texts.verse1);
 }
-function lTitles(){var b=lBank(),adj=b.adj||b.titleAdj||[],noun=b.noun||b.titleNoun||[],out=[],t=0;
-  while(out.length<5&&t++<60){var s=lRnd(LY.titlePat).replace('{a}',lRnd(adj)).replace('{n}',lRnd(noun));if(out.indexOf(s)<0)out.push(s)}
-  LS.titles=out;LS.title=out[0]||''}
+var TX={
+ breakup:{a:'식어버린,마지막,말없는,돌아선,비어있는,끝난,젖은,차가운,흩어진,잊혀진,지워진,멀어진',n:'뒷모습,이별 노래,반지,마지막 인사,우산,빈자리,흔적,약속,겨울,전화,편지함,마음,골목 끝,그림자,작별'},
+ missing:{a:'보고픈,멀리 있는,닿지 않는,오래된,기다리는,먼,밤새운,아련한',n:'안부,목소리,창가,별,우체통,이름,편지,소식,바람,메아리,저녁노을,그 얼굴'},
+ memory:{a:'빛바랜,오래된,그리운,따뜻했던,어릴 적,낡은,반짝이던,잊고 있던',n:'사진 한 장,교복,운동장,여름방학,골목길,필름,일기장,놀이터,첫사랑,테이프,옛집,뒷좌석'},
+ hope:{a:'새로운,다시 뜨는,환한,밝아오는,용감한,포기하지 않는,조금 더,열린',n:'아침,내일,첫걸음,햇살,새벽빛,문,지평선,불씨,봄,길,시작,날개'},
+ night:{a:'고요한,깊은,잠 못 드는,불 켜진,새벽의,조용한,한밤의,푸른',n:'새벽 세 시,가로등,창밖,도시의 밤,달빛,골목,옥상,야경,혼잣말,별빛,막차,불면'},
+ crush:{a:'두근거리는,수줍은,처음 느낀,몰래 좋아한,말 못 한,간지러운,달콤한,어색한',n:'눈빛,고백,우연,문자 한 줄,심장,첫 만남,손끝,설렘,떨림,복도,인사,비밀'},
+ summer:{a:'눈부신,푸른,뜨거운,시원한,한여름의,여름밤의,반짝이는,끝나지 않는',n:'바다,소나기,수박,노을,파도,해변,매미 소리,선풍기,폭죽,아이스크림,여름방학,드라이브'}
+};
+var TIMEW=['새벽 두 시','열한 시 반','금요일 밤','삼월의 끝','비 오는 화요일','첫눈 오기 전','퇴근길','일요일 저녁','어느 늦은 밤','창가 자리','막차 시간','해 질 무렵'];
+function jg(w){var c=w.charCodeAt(w.length-1);return c>=0xac00&&c<=0xd7a3&&((c-0xac00)%28)>0}
+function lga(w){return w+(jg(w)?'이':'가')}
+function lwa(w){return w+(jg(w)?'과':'와')}
+var TPAT=[
+ function(a,n){return a+' '+n},function(a,n){return n},function(a,n){return n+'처럼'},function(a,n){return n+'에게'},
+ function(a,n){return '그날의 '+n},function(a,n){return '다시, '+n},function(a,n){return '안녕, '+n},
+ function(a,n,m){return lwa(n)+' '+m},function(a,n){return '마지막 '+n},function(a,n){return lga(n)+' 지나간 자리'},function(a,n,m,t){return t+'의 '+n},
+ function(a,n,m,t){return t+', '+n},function(a,n){return a+' '+n+'만큼'},
+ function(a,n){return n+', 그 후'},function(a,n){return '내가 몰랐던 '+n},function(a,n,m){return n+(jg(n)?'을':'를')+' 닮은 '+m},function(a,n,m){return n+' 없는 '+m},function(a,n,m){return n+', 그리고 '+m}
+];
+function lShuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var k=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[k];a[k]=t}return a}
+function hookTitles(){
+  var out=[];['chorus','bridge','outro','pre'].forEach(function(k){String(LS.texts[k]||'').split('\n').forEach(function(l){l=l.trim().replace(/[,.!?~]+$/,'');if(l.length>=3&&l.length<=11&&out.indexOf(l)<0)out.push(l)})});
+  return lShuf(out).slice(0,2);
+}
+function lTitles(){
+  var th=lTheme(),b=lBank(),x=TX[th]||{a:'',n:''},adj=(x.a?x.a.split(','):[]).concat(b.adj||b.titleAdj||[]),noun=(x.n?x.n.split(','):[]).concat(b.noun||b.titleNoun||[]);
+  adj=lShuf(adj.filter(function(v,i,s){return s.indexOf(v)===i}));noun=lShuf(noun.filter(function(v,i,s){return s.indexOf(v)===i}));
+  var pats=lShuf(TPAT.map(function(f,i){return i})),out=[],seen=LS.seen=LS.seen||{},ai=0,ni=0,pi=0,tries=0;
+  if(!lInst())hookTitles().forEach(function(h){if(!seen[h]&&out.length<2)out.push(h)});
+  while(out.length<6&&tries++<80){
+    var f=TPAT[pats[pi++%pats.length]],s=f(adj[ai++%adj.length],noun[ni++%noun.length],noun[ni++%noun.length],lRnd(TIMEW));
+    if(out.indexOf(s)<0&&!seen[s])out.push(s);
+  }
+  out=lShuf(out);out.forEach(function(s){seen[s]=1});if(Object.keys(seen).length>300)LS.seen={};
+  LS.titles=out;LS.title=out[0]||'';
+}
 function lHint(id){if(!LS.hints)return '';return (LY.hints[lGenre()]||{})[LY.secdef[id].hk]||''}
 function lTag(id){var d=LY.secdef[id],h=lHint(id);return '['+d.tag+(h?': '+h:'')+']'}
 function lyrText(){
