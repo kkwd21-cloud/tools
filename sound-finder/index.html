@@ -405,6 +405,18 @@ details.pk .pkb{display:flex;flex-direction:column;gap:12px;margin-top:12px}
       </div>
       <p id="cDesc" style="margin:0;line-height:1.7"></p>
       <div class="sfrow2"><a class="btn-g" id="yt" href="#" target="_blank" rel="noopener">▶ 원곡 듣기</a><span class="note sm" id="cBpm"></span></div>
+      <div class="blk">
+        <span class="flabel">두 가수 느낌 섞기 <span class="note sm" style="font-weight:400">예: 아이유 × 에드 시런</span></span>
+        <button type="button" class="b-sub" id="mixOpen">+ 가수 추가해서 섞기</button>
+        <div id="mixBox" hidden>
+          <div class="sfq"><input id="mixIn" class="inp1" type="search" autocomplete="off" placeholder="섞을 가수 또는 곡" aria-label="섞을 가수 또는 곡"><button type="button" class="b-sub" id="mixCancel">취소</button></div>
+          <div class="sug" id="mixRes" role="listbox" style="margin-top:6px"></div>
+        </div>
+        <div id="mixOn" hidden>
+          <div class="sfrow2"><span class="badge-b" id="mixName"></span><button type="button" class="b-sub" id="mixDel">섞기 빼기</button></div>
+          <div class="seg" id="ratio" style="align-self:flex-start;margin-top:8px"><button type="button" data-r="a" id="ratioA" aria-pressed="true"></button><button type="button" data-r="h" aria-pressed="false">반반</button><button type="button" data-r="b" id="ratioB" aria-pressed="false"></button></div>
+        </div>
+      </div>
       <div class="blk"><span class="flabel">비슷한 느낌의 가수</span><div class="chips" id="simChips"></div></div>
     </div>
   </section>
@@ -414,19 +426,7 @@ details.pk .pkb{display:flex;flex-direction:column;gap:12px;margin-top:12px}
     <div class="card2">
       <details class="pk" id="adv"><summary>고급 설정<span class="note sm" style="display:block;font-weight:400;margin-top:2px">톤 · 가수 섞기 · 가사 주제 · 세부 조정 — 몰라도 괜찮아요</span></summary>
         <div class="pkb">
-          <div class="blk" style="border-top:0;padding-top:0">
-            <span class="flabel">다른 가수와 섞기</span>
-            <button type="button" class="b-sub" id="mixOpen">+ 가수 추가해서 섞기</button>
-            <div id="mixBox" hidden>
-              <div class="sfq"><input id="mixIn" class="inp1" type="search" autocomplete="off" placeholder="섞을 가수 또는 곡" aria-label="섞을 가수 또는 곡"><button type="button" class="b-sub" id="mixCancel">취소</button></div>
-              <div class="sug" id="mixRes" role="listbox" style="margin-top:6px"></div>
-            </div>
-            <div id="mixOn" hidden>
-              <div class="sfrow2"><span class="badge-b" id="mixName"></span><button type="button" class="b-sub" id="mixDel">섞기 빼기</button></div>
-              <div class="seg" id="ratio" style="align-self:flex-start;margin-top:8px"><button type="button" data-r="a" id="ratioA" aria-pressed="true"></button><button type="button" data-r="h" aria-pressed="false">반반</button><button type="button" data-r="b" id="ratioB" aria-pressed="false"></button></div>
-            </div>
-          </div>
-          <div class="blk"><span class="flabel">곡 톤 <span class="note sm" style="font-weight:400">스타일과 가사가 같이 바뀌어요</span></span><div class="chips" id="toneChips"></div><div class="chips" id="prodRow"></div></div>
+          <div class="blk" style="border-top:0;padding-top:0"><span class="flabel">곡 톤 <span class="note sm" style="font-weight:400">스타일과 가사가 같이 바뀌어요</span></span><div class="chips" id="toneChips"></div><div class="chips" id="prodRow"></div></div>
           <div class="blk"><span class="flabel">곡에 맞게 살짝 바꾸기</span><div class="chips" id="twChips"></div></div>
           <div class="blk"><span class="flabel">가사 주제</span><div class="chips" id="thChips"></div></div>
           <div class="blk"><span class="flabel">가사 구성</span><div class="chips" id="lyOpts"><button type="button" class="chip" data-o="short" aria-pressed="false">짧은 구성</button><button type="button" class="chip" data-o="hints" aria-pressed="true">분위기 힌트 넣기</button></div></div>
