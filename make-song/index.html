@@ -1071,6 +1071,23 @@ function handoff(){
   saMsg=U.saBn.replace('{g}',W.genreNames[st.genre]).replace('{b}',st.bpm||'-').replace('{k}',st.key||'-').replace('{s}',names.join(', ')||'-');
   return true;
 }
+/* ---------- sf handoff (sound finder) ---------- */
+var sfStyle='',sfOwn='',sfTitle='';
+function handoffSF(){
+  var h=null;try{if(/[?&]from=sf(&|$)/.test(location.search))h=JSON.parse(localStorage.getItem('dusk_sf_handoff')||'null')}catch(e){}
+  if(!h||typeof h!=='object'||typeof h.style!=='string'||!h.style)return false;
+  if(h.genre&&D.styles[h.genre])st.genre=h.genre;
+  st.vocal=(h.vocal==='male'||h.vocal==='female'||h.vocal==='duet')?h.vocal:'auto';
+  if(h.theme&&D.themes[h.theme])st.theme=h.theme;
+  var bpm=Math.round(+h.bpm);if(bpm>=40&&bpm<=240){st.bpm=bpm;st.key='';st.pro=true}
+  var sty=h.style.replace(/\s+/g,' ').trim().slice(0,400);
+  if(st.bpm&&!/tempo\s*\d+\s*bpm/i.test(sty))sty+=', tempo '+st.bpm+' bpm';
+  sfStyle=sty+', avoid: '+D.styles[st.genre].avoid;
+  if(typeof h.lyrics==='string'&&h.lyrics.trim())sfOwn=h.lyrics.slice(0,4800);
+  if(typeof h.title==='string'&&h.title.trim())sfTitle=h.title.trim().slice(0,80);
+  saMsg=(h.label?h.label+' 느낌을 가져왔어요. 이름은 스타일에 넣지 않았어요.':'고른 느낌을 가져왔어요.');
+  return true;
+}
 /* ---------- init ---------- */
 function syncControls(){
   setPressed('#genreChips button','g',st.genre);setPressed('#themeChips button','t',st.theme);setPressed('#langSeg button','l',st.lang);setPressed('#vocalChips button','v',st.vocal);
@@ -1080,8 +1097,8 @@ function syncControls(){
 }
 var eq=$('#eq');if(eq){var hh='';for(var i=0;i<48;i++){var v=(.25+.75*Math.abs(Math.sin(i*.37)*Math.cos(i*.13))).toFixed(2);hh+='<span style="--h:'+v+';--d:-'+(i*.11).toFixed(2)+'s"></span>'}eq.innerHTML=hh}
 var had=restore();
-var ho=handoff();
-if(ho||!had){st.step=1;st.reached=1;st.texts={};st.locked={};st.ownOn=false;st.own='';roll();makeTitles();makeStyle()}
+var ho=handoff()||handoffSF();
+if(ho||!had){st.step=1;st.reached=1;st.texts={};st.locked={};st.ownOn=false;st.own='';roll();makeTitles();makeStyle();if(sfStyle)st.style=sfStyle;if(sfOwn){st.own=sfOwn;st.ownOn=true}if(sfTitle){st.title=sfTitle;if(st.titles.indexOf(sfTitle)<0)st.titles.unshift(sfTitle)}}
 syncControls();
 go(st.step,false);
 if(ho){try{history.replaceState(null,'',location.pathname+'#wiz')}catch(e){}}
