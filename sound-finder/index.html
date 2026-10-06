@@ -369,6 +369,7 @@ details.pk .pkb{display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .sug{display:flex;flex-direction:column;border:1px solid var(--line2);border-radius:12px;overflow:auto;max-height:320px;background:var(--panel)}
 .sug button{display:flex;align-items:center;gap:10px;text-align:left;padding:12px 14px;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);font-size:15px;font-family:inherit;cursor:pointer;min-width:0}
 .sug button:last-child{border-bottom:0}
+.sgs{flex:none;font-size:12px;color:var(--muted,#9aa3c4);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
 .sgm{margin-left:auto;flex:none;font-size:12px;font-weight:700;color:var(--accent2);border:1px solid var(--line2);border-radius:999px;padding:4px 10px;background:var(--panel2)}
 .sug button:hover,.sug button.on{background:rgba(var(--rgb),.16)}
 .sgt{flex:none;font-size:11px;font-weight:700;color:var(--accent2);border:1px solid var(--line2);border-radius:6px;padding:1px 7px}
@@ -589,7 +590,9 @@ function makeAC(input,list,onPick,opt){
   opt=opt||{};var items=[],act=-1;
   function close(){list.innerHTML='';items=[];act=-1}
   function paint(){$$('button',list).forEach(function(b,i){b.classList.toggle('on',i===act);b.setAttribute('aria-selected',i===act?'true':'false')});var a=$('button.on',list);if(a&&a.scrollIntoView)a.scrollIntoView({block:'nearest'})}
-  function pick(it){input.value=it.song?it.song:it.r.n;close();onPick(it)}
+  function mixable(it){return !!(opt.onMix&&opt.canMix&&opt.canMix(it))}
+  function swap(it){input.value=it.song?it.song:it.r.n;close();onPick(it)}
+  function pick(it){if(mixable(it)){close();opt.onMix(it);return}swap(it)}
   function render(){
     var q=input.value,la=search(q),ls=searchSongs(q);items=[];act=-1;
     if(!q.trim()){close();if(opt.onEmpty)opt.onEmpty();return}
@@ -598,7 +601,7 @@ function makeAC(input,list,onPick,opt){
     ls.slice(0,6).forEach(function(x){items.push({r:x.r,song:x.t,label:x.t,sub:x.r.n,tag:'곡'})});
     if(!items.length){close();if(opt.onNone)opt.onNone(q);return}
     if(opt.onSome)opt.onSome();
-    list.innerHTML=items.map(function(it,i){return '<button type="button" role="option" data-n="'+i+'"><span class="sgt">'+it.tag+'</span><span class="sgl">'+esc(it.label)+(it.sub?' <em>'+esc(it.sub)+'</em>':'')+'</span>'+(opt.onMix&&opt.canMix&&opt.canMix(it)?'<span class="sgm" data-mix="1">+ 섞기</span>':'')+'</button>'}).join('');
+    list.innerHTML=items.map(function(it,i){return '<button type="button" role="option" data-n="'+i+'"><span class="sgt">'+it.tag+'</span><span class="sgl">'+esc(it.label)+(it.sub?' <em>'+esc(it.sub)+'</em>':'')+'</span>'+(mixable(it)?'<span class="sgm" data-mix="1">+ 섞기</span><span class="sgs" data-swap="1">바꾸기</span>':'')+'</button>'}).join('');
     if(opt.autoExact){var f=items[0];if(f&&!f.song&&norm(q)===f.r.keys[0])opt.autoExact(f)}
   }
   input.addEventListener('input',render);
@@ -609,7 +612,7 @@ function makeAC(input,list,onPick,opt){
     else if(e.key==='Escape'){close()}
     else if(e.key==='Enter'){e.preventDefault();if(act>=0&&items[act])pick(items[act]);else if(items.length)pick(items[0]);else if(opt.onEnterNone)opt.onEnterNone(input.value)}
   });
-  list.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var it=items[+b.dataset.n];if(!it)return;if(opt.onMix&&e.target.closest('.sgm')){close();opt.onMix(it);return}pick(it)});
+  list.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var it=items[+b.dataset.n];if(!it)return;if(e.target.closest('.sgs')){swap(it);return}pick(it)});
   return {close:close,render:render};
 }
 
