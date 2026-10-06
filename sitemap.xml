@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://kkwd21-cloud.github.io/tools/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/genre/ballad/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/genre/lofi/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/genre/cinematic/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/genre/pop/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/genre/acoustic/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/genre/ambient/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/genre/ballad/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/genre/ballad/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/genre/lofi/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/genre/lofi/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/genre/cinematic/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/genre/cinematic/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/genre/pop/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/genre/pop/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/genre/acoustic/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/genre/acoustic/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/genre/ambient/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/genre/ambient/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/prompt-studio/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/meta-generator/</loc></url>
-  <url><loc>https://kkwd21-cloud.github.io/tools/channel-check/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/lyrics-generator/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/lyrics-generator/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/thumbnail-text/</loc></url>
@@ -35,5 +32,8 @@
   <url><loc>https://kkwd21-cloud.github.io/tools/en/make-song/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/upload-kit/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/en/upload-kit/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/prompt-studio/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/meta-generator/</loc></url>
+  <url><loc>https://kkwd21-cloud.github.io/tools/channel-check/</loc></url>
   <url><loc>https://kkwd21-cloud.github.io/tools/sound-finder/</loc></url>
 </urlset>
