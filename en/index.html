@@ -49,6 +49,20 @@ h1{font-size:clamp(28px,6vw,40px);line-height:1.2;font-weight:800;text-wrap:bala
 .btn{display:inline-block;width:fit-content;background:var(--bg);color:var(--ink);font-weight:800;text-decoration:none;padding:12px 20px;border-radius:10px;font-size:15px}
 .fine{font-size:12.5px;opacity:.75}
 footer{font-size:12px;color:var(--muted)}
+
+.grp{display:flex;flex-direction:column;gap:12px}
+.grp>h2{font-size:15px;font-weight:800;letter-spacing:.02em;color:var(--muted);display:flex;align-items:center;gap:10px}
+.grp>h2:after{content:"";flex:1;height:1px;background:var(--line)}
+.tool.feat{background:var(--cs);border-width:2px;border-left-width:6px;padding:22px}
+.tool.feat h2{font-size:23px}
+.tool.feat p{color:var(--ink)}
+.tool.feat .go{font-size:16px}
+.tool.mini{padding:14px 18px;gap:4px}
+.tool.mini ul{display:none}
+.tool.mini h2{font-size:17px}
+.tool.mini p{font-size:13.5px}
+.feats{display:grid;gap:14px}
+@media(min-width:620px){.feats{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -59,73 +73,81 @@ footer{font-size:12px;color:var(--muted)}
     <p class="sub">Everything you need to make songs with Suno, upload them to YouTube, and check monetization risk, all free. No sign-up, no install.</p>
   </header>
 
-  <div class="tools">
-    <a class="tool t1" href="../prompt-studio/">
-      <span class="num">01 · MAKE</span><h2>Prompt Studio</h2>
-      <p>150+ style prompts you can paste straight into Suno. Genre pages for ballad, lo-fi, cinematic, pop, acoustic, and ambient, each with a prompt builder and lyric and title templates.</p>
-      <ul><li>One-click copy</li><li>6 genres</li><li>Lyrics + titles</li></ul>
-      <span class="go">Open prompts →</span>
+  <div class="tools" style="gap:26px">
+    <div class="feats">
+    <a class="tool t2 feat" href="./make-song/">
+      <span class="num">START HERE</span><h2>Make a Song with Suno in 5 Steps</h2>
+      <p>A guided order from picking the mood to the style prompt, lyrics, mistake check and pasting. Beginners just click. Pro mode adds BPM, key, structure and manual editing. No sign-up, nothing uploaded.</p>
+      <ul><li>5 guided steps</li><li>Beginner · Pro</li><li>No upload</li></ul>
+      <span class="go">Start making →</span>
     </a>
-    <a class="tool t1" href="./lyrics-generator/">
-      <span class="num">02 · WRITE</span><h2>Suno Lyrics Generator</h2>
+    <a class="tool t1 feat" href="./lyrics-generator/">
+      <span class="num">START HERE</span><h2>Suno Lyrics Generator</h2>
       <p>Pick a genre and theme to get lyrics with [Verse] and [Chorus] meta tags, five title ideas and a matching style prompt. Lock the parts you like and reroll the rest. English or Korean lyrics.</p>
       <ul><li>EN + KO lyrics</li><li>Meta tags</li><li>5 titles</li></ul>
       <span class="go">Write lyrics →</span>
     </a>
-    <a class="tool t2" href="./thumbnail-text/">
-      <span class="num">03 · DESIGN</span><h2>Thumbnail Text Generator</h2>
-      <p>Pick a genre and theme to get 10 clickable text ideas, then add your own image and save a 1280x720 PNG. Modes for a single song, playlists, and study or sleep music.</p>
-      <ul><li>10 ideas</li><li>Save as PNG</li><li>4 modes</li></ul>
-      <span class="go">Make text →</span>
-    </a>
-    <a class="tool t2" href="./lrc-maker/">
-      <span class="num">04 · SYNC</span><h2>Song Lyrics Subtitle Maker</h2>
-      <p>Add your song and lyrics, press one button as each line starts, and get a lyrics file and a YouTube subtitle file. Works for Suno songs too.</p>
-      <ul><li>Just press a button</li><li>YouTube subtitles</li><li>No upload</li></ul>
-      <span class="go">Make subtitles →</span>
-    </a>
-    <a class="tool t2" href="../meta-generator/">
-      <span class="num">05 · UPLOAD</span><h2>YouTube Meta Generator</h2>
-      <p>Pick a song title and genre to get 5 title options, a description, hashtags, keyword tags, a pinned comment, and timestamps, all within YouTube's length limits.</p>
-      <ul><li>5 title options</li><li>Hashtags</li><li>Timestamps</li></ul>
-      <span class="go">Open generator →</span>
-    </a>
-    <a class="tool t3" href="../channel-check/">
-      <span class="num">06 · CHECK</span><h2>Suno Channel Check</h2>
-      <p>A 7-question check of your Suno music channel's monetization risk. Covers plan, lyrics, and visual variety, and tells you what to fix.</p>
-      <ul><li>7 questions</li><li>Source links</li><li>What to fix</li></ul>
-      <span class="go">Start the check →</span>
-    </a>
-    <a class="tool t2" href="./mp3-merge-cut/">
-      <span class="num">07 · AUDIO</span><h2>MP3 Joiner &amp; Cutter</h2>
-      <p>Join several songs into one file, or cut out just the part you need. Smooth crossfades and a start-time list for each song. No sign-up, no upload.</p>
-      <ul><li>Join and cut</li><li>Crossfade</li><li>No upload</li></ul>
-      <span class="go">Open the tool →</span>
-    </a>
+    </div>
+    <div class="grp"><h2>Making the song</h2>
     <a class="tool t3" href="./song-analyzer/">
-      <span class="num">08 · ANALYZE</span><h2>Find a Suno Prompt That Matches Your Song</h2>
+      <span class="num">ANALYZE</span><h2>Find a Suno Prompt That Matches Your Song</h2>
       <p>Add a song to get its BPM, key and structure, plus the 3 closest prompts out of 154, already set to your BPM. No sign-up, no upload.</p>
       <ul><li>BPM · key · structure</li><li>3 matching prompts</li><li>No upload</li></ul>
       <span class="go">Analyze a song →</span>
     </a>
     <a class="tool t1" href="./suno-checker/">
-      <span class="num">09 · CHECK</span><h2>Suno Prompt &amp; Lyrics Checker</h2>
+      <span class="num">CHECK</span><h2>Suno Prompt &amp; Lyrics Checker</h2>
       <p>Paste your style prompt and lyrics before you generate and find mistakes like character limit overruns, artist names, clashing words and tag typos. No sign-up, nothing uploaded.</p>
       <ul><li>Find mistakes</li><li>Copy cleaned version</li><li>No upload</li></ul>
       <span class="go">Check mine →</span>
     </a>
-    <a class="tool t2" href="./make-song/">
-      <span class="num">10 · MAKE</span><h2>Make a Song with Suno in 5 Steps</h2>
-      <p>A guided order from picking the mood to the style prompt, lyrics, mistake check and pasting. Beginners just click. Pro mode adds BPM, key, structure and manual editing. No sign-up, nothing uploaded.</p>
-      <ul><li>5 guided steps</li><li>Beginner · Pro</li><li>No upload</li></ul>
-      <span class="go">Start making →</span>
+    <a class="tool t1 mini" href="../prompt-studio/">
+      <span class="num">PROMPTS</span><h2>Suno Prompts by Genre</h2>
+      <p>150+ style prompts you can paste straight into Suno. Genre pages for ballad, lo-fi, cinematic, pop, acoustic, and ambient, each with a prompt builder and lyric and title templates.</p>
+      <ul><li>One-click copy</li><li>6 genres</li><li>Lyrics + titles</li></ul>
+      <span class="go">Open prompts →</span>
     </a>
+    </div>
+    <div class="grp"><h2>Uploading and video</h2>
     <a class="tool t3" href="./upload-kit/">
-      <span class="num">11 · UPLOAD</span><h2>Upload Your Song to YouTube in 5 Steps</h2>
+      <span class="num">UPLOAD</span><h2>Upload Your Song to YouTube in 5 Steps</h2>
       <p>Add your audio files and get chapter timestamps, a title, description, hashtags and thumbnail text in order. Beginners just click. Pro mode adds gaps, numbering and manual edits. No sign-up, nothing uploaded.</p>
       <ul><li>5 guided steps</li><li>Beginner · Pro</li><li>Files stay in your browser</li></ul>
       <span class="go">Start uploading →</span>
     </a>
+    <a class="tool t2" href="../meta-generator/">
+      <span class="num">META</span><h2>YouTube Meta Generator</h2>
+      <p>Pick a song title and genre to get 5 title options, a description, hashtags, keyword tags, a pinned comment, and timestamps, all within YouTube's length limits.</p>
+      <ul><li>5 title options</li><li>Hashtags</li><li>Timestamps</li></ul>
+      <span class="go">Open generator →</span>
+    </a>
+    <a class="tool t2" href="./thumbnail-text/">
+      <span class="num">THUMBNAIL</span><h2>Thumbnail Text Generator</h2>
+      <p>Pick a genre and theme to get 10 clickable text ideas, then add your own image and save a 1280x720 PNG. Modes for a single song, playlists, and study or sleep music.</p>
+      <ul><li>10 ideas</li><li>Save as PNG</li><li>4 modes</li></ul>
+      <span class="go">Make text →</span>
+    </a>
+    <a class="tool t2" href="./lrc-maker/">
+      <span class="num">SUBTITLES</span><h2>Song Lyrics Subtitle Maker</h2>
+      <p>Add your song and lyrics, press one button as each line starts, and get a lyrics file and a YouTube subtitle file. Works for Suno songs too.</p>
+      <ul><li>Just press a button</li><li>YouTube subtitles</li><li>No upload</li></ul>
+      <span class="go">Make subtitles →</span>
+    </a>
+    <a class="tool t2" href="./mp3-merge-cut/">
+      <span class="num">AUDIO</span><h2>MP3 Joiner &amp; Cutter</h2>
+      <p>Join several songs into one file, or cut out just the part you need. Smooth crossfades and a start-time list for each song. No sign-up, no upload.</p>
+      <ul><li>Join and cut</li><li>Crossfade</li><li>No upload</li></ul>
+      <span class="go">Open the tool →</span>
+    </a>
+    </div>
+    <div class="grp"><h2>Channel check</h2>
+    <a class="tool t3" href="../channel-check/">
+      <span class="num">CHECK</span><h2>Suno Channel Check</h2>
+      <p>A 7-question check of your Suno music channel's monetization risk. Covers plan, lyrics, and visual variety, and tells you what to fix.</p>
+      <ul><li>7 questions</li><li>Source links</li><li>What to fix</li></ul>
+      <span class="go">Start the check →</span>
+    </a>
+    </div>
   </div>
 
   <section class="genres">
@@ -140,7 +162,7 @@ footer{font-size:12px;color:var(--muted)}
     </div>
   </section>
 
-  <p class="flow"><b>Suggested order:</b> Channel check for risks → Prompts to make the song → Meta generator for upload text</p>
+  <p class="flow"><b>Suggested order:</b> Make a song in 5 steps → Check the prompt and lyrics → Upload in 5 steps → Turn it into a video with MusicCanvas</p>
 
   <section class="cta">
     <h2>Song done? Turn it into a video with MusicCanvas</h2>

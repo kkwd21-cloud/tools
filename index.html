@@ -49,6 +49,20 @@ h1{font-size:clamp(28px,6vw,40px);line-height:1.2;font-weight:800;text-wrap:bala
 .btn{display:inline-block;width:fit-content;background:var(--bg);color:var(--ink);font-weight:800;text-decoration:none;padding:12px 20px;border-radius:10px;font-size:15px}
 .fine{font-size:12.5px;opacity:.75}
 footer{font-size:12px;color:var(--muted)}
+
+.grp{display:flex;flex-direction:column;gap:12px}
+.grp>h2{font-size:15px;font-weight:800;letter-spacing:.02em;color:var(--muted);display:flex;align-items:center;gap:10px}
+.grp>h2:after{content:"";flex:1;height:1px;background:var(--line)}
+.tool.feat{background:var(--cs);border-width:2px;border-left-width:6px;padding:22px}
+.tool.feat h2{font-size:23px}
+.tool.feat p{color:var(--ink)}
+.tool.feat .go{font-size:16px}
+.tool.mini{padding:14px 18px;gap:4px}
+.tool.mini ul{display:none}
+.tool.mini h2{font-size:17px}
+.tool.mini p{font-size:13.5px}
+.feats{display:grid;gap:14px}
+@media(min-width:620px){.feats{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -59,79 +73,87 @@ footer{font-size:12px;color:var(--muted)}
     <p class="sub">Suno로 곡을 만들고, 유튜브에 올리고, 수익화 위험까지 확인하는 데 필요한 도구를 전부 무료로 모았어요. 가입도 설치도 필요 없어요.</p>
   </header>
 
-  <div class="tools">
-    <a class="tool t1" href="./prompt-studio/">
-      <span class="num">01 · MAKE</span><h2>Prompt Studio</h2>
-      <p>Suno에 그대로 붙여넣는 스타일 프롬프트 150개 이상. 발라드·로파이·시네마틱·팝·어쿠스틱·앰비언트 장르별 페이지에 한국어 해설, 프롬프트 조립기, 가사·제목 템플릿이 있어요.</p>
-      <ul><li>복사 한 번</li><li>장르 6개</li><li>가사 · 제목 생성</li></ul>
-      <span class="go">프롬프트 열기 →</span>
+  <div class="tools" style="gap:26px">
+    <div class="feats">
+    <a class="tool t1 feat" href="./sound-finder/">
+      <span class="num">처음이라면 여기부터</span><h2>수노 가수 스타일 프롬프트, 곡 느낌 사전</h2>
+      <p>가수나 곡 제목만 고르면 가수 이름 없이 비슷한 느낌의 영어 스타일 문구와 BPM·키, 제목, 가사를 만들어 줘요. 아이유·BTS·뉴진스 등 600명 이상, 곡별 정밀 스타일 1,600곡. 가입도 업로드도 없어요.</p>
+      <ul><li>가수·곡 600명+</li><li>곡별 스타일</li><li>소리 미리듣기</li></ul>
+      <span class="go">찾으러 가기 →</span>
     </a>
+    <a class="tool t2 feat" href="./make-song/">
+      <span class="num">처음이라면 여기부터</span><h2>수노로 노래 만들기, 순서대로 5단계</h2>
+      <p>분위기 고르기부터 스타일 문구, 가사, 실수 점검, 붙여넣기까지 순서대로 안내해요. 초보는 누르기만 하고, 프로 모드에서는 BPM·키·구성·직접 편집까지 열려요. 가입도 업로드도 없어요.</p>
+      <ul><li>5단계 안내</li><li>초보 · 프로 모드</li><li>업로드 없음</li></ul>
+      <span class="go">만들러 가기 →</span>
+    </a>
+    </div>
+    <div class="grp"><h2>곡 만들 때</h2>
     <a class="tool t1" href="./lyrics-generator/">
-      <span class="num">02 · WRITE</span><h2>수노 가사 생성기</h2>
+      <span class="num">가사</span><h2>수노 가사 생성기</h2>
       <p>장르와 주제를 고르면 [Verse] [Chorus] 메타태그가 붙은 가사, 제목 5개, 어울리는 스타일 프롬프트가 한 번에 나와요. 마음에 드는 부분은 잠그고 나머지만 다시 뽑을 수 있어요.</p>
       <ul><li>한국어 · 영어 가사</li><li>메타태그</li><li>제목 5개</li></ul>
       <span class="go">가사 만들기 →</span>
     </a>
-    <a class="tool t2" href="./thumbnail-text/">
-      <span class="num">03 · DESIGN</span><h2>썸네일 문구 생성기</h2>
-      <p>장르와 주제를 고르면 클릭을 부르는 문구 10개가 나와요. 내 이미지를 넣고 1280×720 PNG로 바로 저장할 수 있어요. 곡 한 곡, 플레이리스트, 공부·수면용으로 나뉘어 있어요.</p>
-      <ul><li>문구 10개</li><li>PNG 저장</li><li>4가지 용도</li></ul>
-      <span class="go">문구 만들기 →</span>
-    </a>
-    <a class="tool t2" href="./lrc-maker/">
-      <span class="num">04 · SYNC</span><h2>노래 가사 자막 만들기</h2>
-      <p>음악 파일과 가사만 넣고, 노래를 들으며 줄이 시작될 때 버튼만 누르면 가사 파일과 유튜브 자막 파일이 만들어져요. 수노 곡에도 쓸 수 있어요.</p>
-      <ul><li>버튼만 누르기</li><li>유튜브 자막 저장</li><li>업로드 없음</li></ul>
-      <span class="go">자막 만들기 →</span>
-    </a>
-    <a class="tool t2" href="./meta-generator/">
-      <span class="num">05 · UPLOAD</span><h2>유튜브 메타 생성기</h2>
-      <p>곡 제목과 장르를 고르면 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프까지 만들어요. 유튜브 글자 수 제한에 맞춰서 나와요.</p>
-      <ul><li>제목 5안</li><li>해시태그</li><li>타임스탬프</li></ul>
-      <span class="go">생성기 열기 →</span>
-    </a>
-    <a class="tool t3" href="./channel-check/">
-      <span class="num">06 · CHECK</span><h2>수노 채널 체크</h2>
-      <p>Suno로 만든 음악 채널의 수익화 위험을 7문항으로 점검해요. 요금제, 가사, 영상 차별화 같은 항목별로 무엇을 고치면 좋은지 알려줘요.</p>
-      <ul><li>7문항</li><li>근거 링크</li><li>고칠 점 안내</li></ul>
-      <span class="go">체크하러 가기 →</span>
-    </a>
-    <a class="tool t2" href="./mp3-merge-cut/">
-      <span class="num">07 · AUDIO</span><h2>mp3 합치기·자르기</h2>
-      <p>여러 노래를 파일 하나로 합치거나, 한 곡에서 필요한 부분만 잘라 저장해요. 곡 사이를 부드럽게 잇고, 곡별 시작 시간표도 만들어 줘요. 가입도 업로드도 없어요.</p>
-      <ul><li>합치기·자르기</li><li>부드럽게 잇기</li><li>업로드 없음</li></ul>
-      <span class="go">합치러 가기 →</span>
-    </a>
     <a class="tool t3" href="./song-analyzer/">
-      <span class="num">08 · ANALYZE</span><h2>내 노래와 닮은 수노 프롬프트 찾기</h2>
+      <span class="num">분석</span><h2>내 노래와 닮은 수노 프롬프트 찾기</h2>
       <p>노래 파일을 넣으면 BPM·키·곡 구조를 분석하고, 프롬프트 154개 중 가장 비슷한 3개를 골라 내 곡의 BPM까지 맞춰 줘요. 가입도 업로드도 없어요.</p>
       <ul><li>BPM·키·구조</li><li>비슷한 프롬프트 3개</li><li>업로드 없음</li></ul>
       <span class="go">분석하러 가기 →</span>
     </a>
     <a class="tool t1" href="./suno-checker/">
-      <span class="num">09 · CHECK</span><h2>수노 프롬프트·가사 점검기</h2>
+      <span class="num">점검</span><h2>수노 프롬프트·가사 점검기</h2>
       <p>수노를 돌리기 전에 스타일 문구와 가사를 붙여넣으면 글자 수 초과, 가수 이름, 부딪치는 말, 태그 철자 같은 실수를 찾아 줘요. 가입도 업로드도 없어요.</p>
       <ul><li>실수 찾기</li><li>정리본 복사</li><li>업로드 없음</li></ul>
       <span class="go">점검하러 가기 →</span>
     </a>
-    <a class="tool t2" href="./make-song/">
-      <span class="num">10 · MAKE</span><h2>수노로 노래 만들기, 순서대로 5단계</h2>
-      <p>분위기 고르기부터 스타일 문구, 가사, 실수 점검, 붙여넣기까지 순서대로 안내해요. 초보는 누르기만 하고, 프로 모드에서는 BPM·키·구성·직접 편집까지 열려요. 가입도 업로드도 없어요.</p>
-      <ul><li>5단계 안내</li><li>초보 · 프로 모드</li><li>업로드 없음</li></ul>
-      <span class="go">만들러 가기 →</span>
+    <a class="tool t1 mini" href="./prompt-studio/">
+      <span class="num">프롬프트</span><h2>장르별 프롬프트 모음</h2>
+      <p>Suno에 그대로 붙여넣는 스타일 프롬프트 150개 이상. 발라드·로파이·시네마틱·팝·어쿠스틱·앰비언트 장르별 페이지에 한국어 해설, 프롬프트 조립기, 가사·제목 템플릿이 있어요.</p>
+      <ul><li>복사 한 번</li><li>장르 6개</li><li>가사 · 제목 생성</li></ul>
+      <span class="go">프롬프트 열기 →</span>
     </a>
+    </div>
+    <div class="grp"><h2>올리고 영상 만들 때</h2>
     <a class="tool t3" href="./upload-kit/">
-      <span class="num">11 · UPLOAD</span><h2>만든 노래, 유튜브에 올리기 5단계</h2>
+      <span class="num">올리기</span><h2>만든 노래, 유튜브에 올리기 5단계</h2>
       <p>곡 파일을 넣으면 챕터 시간표, 제목·설명·해시태그, 썸네일 문구까지 순서대로 만들어 줘요. 초보는 누르기만, 프로 모드에서는 간격·번호·직접 편집까지 열려요. 가입도 업로드도 없어요.</p>
       <ul><li>5단계 안내</li><li>초보 · 프로 모드</li><li>파일은 서버로 안 가요</li></ul>
       <span class="go">올리러 가기 →</span>
     </a>
-    <a class="tool t1" href="./sound-finder/">
-      <span class="num">12 · FIND</span><h2>수노 가수 스타일 프롬프트, 곡 느낌 사전</h2>
-      <p>가수나 곡 제목만 고르면 가수 이름 없이 비슷한 느낌의 영어 스타일 문구와 BPM·키, 제목, 가사를 만들어 줘요. 아이유·BTS·뉴진스 등 600명 이상, 곡별 정밀 스타일 1,600곡. 가입도 업로드도 없어요.</p>
-      <ul><li>가수·곡 600명+</li><li>곡별 스타일</li><li>소리 미리듣기</li></ul>
-      <span class="go">찾으러 가기 →</span>
+    <a class="tool t2" href="./meta-generator/">
+      <span class="num">메타</span><h2>유튜브 메타 생성기</h2>
+      <p>곡 제목과 장르를 고르면 제목 5안, 설명, 해시태그, 키워드 태그, 고정 댓글, 타임스탬프까지 만들어요. 유튜브 글자 수 제한에 맞춰서 나와요.</p>
+      <ul><li>제목 5안</li><li>해시태그</li><li>타임스탬프</li></ul>
+      <span class="go">생성기 열기 →</span>
     </a>
+    <a class="tool t2" href="./thumbnail-text/">
+      <span class="num">썸네일</span><h2>썸네일 문구 생성기</h2>
+      <p>장르와 주제를 고르면 클릭을 부르는 문구 10개가 나와요. 내 이미지를 넣고 1280×720 PNG로 바로 저장할 수 있어요. 곡 한 곡, 플레이리스트, 공부·수면용으로 나뉘어 있어요.</p>
+      <ul><li>문구 10개</li><li>PNG 저장</li><li>4가지 용도</li></ul>
+      <span class="go">문구 만들기 →</span>
+    </a>
+    <a class="tool t2" href="./lrc-maker/">
+      <span class="num">자막</span><h2>노래 가사 자막 만들기</h2>
+      <p>음악 파일과 가사만 넣고, 노래를 들으며 줄이 시작될 때 버튼만 누르면 가사 파일과 유튜브 자막 파일이 만들어져요. 수노 곡에도 쓸 수 있어요.</p>
+      <ul><li>버튼만 누르기</li><li>유튜브 자막 저장</li><li>업로드 없음</li></ul>
+      <span class="go">자막 만들기 →</span>
+    </a>
+    <a class="tool t2" href="./mp3-merge-cut/">
+      <span class="num">오디오</span><h2>mp3 합치기·자르기</h2>
+      <p>여러 노래를 파일 하나로 합치거나, 한 곡에서 필요한 부분만 잘라 저장해요. 곡 사이를 부드럽게 잇고, 곡별 시작 시간표도 만들어 줘요. 가입도 업로드도 없어요.</p>
+      <ul><li>합치기·자르기</li><li>부드럽게 잇기</li><li>업로드 없음</li></ul>
+      <span class="go">합치러 가기 →</span>
+    </a>
+    </div>
+    <div class="grp"><h2>채널 점검</h2>
+    <a class="tool t3" href="./channel-check/">
+      <span class="num">점검</span><h2>수노 채널 체크</h2>
+      <p>Suno로 만든 음악 채널의 수익화 위험을 7문항으로 점검해요. 요금제, 가사, 영상 차별화 같은 항목별로 무엇을 고치면 좋은지 알려줘요.</p>
+      <ul><li>7문항</li><li>근거 링크</li><li>고칠 점 안내</li></ul>
+      <span class="go">체크하러 가기 →</span>
+    </a>
+    </div>
   </div>
 
   <section class="genres">
@@ -146,7 +168,7 @@ footer{font-size:12px;color:var(--muted)}
     </div>
   </section>
 
-  <p class="flow"><b>추천 순서:</b> 채널 체크로 위험 확인 → 프롬프트로 곡 만들기 → 메타 생성기로 업로드 문구 만들기</p>
+  <p class="flow"><b>추천 순서:</b> 곡 느낌 사전으로 스타일 찾기 → 곡 만들기 5단계로 가사까지 → 올리기 5단계로 업로드 문구 → 영상은 MusicCanvas로</p>
 
   <section class="cta">
     <h2>곡이 완성됐다면, 영상은 MusicCanvas로</h2>
