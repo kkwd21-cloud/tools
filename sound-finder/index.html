@@ -3,8 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>가수·곡으로 찾는 곡 느낌 사전 (테스트) | Dusk Soul</title>
-<meta name="robots" content="noindex,nofollow">
+<title>수노 가수 스타일 프롬프트 – 가수 이름 없이 비슷하게 만드는 곡 느낌 사전 | Dusk Soul</title>
+<meta name="description" content="수노(Suno)는 가수 이름을 넣으면 안 돼요. 가수나 곡 이름만 고르면 비슷한 느낌의 영어 스타일 문구와 BPM·키·가사를 만들어 줘요. 아이유·BTS·뉴진스 등 600명 이상, 무료.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/sound-finder/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="수노 가수 스타일 프롬프트 – 가수 이름 없이 비슷하게 만드는 곡 느낌 사전">
+<meta property="og:description" content="가수나 곡 이름만 고르면 수노에 넣을 영어 스타일 문구, BPM·키, 가사까지. 아이유·BTS·뉴진스 등 600명 이상, 무료.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/sound-finder/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"곡 느낌 사전","url":"https://kkwd21-cloud.github.io/tools/sound-finder/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","inLanguage":"ko","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"수노(Suno)용 가수·곡 느낌 스타일 프롬프트 생성기"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dusk Soul Toolkit","item":"https://kkwd21-cloud.github.io/tools/"},{"@type":"ListItem","position":2,"name":"곡 느낌 사전","item":"https://kkwd21-cloud.github.io/tools/sound-finder/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"수노에 가수 이름을 넣으면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"수노는 실존 가수 이름을 스타일에 넣는 것을 막거나 무시하는 경우가 많아요(정책은 바뀔 수 있어요). 그래서 이 도구는 가수 이름 대신 보컬 질감, 악기, 분위기, BPM으로 풀어서 영어 스타일 문구를 만들어 줘요."}},{"@type":"Question","name":"가수 스타일로 만들면 똑같은 노래가 나오나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 분위기와 편성이 비슷한 새 노래가 나와요. 원곡 멜로디나 가사를 복제하지 않아요. 같은 문구로 3~4번 만들어서 가장 가까운 걸 고르세요."}},{"@type":"Question","name":"곡 제목을 고르면 가사도 나오나요?","acceptedAnswer":{"@type":"Answer","text":"원곡 가사가 아니라, 그 곡의 분위기(이별, 설렘, 신나는 밤 등)에 맞춰 새로 쓴 가사예요. 수노 가사 칸에 바로 붙여넣을 수 있어요."}},{"@type":"Question","name":"BPM과 키는 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"대표곡 약 1,600곡은 곡별로 BPM 범위와 편성을 정리했어요. 근사값이라 곡에 따라 다를 수 있어요. 수노에서 여러 번 뽑아 고르는 걸 권해요."}},{"@type":"Question","name":"무료인가요? 가입이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"무료이고 가입이 없어요. 입력한 내용은 이 브라우저 안에서만 처리돼요."}}]}]}</script>
 <meta name="theme-color" content="#090d19">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -309,6 +317,7 @@ textarea.inp{width:100%;background:var(--bg2);border:1px solid var(--line2);bord
 [hidden]{display:none!important}
 @media(max-width:560px){.wz-steps button span{display:none}.wz-steps button{padding:5px}.wz-nav{flex-wrap:wrap}.wz-hint{order:3;flex-basis:100%}}
 
+.seo{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}.seo h2{font-size:18px;margin:0 0 10px}.seo p{font-size:14px;line-height:1.7;color:var(--mut,#aab)}.seoq{margin:8px 0;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px}.seoq summary{cursor:pointer;font-weight:600;font-size:14px}.seoq p{margin:8px 0 0}.seolist{font-size:12.5px!important;line-height:1.9!important}
 
 .ob{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#14101a;font-size:12px;font-weight:800;margin-right:6px}
 .finl{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;line-height:1.6}
@@ -335,7 +344,7 @@ textarea.inp{width:100%;background:var(--bg2);border:1px solid var(--line2);bord
 @media (prefers-reduced-motion:reduce){.pv span{transition:none}}
 .sfq{display:flex;gap:8px;flex-wrap:wrap}
 .sfq .inp1{flex:1 1 220px;font-size:16px;padding:12px 14px}
-.test-bn{background:rgba(255,184,107,.12);border:1px solid #ffb86b;color:#ffb86b;border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.6}
+.test-bn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:var(--mut,#aab);border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.6}
 .cbadges{display:flex;gap:6px;flex-wrap:wrap}
 #precBox{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border:1px solid rgba(255,190,120,.35);border-radius:10px;background:rgba(255,190,120,.07);font-size:13px;line-height:1.5}#precBox[hidden]{display:none}#precBox label{display:flex;gap:8px;align-items:center;cursor:pointer}#precInfo{color:var(--mut,#aab)}
 #cPhrase,#pkOut{font-family:'IBM Plex Mono',monospace;font-size:13px;min-height:64px}
@@ -389,14 +398,14 @@ details.pk>summary .note{display:block;margin-top:4px}
 </div></header>
 <main>
 <section class="hero"><div class="wrap">
-  <p class="eyebrow">테스트 버전 · 무료 · 가입 없음</p>
+  <p class="eyebrow">무료 · 가입 없음 · 가수 600명 이상</p>
   <h1>가수·곡으로 찾는 곡 느낌 사전</h1>
   <p class="vibe">좋아하는 가수나 곡 제목을 치면, 그 느낌을 수노에 넣을 말로 바꿔 줘요.</p>
   <p class="lead">수노에는 가수 이름을 그대로 쓰기 어려워요. 그래서 가수의 느낌을 장르, 목소리, 악기, 빠르기 말로 풀어 드려요. 마음에 들면 복사하거나, 바로 노래 만들기로 넘어가세요.</p>
 </div></section>
 <div class="wrap">
   <section class="sec">
-    <div class="test-bn">테스트 버전이에요. 검색해서 못 찾은 가수는 맨 아래에 기록돼요. 가수 느낌은 대략적인 설명이라 곡마다 다를 수 있어요.</div>
+    <div class="test-bn">가수 느낌은 대략적인 설명이라 곡마다 다를 수 있어요. 수노에서 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 찾는 가수가 없으면 맨 아래에 기록돼요.</div>
   </section>
   <section class="sec" id="find">
     <div class="sec-head"><h2><span class="stp">1</span>가수·곡 찾기</h2><p>한글이나 영어 모두 돼요. 예: 아이유, 밤편지, Shape of You</p></div>
@@ -515,11 +524,17 @@ details.pk>summary .note{display:block;margin-top:4px}
   </section>
 
   <section class="sec" id="missBox" hidden>
-    <div class="sec-head"><h2>못 찾은 검색어 (테스트용)</h2><p>이 브라우저에만 저장돼요. 복사해서 알려 주세요.</p></div>
+    <div class="sec-head"><h2>못 찾은 검색어</h2><p>이 브라우저에만 저장돼요. 복사해서 알려 주세요.</p></div>
     <div class="card2"><div id="missList"></div>
     <div class="sfrow"><button type="button" class="b-sub" id="missCopy">복사</button><button type="button" class="b-sub" id="missClear">비우기</button></div></div>
   </section>
 </div>
+  <section class="sec seo" id="about">
+    <h2>수노 가수 스타일 프롬프트, 가수 이름 없이 만드는 법</h2>
+    <p>좋아하는 가수나 노래와 비슷한 곡을 수노(Suno)로 만들고 싶은데, 가수 이름을 쓰면 막히거나 전혀 다른 결과가 나올 때가 많아요. <b>곡 느낌 사전</b>은 가수나 곡 이름을 고르면 그 느낌을 보컬 질감, 악기, 분위기, BPM, 구성으로 풀어서 <b>수노 Style of Music 칸에 넣을 영어 스타일 문구</b>로 바꿔 줘요. 제목과 가사도 같이 만들고, 소리로 대략적인 느낌을 미리 들어볼 수 있어요.</p>
+    <details class="seoq"><summary>수노에 가수 이름을 넣으면 안 되나요?</summary><p>수노는 실존 가수 이름을 스타일에 넣는 것을 막거나 무시하는 경우가 많아요(정책은 바뀔 수 있어요). 그래서 이 도구는 가수 이름 대신 보컬 질감, 악기, 분위기, BPM으로 풀어서 영어 스타일 문구를 만들어 줘요.</p></details><details class="seoq"><summary>가수 스타일로 만들면 똑같은 노래가 나오나요?</summary><p>아니요. 분위기와 편성이 비슷한 새 노래가 나와요. 원곡 멜로디나 가사를 복제하지 않아요. 같은 문구로 3~4번 만들어서 가장 가까운 걸 고르세요.</p></details><details class="seoq"><summary>곡 제목을 고르면 가사도 나오나요?</summary><p>원곡 가사가 아니라, 그 곡의 분위기(이별, 설렘, 신나는 밤 등)에 맞춰 새로 쓴 가사예요. 수노 가사 칸에 바로 붙여넣을 수 있어요.</p></details><details class="seoq"><summary>BPM과 키는 정확한가요?</summary><p>대표곡 약 1,600곡은 곡별로 BPM 범위와 편성을 정리했어요. 근사값이라 곡에 따라 다를 수 있어요. 수노에서 여러 번 뽑아 고르는 걸 권해요.</p></details><details class="seoq"><summary>무료인가요? 가입이 필요한가요?</summary><p>무료이고 가입이 없어요. 입력한 내용은 이 브라우저 안에서만 처리돼요.</p></details>
+    <details class="seoq"><summary>찾을 수 있는 가수 605명 보기</summary><p class="seolist">성시경 · 박효신 · 이문세 · 김광석 · 폴킴 · 임영웅 · 나얼 · 김범수 · 이소라 · 백지영 · 거미 · 임재범 · 케이윌 · 로이킴 · 정승환 · 이무진 · 10cm · 멜로망스 · 데이식스 · 악뮤 · 아이유 · 태연 · 헤이즈 · 볼빨간사춘기 · 잔나비 · 이적 · 김동률 · 이선희 · 윤종신 · 에일리 · 윤하 · 적재 · 검정치마 · 빈지노 · BTS · 블랙핑크 · 뉴진스 · 에스파 · 아이브 · 스트레이 키즈 · 세븐틴 · 트와이스 · 레드벨벳 · (여자)아이들 · 르세라핌 · 엑소 · 빅뱅 · 지드래곤 · 싸이 · 지코 · 엔하이픈 · 투모로우바이투게더 · Taylor Swift · Ariana Grande · Billie Eilish · Ed Sheeran · Adele · The Weeknd · Bruno Mars · Dua Lipa · Olivia Rodrigo · Harry Styles · Lana Del Rey · Coldplay · Imagine Dragons · Sam Smith · Lewis Capaldi · Sabrina Carpenter · Chappell Roan · SZA · Beyonce · Rihanna · Lady Gaga · Katy Perry · Justin Bieber · Shawn Mendes · Post Malone · Maroon 5 · OneRepublic · Charlie Puth · Hozier · Phoebe Bridgers · Norah Jones · Jason Mraz · Michael Buble · Joji · keshi · Cigarettes After Sex · Radiohead · Queen · The Beatles · Michael Jackson · Whitney Houston · Celine Dion · Mariah Carey · Lauv · Khalid · Daniel Caesar · 한스 짐머 · 히사이시 조 · 이루마 · 루도비코 에이나우디 · 누자베스 · 브라이언 이노 · 막스 리히터 · 유키 구라모토 · 앨런 워커 · 카이고 · 지민 · 정국 · 로제 · 제니 · ATEEZ · 코르티스 · 아일릿 · 리센느 · 하츠투하츠 · 키키 · 한로로 · 너드커넥션 · 우즈 · 에픽하이 · 빅나티 · Karol G · Bad Bunny · Olivia Dean · sombr · Ella Langley · Morgan Wallen · Noah Kahan · Tame Impala · Gracie Abrams · Benson Boone · Alex Warren · Kendrick Lamar · Drake · Tate McRae · Teddy Swims · Shaboozey · Doechii · Lola Young · Gigi Perez · Djo · The Neighbourhood · Arctic Monkeys · Oasis · The Killers · Goo Goo Dolls · Fleetwood Mac · Shakira · The Police · Steve Lacy · Mac Miller · Dominic Fike · Ravyn Lenae · Malcolm Todd · Leon Thomas · 이승철 · 신승훈 · 조성모 · 이수영 · 박정현 · 린 · 알리 · 이하이 · 정준일 · 박원 · 어반자카파 · 다비치 · 2AM · 임창정 · 조용필 · 서태지와 아이들 · 이승환 · 장범준 · 버스커버스커 · 자우림 · 넬 · YB · 백예린 · 오반 · 황가람 · 크러쉬 · 박재범 · 다이나믹 듀오 · 비비 · 이영지 · 이날치 · 나훈아 · 장윤정 · 영탁 · 소녀시대 · 원더걸스 · 카라 · 2NE1 · 샤이니 · 슈퍼주니어 · 동방신기 · 2PM · 인피니트 · 마마무 · 오마이걸 · 브레이브걸스 · 있지 · 엔믹스 · 스테이씨 · 베이비몬스터 · NCT 127 · NCT DREAM · 몬스타엑스 · 제로베이스원 · 보이넥스트도어 · 라이즈 · 투어스 · 트레저 · Selena Gomez · Miley Cyrus · Demi Lovato · Camila Cabello · Halsey · Ellie Goulding · Sia · Pink · Kelly Clarkson · Christina Aguilera · Britney Spears · Avril Lavigne · Alicia Keys · Jessie J · Meghan Trainor · Doja Cat · Lizzo · Cardi B · Nicki Minaj · Eminem · Travis Scott · Lil Nas X · Juice WRLD · XXXTentacion · Lorde · Troye Sivan · Conan Gray · Rex Orange County · Mitski · Beabadoobee · Clairo · girl in red · Niall Horan · One Direction · Zayn · Backstreet Boys · NSYNC · Westlife · Spice Girls · Destinys Child · TLC · Savage Garden · Bon Jovi · Guns N Roses · Nirvana · Linkin Park · Green Day · Eagles · Led Zeppelin · Pink Floyd · AC/DC · U2 · Muse · Keane · Snow Patrol · Blur · The Verve · The Cure · Depeche Mode · A-ha · Roxette · Elton John · Billy Joel · Stevie Wonder · Bob Marley · Bob Dylan · Simon &amp; Garfunkel · Carpenters · ABBA · Bee Gees · Frank Sinatra · Louis Armstrong · Nat King Cole · Amy Winehouse · Etta James · Eric Clapton · Phil Collins · Wham! · George Michael · Madonna · Prince · Elvis Presley · Cyndi Lauper · Tina Turner · Lionel Richie · Bryan Adams · Air Supply · Daft Punk · Calvin Harris · Avicii · Martin Garrix · David Guetta · Marshmello · The Chainsmokers · Zedd · Disclosure · Bon Iver · Sufjan Stevens · Damien Rice · Passenger · Lord Huron · The Lumineers · Mumford &amp; Sons · Of Monsters and Men · Vance Joy · Birdy · Sara Bareilles · Lauren Daigle · Sleeping at Last · 류이치 사카모토 · 올라퍼 아르날즈 · 얀 티에르상 · 엔니오 모리코네 · 존 윌리엄스 · 라민 자와디 · 반젤리스 · 장 미셸 자르 · 타이코 · 루드비히 괴란손 · 조지 윈스턴 · 로저 윌리엄스 · 폴 모리아 · 리처드 클레이더만 · 엔야 · 안드레아 보첼리 · 에디트 피아프 · 스트로마에 · 로살리아 · 다디 양키 · 루이스 폰시 · 엔리케 이글레시아스 · 리키 마틴 · J Balvin · Anitta · Rema · Burna Boy · Tems · Becky G · Maluma · Ozuna · 쇼팽 · 드뷔시 · 베토벤 · 모차르트 · 바흐 · 에릭 사티 · 비발디 · 차이콥스키 · 파헬벨 · 라흐마니노프 · 리스트 · 슈베르트 · 브람스 · 엘가 · 그리그 · 바그너 · 요아소비 · 오피셜 히게단디즘 · 요네즈 켄시 · 아도 · LiSA · 아이머 · 이브 · 백 넘버 · 라드윔프스 · 미세스 그린 애플 · 킹 누 · 요루시카 · 후지이 카제 · 바운디 · 우타다 히카루 · 유이 · 원 오크 록 · 미스터 칠드런 · 스피츠 · 유우리 · 하츠네 미쿠 · 페르퓸 · 저우제룬 · 덩리쥔 · 린쥔제이 · 아이오아이 · 예나 · 소연 · 지수 · 선미 · 청하 · 화사 · 현아 · 엔시티 위시 · 비비지 · 프로미스나인 · 에이핑크 · 여자친구 · 러블리즈 · 브라운아이드걸스 · 쿨 · 터보 · 지오디 · 에이치오티 · 젝스키스 · 핑클 · 에스이에스 · 비투비 · 아이콘 · 위너 · 이찬원 · 송가인 · 홍진영 · 박진영 · 비 · 제시 · 우원재 · 로꼬 · 그레이 · 자이언티 · 수란 · 케이시 · 권진아 · 김필 · 최유리 · 이찬혁 · 스탠딩 에그 · 브로콜리너마저 · 엠씨더맥스 · 이승기 · 허각 · 신해철 · 유재하 · 김현식 · 들국화 · 루크 콤스 · 잭 브라운 밴드 · 제이슨 앨딘 · 토비 키스 · 레너드 스키너드 · 저니 · 브루스 스프링스틴 · 로드 스튜어트 · 스티비 닉스 · 메탈리카 · 폴 아웃 보이 · 마이 케미컬 로맨스 · 파라모어 · 레드 핫 칠리 페퍼스 · 푸 파이터스 · 더 스트록스 · 고릴라즈 · 트웬티 원 파일럿츠 · 더 1975 · 패닉! 앳 더 디스코 · 시스템 오브 어 다운 · 펄 잼 · 케이지 디 엘리펀트 · MGMT · 글래스 애니멀스 · 비치 하우스 · 마지 스타 · 멘 아이 트러스트 · 자라 라슨 · 핑크판서리스 · 돈 톨리버 · 캐치아이 · 페소 플루마 · 페이드 · 비자랍 · 타일러 더 크리에이터 · 프랭크 오션 · 더 키드 라로이 · 퓨처 · 플레이보이 카티 · 어셔 · 크리스 브라운 · 니요 · 지니 아이코 · 서머 워커 · 칼리 우치스 · 브렌트 파이아즈 · 기븐 · 앤더슨 팩 · 제이 콜 · 브라이슨 틸러 · 아이스 스파이스 · 글로릴라 · 라토 · 메건 디 스탤리언 · 노르마니 · 리틀 믹스 · 핏불 · 플로 라이다 · 엘엠에프에이오 · 샤를리 엑스씨엑스 · 르네 랩 · 레이피 · 리지 맥알핀 · 메이지 피터스 · 도디 · 월로우즈 · 스웨디시 하우스 마피아 · 앤마리 · 리타 오라 · 조나스 브라더스 · 크리스 스테이플턴 · 잭 브라이언 · 케인 브라운 · 루크 브라이언 · 캐리 언더우드 · 돌리 파튼 · 조니 캐시 · 윌리 넬슨 · 케이시 머스그레이브스 · 레이니 윌슨 · 젤리 롤 · 라일리 그린 · 리사 (블랙핑크) · 혁오 · 새소년 · 장기하와 얼굴들 · 국카스텐 · 윤미래 · 김건모 · 김종국 · 이효리 · 보아 · 씨스타 · 티아라 · 빅스 · 갓세븐 · 씨엔블루 · 키스오브라이프 · 아이즈원 · 더보이즈 · 전소미 · 태양 · 뷔 · 제이홉 · 알엠 · 아이묭 · 세카이노 오와리 · 이키모노가카리 · 아라시 · 아무로 나미에 · 카랴 파뮤파뮤 · 엑스 재팬 · 옐로 매직 오케스트라 · 베이비메탈 · Zach Bryan · Kehlani · Jhené Aiko · H.E.R. · Giveon · Jorja Smith · Sade · Anderson .Paak · Jack Harlow · 21 Savage · Kanye West · Jay-Z · 2Pac · Lauryn Hill · Black Eyed Peas · The Script · James Arthur · George Ezra · Tom Odell · Laufey · Alessia Cara · Mark Ronson · The Strokes · Vampire Weekend · Mac DeMarco · Khruangbin · The Smiths · Joy Division · Kygo · Swedish House Mafia · Skrillex · Major Lazer · Fred again.. · Rüfüs Du Sol · ODESZA · Flume · Leonard Cohen · Nick Drake · Jeff Buckley · Tracy Chapman · Björk · David Bowie · The Rolling Stones · Boyz II Men</p></details>
+  </section>
 </main>
 <footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요.</footer>
 <div id="toast" role="status" aria-live="polite"></div>
