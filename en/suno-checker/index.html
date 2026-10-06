@@ -443,13 +443,13 @@ var SLOW=/\b(slow|ballad|lullaby|downtempo)\b/i, FAST=/\b(fast|uptempo|up-tempo|
 var SOFTG=/\b(lo-?fi|ambient|acoustic|folk|classical|piano ballad|lullaby|chillout|chill)\b/i;
 var HARDG=/\b(edm|hardstyle|metal|death metal|trap|dubstep|drum and bass|dnb|punk|hardcore|techno)\b/i;
 var ARTISTS=['taylor swift','ariana grande','billie eilish','ed sheeran','adele','drake','beyonce','beyoncé','rihanna','eminem','coldplay','imagine dragons','the weeknd','bruno mars','justin bieber','lady gaga','katy perry','dua lipa','olivia rodrigo','harry styles','post malone','kanye','travis scott','the beatles','michael jackson','elvis','bts','blackpink','newjeans','aespa','stray kids','bigbang','iu','아이유','방탄소년단','블랙핑크','뉴진스','태연','임영웅','성시경','박효신','이문세','김광석','폴킴','10cm'];
-var KNOWN=['intro','verse','prechorus','chorus','postchorus','bridge','outro','hook','interlude','instrumental','instrumentalbreak','solo','break','drop','build','finalchorus','lastchorus','end','fadeout','spoken','spokenword','whisper','refrain','prebridge','ending'];
+var KNOWN=['intro','verse','prechorus','chorus','postchorus','bridge','outro','hook','interlude','instrumental','instrumentalbreak','solo','break','drop','build','finalchorus','lastchorus','end','fadeout','spoken','spokenword','whisper','refrain','prebridge','ending','rap','rapverse','pianosolo','guitarsolo','saxophonesolo'];
 function uniq(a){var s={},o=[];a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x)}});return o}
 function matches(s,re){var m=s.match(re);return m?uniq(m.map(function(x){return x.toLowerCase()})):[]}
 function splitStyle(s){var m=s.search(/,?\s*avoid\s*:/i);return m>=0?{main:s.slice(0,m),avoid:s.slice(m).replace(/^,?\s*avoid\s*:\s*/i,'')}:{main:s,avoid:''}}
 function toks(s){return s.split(/[,\n]+/).map(function(x){return x.trim()}).filter(Boolean)}
 function lev(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++){d[i]=[i]}for(j=0;j<=n;j++)d[0][j]=j;for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
-function stem(t){return t.split(':')[0].toLowerCase().replace(/[^a-z]/g,'')}
+function stem(t){return t.split(':')[0].replace(/\s+-\s+(male|female|both|duet)\s*$/i,'').toLowerCase().replace(/[^a-z]/g,'')}
 function artistHit(low){
   var out=[];ARTISTS.forEach(function(a){
     var hit=/[가-힣]/.test(a)?low.indexOf(a)>=0:new RegExp('(^|[^a-z])'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)').test(low);
@@ -457,17 +457,18 @@ function artistHit(low){
   return out;
 }
 /* ---------- fixes ---------- */
-var PROPER={intro:'Intro',verse:'Verse',prechorus:'Pre-Chorus',chorus:'Chorus',postchorus:'Post-Chorus',bridge:'Bridge',outro:'Outro',hook:'Hook',interlude:'Interlude',instrumental:'Instrumental',instrumentalbreak:'Instrumental Break',solo:'Solo',break:'Break',drop:'Drop',build:'Build',finalchorus:'Final Chorus',lastchorus:'Last Chorus',end:'End',fadeout:'Fade Out',spoken:'Spoken',spokenword:'Spoken Word',whisper:'Whisper',refrain:'Refrain',prebridge:'Pre-Bridge',ending:'Ending'};
+var PROPER={intro:'Intro',verse:'Verse',prechorus:'Pre-Chorus',chorus:'Chorus',postchorus:'Post-Chorus',bridge:'Bridge',outro:'Outro',hook:'Hook',interlude:'Interlude',instrumental:'Instrumental',instrumentalbreak:'Instrumental Break',solo:'Solo',break:'Break',drop:'Drop',build:'Build',finalchorus:'Final Chorus',lastchorus:'Last Chorus',end:'End',fadeout:'Fade Out',spoken:'Spoken',spokenword:'Spoken Word',whisper:'Whisper',refrain:'Refrain',prebridge:'Pre-Bridge',ending:'Ending',rap:'Rap',rapverse:'Rap Verse',pianosolo:'Piano Solo',guitarsolo:'Guitar Solo',saxophonesolo:'Saxophone Solo'};
 var TIMERE=/\b\d{1,2}:\d{2}\b/g;
 function setStyleVal(t,a){$('#inStyle').value=t.join(', ')+(a.length?', avoid: '+a.join(', '):'')}
 function mutStyle(fn){var P=splitStyle($('#inStyle').value),t=toks(P.main),a=toks(P.avoid);fn(t,a);setStyleVal(t,a)}
 function fxApply(fn){snap={style:$('#inStyle').value,lyr:$('#inLyr').value};fn();run()}
 function fixTag(inner){
   var ci=inner.indexOf(':'),head=ci>=0?inner.slice(0,ci):inner,hint=ci>=0?inner.slice(ci+1).trim():'';
+  var vs=(head.match(/\s+-\s+(male|female|both|duet)\s*$/i)||[''])[0].replace(/\s+-\s+(\w)(\w*)/i,function(a,b,c){return ' - '+b.toUpperCase()+c.toLowerCase()});
   var base=stem(head).replace(/\d+$/,''),num=(head.match(/\d+/)||[''])[0],best=null,bd=9;
   if(KNOWN.indexOf(base)<0&&base.length>=4){KNOWN.forEach(function(k){if(k.length>=4){var d=lev(base,k);if(d<bd){bd=d;best=k}}})}
   if(KNOWN.indexOf(base)>=0)best=base;else if(!best||bd>2)return inner;
-  return PROPER[best]+(num?' '+num:'')+(hint?': '+hint:'');
+  return PROPER[best]+(num?' '+num:'')+vs+(hint?': '+hint:'');
 }
 function shortHint(inner){var ci=inner.indexOf(':');if(ci<0)return inner;var h=inner.slice(ci+1).trim();if(h.split(/\s+/).length>6||h.length>45)h=h.split(/\s+/).slice(0,2).join(' ');return inner.slice(0,ci)+': '+h}
 function splitLong(raw){
