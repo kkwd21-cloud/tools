@@ -369,6 +369,7 @@ details.pk .pkb{display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .sug{display:flex;flex-direction:column;border:1px solid var(--line2);border-radius:12px;overflow:auto;max-height:320px;background:var(--panel)}
 .sug button{display:flex;align-items:center;gap:10px;text-align:left;padding:12px 14px;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);font-size:15px;font-family:inherit;cursor:pointer;min-width:0}
 .sug button:last-child{border-bottom:0}
+.sgm{margin-left:auto;flex:none;font-size:12px;font-weight:700;color:var(--accent2);border:1px solid var(--line2);border-radius:999px;padding:4px 10px;background:var(--panel2)}
 .sug button:hover,.sug button.on{background:rgba(var(--rgb),.16)}
 .sgt{flex:none;font-size:11px;font-weight:700;color:var(--accent2);border:1px solid var(--line2);border-radius:6px;padding:1px 7px}
 .sgl{min-width:0;overflow-wrap:anywhere}
@@ -597,7 +598,7 @@ function makeAC(input,list,onPick,opt){
     ls.slice(0,6).forEach(function(x){items.push({r:x.r,song:x.t,label:x.t,sub:x.r.n,tag:'곡'})});
     if(!items.length){close();if(opt.onNone)opt.onNone(q);return}
     if(opt.onSome)opt.onSome();
-    list.innerHTML=items.map(function(it,i){return '<button type="button" role="option" data-n="'+i+'"><span class="sgt">'+it.tag+'</span><span class="sgl">'+esc(it.label)+(it.sub?' <em>'+esc(it.sub)+'</em>':'')+'</span></button>'}).join('');
+    list.innerHTML=items.map(function(it,i){return '<button type="button" role="option" data-n="'+i+'"><span class="sgt">'+it.tag+'</span><span class="sgl">'+esc(it.label)+(it.sub?' <em>'+esc(it.sub)+'</em>':'')+'</span>'+(opt.onMix&&opt.canMix&&opt.canMix(it)?'<span class="sgm" data-mix="1">+ 섞기</span>':'')+'</button>'}).join('');
     if(opt.autoExact){var f=items[0];if(f&&!f.song&&norm(q)===f.r.keys[0])opt.autoExact(f)}
   }
   input.addEventListener('input',render);
@@ -608,7 +609,7 @@ function makeAC(input,list,onPick,opt){
     else if(e.key==='Escape'){close()}
     else if(e.key==='Enter'){e.preventDefault();if(act>=0&&items[act])pick(items[act]);else if(items.length)pick(items[0]);else if(opt.onEnterNone)opt.onEnterNone(input.value)}
   });
-  list.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var it=items[+b.dataset.n];if(it)pick(it)});
+  list.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var it=items[+b.dataset.n];if(!it)return;if(opt.onMix&&e.target.closest('.sgm')){close();opt.onMix(it);return}pick(it)});
   return {close:close,render:render};
 }
 
@@ -617,11 +618,11 @@ var cur=null,song='',mix=null,ratio='a',tw={},ko=true,theme='',tab='all';
 
 /* ---------- main search ---------- */
 var qIn=$('#q'),missT;
-var mainAC=makeAC(qIn,$('#res'),function(it){song=it.song||'';choose(it.r,true)},{
+var mainAC=makeAC(qIn,$('#res'),function(it){song=it.song||'';choose(it.r,true)},{canMix:function(it){return !!cur&&it.r!==cur},onMix:function(it){setMix(it.r);qIn.value=cur.n},
   onEmpty:function(){$('#none').hidden=true;renderStarts()},
   onNone:function(q){$('#none').hidden=false;$('#pk').open=true;clearTimeout(missT);missT=setTimeout(function(){logMiss(q)},900)},
   onSome:function(){$('#none').hidden=true},
-  autoExact:function(it){song='';choose(it.r,false)},
+  autoExact:function(it){if(cur&&it.r!==cur)return;song='';choose(it.r,false)},
   onEnterNone:function(q){logMiss(q)}
 });
 function renderStarts(){
@@ -1347,8 +1348,9 @@ function mixRapOn(){mixAutoRap=false;if(mix&&isRapRow(mix)&&!isRapRow(cur)&&LX.r
 function resetMix(){if(mixAutoRap&&LX.rap==='v2'){LX.rap='off';mixAutoRap=false;lxApply()}mix=null;ratio='a';$('#mixOpen').hidden=false;$('#mixBox').hidden=true;$('#mixIn').value='';$('#mixRes').innerHTML='';$('#mixOn').hidden=true;renderRatio()}
 function renderRatio(){$$('#ratio button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.r===ratio?'true':'false')})}
 $('#mixOpen').addEventListener('click',function(){$('#mixOpen').hidden=true;$('#mixBox').hidden=false;$('#mixIn').focus()});
-var mixAC=makeAC($('#mixIn'),$('#mixRes'),function(it){mix=it.r;$('#mixBox').hidden=true;$('#mixOn').hidden=false;$('#mixName').textContent=mix.n;
-  $('#ratioA').textContent=cur.n+' 위주';$('#ratioB').textContent=mix.n+' 위주';ratio='a';renderRatio();mixRapOn();renderPhrase()},{exclude:function(){return cur}});
+function setMix(r){mix=r;$('#mixOpen').hidden=true;$('#mixBox').hidden=true;$('#mixOn').hidden=false;$('#mixName').textContent=mix.n;
+  $('#ratioA').textContent=cur.n+' 위주';$('#ratioB').textContent=mix.n+' 위주';ratio='a';renderRatio();mixRapOn();renderPhrase();var mo=$('#mixOn');if(mo&&mo.scrollIntoView)mo.scrollIntoView({block:'center',behavior:'smooth'})}
+var mixAC=makeAC($('#mixIn'),$('#mixRes'),function(it){setMix(it.r)},{exclude:function(){return cur}});
 $('#mixCancel').addEventListener('click',function(){$('#mixBox').hidden=true;$('#mixOpen').hidden=false;$('#mixIn').value='';mixAC.close()});
 $('#mixDel').addEventListener('click',function(){resetMix();renderPhrase()});
 $('#ratio').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;ratio=b.dataset.r;renderRatio();renderPhrase()});
