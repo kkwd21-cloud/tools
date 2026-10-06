@@ -637,11 +637,12 @@ function splitV(items){var v=null,rest=[];items.forEach(function(it){if(v===null
 var RATIO={a:[5,2],h:[4,4],b:[2,5]};
 function baseItems(){
   if(!mix)return cur.items.slice();
-  var A=splitV(cur.items),B=splitV(mix.items),n=RATIO[ratio],lead=ratio==='b'?B:A;
-  var out=A.rest.slice(0,n[0]).concat(B.rest.slice(0,n[1]));
-  var seen={},res=[];out.forEach(function(x){var k=x.toLowerCase();if(!seen[k]){seen[k]=1;res.push(x)}});
-  if(lead.v)res.splice(Math.min(1,res.length),0,lead.v);
-  return res.slice(0,8);
+  var lead=ratio==='b'?mix:cur,oth=ratio==='b'?cur:mix,L=lead.items,O=splitV(oth.items),seen={},res=[],i;
+  function add(x){if(!x)return;var k=x.toLowerCase();if(!seen[k]){seen[k]=1;res.push(x)}}
+  function pickO(n){var r=O.rest.slice(0,Math.max(1,n-(O.v?1:0)));if(O.v)r.splice(Math.min(1,r.length),0,O.v);return r}
+  if(ratio==='h'){var Lh=L.slice(0,4),Oh=pickO(4);for(i=0;i<Math.max(Lh.length,Oh.length);i++){add(Lh[i]);add(Oh[i])}}
+  else{L.slice(0,5).forEach(add);pickO(3).forEach(add)}
+  return res.slice(0,9);
 }
 var usePrec=true,VS=0,autoV=false,vaNote='',TL='ko';
 function prec(){if(!usePrec||!song||mix||!cur)return null;var p=D.prec&&D.prec[norm(cur.n)+'|'+norm(song)];return p||null}
@@ -692,7 +693,7 @@ function mid(b){var m=String(b).match(/(\d+)\D+(\d+)/);return m?Math.round((+m[1
 /* ---------- result card ---------- */
 function ytUrl(){var q=(song?song+' ':'')+cur.n+(song?'':' 대표곡');return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q)}
 function choose(r,scroll){
-  stopPreview(true);VS=0;autoV=true;vaNote='';cur=r;tw={};mix=null;ratio='a';theme='';tone='';
+  stopPreview(true);VS=0;autoV=true;vaNote='';cur=r;tw={};if(mixAutoRap&&LX.rap==='v2'){LX.rap='off'}mixAutoRap=false;mix=null;ratio='a';theme='';tone='';
   ko=(/[가-힣]/.test(r.n)&&D.nonKo.indexOf(r.n)<0)||D.koSet.indexOf(r.n)>=0;kArt=ko&&r.v!=='inst';if(r.v==='inst')ko=false;
   $('#starts').hidden=true;$('#card').hidden=false;$('#lyr').hidden=false;$('#fin').hidden=false;LS.locked={};LS.texts={};LS.sig=null;
   $('#cName').textContent=r.n;
@@ -1138,7 +1139,7 @@ function buildBar(B,t0,sp,idx){
 function R0(sp,pos){return ((sp.seed>>pos)&1)===1}
 function secName(pos){return pos<2?'도입':pos<6?'전개':pos<10?'고조':pos<14?'후렴':'여운'}
 /* playback */
-window.__sfSpec=function(){return makeSpec()};window.__sfPrec=function(){return D.prec};window.__sfPick=function(n,s){var r=ROWS.filter(function(x){return x.n===n})[0];qIn.value=n;song=s;choose(r,true)};
+window.__sfRows=function(){return ROWS};window.__sfSpec=function(){return makeSpec()};window.__sfPrec=function(){return D.prec};window.__sfPick=function(n,s){var r=ROWS.filter(function(x){return x.n===n})[0];qIn.value=n;song=s;choose(r,true)};
 window.__sfOff=function(bars){var sp=makeSpec(),sr=22050,len=Math.ceil(sp.beat*4*bars+2),ctx=new OfflineAudioContext(2,sr*len,sr),B=mkBus(ctx,sp.beat);applyMix(B,sp);for(var i=0;i<bars;i++)buildBar(B,.05+i*sp.beat*4,sp,i);return ctx.startRendering().then(function(buf){var d=buf.getChannelData(0),e=[],pk=0;for(var s=0;s<8;s++){var a=0,n=0;for(var k=Math.floor(d.length*s/8);k<Math.floor(d.length*(s+1)/8);k++){a+=d[k]*d[k];n++;pk=Math.max(pk,Math.abs(d[k]))}e.push(Math.sqrt(a/n))}var z=0;for(var k=1;k<d.length;k++)if((d[k]>=0)!==(d[k-1]>=0))z++;var i16=new Int16Array(d.length);for(var k=0;k<d.length;k++)i16[k]=Math.max(-32767,Math.min(32767,d[k]*32767));var u=new Uint8Array(i16.buffer),bs='';for(var k=0;k<u.length;k+=8192)bs+=String.fromCharCode.apply(null,u.subarray(k,k+8192));return {pcm:btoa(bs),arch:sp.arch||'-',bpm:sp.bpm,peak:pk,zc:z/d.length*sr,rms:e}})};
 function startPreview(){
   var C=window.AudioContext||window.webkitAudioContext;if(!C){toast('이 브라우저에서는 소리를 낼 수 없어요');return}
@@ -1340,11 +1341,14 @@ $('#cpLyr').addEventListener('click',function(){copy(lyrText(),'가사를 복사
 $('#cpAll').addEventListener('click',function(){histAdd('s',$('#cPhrase').value);histAdd('t',LS.title);copy('제목: '+LS.title+'\n\n[Style of Music]\n'+$('#cPhrase').value+'\n\n[Lyrics]\n'+lyrText(),'전부 복사했어요')});
 
 /* ---------- mix ---------- */
-function resetMix(){mix=null;ratio='a';$('#mixOpen').hidden=false;$('#mixBox').hidden=true;$('#mixIn').value='';$('#mixRes').innerHTML='';$('#mixOn').hidden=true;renderRatio()}
+var mixAutoRap=false;
+function isRapRow(r){return /\brap\b|rapp|hip hop|trap/i.test(r.items.join(' ')+' '+r.k)}
+function mixRapOn(){mixAutoRap=false;if(mix&&isRapRow(mix)&&!isRapRow(cur)&&LX.rap==='off'){LX.rap='v2';LX.rapLen=8;mixAutoRap=true;lxApply()}}
+function resetMix(){if(mixAutoRap&&LX.rap==='v2'){LX.rap='off';mixAutoRap=false;lxApply()}mix=null;ratio='a';$('#mixOpen').hidden=false;$('#mixBox').hidden=true;$('#mixIn').value='';$('#mixRes').innerHTML='';$('#mixOn').hidden=true;renderRatio()}
 function renderRatio(){$$('#ratio button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.r===ratio?'true':'false')})}
 $('#mixOpen').addEventListener('click',function(){$('#mixOpen').hidden=true;$('#mixBox').hidden=false;$('#mixIn').focus()});
 var mixAC=makeAC($('#mixIn'),$('#mixRes'),function(it){mix=it.r;$('#mixBox').hidden=true;$('#mixOn').hidden=false;$('#mixName').textContent=mix.n;
-  $('#ratioA').textContent=cur.n+' 위주';$('#ratioB').textContent=mix.n+' 위주';ratio='a';renderRatio();renderPhrase()},{exclude:function(){return cur}});
+  $('#ratioA').textContent=cur.n+' 위주';$('#ratioB').textContent=mix.n+' 위주';ratio='a';renderRatio();mixRapOn();renderPhrase()},{exclude:function(){return cur}});
 $('#mixCancel').addEventListener('click',function(){$('#mixBox').hidden=true;$('#mixOpen').hidden=false;$('#mixIn').value='';mixAC.close()});
 $('#mixDel').addEventListener('click',function(){resetMix();renderPhrase()});
 $('#ratio').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;ratio=b.dataset.r;renderRatio();renderPhrase()});
