@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수노 가사 주문서 만들기 – 챗GPT·클로드에 붙여 넣는 가사 프롬프트 | Dusk Soul</title>
+<meta name="description" content="버튼만 눌러 수노(Suno)용 한국어 가사 주문서를 만들어 챗GPT·클로드에 붙여 넣고, 받은 답을 발음 점검까지 한 번에 끝내는 무료 도구예요. 가입 없음, 내용은 내 브라우저 안에서만 처리돼요.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/suno-lyrics-order/">
+
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="수노 가사 주문서 만들기 – 챗GPT·클로드에 붙여 넣는 가사 프롬프트 | Dusk Soul">
+<meta property="og:description" content="버튼만 눌러 수노(Suno)용 한국어 가사 주문서를 만들어 챗GPT·클로드에 붙여 넣고, 받은 답을 발음 점검까지 한 번에 끝내는 무료 도구예요. 가입 없음, 내용은 내 브라우저 안에서만 처리돼요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/suno-lyrics-order/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "가사 주문서 만들기", "item": "https://kkwd21-cloud.github.io/tools/suno-lyrics-order/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "AI를 이 사이트가 직접 부르나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 주문서를 만들어 드리고, 챗GPT나 클로드에는 직접 붙여 넣어야 해요. 그래서 로그인이나 키 입력이 필요 없어요."}}, {"@type": "Question", "name": "무료 계정으로도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 주문서는 글이라서 무료 계정에서도 쓸 수 있어요. 다만 서비스마다 하루 사용량 제한은 있어요."}}, {"@type": "Question", "name": "주문서 규칙이 수노에서 확실히 통하나요?", "acceptedAnswer": {"@type": "Answer", "text": "확실하지는 않아요. 숫자·영어·기호를 피하고 줄을 짧게 하는 것은 수노 사용자들이 많이 쓰는 방법이지만, 수노의 읽기 방식은 업데이트로 달라질 수 있어요. 곡을 들어 보고 아쉬운 줄만 다시 시키세요."}}, {"@type": "Question", "name": "AI 답변 형식이 달라도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "\"### STYLE / ### TITLE / ### LYRICS\" 제목이 없으면 전체를 가사로 보고 점검해요. 제목이 있으면 세 칸으로 나눠요."}}, {"@type": "Question", "name": "가수 이름을 넣으면 안 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "주문서에서 가수 이름과 기존 가사를 쓰지 않도록 시켜요. 수노도 가수 이름을 스타일에 쓰는 것을 막고 있어요."}}, {"@type": "Question", "name": "가사가 서버로 올라가나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 이 페이지는 서버가 없는 정적 페이지라 입력한 내용이 어디로도 전송되지 않아요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "가사 주문서 만들기", "url": "https://kkwd21-cloud.github.io/tools/suno-lyrics-order/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}, "inLanguage": "ko"}</script>
+
+<style>:root{--accent:#7fd1e8;--accent2:#b8e6f2;--rgb:127,209,232}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.sumbox{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);font-size:14.5px}
+.sumbox.ok{border-color:#3d8a63;background:rgba(61,138,99,.14)}
+.drow .wr{margin-left:auto}
+.issl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.iss{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--panel);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.iss.s-bad{border-left-color:#e0707f}.iss.s-warn{border-left-color:#e6b567}.iss.s-info{border-left-color:#7a8bb8}
+.ih{display:flex;gap:10px;align-items:center;font-size:12.5px}
+.bd{font-weight:700;border-radius:999px;padding:2px 10px;background:var(--panel2);border:1px solid var(--line2)}
+.ln{color:var(--muted)}
+.il{font-family:'IBM Plex Mono','Noto Sans KR',monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;color:var(--text)}
+.il mark{background:rgba(var(--rgb),.28);color:inherit;border-radius:4px;padding:0 2px}
+.im{margin:0;font-size:13px;color:var(--muted)}
+.ia{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.arrow{font-weight:700;color:var(--accent2)}
+.dim{color:var(--muted);font-size:13px}
+.adv summary{cursor:pointer;color:var(--accent2);font-size:14px}
+.optbox{display:flex;flex-direction:column;gap:12px}.tgl{display:flex;flex-wrap:wrap;gap:8px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:14px;transition:.2s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%)}
+.b-sub.sm{padding:7px 10px;font-size:12.5px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fcol{display:flex;flex-direction:column;gap:6px;min-width:0}
+.flabel{font-size:12.5px;color:var(--muted)}
+.dlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.dlist li{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 12px;font-size:14px}
+.dlist .df{font-weight:700}.dlist .da{color:var(--muted)}.dlist .dt{color:var(--accent2);font-weight:700;flex:1;min-width:0;overflow-wrap:anywhere}
+.pbtn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:34px;height:32px;font-size:13px}
+.iss.s-dict{border-left-color:#9be0a8}
+.iss.s-info mark{background:rgba(var(--rgb),.28)}
+.grp{display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+#order{background:var(--panel2)}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="./" class="on" aria-current="page">가사 주문서</a><a href="../pronunciation-check/">발음 점검</a><a href="../lyrics-generator/">가사 도우미</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">수노 한국어 가사 · 무료 · 업로드 없음</p>
+  <h1>가사 주문서 만들기</h1>
+  <p class="vibe">고르기만 하면 AI에게 보낼 주문서가 나와요.</p>
+  <p class="lead">어떤 노래인지 한 줄만 쓰고 분위기·장르·보컬을 눌러 고르세요. 수노 형식과 한국어 발음 규칙이 들어간 주문서가 만들어져요. 챗GPT나 클로드에 붙여 넣고 받은 답을 다시 여기에 붙여 넣으면 스타일·제목·가사로 나누고, 수노가 잘못 읽을 곳까지 찾아서 고쳐 줘요.</p>
+  <ul class="stats"><li><b>주문서</b>수노 규칙이 이미 들어 있어요</li><li><b>답변 점검</b>붙여 넣으면 바로 분석</li><li><b>0원</b>가입·업로드 없음</li></ul>
+  <div class="hero-cta">
+    <a class="btn-p" href="#tool">주문서 만들기 ↓</a>
+    <a class="btn-g" href="#tips">잘 쓰는 팁</a>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+
+<div class="wrap">
+  <div class="how"><div class="step"><div class="n">STEP 01</div><h3>고르기</h3><p>한 문장과 분위기, 장르, 보컬을 눌러 고르세요. 더 세밀하게 하려면 고급 설정을 열어요.</p></div><div class="step"><div class="n">STEP 02</div><h3>AI에게 보내기</h3><p>만들어진 주문서를 복사해서 챗GPT나 클로드 채팅창에 붙여 넣고 보내세요.</p></div><div class="step"><div class="n">STEP 03</div><h3>답 붙여 넣고 고치기</h3><p>AI의 답을 여기에 붙여 넣으면 스타일·제목·가사로 나뉘고, 발음 문제는 한 번에 고쳐요. 수노에 복사해서 쓰세요.</p></div></div>
+
+  <section class="sec" id="tool">
+    <div class="sec-head"><h2>가사 주문서 만들기</h2><p>입력한 내용은 내 브라우저 안에서만 처리돼요. 어디에도 올라가지 않아요.</p></div>
+    <div class="lrcw">
+      <div class="card2" id="s1">
+        <h3>1. 어떤 노래를 만들고 싶나요?</h3>
+        <label class="grp"><span class="flabel">한 문장이면 돼요</span><textarea class="inp" id="idea" rows="2" maxlength="200" style="width:100%"></textarea></label>
+        <div class="chips sm" id="exC"><button type="button" class="chip" data-ex="비 오는 날 헤어진 사람에게 쓰는 편지 같은 발라드">예: 이별 편지</button><button type="button" class="chip" data-ex="새벽에 혼자 드라이브하며 지난여름을 떠올리는 노래">예: 새벽 드라이브</button><button type="button" class="chip" data-ex="첫사랑을 처음 마주친 날의 설레는 마음을 담은 노래">예: 첫사랑 설렘</button><button type="button" class="chip" data-ex="오래 일한 부모님께 고맙다고 전하는 따뜻한 노래">예: 부모님께</button></div>
+        <div class="grp"><span class="flabel">분위기 (세 개까지)</span><div class="chips sm" id="moodC"><button type="button" class="chip" data-v="쓸쓸한" aria-pressed="false">쓸쓸한</button><button type="button" class="chip" data-v="그리운" aria-pressed="false">그리운</button><button type="button" class="chip" data-v="설레는" aria-pressed="false">설레는</button><button type="button" class="chip" data-v="따뜻한" aria-pressed="false">따뜻한</button><button type="button" class="chip" data-v="희망적인" aria-pressed="false">희망적인</button><button type="button" class="chip" data-v="몽환적인" aria-pressed="false">몽환적인</button><button type="button" class="chip" data-v="신나는" aria-pressed="false">신나는</button><button type="button" class="chip" data-v="벅찬" aria-pressed="false">벅찬</button><button type="button" class="chip" data-v="담담한" aria-pressed="false">담담한</button><button type="button" class="chip" data-v="애절한" aria-pressed="false">애절한</button></div></div>
+        <div class="grp"><span class="flabel">장르</span><div class="chips sm" id="genreC"><button type="button" class="chip" data-v="ballad" aria-pressed="true">감성 발라드</button><button type="button" class="chip" data-v="pop" aria-pressed="false">팝</button><button type="button" class="chip" data-v="acoustic" aria-pressed="false">어쿠스틱·포크</button><button type="button" class="chip" data-v="lofi" aria-pressed="false">로파이</button><button type="button" class="chip" data-v="cine" aria-pressed="false">시네마틱</button><button type="button" class="chip" data-v="hiphop" aria-pressed="false">힙합·랩</button><button type="button" class="chip" data-v="rock" aria-pressed="false">록</button><button type="button" class="chip" data-v="rnb" aria-pressed="false">알앤비</button><button type="button" class="chip" data-v="trot" aria-pressed="false">트로트</button><button type="button" class="chip" data-v="jazz" aria-pressed="false">재즈</button></div></div>
+        <div class="grp"><span class="flabel">보컬</span><div class="chips sm" id="vocalC"><button type="button" class="chip" data-v="any" aria-pressed="true">알아서</button><button type="button" class="chip" data-v="female" aria-pressed="false">여성</button><button type="button" class="chip" data-v="male" aria-pressed="false">남성</button><button type="button" class="chip" data-v="duet" aria-pressed="false">듀엣</button></div></div>
+        <div class="grp"><span class="flabel">가사 느낌</span><div class="chips sm" id="langC"><button type="button" class="chip" data-v="ko" aria-pressed="true">한국어만</button><button type="button" class="chip" data-v="en" aria-pressed="false">영어 훅 살짝</button><button type="button" class="chip" data-v="rap" aria-pressed="false">랩 넣기</button></div></div>
+        <div class="grp"><span class="flabel">길이</span><div class="chips sm" id="lenC"><button type="button" class="chip" data-v="short" aria-pressed="false">짧게</button><button type="button" class="chip" data-v="mid" aria-pressed="true">보통</button><button type="button" class="chip" data-v="long" aria-pressed="false">길게</button></div></div>
+        <details class="adv"><summary>고급 설정 (더 세밀하게)</summary>
+          <div class="optbox" style="margin-top:10px">
+            <div class="grp"><span class="flabel">시점</span><div class="chips sm" id="povC"><button type="button" class="chip" data-v="first" aria-pressed="true">나의 독백</button><button type="button" class="chip" data-v="talk" aria-pressed="false">너에게 말하기</button><button type="button" class="chip" data-v="story" aria-pressed="false">장면 이야기</button></div></div>
+            <div class="fgrid">
+              <label class="fcol"><span class="flabel">BPM (비워 두면 AI가 정해요)</span><input class="inp" id="bpm" type="text" inputmode="numeric" maxlength="3"></label>
+              <label class="fcol"><span class="flabel">후렴에 꼭 넣을 한 줄</span><input class="inp" id="hook" type="text" maxlength="60"></label>
+              <label class="fcol"><span class="flabel">꼭 넣을 말</span><input class="inp" id="must" type="text" maxlength="60"></label>
+              <label class="fcol"><span class="flabel">쓰지 말아야 할 말</span><input class="inp" id="avoid" type="text" maxlength="60"></label>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="card2" id="s2">
+        <h3>2. 주문서를 AI에게 보내기</h3>
+        <p class="note">아래 주문서를 복사해서 챗GPT나 클로드 채팅창에 붙여 넣고 보내세요. 무료 계정이어도 돼요. 수노에 맞는 가사 형식과 한국어 발음 규칙이 이미 들어 있어요.</p>
+        <textarea class="inp" id="order" rows="9" readonly style="width:100%;font-size:13px;line-height:1.6"></textarea>
+        <div class="drow"><span class="dim"><b id="ordLen">0</b>자</span><button type="button" class="b-main b-big wr" id="bCopyOrd">주문서 복사하기</button></div>
+        <div class="drow"><a class="btn-g" href="https://chatgpt.com/" target="_blank" rel="noopener">챗GPT 열기</a><a class="btn-g" href="https://claude.ai/" target="_blank" rel="noopener">클로드 열기</a></div>
+      </div>
+
+      <div class="card2" id="s3">
+        <h3>3. AI가 써 준 답을 붙여 넣기</h3>
+        <p class="note">AI의 답을 통째로 붙여 넣으세요. 스타일, 제목, 가사로 나눠서 보여 주고, 수노가 잘못 읽을 곳을 점검해요.</p>
+        <textarea class="inp" id="reply" rows="8" spellcheck="false" placeholder="### STYLE ... ### TITLE ... ### LYRICS ... 형식의 답을 붙여 넣으세요" style="width:100%"></textarea>
+        <div id="res" hidden>
+          <div class="sub"><h4>수노 Style of Music 칸에</h4>
+            <textarea class="inp" id="rStyle" rows="3" style="width:100%"></textarea>
+            <div class="drow"><span class="dim"><b id="rStyleN">0</b>자</span><button type="button" class="b-sub sm wr" id="bCopyStyle">스타일 복사</button></div></div>
+          <div class="sub"><h4>제목 후보 (수노 Title 칸에)</h4><ul class="dlist" id="rTitle"></ul></div>
+          <div class="sub"><h4>수노 Lyrics 칸에</h4>
+            <div id="rSum" class="sumbox"></div>
+            <ul class="issl" id="rIss"></ul>
+            <textarea class="inp" id="rLyr" rows="14" spellcheck="false" style="width:100%;font-family:'IBM Plex Mono','Noto Sans KR',monospace;font-size:14px;line-height:1.7"></textarea>
+            <div class="drow"><span class="dim"><b id="rLyrN">0</b>자</span><button type="button" class="b-sub wr" id="bFix">전부 고치기</button><button type="button" class="b-main" id="bCopyLyr">가사 복사</button></div></div>
+          <div class="sub"><h4>마음에 안 들면, AI에게 이렇게 시키세요</h4>
+            <p class="note">누르면 보낼 말이 복사돼요. 같은 채팅에 붙여 넣으면 돼요.</p>
+            <div class="chips sm" id="moreC"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="use">
+    <div class="sec-head"><h2>이럴 때 써요</h2></div>
+    <ul class="tipsg"><li><h3>AI에게 뭐라고 시킬지 막막할 때</h3><p>주문서에 수노 형식, 줄 길이, 발음 규칙이 들어 있어서 그냥 붙여 넣기만 하면 돼요.</p></li><li><h3>받은 가사에 숫자·영어가 섞였을 때</h3><p>답을 붙여 넣으면 수노가 틀리게 읽을 곳을 찾아 한글로 고쳐 줘요.</p></li><li><h3>마음에 안 드는 부분만 다시 시키고 싶을 때</h3><p>후렴 더 강하게, 더 짧게 같은 추가 주문을 누르면 복사돼요. 같은 채팅에 붙여 넣으세요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="tips">
+    <div class="sec-head"><h2>잘 쓰는 팁</h2></div>
+    <ul class="tipsg"><li><h3>한 문장은 장면으로</h3><p>&quot;슬픈 노래&quot;보다 &quot;비 오는 날 헤어진 사람에게 쓰는 편지&quot;처럼 장면이 보이게 쓰면 가사가 구체적으로 나와요.</p></li><li><h3>분위기는 세 개까지</h3><p>너무 많이 고르면 서로 부딪쳐서 평범해져요. 핵심 두세 개만 고르세요.</p></li><li><h3>후렴 한 줄을 정해 두기</h3><p>고급 설정에 후렴에 꼭 넣을 한 줄을 적으면 AI가 그 줄을 중심으로 후렴을 만들어요.</p></li><li><h3>같은 채팅에서 이어서 시키기</h3><p>처음 답이 아쉬우면 새로 시작하지 말고 같은 채팅에 추가 주문을 붙여 넣으세요. 앞의 내용을 기억하고 고쳐요.</p></li><li><h3>스타일 문구는 영어로</h3><p>수노의 Style 칸은 영어 문구가 가장 잘 먹혀요. 주문서가 영어로 받도록 되어 있어요.</p></li></ul>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>자주 묻는 질문</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>AI를 이 사이트가 직접 부르나요?</summary><p>아니요. 주문서를 만들어 드리고, 챗GPT나 클로드에는 직접 붙여 넣어야 해요. 그래서 로그인이나 키 입력이 필요 없어요.</p></details><details><summary>무료 계정으로도 되나요?</summary><p>네. 주문서는 글이라서 무료 계정에서도 쓸 수 있어요. 다만 서비스마다 하루 사용량 제한은 있어요.</p></details><details><summary>주문서 규칙이 수노에서 확실히 통하나요?</summary><p>확실하지는 않아요. 숫자·영어·기호를 피하고 줄을 짧게 하는 것은 수노 사용자들이 많이 쓰는 방법이지만, 수노의 읽기 방식은 업데이트로 달라질 수 있어요. 곡을 들어 보고 아쉬운 줄만 다시 시키세요.</p></details><details><summary>AI 답변 형식이 달라도 되나요?</summary><p>&quot;### STYLE / ### TITLE / ### LYRICS&quot; 제목이 없으면 전체를 가사로 보고 점검해요. 제목이 있으면 세 칸으로 나눠요.</p></details><details><summary>가수 이름을 넣으면 안 되나요?</summary><p>주문서에서 가수 이름과 기존 가사를 쓰지 않도록 시켜요. 수노도 가수 이름을 스타일에 쓰는 것을 막고 있어요.</p></details><details><summary>가사가 서버로 올라가나요?</summary><p>아니요. 이 페이지는 서버가 없는 정적 페이지라 입력한 내용이 어디로도 전송되지 않아요.</p></details></div>
+  </section>
+
+  <section class="sec" id="more">
+    <div class="sec-head"><h2>함께 쓰면 좋은 도구</h2></div>
+    <div class="tools" style="margin-top:0"><a class="btn-g" href="../pronunciation-check/">한글 발음 점검기</a><a class="btn-g" href="../suno-checker/">수노 프롬프트 점검기</a><a class="btn-g" href="../make-song/">수노로 노래 만들기 5단계</a><a class="btn-g" href="../lyrics-generator/">한국어 가사 도우미</a></div>
+  </section>
+</div>
+</main>
+
+<section class="cta-final"><div class="cta-in">
+  <h2>만든 노래로 영상까지, MusicCanvas로</h2>
+  <p>곡을 넣고 이미지·이펙트·가사를 입혀 유튜브용 영상으로 내보내는 Windows 프로그램이에요. 한 번 결제로 계속 쓰고, 7일 무료체험이 있어요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">기능·가격·자주 묻는 질문 보기 →</a></p>
+</div></section>
+<footer>비공식 도구이며 수노(Suno), 챗GPT, 클로드와 관계없어요. 결과는 AI에 따라 달라지니 참고용으로 쓰세요.</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>var DATA={};</script>
+<script>
+(function(root){
+'use strict';
+var SINO=['영','일','이','삼','사','오','육','칠','팔','구'];
+var NAT_ONES=['','하나','둘','셋','넷','다섯','여섯','일곱','여덟','아홉'];
+var NAT_DET=['','한','두','세','네','다섯','여섯','일곱','여덟','아홉'];
+var NAT_TENS=['','열','스물','서른','마흔','쉰','예순','일흔','여든','아흔'];
+function sino4(n){
+  var s='',u=[['천',1000],['백',100],['십',10]],i,d;
+  for(i=0;i<u.length;i++){d=Math.floor(n/u[i][1]);n%=u[i][1];if(d)s+=(d===1?'':SINO[d])+u[i][0]}
+  if(n)s+=SINO[n];
+  return s
+}
+function sino(n){
+  n=Math.floor(n);if(n===0)return '영';
+  var parts=[['조',1e12],['억',1e8],['만',1e4]],s='',i,q;
+  for(i=0;i<parts.length;i++){q=Math.floor(n/parts[i][1]);n%=parts[i][1];if(q){s+=(q===1&&parts[i][0]==='만'&&!s?'':sino4(q))+parts[i][0]}}
+  if(n)s+=sino4(n);
+  return s
+}
+function native(n,det){
+  if(n<1||n>99)return sino(n);
+  var t=Math.floor(n/10),o=n%10,s;
+  if(n===20&&det)return '스무';
+  s=NAT_TENS[t]+(det?NAT_DET[o]:NAT_ONES[o]);
+  return s
+}
+function digitsRead(str){return str.replace(/\d/g,function(c){return c==='0'?'공':SINO[+c]})}
+var NATIVE_CNT='개|명|마리|살|시간|시|번째|번|잔|송이|병|권|장|대|그루|곡|가지|바퀴|방울|걸음|사람|켤레|채|조각|줄|통|봉지|접시|그릇|벌';
+var SINO_CNT='년|월|일|분|초|원|층|호|도|세|주|달러|위|등|퍼센트|킬로|미터|센티|점|학년|반|회|화|기|차|명분';
+function readNum(numStr,cnt){
+  var raw=numStr.replace(/,/g,'');
+  if(raw.indexOf('.')>=0){var p=raw.split('.');return sino(+p[0])+'점'+digitsRead(p[1])}
+  var n=parseInt(raw,10);
+  if(!isFinite(n))return numStr;
+  if(raw.length>=5&&!/,/.test(numStr)&&n>=10000&&!cnt)return digitsRead(raw); // phone-like
+  if(cnt==='월'){if(n===6)return '유';if(n===10)return '시'}
+  if(cnt&&new RegExp('^(?:'+NATIVE_CNT+')$').test(cnt)&&n>=1&&n<=99){
+    if(cnt==='번째'){return n===1?'첫':native(n,true)}
+    if(cnt==='시'||cnt==='시간')return native(n,true);
+    return native(n,true)
+  }
+  return sino(n)
+}
+var LETTER={A:'에이',B:'비',C:'씨',D:'디',E:'이',F:'에프',G:'지',H:'에이치',I:'아이',J:'제이',K:'케이',L:'엘',M:'엠',N:'엔',O:'오',P:'피',Q:'큐',R:'알',S:'에스',T:'티',U:'유',V:'브이',W:'더블유',X:'엑스',Y:'와이',Z:'제트'};
+var EN=('love 러브|baby 베이비|my 마이|your 유어|you 유|i 아이|me 미|we 위|us 어스|oh 오|ooh 우|yeah 예|yo 요|hey 헤이|hi 하이|hello 헬로|bye 바이|goodbye 굿바이|good 굿|night 나이트|day 데이|days 데이즈|moon 문|sun 선|star 스타|stars 스타즈|sky 스카이|rain 레인|heart 하트|dream 드림|dreams 드림스|time 타임|forever 포에버|always 올웨이즈|never 네버|again 어게인|together 투게더|alone 어론|home 홈|city 시티|light 라이트|lights 라이츠|dark 다크|fire 파이어|ice 아이스|blue 블루|red 레드|black 블랙|white 화이트|pink 핑크|gold 골드|summer 서머|winter 윈터|spring 스프링|autumn 오텀|party 파티|dance 댄스|music 뮤직|song 송|sing 싱|play 플레이|stop 스톱|go 고|run 런|fly 플라이|high 하이|low 로우|up 업|down 다운|wow 와우|ok 오케이|okay 오케이|yes 예스|no 노|please 플리즈|sorry 쏘리|thanks 땡스|happy 해피|sad 새드|crazy 크레이지|lonely 론리|memory 메모리|memories 메모리즈|angel 엔젤|devil 데빌|paradise 파라다이스|tonight 투나잇|today 투데이|tomorrow 투모로우|yesterday 예스터데이|wait 웨이트|feel 필|feeling 필링|kiss 키스|touch 터치|holiday 홀리데이|birthday 버스데이|christmas 크리스마스|miss 미스|hold 홀드|let 렛|free 프리|freedom 프리덤|mine 마인|only 온리|one 원|two 투|three 쓰리|mood 무드|vibe 바이브|style 스타일|cool 쿨|hot 핫|sexy 섹시|girl 걸|boy 보이|man 맨|woman 우먼|friend 프렌드|friends 프렌즈|brother 브라더|sister 시스터|mama 마마|papa 파파|mom 맘|dad 대드|drive 드라이브|road 로드|street 스트리트|bus 버스|taxi 택시|coffee 커피|cafe 카페|pizza 피자|wine 와인|beer 비어|cake 케이크|flower 플라워|rose 로즈|sunset 선셋|sunrise 선라이즈|ocean 오션|sea 씨|wave 웨이브|wind 윈드|snow 스노우|cloud 클라우드|tears 티어스|smile 스마일|cry 크라이|fall 폴|falling 폴링|magic 매직|secret 시크릿|story 스토리|life 라이프|world 월드|universe 유니버스|galaxy 갤럭시|space 스페이스|rocket 로켓|power 파워|king 킹|queen 퀸|hero 히어로|fantasy 판타지|melody 멜로디|rhythm 리듬|beat 비트|bass 베이스|rap 랩|dj 디제이|mic 마이크|stage 스테이지|show 쇼|live 라이브|concert 콘서트|album 앨범|remix 리믹스|intro 인트로|outro 아웃트로|here 히어|there 데어|now 나우|more 모어|so 쏘|lover 러버|lovers 러버스|kiss 키스|pain 페인|sorrow 서로우|hope 호프|faith 페이스|trust 트러스트|lie 라이|lies 라이즈|truth 트루스|goodnight 굿나잇|morning 모닝|midnight 미드나잇|paris 파리|tokyo 도쿄|seoul 서울|new 뉴|york 요크|summer 서머|festival 페스티벌|photo 포토|video 비디오|phone 폰|call 콜|message 메시지|text 텍스트|online 온라인|game 게임|level 레벨|ending 엔딩|end 엔드|start 스타트|first 퍼스트|last 라스트|best 베스트|top 탑|real 리얼|fake 페이크|true 트루|dreamer 드리머|lonely 론리|silence 사일런스|shadow 섀도우|ghost 고스트|angel 엔젤|wings 윙스|tonight 투나잇|i\'m 아임|i\'ll 아일|i\'ve 아이브|i\'d 아이드|you\'re 유어|you\'ll 유일|don\'t 돈트|can\'t 캔트|won\'t 원트|it\'s 잇츠|that\'s 댓츠|let\'s 렛츠|what\'s 왓츠|there\'s 데어즈|he\'s 히즈|she\'s 쉬즈|we\'re 위어|they\'re 데이어|isn\'t 이즌트|ain\'t 에인트|gonna 거너|wanna 워너|gotta 가타|tv 티브이|pc 피씨|cd 씨디|id 아이디|vip 브이아이피|mc 엠씨|sns 에스엔에스|k-pop 케이팝|kpop 케이팝|d-day 디데이|in 인|on 온|the 더|a 어|to 투|of 오브|and 앤드|for 포|with 위드|is 이즈|are 아|be 비|will 윌|can 캔|do 두|just 저스트|like 라이크|want 원트|need 니드|know 노우|see 씨|say 세이|take 테이크|make 메이크|get 겟|got 갓|come 컴|give 기브|tell 텔|think 씽크|have 해브|was 워즈|all 올|out 아웃|off 오프|over 오버|too 투|very 베리|every 에브리|body 바디|bad 배드|good 굿|fine 파인|nice 나이스|sweet 스위트|dear 디어|darling 달링|honey 허니|sugar 슈가|baby 베이비|stay 스테이|leave 리브|break 브레이크|broken 브로큰|lost 로스트|found 파운드|find 파인드|heaven 헤븐|hell 헬|god 갓|soul 소울|mind 마인드|body 바디|eyes 아이즈|lips 립스|hand 핸드|hands 핸즈').split('|');
+var ENMAP={};EN.forEach(function(p){var i=p.lastIndexOf(' ');ENMAP[p.slice(0,i).toLowerCase()]=p.slice(i+1)});
+var MIXMAP={'3d':'쓰리디','4d':'포디','5g':'파이브지','4g':'포지','4u':'포유','2pm':'투피엠','24h':'이십사 아워'};
+var HANJA={'愛':'사랑','夢':'꿈','空':'하늘','月':'달','星':'별','心':'마음','花':'꽃','風':'바람','雨':'비','雪':'눈','夜':'밤','海':'바다','春':'봄','夏':'여름','秋':'가을','冬':'겨울','淚':'눈물','涙':'눈물','恨':'한','情':'정','君':'그대'};
+var SYM={'&':'앤','+':'플러스','@':'앳','%':'퍼센트'};
+var TAGWORD=/^\s*[\[\(]?\s*(intro|outro|verse|chorus|pre[- ]?chorus|post[- ]?chorus|bridge|hook|refrain|break|interlude|instrumental|solo|drop|build|end|fade|spoken|rap|ad[- ]?libs?|male|female|duet|whisper|half[- ]time|guitar|piano|drums?|bass|strings?|synth|sax|violin|choir|silence)\b/i;
+function isTagLine(s){var t=s.trim();return /^\[[^\]]*\]$/.test(t)&&!/[가-힣]/.test(t)||/^\[[^\]]*\]$/.test(t)&&TAGWORD.test(t.slice(1))}
+function hangulCount(s){var m=s.match(/[가-힣]/g);return m?m.length:0}
+var DEF={dict:null,num:true,eng:true,unk:true,sym:true,jamo:true,hanja:true,brk:true,par:true,long:true,maxLen:26};
+function opts(o){var r={},k;for(k in DEF)r[k]=(o&&o[k]!=null)?o[k]:DEF[k];return r}
+function analyze(text,o){
+  o=opts(o);
+  var lines=text.split('\n'),out=[];
+  lines.forEach(function(line,li){
+    if(!line.trim())return;
+    if(isTagLine(line))return;
+    var claim=[],m,re;
+    function free(a,b){for(var i=0;i<claim.length;i++){if(a<claim[i][1]&&b>claim[i][0])return false}return true}
+    function add(a,b,kind,sev,msg,rep,noclaim){
+      if(!free(a,b))return false;
+      if(!noclaim)claim.push([a,b]);
+      out.push({line:li,start:a,end:b,text:line.slice(a,b),kind:kind,sev:sev,msg:msg,rep:rep});return true
+    }
+    if(o.dict&&o.dict.length){
+      o.dict.slice().sort(function(x,y){return y.from.length-x.from.length}).forEach(function(d){
+        if(!d.from||d.to.indexOf(d.from)>=0)return;
+        var p=0,q;while((q=line.indexOf(d.from,p))>=0){add(q,q+d.from.length,'dict','dict','내 사전에 있는 말이에요.',d.to);p=q+d.from.length}
+      })
+    }
+    if(o.brk){
+      re=/\[([^\]\n]*)\]/g;
+      while((m=re.exec(line))){
+        if(/[가-힣]/.test(m[1])){add(m.index,m.index+m[0].length,'brk','bad','대괄호 [ ] 안은 수노가 지시문으로 읽어요. 가사로 부르게 하려면 괄호를 빼세요.',m[1],true)}
+      }
+    }
+    if(o.num){
+      re=/(\d{1,2}):(\d{2})(?!\d)/g;
+      while((m=re.exec(line))){
+        var h=+m[1],mi=+m[2];
+        add(m.index,m.index+m[0].length,'num','bad','시간 숫자는 수노가 숫자 그대로 읽거나 건너뛰어요.',native(h===0?12:h,true)+'시'+(mi?' '+sino(mi)+'분':''))
+      }
+      re=/(\d[\d,]*(?:\.\d+)?)(%|퍼센트|번째|[가-힣]{1,3})?(?![A-Za-z0-9])/g;
+      while((m=re.exec(line))){
+        var s0=m.index,cnt=m[2]||'',numStr=m[1].replace(/,+$/,''),ncnt=cnt;
+        if(cnt==='%'){add(s0,s0+m[0].length,'num','bad','숫자와 %는 수노가 읽지 못하는 때가 많아요.',sino(+numStr.replace(/,/g,''))+'퍼센트');continue}
+        var cm=cnt.match(new RegExp('^('+NATIVE_CNT+'|'+SINO_CNT+')'));
+        var useCnt=cm?cm[1]:'';
+        var rest=cnt.slice(useCnt.length);
+        var rep=(useCnt==='월'&&(+numStr===6||+numStr===10))?readNum(numStr,'월')+'월':readNum(numStr,useCnt)+useCnt;
+        var endIdx=s0+m[1].length+(useCnt?useCnt.length:0);
+        // do not swallow following hangul (particles) beyond counter
+        add(s0,endIdx,'num','bad','숫자는 수노가 못 읽거나 이상하게 읽어요. 한글로 풀어 쓰면 안정적이에요.',rep);
+        re.lastIndex=Math.max(re.lastIndex,endIdx)
+      }
+      re=/\d[A-Za-z]+|[A-Za-z]+\d/g;
+      while((m=re.exec(line))){
+        var key=m[0].toLowerCase();
+        add(m.index,m.index+m[0].length,'mix','warn','숫자와 영어가 붙은 말이에요. 한글로 풀어 쓰면 안전해요.',MIXMAP[key]||null)
+      }
+    }
+    if(o.eng){
+      re=/[A-Za-z][A-Za-z'’\-]*[A-Za-z]|[A-Za-z]/g;
+      while((m=re.exec(line))){
+        var w=m[0],a=m.index,b=a+w.length;
+        if(a>0&&/[0-9]/.test(line[a-1]))continue;
+        var lw=w.toLowerCase().replace(/’/g,"'"),rep2=ENMAP[lw]||null,sev='warn',msg;
+        if(rep2){msg='영어는 수노가 한국어 발음과 섞어 읽어서 어색해질 수 있어요. 한글 소리로 적으면 안정적이에요.'}
+        else if(/^[A-Z]{2,5}$/.test(w)){rep2=w.split('').map(function(c){return LETTER[c]}).join('');msg='알파벳은 글자 이름으로 읽게 한글로 적어 보세요.'}
+        else if(w.length===1&&LETTER[w.toUpperCase()]&&/[A-Z]/.test(w)){rep2=LETTER[w];msg='알파벳 한 글자는 한글로 적으면 안전해요.'}
+        else{if(!o.unk)continue;sev='info';msg='사전에 없는 영어예요. 영어로 부르게 하려면 그대로 두고, 한국어 발음으로 부르게 하려면 한글로 바꿔 적으세요.'}
+        if(!o.eng)continue;
+        add(a,b,'eng',sev,msg,rep2)
+      }
+    }
+    if(o.sym){
+      re=/[&+@%]/g;
+      while((m=re.exec(line))){add(m.index,m.index+1,'sym','bad','기호는 수노가 읽지 않거나 이상하게 읽어요.',SYM[m[0]])}
+      re=/\s*\/\s*/g;
+      while((m=re.exec(line))){add(m.index,m.index+m[0].length,'sym','warn','슬래시(/)는 수노가 헷갈려 해요. 띄어쓰기로 바꿔요.',' ')}
+      re=/[~*#_=<>|\\^]+|[♡♥♪♬♫★☆✨❤💕🎵🎶♩]+|[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]+/gu;
+      while((m=re.exec(line))){add(m.index,m.index+m[0].length,'sym','warn','이 기호는 가사로 부르지 않아요. 지우는 게 좋아요.','')}
+    }
+    if(o.jamo){
+      re=/[ㄱ-ㅎㅏ-ㅣ]+/g;
+      while((m=re.exec(line))){
+        var j=m[0],rj=null;
+        if(/^[ㅋㅎ]+$/.test(j))rj='하하';
+        else if(/^[ㅠㅜ]+$/.test(j))rj='흑흑';
+        add(m.index,m.index+j.length,'jamo','bad','자음·모음만 쓴 글자는 수노가 "키읔" 처럼 글자 이름으로 읽어요.',rj)
+      }
+    }
+    if(o.hanja){
+      re=/[一-鿿㐀-䶿]/g;
+      while((m=re.exec(line))){add(m.index,m.index+1,'hanja','warn','한자는 수노가 중국어·일본어로 읽을 수 있어요. 한글로 바꿔 적으세요.',HANJA[m[0]]||null)}
+      re=/[぀-ヿ]+/g;
+      while((m=re.exec(line))){add(m.index,m.index+m[0].length,'kana','info','일본어 글자는 일본어로 불러요. 한국어 발음으로 부르게 하려면 한글로 적으세요.',null)}
+    }
+    if(o.par){
+      re=/\(([^)\n]*)\)/g;
+      while((m=re.exec(line))){add(m.index,m.index+m[0].length,'par','info','( ) 안의 말은 수노가 코러스·추임새로 부르는 일이 많아요. 의도한 게 아니면 괄호를 빼세요.',m[1],true)}
+    }
+    if(o.long){
+      var n=hangulCount(line);
+      if(n>o.maxLen){
+        var mid=Math.floor(line.length/2),best=-1,bd=1e9,i;
+        for(i=1;i<line.length-1;i++){if(line[i]===' '){
+          var prev=line.slice(0,i).split(' ').pop(),next=line.slice(i+1).split(' ')[0],sc=Math.abs(i-mid);
+          if(/[고며서면데만니까며]$/.test(prev)||/[,，]$/.test(prev))sc-=4;
+          if(/^(그리고|그래서|하지만|그런데|그러나|그래도|그러면|또는)$/.test(next))sc-=9;
+          if(sc<bd){bd=sc;best=i}}}
+        out.push({line:li,start:0,end:line.length,text:line,kind:'long',sev:'warn',msg:'한 줄이 길어요('+n+'글자). 수노가 급하게 읽거나 박자를 놓칠 수 있어요. 두 줄로 나누면 안정적이에요.',rep:null,split:best>0?best:-1})
+      }
+    }
+  });
+  out.sort(function(x,y){return x.line-y.line||x.start-y.start});
+  return out
+}
+function fixable(it){return it.rep!=null||(it.kind==='long'&&it.split>0)}
+function applyFix(text,it){
+  var lines=text.split('\n'),L=lines[it.line];
+  if(L==null)return text;
+  if(it.kind==='long'){
+    if(it.split>0){lines.splice(it.line,1,L.slice(0,it.split).replace(/\s+$/,''),L.slice(it.split+1).replace(/^\s+/,''))}
+  }else if(it.rep!=null){
+    var rep=it.rep;
+    if(it.kind==='brk'||it.kind==='par'){}
+    var before=L.slice(0,it.start),after=L.slice(it.end);
+    if(rep===''){ // remove symbol: also collapse doubled spaces
+      var joined=before+after;lines[it.line]=joined.replace(/ {2,}/g,' ').replace(/\s+$/,'')
+    }else lines[it.line]=before+rep+after
+  }
+  return lines.join('\n')
+}
+function fixAll(text,o){
+  var guard=0,it,list;
+  while(guard++<600){
+    list=analyze(text,o).filter(fixable);
+    if(!list.length)break;
+    // prefer token fixes over long-line splits; apply the last token of the first line first
+    var tok=list.filter(function(x){return x.kind!=='long'&&x.kind!=='par'});
+    if(tok.length){var ln=tok[0].line;var same=tok.filter(function(x){return x.line===ln});it=same[same.length-1]}
+    else{it=list.filter(function(x){return x.kind==='long'})[0];if(!it)break}
+    var nt=applyFix(text,it);if(nt===text)break;text=nt
+  }
+  return text
+}
+
+/* ---- 소리 나는 대로 적기 ---- */
+var CHO=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var JUNG='ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ'.split('');
+var JONG=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var CLU={'ㄳ':['ㄱ','ㅅ'],'ㄵ':['ㄴ','ㅈ'],'ㄶ':['ㄴ','ㅎ'],'ㄺ':['ㄹ','ㄱ'],'ㄻ':['ㄹ','ㅁ'],'ㄼ':['ㄹ','ㅂ'],'ㄽ':['ㄹ','ㅅ'],'ㄾ':['ㄹ','ㅌ'],'ㄿ':['ㄹ','ㅍ'],'ㅀ':['ㄹ','ㅎ'],'ㅄ':['ㅂ','ㅅ']};
+var REP={'ㄲ':'ㄱ','ㅋ':'ㄱ','ㅅ':'ㄷ','ㅆ':'ㄷ','ㅈ':'ㄷ','ㅊ':'ㄷ','ㅌ':'ㄷ','ㅍ':'ㅂ'};
+var TENSE={'ㄱ':'ㄲ','ㄷ':'ㄸ','ㅂ':'ㅃ','ㅅ':'ㅆ','ㅈ':'ㅉ'};
+var ASP={'ㄱ':'ㅋ','ㄷ':'ㅌ','ㅈ':'ㅊ','ㅂ':'ㅍ'};
+function dec(ch){var c=ch.charCodeAt(0)-0xAC00;return {c:CHO[Math.floor(c/588)],v:JUNG[Math.floor((c%588)/28)],f:JONG[c%28]}}
+function enc(o){return String.fromCharCode(0xAC00+CHO.indexOf(o.c)*588+JUNG.indexOf(o.v)*28+JONG.indexOf(o.f))}
+function g2pWord(w){
+  var a=w.split('').map(dec),i,A,B,f,r,base;
+  for(i=0;i<a.length-1;i++){
+    A=a[i];B=a[i+1];f=A.f;if(!f)continue;
+    if(B.c==='ㅇ'){
+      if(f==='ㅇ')continue;
+      if(f==='ㅎ'){A.f='';continue}
+      if(CLU[f]){var p=CLU[f];if(p[1]==='ㅎ'){A.f='';B.c=p[0]}else{A.f=p[0];B.c=p[1]}continue}
+      A.f='';B.c=f;
+      if((f==='ㄷ'||f==='ㅌ')&&B.v==='ㅣ')B.c=f==='ㄷ'?'ㅈ':'ㅊ';
+      continue
+    }
+    var c=B.c,orig=f;
+    // 격음화 (ㅎ 받침 또는 ㅎ 초성)
+    if(f==='ㅎ'||f==='ㄶ'||f==='ㅀ'){
+      var rest=f==='ㅎ'?'':CLU[f][0];
+      if(ASP[c]&&c!=='ㅂ'){A.f=rest;B.c=ASP[c];continue}
+      if(c==='ㅅ'){A.f=rest;B.c='ㅆ';continue}
+      if(c==='ㄴ'||c==='ㅁ'){A.f=rest||'ㄴ';continue}
+      A.f=rest;continue
+    }
+    if(c==='ㅎ'){
+      var g=f;
+      if(CLU[f]){g=CLU[f][1]==='ㅂ'||CLU[f][1]==='ㅍ'?'ㅂ':CLU[f][1]==='ㄱ'?'ㄱ':CLU[f][1]==='ㅌ'?'ㄷ':f}
+      var h=(REP[g]||g);
+      if(CLU[f]&&CLU[f][0]==='ㄴ'&&f==='ㄵ'){A.f='ㄴ';B.c='ㅊ';continue}
+      if(h==='ㄱ'){A.f='';B.c='ㅋ';continue}
+      if(h==='ㄷ'){A.f='';B.c=(f==='ㅈ'||f==='ㅊ')?'ㅊ':'ㅌ';continue}
+      if(h==='ㅂ'){A.f='';B.c='ㅍ';continue}
+    }
+    // 겹받침 처리
+    var rep=f;
+    if(CLU[f]){
+      if(f==='ㄺ'){rep=c==='ㄱ'?'ㄹ':'ㄱ';if(c==='ㄱ')B.c='ㄲ'}
+      else if(f==='ㄵ'||f==='ㄻ'){rep=CLU[f][0]==='ㄹ'?'ㅁ':'ㄴ';if(TENSE[c]&&c!=='ㅂ')B.c=TENSE[c];A.f=rep;continue}
+      else if(f==='ㄼ'&&w[i]==='밟'){rep='ㅂ'}
+      else if(f==='ㄼ'||f==='ㄽ'||f==='ㄾ'){rep='ㄹ';if(TENSE[c]&&c!=='ㅂ')B.c=TENSE[c]}
+      else if(f==='ㄿ')rep='ㅂ';
+      else if(f==='ㄳ')rep='ㄱ';
+      else if(f==='ㅄ')rep='ㅂ';
+    }
+    rep=REP[rep]||rep;
+    if(rep==='ㄱ'||rep==='ㄷ'||rep==='ㅂ'){
+      if(TENSE[c])B.c=TENSE[c];
+      else if(c==='ㄴ'||c==='ㅁ')rep=rep==='ㄱ'?'ㅇ':rep==='ㄷ'?'ㄴ':'ㅁ';
+      else if(c==='ㄹ'){rep=rep==='ㄱ'?'ㅇ':rep==='ㄷ'?'ㄴ':'ㅁ';B.c='ㄴ'}
+    }else if(rep==='ㅁ'||rep==='ㅇ'){if(c==='ㄹ')B.c='ㄴ'}
+    else if(rep==='ㄴ'&&c==='ㄹ')rep='ㄹ';
+    else if(rep==='ㄹ'&&c==='ㄴ')B.c='ㄹ';
+    A.f=rep
+  }
+  return a.map(enc).join('')
+}
+function g2p(line){return line.replace(/[가-힣]+/g,g2pWord)}
+
+var api={g2p:g2p,analyze:analyze,applyFix:applyFix,fixAll:fixAll,fixable:fixable,sino:sino,native:native,readNum:readNum,DEF:DEF};
+root.PRON=api;
+if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
+
+(function(){
+'use strict';
+var P=window.PRON;
+var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var toastT;
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show')},2200)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function copyText(text,msg){
+  function fb(){var x=document.createElement('textarea');x.value=text;x.setAttribute('readonly','');x.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy');toast(msg)}catch(e){toast('복사에 실패했어요. 직접 눌러서 복사해 주세요')}document.body.removeChild(x)}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(function(){toast(msg)},fb);else fb()
+}
+var GENRES={ballad:['감성 발라드','emotional Korean ballad, piano, soft strings'],pop:['팝','modern Korean pop, catchy hook'],acoustic:['어쿠스틱·포크','acoustic folk, warm fingerpicked guitar'],lofi:['로파이','lo-fi chill, mellow beat, vinyl texture'],cine:['시네마틱','cinematic orchestral, strings, slow build'],hiphop:['힙합·랩','Korean hip hop, laid-back beat'],rock:['록','Korean rock, electric guitar, live drums'],rnb:['알앤비','smooth R&B, soft groove'],trot:['트로트','Korean trot, lively band'],jazz:['재즈','jazz, warm piano trio']};
+var S={mood:[],genre:'ballad',vocal:'any',lang:'ko',len:'mid',pov:'first'};
+var STRUCT={short:'[Verse 1] → [Chorus] → [Outro]',mid:'[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]',long:'[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Verse 3] → [Final Chorus] → [Outro]'};
+var VOC={any:'보컬은 곡에 어울리게 알아서 정하세요',female:'여성 보컬',male:'남성 보컬',duet:'남녀 듀엣 (가사 파트마다 [Male], [Female] 태그로 구분)'};
+var LANG={ko:'가사는 한국어로만 씁니다',en:'가사는 한국어가 중심이고, 후렴에 영어 훅 한두 줄만 영어 철자 그대로 넣습니다',rap:'한국어 가사에 [Rap Verse] 파트 한 개(8줄, 라임이 맞는 짧은 문장)를 넣습니다'};
+var POV={first:'화자가 "나"인 1인칭 독백 시점',talk:'"너"에게 말을 거는 시점',story:'장면을 그리듯 이야기하는 시점'};
+function val(id){return ($(id).value||'').trim()}
+function compose(){
+  var idea=val('#idea');if(!idea)idea='(아직 안 적었어요. 위 칸에 만들고 싶은 노래를 한 문장으로 적어 주세요)';
+  var g=GENRES[S.genre],mood=S.mood.length?S.mood.join(', '):'곡 설명에 어울리게';
+  var bpm=val('#bpm'),hook=val('#hook'),must=val('#must'),avoid=val('#avoid');
+  var L=[];
+  L.push('당신은 수노(Suno) AI 작곡에 쓸 한국어 가사와 스타일 문구를 쓰는 전문 작사가입니다. 아래 조건에 맞는 결과를 만들어 주세요.');
+  L.push('');
+  L.push('[만들고 싶은 노래]');
+  L.push(idea);
+  L.push('');
+  L.push('[조건]');
+  L.push('- 장르: '+g[0]+' (스타일 재료: '+g[1]+')');
+  L.push('- 분위기: '+mood);
+  L.push('- 보컬: '+VOC[S.vocal]);
+  L.push('- 언어: '+LANG[S.lang]);
+  L.push('- 시점: '+POV[S.pov]);
+  L.push('- 곡 구조: '+STRUCT[S.len]);
+  if(bpm)L.push('- 템포: '+bpm+'bpm (스타일 문구에 tempo '+bpm+'bpm 형식으로 넣기)');else L.push('- 템포: 장르에 맞게 정해서 스타일 문구에 tempo 00bpm 형식으로 넣기');
+  if(hook)L.push('- 후렴의 핵심 줄(꼭 넣기): '+hook);
+  if(must)L.push('- 꼭 넣을 말: '+must);
+  if(avoid)L.push('- 쓰지 말 것: '+avoid);
+  L.push('');
+  L.push('[가사 작성 규칙 - 수노가 한국어를 잘 부르게 하기 위한 규칙이니 꼭 지키세요]');
+  L.push('1. 구어체로 자연스럽게 씁니다. 감정을 직접 말하기보다 장면, 사물, 날씨, 행동 같은 구체적인 모습으로 보여 줍니다.');
+  L.push('2. 한 줄은 공백 빼고 8~20글자로 합니다. 26글자를 넘기지 않습니다. 한 줄은 한 호흡으로 부를 수 있어야 합니다.');
+  L.push('3. 숫자, 영어 단어, 알파벳, 기호(& % + ~), 이모지, ㅋㅋ·ㅠㅠ, 한자는 쓰지 않습니다. 숫자는 한글로 풀어 씁니다(예: 이천이십육년, 세 번).'+(S.lang==='en'?' 단, 영어 훅 한두 줄은 예외입니다.':''));
+  L.push('4. 구조 태그는 영어 대괄호로 한 줄에 단독으로 씁니다(예: [Verse 1], [Chorus]). 대괄호 안에 한글을 쓰지 않습니다. 괄호 ( )는 코러스나 추임새일 때만 씁니다.');
+  L.push('5. 후렴은 가장 기억에 남는 한 줄(훅)을 만들고 제목과 연결합니다. 후렴이 다시 나올 때는 똑같이 적습니다(마지막 후렴만 한두 줄 변화 가능).');
+  L.push('6. 벌스는 4~8줄, 후렴은 4~6줄로 합니다. 전체 가사는 공백 포함 2,500자 이하로 합니다.');
+  L.push('7. 발음이 어려운 긴 한자어, 받침이 겹치는 단어는 피하고 쉬운 말로 씁니다.');
+  L.push('8. 가수 이름, 실제 노래의 가사, 상표 이름은 쓰지 않습니다. 다른 노래를 베끼지 않습니다.');
+  L.push('');
+  L.push('[스타일 문구 규칙]');
+  L.push('- 영어 단어를 쉼표로 이어 한 줄로 씁니다. 핵심 요소 7개 안팎(장르, 분위기, 악기, 보컬 질감, 템포), 전체 200자 이내.');
+  L.push('- 가수 이름은 쓰지 않습니다. "~하지 않기" 같은 부정 표현보다 원하는 모습을 씁니다.');
+  L.push('');
+  L.push('[출력 형식 - 반드시 아래 세 부분만 출력하고 다른 설명은 쓰지 마세요]');
+  L.push('### STYLE');
+  L.push('(스타일 문구 한 줄)');
+  L.push('### TITLE');
+  L.push('(제목 후보 3개, 한 줄에 하나씩)');
+  L.push('### LYRICS');
+  L.push('(구조 태그가 달린 가사 전체)');
+  return L.join('\n')
+}
+function renderOrder(){$('#order').value=compose();$('#ordLen').textContent=$('#order').value.length}
+function bindChips(box,key,multi){
+  $$(box+' [data-v]').forEach(function(b){b.addEventListener('click',function(){
+    var v=b.dataset.v;
+    if(multi){var i=S[key].indexOf(v);if(i>=0)S[key].splice(i,1);else if(S[key].length<3)S[key].push(v);else{toast('분위기는 세 개까지 골라요');return}
+      $$(box+' [data-v]').forEach(function(x){x.setAttribute('aria-pressed',S[key].indexOf(x.dataset.v)>=0?'true':'false')})}
+    else{S[key]=v;$$(box+' [data-v]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')})}
+    renderOrder()
+  })})
+}
+bindChips('#moodC','mood',true);bindChips('#genreC','genre');bindChips('#vocalC','vocal');bindChips('#langC','lang');bindChips('#lenC','len');bindChips('#povC','pov');
+['#idea','#bpm','#hook','#must','#avoid'].forEach(function(s){$(s).addEventListener('input',renderOrder)});
+$$('#exC [data-ex]').forEach(function(b){b.addEventListener('click',function(){$('#idea').value=b.dataset.ex;renderOrder()})});
+$('#bCopyOrd').addEventListener('click',function(){copyText($('#order').value,'주문서를 복사했어요. AI 채팅창에 붙여 넣으세요')});
+
+/* ---- reply parsing ---- */
+var MORE={
+  '후렴을 더 강하게':'후렴을 더 기억에 남고 강렬하게 다시 써 주세요. 같은 형식(### STYLE, ### TITLE, ### LYRICS)으로 전체를 다시 출력해 주세요.',
+  '더 쉬운 말로':'가사를 더 쉬운 말과 짧은 문장으로 바꿔 주세요. 한 줄은 공백 빼고 8~18글자로 해 주세요. 같은 형식으로 전체를 다시 출력해 주세요.',
+  '2절을 다르게':'2절을 1절과 다른 장면과 이야기로 다시 써 주세요. 나머지는 그대로 두고 같은 형식으로 전체를 다시 출력해 주세요.',
+  '영어·숫자 빼기':'가사에서 영어, 숫자, 기호를 모두 한국어 한글로 바꿔 주세요. 구조 태그는 그대로 두고 같은 형식으로 전체를 다시 출력해 주세요.',
+  '더 짧게':'가사를 한 파트당 두 줄씩 줄여서 더 짧게 만들어 주세요. 같은 형식으로 전체를 다시 출력해 주세요.',
+  '더 감성적으로':'더 감성적이고 구체적인 장면 묘사로 다듬어 주세요. 같은 형식으로 전체를 다시 출력해 주세요.'
+};
+var h='';Object.keys(MORE).forEach(function(k){h+='<button type="button" class="chip" data-m="'+esc(k)+'">'+esc(k)+'</button>'});$('#moreC').innerHTML=h;
+$('#moreC').addEventListener('click',function(e){var b=e.target.closest('[data-m]');if(b)copyText(MORE[b.dataset.m],'AI에게 보낼 말을 복사했어요. 같은 채팅에 붙여 넣으세요')});
+function parse(txt){
+  txt=txt.replace(/```[a-z]*\n?/gi,'').replace(/\r/g,'');
+  var re=/^\s*#{0,4}\s*\**\s*(STYLE|TITLE|LYRICS)\s*\**\s*:?\s*$/gim,m,idx=[];
+  while((m=re.exec(txt)))idx.push({k:m[1].toUpperCase(),s:m.index,e:m.index+m[0].length});
+  var out={style:'',title:'',lyrics:''};
+  if(!idx.length){out.lyrics=txt.trim();return out}
+  idx.forEach(function(x,i){var body=txt.slice(x.e,i+1<idx.length?idx[i+1].s:txt.length).trim();out[x.k.toLowerCase()]=body});
+  return out
+}
+var lastItems=[];
+function renderReply(){
+  var raw=$('#reply').value;
+  if(!raw.trim()){$('#res').hidden=true;return}
+  var r=parse(raw);
+  $('#res').hidden=false;
+  $('#rStyle').value=r.style.replace(/\n+/g,' ').trim();
+  $('#rStyleN').textContent=$('#rStyle').value.length;
+  var ti=r.title.split('\n').map(function(x){return x.replace(/^[\s\-\*\d\.\)]+/,'').trim()}).filter(Boolean);
+  $('#rTitle').innerHTML=ti.map(function(t){return '<li><span>'+esc(t)+'</span><button type="button" class="b-sub sm" data-t="'+esc(t)+'">복사</button></li>'}).join('')||'<li class="dim">제목을 못 찾았어요</li>';
+  var ly=$('#rLyr');if(document.activeElement!==ly||ly.value!==r.lyrics)ly.value=r.lyrics;
+  checkLyr()
+}
+function checkLyr(){
+  var ly=$('#rLyr').value,items=P.analyze(ly,{});
+  lastItems=items;
+  var fx=items.filter(P.fixable).length,tags=/\[(verse|chorus|intro|outro|bridge|pre-chorus)/i.test(ly);
+  var msgs=[];
+  if(!tags)msgs.push('구조 태그([Verse], [Chorus])가 없어요. AI에게 "구조 태그를 붙여서 다시 출력해 줘"라고 시키세요.');
+  var n=ly.length;if(n>3000)msgs.push('가사가 '+n+'자예요. 수노 가사 칸은 3,000자까지(최신 5,000자)예요. 줄여 달라고 하세요.');
+  $('#rLyrN').textContent=n;
+  var sum=items.length?'발음 점검 <b>'+items.length+'곳</b> · 바로 고칠 수 있는 곳 <b>'+fx+'곳</b>':'✓ 발음 점검에서 걸리는 곳이 없어요.';
+  $('#rSum').innerHTML=sum+(msgs.length?'<br>'+msgs.map(esc).join('<br>'):'');
+  $('#bFix').disabled=!fx;
+  var hh='';items.slice(0,12).forEach(function(it){hh+='<li class="iss s-'+it.sev+'"><div class="ih"><span class="ln">'+(it.line+1)+'번째 줄</span></div><div class="il">'+esc(it.text)+(it.rep!=null?' → '+(it.rep===''?'지우기':esc(it.rep)):'')+'</div><p class="im">'+esc(it.msg)+'</p></li>'});
+  if(items.length>12)hh+='<li class="dim">그 밖에 '+(items.length-12)+'곳이 더 있어요. "전부 고치기"를 눌러 보세요.</li>';
+  $('#rIss').innerHTML=hh
+}
+$('#reply').addEventListener('input',function(){clearTimeout(renderReply._t);renderReply._t=setTimeout(renderReply,250)});
+$('#rLyr').addEventListener('input',function(){clearTimeout(checkLyr._t);checkLyr._t=setTimeout(checkLyr,250)});
+$('#bFix').addEventListener('click',function(){var t=P.fixAll($('#rLyr').value,{});$('#rLyr').value=t;checkLyr();toast('고쳤어요')});
+$('#rTitle').addEventListener('click',function(e){var b=e.target.closest('[data-t]');if(b)copyText(b.dataset.t,'제목을 복사했어요')});
+$('#bCopyStyle').addEventListener('click',function(){copyText($('#rStyle').value,'스타일을 복사했어요. 수노 Style of Music 칸에 붙여 넣으세요')});
+$('#bCopyLyr').addEventListener('click',function(){copyText($('#rLyr').value,'가사를 복사했어요. 수노 Lyrics 칸에 붙여 넣으세요')});
+var eq=$('#eq');if(eq){var hq='';for(var q=0;q<48;q++){var v=(.25+.75*Math.abs(Math.sin(q*.37)*Math.cos(q*.13))).toFixed(2);hq+='<span style="--h:'+v+';--d:-'+(q*.11).toFixed(2)+'s"></span>'}eq.innerHTML=hq}
+$('#idea').value='비 오는 날 헤어진 사람에게 쓰는 편지 같은 발라드';
+renderOrder();
+window.__lp={compose:compose,parse:parse,S:S};
+})();
+
+</script>
+</body>
+</html>
