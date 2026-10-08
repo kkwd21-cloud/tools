@@ -356,6 +356,8 @@ body.lg-open{overflow:hidden}
 .vfile{display:inline-block;cursor:pointer}
 @media(max-width:560px){.vgrid{grid-template-columns:1fr}.vleft{max-width:240px;margin:0 auto}}
 
+.tport{display:flex;flex-wrap:wrap;gap:8px;position:sticky;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:30;padding:10px;margin:0 -4px;background:var(--panel,#121a31);border:1px solid var(--line2,#34417a);border-radius:14px;box-shadow:0 -6px 18px rgba(0,0,0,.35)}
+
 .rcards{display:flex;flex-direction:column;gap:12px}
 .rcard{border:1px solid var(--line);border-left:4px solid var(--cc,var(--accent));background:var(--panel);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px}
 .rh{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start}
