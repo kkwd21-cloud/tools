@@ -63,17 +63,50 @@ footer{font-size:12px;color:var(--muted)}
 .tool.mini p{font-size:13.5px}
 .feats{display:grid;gap:14px}
 @media(min-width:620px){.feats{grid-template-columns:1fr 1fr}}
+
+.path{display:flex;flex-direction:column;gap:10px;background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:16px}
+.path>h2{font-size:19px;font-weight:800}
+.path>p{font-size:13.5px;color:var(--muted)}
+.path ol{list-style:none;display:grid;gap:8px;padding:0;margin:0}
+.path li a{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;background:var(--bg)}
+.path li a:hover{border-color:var(--ink)}
+.path li em{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-style:normal;font-weight:800;display:grid;place-items:center;font-size:14px}
+.path li b{display:block;font-size:15.5px}
+.path li span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
+.path .go{margin-left:auto;flex:none;font-size:13px;font-weight:800;color:var(--ink)}
+.pick{display:flex;flex-direction:column;gap:12px}
+.pick>h2{font-size:19px;font-weight:800}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:380px){.picks{grid-template-columns:1fr}}
+.pk{display:flex;flex-direction:column;gap:6px;justify-content:space-between;min-height:116px;background:var(--cs);border:2px solid var(--c);border-radius:16px;padding:16px;text-decoration:none;color:inherit}
+.pk:hover{box-shadow:0 3px 0 var(--c)}
+.pk b{font-size:18px;line-height:1.3;font-weight:800}
+.pk span{font-size:13px;color:var(--muted);line-height:1.45}
+.pk i{font-style:normal;font-size:13.5px;font-weight:800;color:var(--c)}
+details.all>summary{cursor:pointer;list-style:none;font-weight:800;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;justify-content:space-between;align-items:center;gap:10px}
+details.all>summary::-webkit-details-marker{display:none}
+details.all>summary:after{content:"＋";font-size:18px;color:var(--muted)}
+details.all[open]>summary:after{content:"－"}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="eyebrow">Dusk Soul · free toolkit</span><a href="../" hreflang="ko" style="font-size:13px;font-weight:700;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-decoration:none;background:var(--card)">한국어</a></div>
   <header style="display:flex;flex-direction:column;gap:12px">
-    <h1>Free Tools for AI Music Channels</h1>
-    <p class="sub">Everything you need to make songs with Suno, upload them to YouTube, and check monetization risk, all free. No sign-up, no install.</p>
+    <h1>Free Music Tools</h1>
+    <p class="sub">Make a ringtone, make songs with the AI music service Suno, and upload to YouTube. All free, no sign-up, no install.</p>
   </header>
 
-  <div class="tools" style="gap:26px">
+  <section class="path"><h2>First time? Follow these steps</h2><p>Tap them from the top. Each page has a "Next step" button at the bottom.</p><ol>
+<li><a href="./make-song/"><em>1</em><div><b>Make the song</b><span>Mood, style prompt and lyrics for Suno in 5 steps</span></div><i class="go">→</i></a></li>
+<li><a href="./lrc-maker/"><em>2</em><div><b>Lyric captions</b><span>Tap along to the song and get a caption file for YouTube</span></div><i class="go">→</i></a></li>
+<li><a href="./upload-kit/"><em>3</em><div><b>Upload to YouTube</b><span>Title, description and chapters in one go</span></div><i class="go">→</i></a></li>
+<li><a href="./shorts-clip/"><em>4</em><div><b>Make Shorts</b><span>Find the best part of your song automatically</span></div><i class="go">→</i></a></li>
+</ol></section>
+  <section class="pick"><h2>What do you want to do?</h2><div class="picks"><a class="pk t2" href="./ringtone-maker/"><b>Make a ringtone</b><span>Turn a song into call, message and alarm sounds</span><i>Start →</i></a><a class="pk t1" href="./make-song/"><b>Make a song, step by step</b><span>From mood to lyrics in 5 steps</span><i>Start →</i></a><a class="pk t3" href="./lyrics-generator/"><b>Write lyrics</b><span>Pick a theme and get ready-to-use lyrics</span><i>Start →</i></a><a class="pk t2" href="./upload-kit/"><b>Upload to YouTube</b><span>Title, description and chapters in one go</span><i>Start →</i></a></div></section>
+
+  <details class="all"><summary>See all tools (13)</summary>
+  <div class="tools" style="gap:26px;margin-top:18px">
     <div class="feats">
     <a class="tool t2 feat" href="./make-song/">
       <span class="num">START HERE</span><h2>Make a Song with Suno in 5 Steps</h2>
@@ -139,6 +172,18 @@ footer{font-size:12px;color:var(--muted)}
       <ul><li>Join and cut</li><li>Crossfade</li><li>No upload</li></ul>
       <span class="go">Open the tool →</span>
     </a>
+    <a class="tool t2" href="./shorts-clip/">
+      <span class="num">AUDIO</span><h2>Shorts Clip Maker</h2>
+      <p>Finds the best 15–60 second highlight of a song for Shorts and Reels, lets you fine-tune it on a waveform, preview it and save it. Snaps to the beat and makes a vertical video with your photo.</p>
+      <ul><li>Auto highlights</li><li>Preview</li><li>No upload</li></ul>
+      <span class="go">Open the tool →</span>
+    </a>
+    <a class="tool t2" href="./ringtone-maker/">
+      <span class="num">AUDIO</span><h2>Ringtone Maker</h2>
+      <p>Add a song and it finds the best part, then makes a phone ringtone, a message sound and an alarm automatically. Preview on a phone speaker, save for Android or iPhone, or fine-tune in Pro mode.</p>
+      <ul><li>3 sounds automatically</li><li>Phone speaker preview</li><li>No upload</li></ul>
+      <span class="go">Open the tool →</span>
+    </a>
     </div>
     <div class="grp"><h2>Channel check</h2>
     <a class="tool t3" href="../channel-check/">
@@ -149,6 +194,7 @@ footer{font-size:12px;color:var(--muted)}
     </a>
     </div>
   </div>
+  </details>
 
   <section class="genres">
     <h2>Suno prompts by genre</h2>

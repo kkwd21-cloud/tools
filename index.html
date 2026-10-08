@@ -63,22 +63,56 @@ footer{font-size:12px;color:var(--muted)}
 .tool.mini p{font-size:13.5px}
 .feats{display:grid;gap:14px}
 @media(min-width:620px){.feats{grid-template-columns:1fr 1fr}}
+
+.path{display:flex;flex-direction:column;gap:10px;background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:16px}
+.path>h2{font-size:19px;font-weight:800}
+.path>p{font-size:13.5px;color:var(--muted)}
+.path ol{list-style:none;display:grid;gap:8px;padding:0;margin:0}
+.path li a{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;background:var(--bg)}
+.path li a:hover{border-color:var(--ink)}
+.path li em{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-style:normal;font-weight:800;display:grid;place-items:center;font-size:14px}
+.path li b{display:block;font-size:15.5px}
+.path li span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
+.path .go{margin-left:auto;flex:none;font-size:13px;font-weight:800;color:var(--ink)}
+.pick{display:flex;flex-direction:column;gap:12px}
+.pick>h2{font-size:19px;font-weight:800}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:380px){.picks{grid-template-columns:1fr}}
+.pk{display:flex;flex-direction:column;gap:6px;justify-content:space-between;min-height:116px;background:var(--cs);border:2px solid var(--c);border-radius:16px;padding:16px;text-decoration:none;color:inherit}
+.pk:hover{box-shadow:0 3px 0 var(--c)}
+.pk b{font-size:18px;line-height:1.3;font-weight:800}
+.pk span{font-size:13px;color:var(--muted);line-height:1.45}
+.pk i{font-style:normal;font-size:13.5px;font-weight:800;color:var(--c)}
+details.all>summary{cursor:pointer;list-style:none;font-weight:800;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;justify-content:space-between;align-items:center;gap:10px}
+details.all>summary::-webkit-details-marker{display:none}
+details.all>summary:after{content:"＋";font-size:18px;color:var(--muted)}
+details.all[open]>summary:after{content:"－"}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="eyebrow">Dusk Soul · free toolkit</span><a href="./en/" hreflang="en" style="font-size:13px;font-weight:700;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-decoration:none;background:var(--card)">English</a></div>
   <header style="display:flex;flex-direction:column;gap:12px">
-    <h1>AI 음악 채널 무료 도구 모음</h1>
-    <p class="sub">Suno로 곡을 만들고, 유튜브에 올리고, 수익화 위험까지 확인하는 데 필요한 도구를 전부 무료로 모았어요. 가입도 설치도 필요 없어요.</p>
+    <h1>음악 무료 도구 모음</h1>
+    <p class="sub">벨소리 만들기, AI 작곡 서비스 수노(Suno)로 노래 만들기, 유튜브에 올리기까지. 전부 무료이고 가입도 설치도 필요 없어요.</p>
   </header>
 
-  <div class="tools" style="gap:26px">
+  <section class="path"><h2>처음이세요? 이 순서대로 하세요</h2><p>위에서부터 하나씩 누르면 돼요. 각 화면 아래에 "다음 단계" 버튼이 있어요.</p><ol>
+<li><a href="./sound-finder/"><em>1</em><div><b>곡 느낌 고르기</b><span>좋아하는 가수·곡 이름만 고르면 수노에 넣을 말이 나와요</span></div><i class="go">→</i></a></li>
+<li><a href="./make-song/"><em>2</em><div><b>노래 만들기</b><span>수노(Suno)에서 노래 만드는 순서를 5단계로 알려 줘요</span></div><i class="go">→</i></a></li>
+<li><a href="./lrc-maker/"><em>3</em><div><b>가사 자막 만들기</b><span>노래를 들으며 버튼만 누르면 유튜브 자막 파일이 나와요</span></div><i class="go">→</i></a></li>
+<li><a href="./upload-kit/"><em>4</em><div><b>유튜브에 올리기</b><span>제목·설명·챕터를 한 번에 정리해요</span></div><i class="go">→</i></a></li>
+<li><a href="./shorts-clip/"><em>5</em><div><b>쇼츠로 알리기</b><span>노래의 가장 좋은 부분을 자동으로 찾아 줘요</span></div><i class="go">→</i></a></li>
+</ol></section>
+  <section class="pick"><h2>무엇을 하고 싶으세요?</h2><div class="picks"><a class="pk t2" href="./ringtone-maker/"><b>벨소리 만들기</b><span>좋아하는 노래로 전화·문자·알람 소리를 한 번에</span><i>시작하기 →</i></a><a class="pk t1" href="./sound-finder/"><b>좋아하는 노래처럼 만들기</b><span>가수나 곡 이름만 고르면 수노에 넣을 말이 나와요</span><i>시작하기 →</i></a><a class="pk t3" href="./make-song/"><b>노래 처음부터 만들기</b><span>분위기부터 가사까지 5단계로 순서대로</span><i>시작하기 →</i></a><a class="pk t2" href="./upload-kit/"><b>유튜브에 올리기</b><span>제목·설명·챕터를 한 번에 정리해요</span><i>시작하기 →</i></a></div></section>
+
+  <details class="all"><summary>모든 도구 보기 (16개)</summary>
+  <div class="tools" style="gap:26px;margin-top:18px">
     <div class="feats">
     <a class="tool t1 feat" href="./sound-finder/">
       <span class="num">처음이라면 여기부터</span><h2>수노 가수 스타일 프롬프트, 곡 느낌 사전</h2>
-      <p>가수나 곡 제목만 고르면 가수 이름 없이 비슷한 느낌의 영어 스타일 문구와 BPM·키, 제목, 가사를 만들어 줘요. 아이유·BTS·뉴진스 등 600명 이상, 곡별 정밀 스타일 1,600곡. 가입도 업로드도 없어요.</p>
-      <ul><li>가수·곡 600명+</li><li>곡별 스타일</li><li>소리 미리듣기</li></ul>
+      <p>가수나 곡 제목만 고르면 가수 이름 없이 비슷한 느낌의 영어 스타일 문구와 BPM·키, 제목, 가사를 만들어 줘요. 아이유·BTS·뉴진스 등 1,000명 이상, 곡별 정밀 스타일 3,000곡 이상. 가입도 업로드도 없어요.</p>
+      <ul><li>가수 1,000명+</li><li>곡별 스타일</li><li>소리 미리듣기</li></ul>
       <span class="go">찾으러 가기 →</span>
     </a>
     <a class="tool t2 feat" href="./make-song/">
@@ -89,6 +123,12 @@ footer{font-size:12px;color:var(--muted)}
     </a>
     </div>
     <div class="grp"><h2>곡 만들 때</h2>
+    <a class="tool t3" href="./suno-lyrics-order/">
+      <span class="num">주문서</span><h2>AI 가사 주문서 만들기</h2>
+      <p>분위기·장르·보컬을 누르면 챗GPT·클로드에 붙여 넣을 가사 주문서가 나와요. 받은 답을 붙여 넣으면 스타일·제목·가사로 나누고 발음 문제까지 고쳐 줘요.</p>
+      <ul><li>누르기만 하면 주문서</li><li>답변 자동 분리</li><li>발음 한 번에 고치기</li></ul>
+      <span class="go">주문서 만들기 →</span>
+    </a>
     <a class="tool t1" href="./lyrics-generator/">
       <span class="num">가사</span><h2>수노 가사 생성기</h2>
       <p>장르와 주제를 고르면 [Verse] [Chorus] 메타태그가 붙은 가사, 제목 5개, 어울리는 스타일 프롬프트가 한 번에 나와요. 마음에 드는 부분은 잠그고 나머지만 다시 뽑을 수 있어요.</p>
@@ -106,6 +146,12 @@ footer{font-size:12px;color:var(--muted)}
       <p>수노를 돌리기 전에 스타일 문구와 가사를 붙여넣으면 글자 수 초과, 가수 이름, 부딪치는 말, 태그 철자 같은 실수를 찾아 줘요. 가입도 업로드도 없어요.</p>
       <ul><li>실수 찾기</li><li>정리본 복사</li><li>업로드 없음</li></ul>
       <span class="go">점검하러 가기 →</span>
+    </a>
+    <a class="tool t1" href="./pronunciation-check/">
+      <span class="num">점검</span><h2>한글 발음 점검기</h2>
+      <p>수노가 한국어 가사에서 잘못 읽는 숫자·영어·기호·ㅋㅋ를 찾아 한글로 바꿔 줘요. 버튼 하나로 전부 고치고 복사해요. 가입도 업로드도 없어요.</p>
+      <ul><li>숫자·영어 한글로</li><li>내 사전</li><li>소리대로 적기</li></ul>
+      <span class="go">발음 점검하러 가기 →</span>
     </a>
     <a class="tool t1 mini" href="./prompt-studio/">
       <span class="num">프롬프트</span><h2>장르별 프롬프트 모음</h2>
@@ -145,6 +191,18 @@ footer{font-size:12px;color:var(--muted)}
       <ul><li>합치기·자르기</li><li>부드럽게 잇기</li><li>업로드 없음</li></ul>
       <span class="go">합치러 가기 →</span>
     </a>
+    <a class="tool t2" href="./shorts-clip/">
+      <span class="num">오디오</span><h2>쇼츠 구간 자르기</h2>
+      <p>곡에서 쇼츠·릴스에 쓸 15~60초 하이라이트를 자동으로 찾아 주고, 파형을 보며 직접 다듬어 미리 듣고 저장해요. 박자에 맞춰 자르고 사진을 붙인 세로 영상까지 만들어요.</p>
+      <ul><li>자동 하이라이트</li><li>미리듣기</li><li>업로드 없음</li></ul>
+      <span class="go">구간 자르러 가기 →</span>
+    </a>
+    <a class="tool t2" href="./ringtone-maker/">
+      <span class="num">오디오</span><h2>벨소리 만들기</h2>
+      <p>곡을 넣으면 가장 신나는 부분을 찾아 전화 벨소리, 문자·알림음, 알람 3개를 자동으로 만들어 줘요. 폰 스피커로 미리 듣고, 안드로이드·아이폰용으로 저장하고, 전문가 모드에서 직접 다듬을 수도 있어요.</p>
+      <ul><li>3개 자동 제작</li><li>폰 스피커 미리듣기</li><li>업로드 없음</li></ul>
+      <span class="go">벨소리 만들러 가기 →</span>
+    </a>
     </div>
     <div class="grp"><h2>채널 점검</h2>
     <a class="tool t3" href="./channel-check/">
@@ -155,6 +213,7 @@ footer{font-size:12px;color:var(--muted)}
     </a>
     </div>
   </div>
+  </details>
 
   <section class="genres">
     <h2>장르별 Suno 프롬프트 바로가기</h2>
