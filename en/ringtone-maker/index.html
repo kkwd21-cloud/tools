@@ -1019,6 +1019,7 @@ async function applyFx(L,R,n,sr,fx){
 
 /* ---------------- playback ---------------- */
 function stopPlay(){
+  P.tok=(P.tok||0)+1;
   P.srcs.forEach(function(s){try{s.onended=null;s.stop()}catch(e){}try{s.disconnect()}catch(e){}});
   P.srcs=[];cancelAnimationFrame(P.raf);P.kind='';P.mode='';
   $$('[data-play]').forEach(function(b){b.setAttribute('aria-pressed','false');b.textContent=b.dataset.label});
@@ -1034,9 +1035,14 @@ async function renderNoFx(kind){
 async function playKind(kind,mode){
   var was=P.kind===kind&&P.mode===mode;stopPlay();if(was)return;
   var c=ac();if(!c)return;
+  var my=P.tok;P.kind=kind;P.mode=mode;
+  $$('[data-play="'+kind+'"][data-m="'+mode+'"]').forEach(function(b){b.setAttribute('aria-pressed','true');b.textContent=U.stop});
+  if(kind===S.sel)$$('[data-pp="'+mode+'"]').forEach(function(b){b.setAttribute('aria-pressed','true');b.textContent=U.stop});
   var r=await render(kind),k=S.k[kind],abSeg=0;
+  if(P.tok!==my)return;
   if(mode==='ab'){
-    var rb=await renderNoFx(kind),sr0=r.sr;abSeg=Math.min(3.5,r.dur,rb.dur);
+    var rb=await renderNoFx(kind),sr0=r.sr;
+    if(P.tok!==my)return;abSeg=Math.min(3.5,r.dur,rb.dur);
     var sn=Math.round(abSeg*sr0),gp=Math.round(.35*sr0),tn=sn*2+gp,ab2=c.createBuffer(2,tn,sr0),fo=Math.round(.06*sr0);
     [[rb,0],[r,sn+gp]].forEach(function(p){
       for(var ch=0;ch<2;ch++){var dst=ab2.getChannelData(ch),srcA=ch?p[0].R:p[0].L;
