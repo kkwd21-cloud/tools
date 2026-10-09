@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Music Video Maker Without a Subscription – Compared with Specterr and Renderforest-style Web Tools | MusicCanvas</title>
+<meta name="description" content="If you keep turning Suno songs into YouTube videos, is a monthly subscription or a one-time purchase better? An honest comparison of web music-video services and MusicCanvas (lifetime $22), plus a calculator for your own break-even.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/music-video-no-subscription/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Music Video Maker Without a Subscription – Compared with Specterr and Renderforest-style Web Tools | MusicCanvas">
+<meta property="og:description" content="If you keep turning Suno songs into YouTube videos, is a monthly subscription or a one-time purchase better? An honest comparison of web music-video services and MusicCanvas (lifetime $22), plus a calculator for your own break-even.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/en/"}, {"@type": "ListItem", "position": 2, "name": "Music video maker without a subscription - comparison", "item": "https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is MusicCanvas different from Specterr?", "acceptedAnswer": {"@type": "Answer", "text": "The biggest difference is how you use it. Web services like Specterr run in the browser and you check their plans on their own site. MusicCanvas is installed on Windows and is a one-time purchase. A web service may offer more templates and works on Mac."}}, {"@type": "Question", "name": "Can it replace Renderforest?", "acceptedAnswer": {"@type": "Answer", "text": "For making a music video from a song and an image, yes. Renderforest also makes other kinds of videos, and MusicCanvas does not cover those."}}, {"@type": "Question", "name": "What happens after the 7-day trial?", "acceptedAnswer": {"@type": "Answer", "text": "To keep using it you buy the license once for $22. There is no subscription. During the trial you can use it without paying."}}, {"@type": "Question", "name": "Does it work on Mac or phone?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a Windows program."}}, {"@type": "Question", "name": "Does it make the song too?", "acceptedAnswer": {"@type": "Answer", "text": "No. Make the song with a tool like Suno. MusicCanvas turns the finished song into a video."}}, {"@type": "Question", "name": "Can I post AI-made songs on YouTube?", "acceptedAnswer": {"@type": "Answer", "text": "The right to use a song depends on the plan and terms of the service that made it. Check before you post. YouTube may also ask you to disclose AI-generated content."}}]}</script>
+
+<style>:root{--accent:#f4a6c0;--accent2:#ffd3e2;--rgb:244,166,192}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.drop{word-break:normal;overflow-wrap:anywhere}
+.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.1)}
+.pbar{height:10px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.fhead{display:flex;justify-content:space-between;gap:10px}
+.fn{margin:2px 0 0;font-size:14px;overflow-wrap:anywhere}
+.fm{color:var(--muted);font-size:12.5px;font-family:'IBM Plex Mono',monospace}
+.grp{display:flex;flex-direction:column;gap:8px}
+.chips.sm .chip{padding:6px 12px;font-size:12.5px}
+.segtabs{align-self:stretch;display:flex}
+.segtabs button{flex:1}
+.wbox{position:relative;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;overflow:hidden;touch-action:none}
+.wbox canvas{display:block;width:100%;touch-action:none;cursor:ew-resize}
+.wmeta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:13px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.dim{color:var(--muted)}
+.wr{margin-left:auto}
+.panel{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.cands{display:flex;flex-direction:column;gap:8px}
+.cand,.crow{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--panel);border-left:4px solid var(--cc,var(--accent))}
+.cand.on{border-color:var(--cc,var(--accent));background:rgba(var(--rgb),.08)}
+.crow{border-left-color:var(--accent)}
+.cn{width:28px;height:28px;border-radius:50%;background:var(--cc,var(--accent));color:#0b1020;font-weight:800;display:grid;place-items:center;font-size:13px}
+.cb{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cb b{font-size:14.5px}
+.ct{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+.cw{font-size:12.5px;color:var(--muted)}
+.cm{height:5px;border-radius:99px;background:var(--bg2);overflow:hidden;margin-top:3px}
+.cm i{display:block;height:100%;background:var(--cc,var(--accent))}
+.ca{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.pbtn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:36px;height:34px;font-size:13px;padding:0 8px}
+.pbtn:hover{border-color:var(--accent2);color:var(--accent2)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fcol{display:flex;flex-direction:column;gap:8px;min-width:0}
+.inp.big{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;text-align:center;padding:10px 8px;width:100%}
+.nudge{display:flex;gap:6px}
+.nudge .pbtn{flex:1}
+.b-sub.sm{padding:7px 10px;font-size:12.5px}
+.optbox{display:flex;flex-direction:column;gap:12px}
+.orow{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.orow .flabel{min-width:170px}
+.tgl{display:flex;flex-wrap:wrap;gap:8px}
+.grow{flex:1 1 200px}
+.grow .inp{flex:1;min-width:0}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.clips{display:flex;flex-direction:column;gap:8px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:14px;transition:.2s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%)}
+@media(max-width:560px){.cand,.crow{grid-template-columns:30px minmax(0,1fr)}.cand .ca,.crow .ca{grid-column:1/-1;justify-content:flex-start}.orow .flabel{min-width:100%}}
+.vgrid{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:16px;align-items:start}
+.vbox canvas{cursor:default;aspect-ratio:9/16;height:auto}
+.vgrid~.drow{margin-top:14px}
+.vright{display:flex;flex-direction:column;gap:12px;min-width:0}
+.vfile{display:inline-block;cursor:pointer}
+@media(max-width:560px){.vgrid{grid-template-columns:1fr}.vleft{max-width:240px;margin:0 auto}}
+
+.cmpw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.cmp{width:100%;border-collapse:collapse;min-width:560px;font-size:14.5px}
+.cmp th,.cmp td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:0}
+.cmp thead th{font-size:13px;color:var(--muted);font-weight:800;background:rgba(255,255,255,.03)}
+.cmp thead th.mc{color:var(--accent2)}
+.cmp tbody th{font-weight:800;width:22%;color:var(--text)}
+.cmp td.mc{background:rgba(var(--rgb),.07)}
+.cmp td[data-l]::before{content:attr(data-l);display:none}
+@media(max-width:620px){.cmpw{border:0;background:none;overflow:visible}.cmp,.cmp tbody,.cmp tr,.cmp th,.cmp td{display:block;min-width:0;width:100%}.cmp thead{display:none}
+.cmp tr{border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-bottom:12px;overflow:hidden}
+.cmp tbody th{width:100%;padding:12px 14px 6px;border:0;font-size:15px}
+.cmp td{border:0;padding:6px 14px 12px}.cmp td[data-l]::before{display:block;font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--muted);margin-bottom:3px}
+.cmp td.mc{padding-top:10px}.cmp td.mc::before{color:var(--accent2)}}
+.cmp small{display:block;color:var(--muted);margin-top:3px;font-size:12.5px}
+.calc{display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--panel)}
+.calc label{display:flex;flex-direction:column;gap:6px;font-weight:800;font-size:14px}
+.calc .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.calc input{max-width:180px}
+.calc .out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:620px){.calc .out{grid-template-columns:minmax(0,1fr)}}
+.calc .out div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.calc .out b{display:block;font-size:22px;color:var(--accent2);font-variant-numeric:tabular-nums}
+.calc .out span{font-size:12.5px;color:var(--muted)}
+.calc .sm{font-size:12.5px;color:var(--muted);margin:0}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:700px){.two{grid-template-columns:minmax(0,1fr)}}
+.two>div{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--panel)}
+.two h3{margin:0 0 10px;font-size:17px}
+.two li{list-style:disc}.two ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="../musiccanvas/">MusicCanvas</a><a href="./" class="on" aria-current="page">Compare</a><a href="../upload-kit/">Upload to YouTube</a></nav><a class="top-lang" href="../../music-video-no-subscription/" hreflang="ko">한국어</a>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">No subscription · one-time purchase · honest comparison</p>
+  <h1>A music video maker with no subscription</h1>
+  <p class="vibe">How it differs from web tools like Specterr and Renderforest - and which one fits you.</p>
+  <p class="lead">Web music-video services are handy because there is nothing to install. The trade-off is that they usually charge monthly or yearly (plans differ by service, so check each official site). If you keep turning Suno songs into videos, a one-time purchase may suit you better. It does not suit everyone, so the cases where a web tool is the better pick are listed below too.</p>
+  <ul class="stats"><li><b>$22</b>one time, lifetime</li><li><b>$0</b>monthly fee</li><li><b>7 days</b>free trial</li></ul>
+  <div class="hero-cta"><a class="btn-p" href="#calc">Calculate with my price ↓</a><a class="btn-g" href="#check">5 checks</a></div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+<div class="wrap">
+  <section class="sec" id="cmp">
+    <div class="sec-head"><h2>Side by side</h2><p>The left column describes web music-video services in general. It differs by service and plan, so check the official site of whichever one you consider.</p></div>
+    <div class="cmpw"><table class="cmp"><thead><tr><th></th><th>Web music-video services (in general)</th><th class="mc">MusicCanvas</th></tr></thead><tbody><tr><th scope="row">Pricing</th><td data-l="Web music-video services (in general)">Often a monthly or yearly subscription. Features depend on the plan.</td><td class="mc" data-l="MusicCanvas">One time $22, lifetime. No monthly fee.</td></tr><tr><th scope="row">Install</th><td data-l="Web music-video services (in general)">Nothing to install - runs in the browser.</td><td class="mc" data-l="MusicCanvas">A Windows program you install.<small>No Mac or mobile version.</small></td></tr><tr><th scope="row">Where the video is made</th><td data-l="Web music-video services (in general)">On the service servers.</td><td class="mc" data-l="MusicCanvas">On your own PC.<small>Internet is only needed for automatic lyric search and Pixabay search.</small></td></tr><tr><th scope="row">Many songs in one video</th><td data-l="Web music-video services (in general)">Length or count limits may apply depending on the plan.</td><td class="mc" data-l="MusicCanvas">Add several songs and export one video. Track list and start times are generated for you.</td></tr><tr><th scope="row">Lyrics</th><td data-l="Web music-video services (in general)">Varies by service.</td><td class="mc" data-l="MusicCanvas">Auto search by song title, paste your own, or load an .lrc file. Sung words fill with color karaoke-style.</td></tr><tr><th scope="row">Long exports</th><td data-l="Web music-video services (in general)">Varies by service.</td><td class="mc" data-l="MusicCanvas">If an export stops, the parts already made are kept and you resume from there.</td></tr><tr><th scope="row">Speed</th><td data-l="Web music-video services (in general)">Usually fast since servers render it. There can be a queue.</td><td class="mc" data-l="MusicCanvas">Depends on your PC. Long playlists take a while.<small>A still image background is the fastest.</small></td></tr><tr><th scope="row">Number of templates</th><td data-l="Web music-video services (in general)">Usually plenty.</td><td class="mc" data-l="MusicCanvas">14 audio-reactive effects, 10 text templates and 6 mood presets.<small>Web services may well offer more templates.</small></td></tr><tr><th scope="row">Making the song</th><td data-l="Web music-video services (in general)">No.</td><td class="mc" data-l="MusicCanvas">No. Make the song with a tool like Suno.</td></tr></tbody></table></div>
+  </section>
+  <section class="sec" id="calc">
+    <div class="sec-head"><h2>How many months until it pays for itself?</h2><p>Enter the monthly price in dollars of the service you use or are considering. For yearly billing, divide the yearly price by 12.</p></div>
+    <div class="calc">
+      <label for="mp">Monthly price (USD)<div class="row"><input class="inp" id="mp" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 10"></div></label>
+      <div class="out" id="out" aria-live="polite"><div><b id="o1">–</b><span id="o1l"></span></div><div><b id="o2">–</b><span>1 year total</span></div><div><b id="o3">–</b><span>3 year total</span></div></div>
+      <p class="sm">MusicCanvas is $22 once, with nothing to pay every month afterwards.</p>
+      <p class="sm">The number above is only a calculation example, not the price of any specific service.</p>
+    </div>
+  </section>
+  <section class="sec" id="fit">
+    <div class="sec-head"><h2>Who each one suits</h2></div>
+    <div class="two"><div><h3>A web service fits better if you</h3><ul><li>Make only one or two videos now and then, so you can cancel after a month.</li><li>Need to work on a Mac or on mobile.</li><li>Want nothing to install and to work right in the browser.</li><li>Want to choose from a very large template library.</li></ul></div><div><h3>MusicCanvas fits better if you</h3><ul><li>Keep turning Suno songs into videos so subscription fees keep adding up.</li><li>Make long playlist videos from many songs.</li><li>Have a Windows PC and want to pay once and be done.</li><li>Do not want to learn video editing - just add songs and an image.</li></ul></div></div>
+  </section>
+  <section class="sec" id="check">
+    <div class="sec-head"><h2>5 things to check when comparing</h2></div>
+    <ul class="tipsg"><li><h3>Watermark</h3><p>Check whether a logo is stamped on the video on the free or low plans.</p></li><li><h3>Resolution and length limits</h3><p>Check whether you can export 1080p and whether video length or monthly exports are limited.</p></li><li><h3>Multi-song playlists</h3><p>Check that the plan lets you join several songs into one video.</p></li><li><h3>After you cancel</h3><p>Check what happens to your projects and finished videos when you stop paying.</p></li><li><h3>YouTube terms</h3><p>Read the terms on posting the video to YouTube and earning from it. For AI songs, also check the terms of the service that made the song.</p></li></ul>
+  </section>
+  <section class="sec" id="try">
+    <div class="sec-head"><h2>Compare with the same song</h2></div>
+    <div class="how"><div class="step"><div class="n">STEP 01</div><h3>Pick one song</h3><p>Choose one song you would normally upload and one background image.</p></div><div class="step"><div class="n">STEP 02</div><h3>Make it in both</h3><p>Make the video with your current service and in the MusicCanvas 7-day free trial.</p></div><div class="step"><div class="n">STEP 03</div><h3>Compare time, quality, price</h3><p>Put the time it took, the result and the future cost side by side, then choose.</p></div></div>
+  </section>
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>FAQ</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>How is MusicCanvas different from Specterr?</summary><p>The biggest difference is how you use it. Web services like Specterr run in the browser and you check their plans on their own site. MusicCanvas is installed on Windows and is a one-time purchase. A web service may offer more templates and works on Mac.</p></details><details><summary>Can it replace Renderforest?</summary><p>For making a music video from a song and an image, yes. Renderforest also makes other kinds of videos, and MusicCanvas does not cover those.</p></details><details><summary>What happens after the 7-day trial?</summary><p>To keep using it you buy the license once for $22. There is no subscription. During the trial you can use it without paying.</p></details><details><summary>Does it work on Mac or phone?</summary><p>No. It is a Windows program.</p></details><details><summary>Does it make the song too?</summary><p>No. Make the song with a tool like Suno. MusicCanvas turns the finished song into a video.</p></details><details><summary>Can I post AI-made songs on YouTube?</summary><p>The right to use a song depends on the plan and terms of the service that made it. Check before you post. YouTube may also ask you to disclose AI-generated content.</p></details></div>
+  </section>
+</div>
+</main>
+<section class="cta-final"><div class="cta-in">
+  <h2>Try it for 7 days, no payment</h2>
+  <p>Make a video from the same song, and pay once only if you like it. No monthly fee.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">Start the 7-day free trial →</a>
+  <p class="fine">Windows · lifetime license $22</p>
+  <p class="fine"><a href="https://apps.microsoft.com/detail/9PKW7WPMV7CC" target="_blank" rel="noopener" style="color:var(--accent2);text-underline-offset:3px">See it on Microsoft Store</a></p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">See MusicCanvas features and price →</a></p>
+</div></section>
+<footer>Specterr, Renderforest and other service names are trademarks of their owners and are not affiliated with this site. Prices and features change often, so only general traits are described here - check each official site for exact details. MusicCanvas is an independent program not affiliated with Suno or YouTube.</footer>
+<script>
+(function(){
+var P=22,MO=[" months", "and you have paid more than MusicCanvas lifetime ($22)"],E="Enter a price to calculate";
+var mp=document.getElementById('mp');
+function f(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2})}
+function go(){
+  var v=parseFloat(mp.value);
+  if(!(v>0)){document.getElementById('o1').textContent='–';document.getElementById('o2').textContent='–';document.getElementById('o3').textContent='–';document.getElementById('o1l').textContent=E;return}
+  var m=Math.floor(P/v)+1;
+  document.getElementById('o1').textContent=m+MO[0];
+  document.getElementById('o1l').textContent=MO[1];
+  document.getElementById('o2').textContent=f(v*12);
+  document.getElementById('o3').textContent=f(v*36);
+}
+mp.addEventListener('input',go);go();
+})();
+</script>
+</body>
+</html>

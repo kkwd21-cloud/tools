@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>구독 없는 음악 영상 만들기 프로그램 – Specterr·Renderforest 같은 웹 서비스와 비교 | MusicCanvas</title>
+<meta name="description" content="수노 곡을 계속 유튜브 영상으로 올린다면 월 구독이 맞을까요, 한 번 결제가 맞을까요? 웹 음악 영상 서비스와 MusicCanvas(평생 $22)를 솔직하게 비교하고, 내 요금으로 몇 달이면 본전인지 계산해 볼 수 있어요.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/music-video-no-subscription/">
+<link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/music-video-no-subscription/">
+<link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/">
+<link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/music-video-no-subscription/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="구독 없는 음악 영상 만들기 프로그램 – Specterr·Renderforest 같은 웹 서비스와 비교 | MusicCanvas">
+<meta property="og:description" content="수노 곡을 계속 유튜브 영상으로 올린다면 월 구독이 맞을까요, 한 번 결제가 맞을까요? 웹 음악 영상 서비스와 MusicCanvas(평생 $22)를 솔직하게 비교하고, 내 요금으로 몇 달이면 본전인지 계산해 볼 수 있어요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/music-video-no-subscription/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dusk Soul Toolkit", "item": "https://kkwd21-cloud.github.io/tools/"}, {"@type": "ListItem", "position": 2, "name": "구독 없는 음악 영상 프로그램 비교", "item": "https://kkwd21-cloud.github.io/tools/music-video-no-subscription/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Specterr와 MusicCanvas는 뭐가 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "가장 큰 차이는 쓰는 방식이에요. Specterr 같은 웹 서비스는 브라우저에서 쓰고 요금제는 서비스 사이트에서 확인해야 해요. MusicCanvas는 Windows에 설치하고 한 번 결제로 평생 써요. 템플릿 수와 Mac 지원은 웹 서비스 쪽이 나을 수 있어요."}}, {"@type": "Question", "name": "Renderforest 대신 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "곡과 이미지로 음악 영상을 만드는 용도라면 쓸 수 있어요. 다만 Renderforest는 음악 영상 말고도 여러 종류의 영상을 만드는 서비스라, 그런 용도까지 대신하지는 못해요."}}, {"@type": "Question", "name": "7일 무료체험 뒤에는 어떻게 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "계속 쓰려면 라이선스를 한 번 사야 해요. 가격은 $22이고 구독이 없어요. 체험 기간에는 결제 없이 써 볼 수 있어요."}}, {"@type": "Question", "name": "Mac이나 폰에서 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. Windows 프로그램이에요."}}, {"@type": "Question", "name": "곡도 만들어 주나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 곡은 수노 같은 도구로 따로 만들고, MusicCanvas는 완성된 곡을 영상으로 만들어요."}}, {"@type": "Question", "name": "AI로 만든 곡을 유튜브에 올려도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "곡을 쓸 수 있는 권리는 곡을 만든 서비스의 요금제와 약관에 따라 달라요. 올리기 전에 직접 확인하세요. 유튜브는 AI로 만든 콘텐츠에 공개 표시를 요구하는 경우도 있어요."}}]}</script>
+
+<style>:root{--accent:#f4a6c0;--accent2:#ffd3e2;--rgb:244,166,192}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+:root{--bg:#090d19;--bg2:#0e1426;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(900px 480px at 85% -8%,rgba(var(--rgb),.22),transparent 70%),radial-gradient(700px 400px at -10% 30%,rgba(var(--rgb),.08),transparent 70%)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.gnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.gnav::-webkit-scrollbar{display:none}
+.gnav a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);padding:6px 13px;border:1px solid var(--line);border-radius:999px;transition:.15s}
+.gnav a:hover{color:var(--text);border-color:var(--line2)}
+.gnav a.on{background:var(--accent);border-color:var(--accent);color:#14101a}
+.top-all{font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.top-all:hover{color:var(--text)}
+@media (max-width:760px){.top-all{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.hero h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(32px,6.4vw,58px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.vibe{margin-top:16px;font-size:clamp(16px,2.2vw,19px);color:var(--text);opacity:.92;max-width:44ch}
+.lead{margin-top:10px;color:var(--muted);max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:13.5px}
+.stats li b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--text);margin-right:6px;font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:12px 20px;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-g:hover{border-color:var(--accent2);background:rgba(var(--rgb),.1)}
+.use{margin-top:22px;font-size:13px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:64px;margin-top:34px;opacity:.55;max-width:560px}
+.eq span{flex:1;min-width:2px;height:100%;border-radius:2px 2px 0 0;background:linear-gradient(to top,var(--accent),rgba(var(--rgb),.15));transform-origin:bottom;transform:scaleY(var(--h));animation:eq 2.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes eq{0%,100%{transform:scaleY(var(--h))}50%{transform:scaleY(calc(var(--h)*.45 + .1))}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.step h3{font-size:15px;margin:4px 0 2px}
+.step p{font-size:13px;color:var(--muted)}
+.step a{color:var(--accent2);text-underline-offset:3px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+
+/* sections */
+.sec{padding-top:56px}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
+.sec-head h2 em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.6em;color:var(--accent);margin-left:8px;vertical-align:middle}
+.sec-head p{margin-top:6px;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* toolbar */
+.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:11px 14px}
+.search input::placeholder{color:#6f7aa0}
+.search input:focus{outline:none;border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px}
+.fgroup{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.flabel{font-size:12px;color:var(--muted);margin-right:2px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.chip{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;transition:.15s}
+.chip:hover{color:var(--text);border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.16);border-color:var(--accent);color:var(--text)}
+.tb-foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.link{background:none;border:0;color:var(--accent2);text-decoration:underline;text-underline-offset:3px;padding:0;font-size:12.5px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pcard{position:relative;background:linear-gradient(180deg,var(--panel),#0f1630);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.pcard::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+.pcard:hover{border-color:var(--line2);transform:translateY(-2px)}
+.pcard.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(var(--rgb),.45)}100%{box-shadow:none}}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pc-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;line-height:1.35}
+.pc-right{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.badge-b{font-size:11px;font-weight:700;background:var(--accent2);color:#14101a;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.fav{width:32px;height:32px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--muted);padding:0;transition:.15s}
+.fav svg{fill:none;stroke:currentColor;stroke-width:1.8}
+.fav:hover{color:var(--text);border-color:var(--line2)}
+.fav[aria-pressed="true"]{color:#ff6f8f;border-color:#ff6f8f;background:rgba(255,111,143,.1)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tags span{font-size:11.5px;font-weight:600;color:var(--accent2);border:1px solid rgba(var(--rgb),.4);border-radius:999px;padding:1px 10px;font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+.pc-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:10px;padding:12px 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#e9e6dd;flex:1}
+.pc-gloss{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pc-gloss b{color:var(--accent2);font-weight:700;margin-right:6px}
+.pc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.b-main{background:var(--accent);border:1px solid var(--accent);color:#14101a;font-weight:800;font-size:13.5px;border-radius:10px;padding:8px 18px;transition:.15s}
+.b-main:hover{background:var(--accent2)}
+.b-sub{background:transparent;border:1px solid var(--line2);color:var(--text);font-weight:600;font-size:12.5px;border-radius:10px;padding:7px 12px;transition:.15s}
+.b-sub:hover{border-color:var(--accent2);color:var(--accent2)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+.bld-groups{display:flex;flex-direction:column;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.bg-title{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.bg-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bld-side{position:sticky;top:78px;display:flex;flex-direction:column;gap:12px}
+.tempo{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.tempo-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.tempo-row strong{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:15px}
+.tempo input[type=range]{width:100%;accent-color:var(--accent);margin:8px 0 2px}
+.tempo label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.tempo input[type=checkbox],.chk input{accent-color:var(--accent)}
+.preview{background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.pv-label{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--accent2);letter-spacing:.06em}
+.preview pre{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:96px}
+.pv-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media (max-width:860px){.bld{grid-template-columns:1fr}.bld-side{position:static}}
+
+/* lyrics */
+.lyr{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lyr-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:rgba(var(--rgb),.2);color:var(--text)}
+.lyr-title{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lyr-title span{font-size:12px;font-family:'IBM Plex Mono','Noto Sans KR',monospace;color:var(--muted)}
+.lyr-title strong{font-family:'Noto Serif KR',serif;font-size:19px}
+.lyr-text{margin:0;background:var(--bg2);border:1px solid #1f2849;border-radius:12px;padding:16px 18px;font-family:'Noto Sans KR',monospace;font-size:14px;line-height:1.85;white-space:pre-wrap;max-height:420px;overflow:auto}
+.lyr-actions{display:flex;gap:8px}
+
+/* guide */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tips li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.tips h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tips p{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.faq{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent2);font-family:'IBM Plex Mono',monospace}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:14px;color:var(--muted);font-size:14px}
+
+/* proof */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;transition:.15s}
+.vid:hover{border-color:var(--accent2)}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--bg2)}
+.vid span{font-weight:700;font-size:14px;padding:0 4px}
+.vid em{font-style:normal;color:var(--accent2);font-size:12.5px;padding:0 4px 4px}
+.chan{display:inline-block;text-decoration:none;font-weight:700;border:1px solid var(--line2);border-radius:12px;padding:12px 20px}
+.chan:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* more */
+.ogs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.og{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;transition:.15s}
+.og:hover{border-color:var(--c);transform:translateY(-2px)}
+.og b{font-size:14.5px}
+.og span{font-size:12.5px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* cta */
+.cta-final{margin-top:72px;padding:54px 20px 60px;text-align:center;background:linear-gradient(160deg,#141a35 0%,rgba(var(--rgb),.35) 120%);border-top:1px solid var(--line)}
+.cta-in{max-width:620px;margin:0 auto}
+.cta-final h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,4vw,34px);line-height:1.3;text-wrap:balance}
+.cta-final p{margin-top:12px;color:#d6d8e6}
+.cta-final .btn-p{margin-top:24px}
+.cta-final .fine{margin-top:12px;font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono','Noto Sans KR',monospace}
+footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* fav bar + toast */
+#favbar button,#favbar span{white-space:nowrap}
+#favbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:10px;background:#1b2447;border:1px solid var(--line2);border-radius:999px;padding:8px 10px 8px 18px;box-shadow:0 10px 34px rgba(0,0,0,.45);font-size:13.5px;max-width:calc(100vw - 24px)}
+#favbar strong{color:#ff8fa8}
+#toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:var(--text);color:#14101a;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:999px;z-index:40;transition:.2s;max-width:calc(100vw - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){#favbar{gap:6px;padding:6px 8px 6px 14px;font-size:12.5px}#favbar .b-main,#favbar .b-sub{padding:8px 12px}}
+
+.top-lang{margin-left:12px;font-size:12.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;text-decoration:none;white-space:nowrap}.top-lang:hover{background:rgba(var(--rgb),.14)}
+
+/* my log */
+.lg-modal{position:fixed;inset:0;z-index:60;background:rgba(5,8,18,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.lg-modal[hidden]{display:none}
+body.lg-open{overflow:hidden}
+.lg-box{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.lg-box h3{margin:0;font-family:'Noto Serif KR',serif;font-size:20px}
+.lg-fld{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
+.lg-in{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14px;padding:9px 11px;resize:vertical}
+.lg-in:focus{outline:none;border-color:var(--accent)}
+.lg-rate{display:flex;flex-wrap:wrap;gap:8px}
+.lg-r{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--text);font-size:14px;font-weight:600;padding:9px 18px}
+.lg-rate.sm .lg-r{font-size:12.5px;padding:5px 12px}
+.lg-r[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.lg-msg{min-height:1.2em;font-size:12.5px;color:#ffb86b;margin:0}
+.lg-act{display:flex;flex-wrap:wrap;gap:8px}
+.lg-sum{font-weight:700;margin:0 0 6px}
+.lg-item{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.lg-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.lg-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lg-badge{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid var(--line2)}
+.lg-badge.good{background:var(--ok,#8fe0b0);color:#10261b;border-color:transparent}.lg-badge.bad{background:#8b3a4a;color:#fff;border-color:transparent}
+.lg-style,.lg-lyr{margin:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.lg-item details summary{cursor:pointer;font-size:13px;color:var(--accent2)}
+.lg-memorow{display:flex;gap:8px;flex-wrap:wrap}.lg-memorow .lg-in{flex:1;min-width:160px}
+#log .tag{font-size:12px;color:var(--muted)}
+
+.lrcw{display:flex;flex-direction:column;gap:14px}
+.card2{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card2>h3{font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--accent2);font-weight:600;text-transform:uppercase}
+.inp{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:14.5px;padding:10px 12px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.sm{width:auto;padding:6px 10px;font-size:13.5px}
+.inp.t{width:104px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.lyr-in{min-height:200px;resize:vertical;line-height:1.7}
+.out{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;white-space:pre}
+.drop{display:flex;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line2);border-radius:14px;padding:26px 16px;color:var(--muted);cursor:pointer;position:relative;transition:.15s;font-weight:600;word-break:break-all}
+.drop:hover,.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.07);color:var(--text)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.note.warn{color:#ffb86b}
+.opts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.opts input,.chk input{accent-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.b-big{width:100%;padding:13px 18px;font-size:15px;border-radius:12px}
+.wave{width:100%;height:110px;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;display:block;cursor:pointer;touch-action:none}
+.curline{min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#141c38,#0f1630);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(16px,3.4vw,22px);line-height:1.4;overflow-wrap:anywhere}
+.tport{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tm{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);margin-left:auto}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.sub h4{font-size:14.5px;color:var(--text);margin:0}
+.drow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.fld{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tappanel{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.tapbtn{width:100%;min-height:84px;border-radius:16px;border:2px solid var(--accent);background:rgba(var(--rgb),.14);color:var(--text);font-size:18px;font-weight:800;transition:.08s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tapbtn:active{background:var(--accent);color:#0a1418;transform:scale(.99)}
+.lines{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg2)}
+.lrow{display:grid;grid-template-columns:34px 92px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px;border-radius:8px;border:1px solid transparent}
+.lrow.on{background:rgba(var(--rgb),.14);border-color:rgba(var(--rgb),.5)}
+.lrow.next{border-color:#ffd06e;box-shadow:inset 3px 0 0 #ffd06e}
+.lrow.unset .lt{border-style:dashed;color:var(--muted)}
+.lrow.bad .lt{border-color:#ff7a7a;color:#ff9a9a}
+.li{background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 0;cursor:pointer}
+.li:hover{border-color:var(--accent2);color:var(--text)}
+.lt{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 6px;text-align:center}
+.ltx{width:100%;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--text);font:inherit;font-size:14px;padding:6px 8px;min-width:0}
+.ltx:focus,.lt:focus{outline:none;border-color:var(--accent)}
+.lbtns{display:inline-flex;gap:4px}
+.lbtns button{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:32px;padding:5px 7px;font-size:12.5px}
+.lbtns button:hover{border-color:var(--accent2)}
+@media(max-width:640px){.lrow{grid-template-columns:30px 84px minmax(0,1fr)}.lbtns{grid-column:1/-1;justify-content:flex-end}.tm{margin-left:0;width:100%}}
+.guide{background:rgba(var(--rgb),.08);border:1px solid rgba(var(--rgb),.3);border-radius:10px;padding:10px 12px;color:var(--text)}
+.nextline{font-size:13.5px;color:var(--muted);min-height:20px;text-align:center;overflow-wrap:anywhere}
+.tapbtn{min-height:110px;font-size:20px}
+.tapbtn.done{background:rgba(120,220,150,.18);border-color:#78dc96}
+.b-big small{font-weight:500;opacity:.8;font-size:.78em;margin-left:4px}
+.adv{border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.adv>summary{cursor:pointer;padding:11px 0;font-size:13.5px;color:var(--muted);font-weight:600}
+.adv[open]{padding-bottom:12px;display:flex;flex-direction:column;gap:12px}
+.adv[open]>summary{padding-bottom:0}
+.srtbox{border-radius:12px}
+.srtbox>*:not(summary){margin-bottom:10px}
+.tipsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tipsg li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tipsg h3{font-size:15px;margin-bottom:4px;color:var(--accent2)}
+.tipsg p{font-size:13.5px;color:var(--muted)}
+
+.drop{word-break:normal;overflow-wrap:anywhere}
+.drop.over{border-color:var(--accent);background:rgba(var(--rgb),.1)}
+.pbar{height:10px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.fhead{display:flex;justify-content:space-between;gap:10px}
+.fn{margin:2px 0 0;font-size:14px;overflow-wrap:anywhere}
+.fm{color:var(--muted);font-size:12.5px;font-family:'IBM Plex Mono',monospace}
+.grp{display:flex;flex-direction:column;gap:8px}
+.chips.sm .chip{padding:6px 12px;font-size:12.5px}
+.segtabs{align-self:stretch;display:flex}
+.segtabs button{flex:1}
+.wbox{position:relative;border-radius:12px;border:1px solid var(--line2);background:#0a0e1d;overflow:hidden;touch-action:none}
+.wbox canvas{display:block;width:100%;touch-action:none;cursor:ew-resize}
+.wmeta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:13px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.dim{color:var(--muted)}
+.wr{margin-left:auto}
+.panel{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.cands{display:flex;flex-direction:column;gap:8px}
+.cand,.crow{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--panel);border-left:4px solid var(--cc,var(--accent))}
+.cand.on{border-color:var(--cc,var(--accent));background:rgba(var(--rgb),.08)}
+.crow{border-left-color:var(--accent)}
+.cn{width:28px;height:28px;border-radius:50%;background:var(--cc,var(--accent));color:#0b1020;font-weight:800;display:grid;place-items:center;font-size:13px}
+.cb{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cb b{font-size:14.5px}
+.ct{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+.cw{font-size:12.5px;color:var(--muted)}
+.cm{height:5px;border-radius:99px;background:var(--bg2);overflow:hidden;margin-top:3px}
+.cm i{display:block;height:100%;background:var(--cc,var(--accent))}
+.ca{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.pbtn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);min-width:36px;height:34px;font-size:13px;padding:0 8px}
+.pbtn:hover{border-color:var(--accent2);color:var(--accent2)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fcol{display:flex;flex-direction:column;gap:8px;min-width:0}
+.inp.big{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;text-align:center;padding:10px 8px;width:100%}
+.nudge{display:flex;gap:6px}
+.nudge .pbtn{flex:1}
+.b-sub.sm{padding:7px 10px;font-size:12.5px}
+.optbox{display:flex;flex-direction:column;gap:12px}
+.orow{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.orow .flabel{min-width:170px}
+.tgl{display:flex;flex-wrap:wrap;gap:8px}
+.grow{flex:1 1 200px}
+.grow .inp{flex:1;min-width:0}
+.sub{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.clips{display:flex;flex-direction:column;gap:8px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#1b2340;border:1px solid var(--line2);color:var(--text);padding:10px 16px;border-radius:10px;font-size:14px;transition:.2s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%)}
+@media(max-width:560px){.cand,.crow{grid-template-columns:30px minmax(0,1fr)}.cand .ca,.crow .ca{grid-column:1/-1;justify-content:flex-start}.orow .flabel{min-width:100%}}
+.vgrid{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:16px;align-items:start}
+.vbox canvas{cursor:default;aspect-ratio:9/16;height:auto}
+.vgrid~.drow{margin-top:14px}
+.vright{display:flex;flex-direction:column;gap:12px;min-width:0}
+.vfile{display:inline-block;cursor:pointer}
+@media(max-width:560px){.vgrid{grid-template-columns:1fr}.vleft{max-width:240px;margin:0 auto}}
+
+.cmpw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.cmp{width:100%;border-collapse:collapse;min-width:560px;font-size:14.5px}
+.cmp th,.cmp td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:0}
+.cmp thead th{font-size:13px;color:var(--muted);font-weight:800;background:rgba(255,255,255,.03)}
+.cmp thead th.mc{color:var(--accent2)}
+.cmp tbody th{font-weight:800;width:22%;color:var(--text)}
+.cmp td.mc{background:rgba(var(--rgb),.07)}
+.cmp td[data-l]::before{content:attr(data-l);display:none}
+@media(max-width:620px){.cmpw{border:0;background:none;overflow:visible}.cmp,.cmp tbody,.cmp tr,.cmp th,.cmp td{display:block;min-width:0;width:100%}.cmp thead{display:none}
+.cmp tr{border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-bottom:12px;overflow:hidden}
+.cmp tbody th{width:100%;padding:12px 14px 6px;border:0;font-size:15px}
+.cmp td{border:0;padding:6px 14px 12px}.cmp td[data-l]::before{display:block;font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--muted);margin-bottom:3px}
+.cmp td.mc{padding-top:10px}.cmp td.mc::before{color:var(--accent2)}}
+.cmp small{display:block;color:var(--muted);margin-top:3px;font-size:12.5px}
+.calc{display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--panel)}
+.calc label{display:flex;flex-direction:column;gap:6px;font-weight:800;font-size:14px}
+.calc .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.calc input{max-width:180px}
+.calc .out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:620px){.calc .out{grid-template-columns:minmax(0,1fr)}}
+.calc .out div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.calc .out b{display:block;font-size:22px;color:var(--accent2);font-variant-numeric:tabular-nums}
+.calc .out span{font-size:12.5px;color:var(--muted)}
+.calc .sm{font-size:12.5px;color:var(--muted);margin:0}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:700px){.two{grid-template-columns:minmax(0,1fr)}}
+.two>div{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--panel)}
+.two h3{margin:0 0 10px;font-size:17px}
+.two li{list-style:disc}.two ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../">Dusk Soul<span>Toolkit</span></a>
+  <nav class="gnav"><a href="../musiccanvas/">MusicCanvas</a><a href="./" class="on" aria-current="page">비교하기</a><a href="../upload-kit/">유튜브에 올리기</a></nav><a class="top-lang" href="../en/music-video-no-subscription/" hreflang="en">English</a>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">구독 없음 · 한 번 결제 · 솔직한 비교</p>
+  <h1>구독 없는 음악 영상 프로그램</h1>
+  <p class="vibe">Specterr·Renderforest 같은 웹 서비스와 무엇이 다른지, 어느 쪽이 나에게 맞는지 같이 따져 봐요.</p>
+  <p class="lead">웹 음악 영상 서비스는 설치 없이 바로 쓸 수 있어서 편해요. 대신 보통 매달 또는 매년 요금이 나가요(요금제는 서비스마다 달라서 각 사이트에서 확인하세요). 수노(Suno) 곡을 꾸준히 영상으로 올리는 분이라면, 한 번 결제하고 평생 쓰는 프로그램이 더 맞을 수도 있어요. 다만 안 맞는 경우도 있어서 그것도 아래에 같이 적었어요.</p>
+  <ul class="stats"><li><b>$22</b>한 번 결제 · 평생</li><li><b>0원</b>월 구독</li><li><b>7일</b>무료체험</li></ul>
+  <div class="hero-cta"><a class="btn-p" href="#calc">내 요금으로 계산 ↓</a><a class="btn-g" href="#check">5가지 확인</a></div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</div></section>
+<div class="wrap">
+  <section class="sec" id="cmp">
+    <div class="sec-head"><h2>한눈에 비교</h2><p>아래 왼쪽은 웹 음악 영상 서비스의 일반적인 특징이에요. 서비스와 요금제마다 다르니 쓰려는 곳의 공식 사이트에서 꼭 확인하세요.</p></div>
+    <div class="cmpw"><table class="cmp"><thead><tr><th>항목</th><th>웹 음악 영상 서비스 (일반적으로)</th><th class="mc">MusicCanvas</th></tr></thead><tbody><tr><th scope="row">요금</th><td data-l="웹 음악 영상 서비스 (일반적으로)">월 또는 연 구독이 많아요. 요금제에 따라 기능이 달라져요.</td><td class="mc" data-l="MusicCanvas">한 번 $22, 평생 사용. 월 구독이 없어요.</td></tr><tr><th scope="row">설치</th><td data-l="웹 음악 영상 서비스 (일반적으로)">설치 없이 브라우저에서 바로 써요.</td><td class="mc" data-l="MusicCanvas">Windows 프로그램을 설치해요.<small>Mac과 모바일은 지원하지 않아요.</small></td></tr><tr><th scope="row">영상 만드는 곳</th><td data-l="웹 음악 영상 서비스 (일반적으로)">서비스 서버에서 만들어요.</td><td class="mc" data-l="MusicCanvas">내 PC에서 만들어요.<small>가사 자동 검색과 Pixabay 검색에만 인터넷이 필요해요.</small></td></tr><tr><th scope="row">여러 곡을 한 영상으로</th><td data-l="웹 음악 영상 서비스 (일반적으로)">요금제에 따라 길이나 개수 제한이 있을 수 있어요.</td><td class="mc" data-l="MusicCanvas">곡을 여러 개 넣으면 이어서 한 편으로 내보내요. 곡 목록과 시작 시간도 자동으로 만들어요.</td></tr><tr><th scope="row">가사 넣기</th><td data-l="웹 음악 영상 서비스 (일반적으로)">서비스마다 달라요.</td><td class="mc" data-l="MusicCanvas">곡 제목으로 자동 검색, 직접 붙여넣기, .lrc 불러오기. 부른 부분이 색으로 채워지는 효과도 있어요.</td></tr><tr><th scope="row">긴 영상 안정성</th><td data-l="웹 음악 영상 서비스 (일반적으로)">서비스마다 달라요.</td><td class="mc" data-l="MusicCanvas">내보내기가 멈춰도 만든 부분은 두고 이어서 내보내요.</td></tr><tr><th scope="row">만드는 속도</th><td data-l="웹 음악 영상 서비스 (일반적으로)">서버가 만들어서 보통 빨라요. 대기가 생길 수 있어요.</td><td class="mc" data-l="MusicCanvas">내 PC 사양에 따라 달라요. 긴 플레이리스트는 시간이 걸려요.<small>정지 이미지 배경이 가장 빨라요.</small></td></tr><tr><th scope="row">템플릿 수</th><td data-l="웹 음악 영상 서비스 (일반적으로)">보통 템플릿이 많아요.</td><td class="mc" data-l="MusicCanvas">오디오 반응 이펙트 14종, 텍스트 템플릿 10종, 무드 프리셋 6종.<small>템플릿 수는 웹 서비스가 더 많을 수 있어요.</small></td></tr><tr><th scope="row">곡 만들기</th><td data-l="웹 음악 영상 서비스 (일반적으로)">안 해 줘요.</td><td class="mc" data-l="MusicCanvas">안 해 줘요. 곡은 수노 같은 도구로 따로 만들어요.</td></tr></tbody></table></div>
+  </section>
+  <section class="sec" id="calc">
+    <div class="sec-head"><h2>내 요금으로 몇 달이면 본전일까요?</h2><p>지금 쓰고 있거나 쓰려는 서비스의 월 요금을 달러로 넣어 보세요. 연 결제라면 연 요금을 12로 나눈 값을 넣으면 돼요.</p></div>
+    <div class="calc">
+      <label for="mp">월 요금 (달러)<div class="row"><input class="inp" id="mp" type="number" inputmode="decimal" min="0" step="0.01" placeholder="예: 10"></div></label>
+      <div class="out" id="out" aria-live="polite"><div><b id="o1">–</b><span id="o1l"></span></div><div><b id="o2">–</b><span>1년 총액</span></div><div><b id="o3">–</b><span>3년 총액</span></div></div>
+      <p class="sm">MusicCanvas는 한 번 $22이고, 그 뒤로 매달 나가는 돈은 없어요.</p>
+      <p class="sm">위 숫자는 계산용 예시일 뿐 특정 서비스의 요금이 아니에요.</p>
+    </div>
+  </section>
+  <section class="sec" id="fit">
+    <div class="sec-head"><h2>이런 분께 맞아요</h2></div>
+    <div class="two"><div><h3>웹 서비스가 더 맞는 분</h3><ul><li>영상을 가끔 한두 편만 만드는 분. 구독을 한 달만 쓰고 끊어도 돼요.</li><li>Mac이나 모바일에서 만들어야 하는 분.</li><li>설치 없이 브라우저에서 바로 만들고 싶은 분.</li><li>템플릿이 아주 많은 서비스에서 고르고 싶은 분.</li></ul></div><div><h3>MusicCanvas가 더 맞는 분</h3><ul><li>수노 곡을 꾸준히 영상으로 올려서 구독료가 계속 쌓이는 분.</li><li>곡을 여러 개 묶은 긴 플레이리스트 영상을 만드는 분.</li><li>Windows PC가 있고 한 번 결제로 끝내고 싶은 분.</li><li>영상 편집을 따로 배우지 않고 곡과 이미지만 넣어 만들고 싶은 분.</li></ul></div></div>
+  </section>
+  <section class="sec" id="check">
+    <div class="sec-head"><h2>비교할 때 꼭 확인할 5가지</h2></div>
+    <ul class="tipsg"><li><h3>워터마크</h3><p>무료나 낮은 요금제에서 영상에 로고가 찍히는지 확인하세요.</p></li><li><h3>해상도·길이 제한</h3><p>1080p로 내보낼 수 있는지, 영상 길이나 한 달 내보내기 횟수에 제한이 있는지 보세요.</p></li><li><h3>여러 곡 플레이리스트</h3><p>곡을 여러 개 이어서 한 영상으로 만들 수 있는 요금제인지 보세요.</p></li><li><h3>해지한 뒤</h3><p>구독을 끊으면 내 프로젝트나 만든 영상이 어떻게 되는지 확인하세요.</p></li><li><h3>유튜브 이용 조건</h3><p>만든 영상을 유튜브에 올려 수익을 내도 되는지 이용 약관을 보세요. AI로 만든 곡은 곡을 만든 서비스의 약관도 따로 확인해야 해요.</p></li></ul>
+  </section>
+  <section class="sec" id="try">
+    <div class="sec-head"><h2>같은 곡으로 직접 비교해 보세요</h2></div>
+    <div class="how"><div class="step"><div class="n">STEP 01</div><h3>곡 하나 정하기</h3><p>평소 올리던 곡 하나와 배경 이미지 하나를 준비하세요.</p></div><div class="step"><div class="n">STEP 02</div><h3>두 곳에서 만들기</h3><p>쓰던 서비스와 MusicCanvas 7일 무료체험에서 같은 곡으로 영상을 만들어 보세요.</p></div><div class="step"><div class="n">STEP 03</div><h3>시간·화질·가격 비교</h3><p>만드는 데 걸린 시간, 결과 화면, 앞으로 나갈 돈을 나란히 놓고 고르세요.</p></div></div>
+  </section>
+  <section class="sec" id="faq">
+    <div class="sec-head"><h2>자주 묻는 질문</h2></div>
+    <div class="faq" style="margin-top:0"><details><summary>Specterr와 MusicCanvas는 뭐가 다른가요?</summary><p>가장 큰 차이는 쓰는 방식이에요. Specterr 같은 웹 서비스는 브라우저에서 쓰고 요금제는 서비스 사이트에서 확인해야 해요. MusicCanvas는 Windows에 설치하고 한 번 결제로 평생 써요. 템플릿 수와 Mac 지원은 웹 서비스 쪽이 나을 수 있어요.</p></details><details><summary>Renderforest 대신 쓸 수 있나요?</summary><p>곡과 이미지로 음악 영상을 만드는 용도라면 쓸 수 있어요. 다만 Renderforest는 음악 영상 말고도 여러 종류의 영상을 만드는 서비스라, 그런 용도까지 대신하지는 못해요.</p></details><details><summary>7일 무료체험 뒤에는 어떻게 되나요?</summary><p>계속 쓰려면 라이선스를 한 번 사야 해요. 가격은 $22이고 구독이 없어요. 체험 기간에는 결제 없이 써 볼 수 있어요.</p></details><details><summary>Mac이나 폰에서 쓸 수 있나요?</summary><p>아니요. Windows 프로그램이에요.</p></details><details><summary>곡도 만들어 주나요?</summary><p>아니요. 곡은 수노 같은 도구로 따로 만들고, MusicCanvas는 완성된 곡을 영상으로 만들어요.</p></details><details><summary>AI로 만든 곡을 유튜브에 올려도 되나요?</summary><p>곡을 쓸 수 있는 권리는 곡을 만든 서비스의 요금제와 약관에 따라 달라요. 올리기 전에 직접 확인하세요. 유튜브는 AI로 만든 콘텐츠에 공개 표시를 요구하는 경우도 있어요.</p></details></div>
+  </section>
+</div>
+</main>
+<section class="cta-final"><div class="cta-in">
+  <h2>7일 동안 결제 없이 써 보세요</h2>
+  <p>같은 곡으로 만들어 보고 마음에 들면 한 번 결제하세요. 월 구독은 없어요.</p>
+  <a class="btn-p" href="https://kkwd21.gumroad.com/l/musiccanvas" target="_blank" rel="noopener">7일 무료체험 시작 →</a>
+  <p class="fine">Windows · 평생 라이선스 $22</p>
+  <p class="fine"><a href="https://apps.microsoft.com/detail/9PKW7WPMV7CC" target="_blank" rel="noopener" style="color:var(--accent2);text-underline-offset:3px">Microsoft Store에서 보기</a></p>
+  <p class="fine"><a href="../musiccanvas/" style="color:var(--accent2);text-underline-offset:3px">MusicCanvas 기능·가격 자세히 보기 →</a></p>
+</div></section>
+<footer>Specterr, Renderforest 등 다른 서비스의 이름은 각 회사의 상표이며 이 사이트와 관련이 없어요. 서비스의 요금과 기능은 자주 바뀌니 일반적인 특징만 적었고, 정확한 내용은 각 공식 사이트에서 확인하세요. MusicCanvas는 Suno, YouTube와 관련 없는 독립 프로그램이에요.</footer>
+<script>
+(function(){
+var P=22,MO=["개월", "쓰면 MusicCanvas 평생 가격($22)을 넘어요"],E="요금을 넣으면 계산해요";
+var mp=document.getElementById('mp');
+function f(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2})}
+function go(){
+  var v=parseFloat(mp.value);
+  if(!(v>0)){document.getElementById('o1').textContent='–';document.getElementById('o2').textContent='–';document.getElementById('o3').textContent='–';document.getElementById('o1l').textContent=E;return}
+  var m=Math.floor(P/v)+1;
+  document.getElementById('o1').textContent=m+MO[0];
+  document.getElementById('o1l').textContent=MO[1];
+  document.getElementById('o2').textContent=f(v*12);
+  document.getElementById('o3').textContent=f(v*36);
+}
+mp.addEventListener('input',go);go();
+})();
+</script>
+</body>
+</html>
