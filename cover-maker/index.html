@@ -365,7 +365,7 @@ body.lg-open{overflow:hidden}
 .fld{text-align:left}
 .stp .flabel{margin-top:2px}
 .cvwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:18px;align-items:start}
-.cvprev{order:2;position:sticky;top:76px;display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}
+.phlist{display:flex;flex-direction:column;gap:8px;margin:6px 0 10px}.phrow{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}.phrow b{font-size:14px}.phlinks{display:flex;gap:5px;flex-wrap:nowrap}.phlinks a{font-size:12px;font-weight:700;padding:6px 8px;white-space:nowrap;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--text);background:var(--panel)}.phlinks a:hover{border-color:var(--accent)}#pUp{margin-top:14px}.cvprev{order:2;position:sticky;top:76px;display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}
 .cvsteps{order:1;display:flex;flex-direction:column;gap:16px;min-width:0}
 #cv{display:block;margin:0 auto;max-width:100%;max-height:68vh;width:auto;height:auto;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.45);background:#0a0e1d}
 @media(max-width:860px){.cvwrap{grid-template-columns:minmax(0,1fr)}.cvprev{order:0;top:60px;z-index:20;padding:8px;gap:6px}.cvprev .note{display:none}#cv{max-height:25vh}#aspects{flex-wrap:nowrap;gap:6px;justify-content:center}#aspects .chip{padding:6px 9px;font-size:12px;white-space:nowrap}#aspects .lg{display:none}}.segtabs button{white-space:nowrap}#aspects .sm{display:none}@media(max-width:860px){#aspects .sm{display:inline}}
@@ -463,8 +463,20 @@ body.lg-open{overflow:hidden}
 
         <section class="card2 stp" id="st2">
           <h3><span class="sn">2</span>배경을 고르세요</h3>
-          <div class="seg segtabs" id="bgTabs"><button type="button" data-t="auto" aria-pressed="true">🎨 바로 만들기</button><button type="button" data-t="ai" aria-pressed="false">🤖 AI로 더 화려하게</button></div>
-          <div id="pAuto">
+          <div class="seg segtabs wrapx" id="bgTabs"><button type="button" data-t="photo" aria-pressed="true">📷 사진으로 (추천)</button><button type="button" data-t="auto" aria-pressed="false">🎨 바로 만들기</button><button type="button" data-t="ai" aria-pressed="false">🤖 AI로 만들기</button></div>
+          <div id="pPhoto">
+            <ol class="steps aiflow">
+              <li>아래 사진 사이트 이름을 눌러 마음에 드는 사진을 찾아 <b>다운로드</b>해요.</li>
+              <li>받은 사진을 이 화면 <b>맨 아래 상자</b>에 넣어요.</li>
+              <li>다음 단계에서 글자를 넣으면 끝이에요.</li>
+            </ol>
+            <span class="flabel" id="phHead"></span>
+            <div class="phlist" id="phList"></div>
+            <p class="note" id="phTip"></p>
+            <p class="note dim">사진 사이트마다 이용 조건이 달라요. 받을 때 "상업적 이용 가능"인지, 사람 얼굴·상표가 크게 나오지 않았는지 확인하세요. 사진은 내 기기 안에서만 처리돼요.</p>
+            <div class="drow"><button type="button" class="b-sub sm" id="bNoPhoto">사진 없이 바로 만들기 →</button></div>
+          </div>
+          <div id="pAuto" hidden>
             <p class="note">마음에 드는 그림을 누르세요. 마음에 들 때까지 "🎲 다시 섞기"를 눌러 보세요. 누를 때마다 다른 그림이 나와요.</p>
             <div class="styles" id="styles"></div>
             <div class="drow"><button type="button" class="b-main" id="bShuffle">🎲 다시 섞기</button></div>
@@ -485,12 +497,15 @@ body.lg-open{overflow:hidden}
             <p class="note" id="platNote"></p>
             <p class="note" id="negBox" hidden></p>
             <div class="drow"><button type="button" class="b-main" id="bCopy">📋 문구 복사</button><button type="button" class="b-sub sm" id="bCopyNeg">제외 문구 복사</button></div>
+            
+          </div>
+          <div id="pUp">
             <div class="sub">
-              <h4>만든 이미지 넣기</h4>
+              <h4>받은 사진·그림 넣기</h4>
               <label class="drop" id="imgDrop"><input type="file" id="imgFile" accept="image/*"><span>여기를 눌러 이미지를 고르세요 (끌어다 놓아도 돼요)</span></label>
               <p class="note" id="imgInfo" hidden></p>
               <div class="drow"><button type="button" class="b-sub sm" id="bClearImg" hidden>이미지 빼고 자동 배경으로</button></div>
-              <p class="note dim">AI 서비스마다 만든 그림을 어디에 쓸 수 있는지 조건이 달라요. 올리기 전에 이용 약관을 확인하세요. 이미지는 내 기기 안에서만 처리돼요.</p>
+              <p class="note dim">사진 사이트·AI 서비스마다 이용 조건이 달라요. 올리기 전에 약관을 확인하세요. 이미지는 내 기기 안에서만 처리돼요.</p>
             </div>
           </div>
           <a class="nxt" href="#st3" data-go="#st3">다음: 글자 ↓</a>
@@ -615,14 +630,14 @@ function pal(id){for(var i=0;i<PALS.length;i++)if(PALS[i].id===id)return PALS[i]
 
 /* ---------- moods ---------- */
 var MOODS=[
- {id:'sep',k:'이별·그리움',e:'Parting & longing',pal:'sunset',st:['sunset','rain','city'],w:['wistful, nostalgic, bittersweet','아련하고 그리운, 쓸쓸하면서도 따뜻한']},
- {id:'dawn',k:'새벽 감성',e:'Late-night calm',pal:'dawn',st:['ocean','city','aurora'],w:['quiet, introspective, serene late-night mood','고요하고 차분한 새벽 감성']},
- {id:'love',k:'설렘·사랑',e:'Love & flutter',pal:'sakura',st:['petal','mesh','sunset'],w:['romantic, tender, hopeful and fluttering','설레고 다정하고 희망찬']},
- {id:'heal',k:'위로·힐링',e:'Comfort & healing',pal:'forest',st:['forest','sunset','ocean'],w:['comforting, gentle, healing and peaceful','위로가 되는 포근하고 평화로운']},
- {id:'fun',k:'신나는·청량',e:'Bright & upbeat',pal:'summer',st:['ocean','mesh','city'],w:['energetic, refreshing, joyful and breezy','활기차고 청량하고 즐거운']},
- {id:'dream',k:'몽환·우주',e:'Dreamy & cosmic',pal:'dream',st:['space','aurora','mesh'],w:['dreamy, ethereal, floating and otherworldly','몽환적이고 공중에 뜬 듯한 비현실적인']},
- {id:'fall',k:'쓸쓸한 가을',e:'Lonely autumn',pal:'autumn',st:['forest','rain','sunset'],w:['melancholic, warm-toned, lonely autumn feeling','쓸쓸하고 따뜻한 빛의 가을 느낌']},
- {id:'snow',k:'겨울·눈',e:'Winter snow',pal:'winter',st:['aurora','forest','mini'],w:['cold, hushed, crystalline and quietly magical','차갑고 고요하고 투명하면서 신비로운']}
+ {id:'sep',q:[['노을 언덕','Sunset hills','sunset hills silhouette'],['비 오는 창','Rainy window','rain window night'],['쓸쓸한 길','Lonely road','lonely road dusk'],['빈 벤치','Empty bench','empty bench evening'],['도시 노을','City sunset','city skyline sunset'],['흐린 바다','Moody sea','moody ocean']],k:'이별·그리움',e:'Parting & longing',pal:'sunset',st:['sunset','rain','city'],w:['wistful, nostalgic, bittersweet','아련하고 그리운, 쓸쓸하면서도 따뜻한']},
+ {id:'dawn',q:[['밤 도시 불빛','City lights at night','night city lights'],['달 뜬 바다','Moon over the sea','moon over sea'],['푸른 새벽빛','Blue hour','blue hour'],['밤 창가','Window at night','window night quiet'],['별 가득한 밤하늘','Starry sky','starry night sky'],['안개 낀 호수','Foggy lake','foggy dawn lake']],k:'새벽 감성',e:'Late-night calm',pal:'dawn',st:['ocean','city','aurora'],w:['quiet, introspective, serene late-night mood','고요하고 차분한 새벽 감성']},
+ {id:'love',q:[['벚꽃','Cherry blossom','cherry blossom'],['분홍빛 하늘','Pink sky','pink sky sunset'],['부드러운 빛망울','Soft bokeh','soft bokeh lights'],['꽃밭','Flower field','flower field'],['노을 속 두 사람','Couple at sunset','couple silhouette sunset'],['봄 꽃잎','Spring petals','spring petals']],k:'설렘·사랑',e:'Love & flutter',pal:'sakura',st:['petal','mesh','sunset'],w:['romantic, tender, hopeful and fluttering','설레고 다정하고 희망찬']},
+ {id:'heal',q:[['안개 낀 숲','Misty forest','misty forest'],['아침 호수','Calm lake','calm lake morning'],['나무 사이 햇살','Sunlight in trees','sunlight through trees'],['초록 들판','Green meadow','green meadow'],['포근한 창가 빛','Cozy window light','cozy window light'],['안개 낀 산','Mountain fog','mountain fog']],k:'위로·힐링',e:'Comfort & healing',pal:'forest',st:['forest','sunset','ocean'],w:['comforting, gentle, healing and peaceful','위로가 되는 포근하고 평화로운']},
+ {id:'fun',q:[['여름 바다','Summer beach','summer beach'],['푸른 하늘 구름','Blue sky','blue sky clouds'],['반짝이는 바다','Sparkling sea','sparkling sea'],['야자수 노을','Palm sunset','palm trees sunset'],['드라이브 길','Road trip','sunny road trip'],['여름 옥상','Rooftop summer','city rooftop summer']],k:'신나는·청량',e:'Bright & upbeat',pal:'summer',st:['ocean','mesh','city'],w:['energetic, refreshing, joyful and breezy','활기차고 청량하고 즐거운']},
+ {id:'dream',q:[['은하수','Galaxy sky','galaxy night sky'],['오로라','Aurora','aurora borealis'],['밤하늘 별빛','Milky Way','milky way'],['파스텔 구름','Pastel clouds','pastel clouds sky'],['성운','Nebula','nebula'],['네온 불빛','Neon lights','neon lights night']],k:'몽환·우주',e:'Dreamy & cosmic',pal:'dream',st:['space','aurora','mesh'],w:['dreamy, ethereal, floating and otherworldly','몽환적이고 공중에 뜬 듯한 비현실적인']},
+ {id:'fall',q:[['단풍잎','Autumn leaves','autumn leaves'],['가을 숲길','Autumn forest path','autumn forest path'],['안개 낀 가을','Foggy autumn','foggy autumn'],['황금빛 노을','Golden hour','golden hour fall'],['빈 공원','Empty park','empty park autumn'],['비 오는 가을 거리','Rainy autumn street','rain autumn street']],k:'쓸쓸한 가을',e:'Lonely autumn',pal:'autumn',st:['forest','rain','sunset'],w:['melancholic, warm-toned, lonely autumn feeling','쓸쓸하고 따뜻한 빛의 가을 느낌']},
+ {id:'snow',q:[['눈 덮인 숲','Snowy forest','snow forest'],['밤에 내리는 눈','Night snowfall','snowfall night'],['얼어붙은 호수','Frozen lake','frozen lake'],['겨울 산','Winter mountain','winter mountain'],['눈 오는 거리 불빛','Snowy street lights','snowy street lights'],['겨울 아침 안개','Winter fog','winter morning fog']],k:'겨울·눈',e:'Winter snow',pal:'winter',st:['aurora','forest','mini'],w:['cold, hushed, crystalline and quietly magical','차갑고 고요하고 투명하면서 신비로운']}
 ];
 function mood(id){for(var i=0;i<MOODS.length;i++)if(MOODS[i].id===id)return MOODS[i];return MOODS[0]}
 
@@ -1370,7 +1385,7 @@ function markChips(id,key){$$(id+' .chip').forEach(function(b){b.setAttribute('a
 function pickMood(id){
   var M=mood(id);S.mood=id;S.pal=M.pal;S.style=M.st[0];S.seed=Math.floor(Math.random()*90000)+1000;
   PR.scene=0;rerollAll();
-  markMood();markPals();buildStyles();fillSlots();updatePrompt();layoutIcons();redraw();
+  markMood();markPals();buildStyles();fillSlots();updatePrompt();buildPhoto();layoutIcons();redraw();
 }
 
 /* ---------- aspect ---------- */
@@ -1379,7 +1394,7 @@ function buildAspects(){
   ASPECTS.forEach(function(a){
     var b=document.createElement('button');b.type='button';b.className='chip';b.dataset.id=a.id;b.innerHTML='<span class="lg">'+T(a.k,a.e)+' </span><span class="sm">'+T(a.k.split('·')[0].replace(' 커버','').replace(' 영상',''),a.e.split(' ')[0])+' </span>'+a.r;
     box.appendChild(b);
-    b.addEventListener('click',function(){S.aspect=a.id;markChips('#aspects','aspect');updatePrompt();redrawWithFonts()});
+    b.addEventListener('click',function(){S.aspect=a.id;markChips('#aspects','aspect');updatePrompt();buildPhoto();redrawWithFonts()});
   });
   markChips('#aspects','aspect');
 }
@@ -1510,8 +1525,9 @@ function bind(){
   $('#bShuffle').addEventListener('click',function(){S.seed=Math.floor(Math.random()*90000)+1000;S.bgMode=S.img&&S.bgMode==='img'?'img':'auto';buildStyles();redraw()});
   $$('#bgTabs button').forEach(function(b){b.addEventListener('click',function(){
     $$('#bgTabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
-    $('#pAuto').hidden=b.dataset.t!=='auto';$('#pAi').hidden=b.dataset.t!=='ai';
+    showTab(b.dataset.t);
   })});
+  $('#bNoPhoto').addEventListener('click',function(){var bt=document.querySelector('#bgTabs [data-t="auto"]');if(bt)bt.click()});
   $('#bRollAll').addEventListener('click',function(){rerollAll();fillSlots();updatePrompt()});
   $$('#lenTabs button').forEach(function(b){b.addEventListener('click',function(){PR.len=b.dataset.id;updatePrompt()})});
   $('#bCopy').addEventListener('click',function(){copyText($('#promptOut').value)});
@@ -1526,6 +1542,38 @@ function bind(){
   if(canShareImg()){$('#bShareImg').hidden=false;$('#bShareImg').addEventListener('click',shareImg)}
   $$('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=$(a.dataset.go);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 }
+
+/* ---------- photo tab ---------- */
+var PHSITES=[['Pexels','https://www.pexels.com/search/{q}/{o}','orientation=landscape','orientation=portrait'],
+ ['Unsplash','https://unsplash.com/s/photos/{q}{o}','orientation=landscape','orientation=portrait'],
+ ['Pixabay','https://pixabay.com/images/search/{q}/{o}','orientation=horizontal','orientation=vertical']];
+function phUrl(site,q){
+  var o='';var land=S.aspect==='yt',port=S.aspect==='sh';
+  var p=land?site[2]:port?site[3]:'';
+  if(p)o=(site[0]==='Unsplash'?'?':'?')+p;
+  return site[1].replace('{q}',encodeURIComponent(q).replace(/%20/g,site[0]==='Unsplash'?'-':'%20')).replace('{o}',o);
+}
+function buildPhoto(){
+  var M=mood(S.mood),box=$('#phList');if(!box||!M||!M.q)return;
+  box.innerHTML='';
+  $('#phHead').textContent=T('"'+M.k+'" 느낌에 어울리는 사진 검색어','Search ideas for "'+M.e+'"');
+  M.q.forEach(function(q){
+    var row=document.createElement('div');row.className='phrow';
+    var lab=document.createElement('b');lab.textContent=T(q[0],q[1]);row.appendChild(lab);
+    var links=document.createElement('span');links.className='phlinks';
+    PHSITES.forEach(function(s){
+      var a=document.createElement('a');a.href=phUrl(s,q[2]);a.target='_blank';a.rel='noopener noreferrer';a.textContent=s[0]+' ↗';links.appendChild(a);
+    });
+    row.appendChild(links);box.appendChild(row);
+  });
+  var a=S.aspect;
+  $('#phTip').textContent=a==='yt'?T('유튜브 배경(가로)이라 가로 사진을 고르면 잘리는 곳이 적어요.','This is for a wide YouTube background - a landscape photo loses the least.')
+    :a==='sh'?T('쇼츠(세로)라 세로 사진을 고르면 잘리는 곳이 적어요.','This is for Shorts (tall) - a portrait photo loses the least.')
+    :T('앨범 커버(정사각)는 가로·세로 어느 사진이든 가운데를 맞춰 잘라 줘요. 해상도 큰 사진일수록 선명해요.','For a square cover, any photo works - we crop the center. Larger photos look sharper.');
+}
+function showTab(t){
+  $('#pPhoto').hidden=t!=='photo';$('#pAuto').hidden=t!=='auto';$('#pAi').hidden=t!=='ai';$('#pUp').hidden=t==='auto';
+}
 function loadImage(f){
   if(!f||!/^image\//.test(f.type)){toast(T('이미지 파일을 골라 주세요','Please choose an image file'));return}
   var url=URL.createObjectURL(f),im=new Image();
@@ -1535,7 +1583,7 @@ function loadImage(f){
   im.src=url;
 }
 function init(){
-  buildMoods();markMood();buildPals();buildStyles();buildAspects();buildLayouts();buildFonts();buildPlats();
+  buildMoods();markMood();buildPals();buildStyles();buildAspects();buildLayouts();buildFonts();buildPlats();buildPhoto();showTab('photo');
   rerollAll();PR.scene=0;PR.subject=0;PR.extras=[0,1];PR.time=0;PR.light=0;PR.medium=0;PR.comp=0;
   fillSlots();bind();updatePrompt();redrawWithFonts();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){redraw();layoutIcons()});
