@@ -365,7 +365,7 @@ body.lg-open{overflow:hidden}
 .fld{text-align:left}
 .stp .flabel{margin-top:2px}
 .cvwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:18px;align-items:start}
-.phlist{display:flex;flex-direction:column;gap:8px;margin:6px 0 10px}.phrow{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}.phrow b{font-size:14px}.phlinks{display:flex;gap:5px;flex-wrap:nowrap}.phlinks a{font-size:12px;font-weight:700;padding:6px 8px;white-space:nowrap;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--text);background:var(--panel)}.phlinks a:hover{border-color:var(--accent)}#pUp{margin-top:14px}.cvprev{order:2;position:sticky;top:76px;display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}
+.phsearch{display:flex;flex-direction:column;gap:8px;margin:6px 0 4px}.phgo{display:flex;gap:6px;flex-wrap:wrap}.phgo button{flex:1 1 0;white-space:nowrap;padding:10px 4px;font-size:13px}.phlist{display:flex;flex-direction:column;gap:8px;margin:6px 0 10px}.phrow{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}.phrow b{font-size:14px}.phlinks{display:flex;gap:5px;flex-wrap:nowrap}.phlinks a{font-size:12px;font-weight:700;padding:6px 8px;white-space:nowrap;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--text);background:var(--panel)}.phlinks a:hover{border-color:var(--accent)}#pUp{margin-top:14px}.cvprev{order:2;position:sticky;top:76px;display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}
 .cvsteps{order:1;display:flex;flex-direction:column;gap:16px;min-width:0}
 #cv{display:block;margin:0 auto;max-width:100%;max-height:68vh;width:auto;height:auto;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.45);background:#0a0e1d}
 @media(max-width:860px){.cvwrap{grid-template-columns:minmax(0,1fr)}.cvprev{order:0;top:60px;z-index:20;padding:8px;gap:6px}.cvprev .note{display:none}#cv{max-height:25vh}#aspects{flex-wrap:nowrap;gap:6px;justify-content:center}#aspects .chip{padding:6px 9px;font-size:12px;white-space:nowrap}#aspects .lg{display:none}}.segtabs button{white-space:nowrap}#aspects .sm{display:none}@media(max-width:860px){#aspects .sm{display:inline}}
@@ -470,6 +470,12 @@ body.lg-open{overflow:hidden}
               <li>Drop the photo into the <b>box at the bottom</b> of this step.</li>
               <li>Next step: add your text. That is it.</li>
             </ol>
+            <span class="flabel">Search by yourself</span>
+            <div class="phsearch">
+              <input class="inp" id="phQ" type="search" maxlength="60" autocomplete="off" placeholder="e.g. rainy night window">
+              <div class="phgo"><button type="button" class="b-main sm" data-ph="0">Pexels ↗</button><button type="button" class="b-main sm" data-ph="1">Unsplash ↗</button><button type="button" class="b-main sm" data-ph="2">Pixabay ↗</button></div>
+            </div>
+            <p class="note dim">Short English words work best, e.g. rain, night, city.</p>
             <span class="flabel" id="phHead"></span>
             <div class="phlist" id="phList"></div>
             <p class="note" id="phTip"></p>
@@ -1528,6 +1534,8 @@ function bind(){
     showTab(b.dataset.t);
   })});
   $('#bNoPhoto').addEventListener('click',function(){var bt=document.querySelector('#bgTabs [data-t="auto"]');if(bt)bt.click()});
+  $$('[data-ph]').forEach(function(b){b.addEventListener('click',function(){phSearch(+b.dataset.ph)})});
+  $('#phQ').addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();phSearch(2)}});
   $('#bRollAll').addEventListener('click',function(){rerollAll();fillSlots();updatePrompt()});
   $$('#lenTabs button').forEach(function(b){b.addEventListener('click',function(){PR.len=b.dataset.id;updatePrompt()})});
   $('#bCopy').addEventListener('click',function(){copyText($('#promptOut').value)});
@@ -1570,6 +1578,12 @@ function buildPhoto(){
   $('#phTip').textContent=a==='yt'?T('유튜브 배경(가로)이라 가로 사진을 고르면 잘리는 곳이 적어요.','This is for a wide YouTube background - a landscape photo loses the least.')
     :a==='sh'?T('쇼츠(세로)라 세로 사진을 고르면 잘리는 곳이 적어요.','This is for Shorts (tall) - a portrait photo loses the least.')
     :T('앨범 커버(정사각)는 가로·세로 어느 사진이든 가운데를 맞춰 잘라 줘요. 해상도 큰 사진일수록 선명해요.','For a square cover, any photo works - we crop the center. Larger photos look sharper.');
+}
+
+function phSearch(i){
+  var q=($('#phQ').value||'').replace(/\s+/g,' ').trim();
+  if(!q){toast(T('검색어를 먼저 적어 주세요','Type a search word first'));$('#phQ').focus();return}
+  window.open(phUrl(PHSITES[i],q),'_blank','noopener');
 }
 function showTab(t){
   $('#pPhoto').hidden=t!=='photo';$('#pAuto').hidden=t!=='auto';$('#pAi').hidden=t!=='ai';$('#pUp').hidden=t==='auto';
