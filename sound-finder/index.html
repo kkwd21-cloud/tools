@@ -711,7 +711,7 @@ function varify(parts){
   var src=(mix&&ratio==='b')?mix:cur,out=parts.slice(0,3);
   var vv=src.v==='female'?V.vf:src.v==='male'?V.vm:src.v==='group'?V.vg:[];
   var add=[pk(V.i),pk(V.m),pk(V.p),pk(V.t)];
-  if(VS%2===0&&vv.length&&/vocal|voice|harmon/i.test(out[0]||''))out[0]=pk(vv);
+  if(VS%2===0&&vv.length&&!cur.virt&&/vocal|voice|harmon/i.test(out[0]||''))out[0]=pk(vv);
   add.forEach(function(x){if(x&&out.join(',').toLowerCase().indexOf(x.toLowerCase())<0)out.push(x)});
   return out}
 function build(){
@@ -1594,17 +1594,19 @@ function vcRender(){
   $('#vcBody').innerHTML=h;vcPrev();
 }
 function vcPrev(){var r=vcRow(VC);$('#vcPrev').textContent='미리보기: '+r.k;}
+function vcGo(scroll){
+  var row=vcRow(VC);qIn.value='';song='';choose(row,scroll);
+  if(VC.lang==='en'){var be=$('#lxMode button[data-m="enonly"]');if(be)be.click()}else if(ENG){var bk=$('#lxMode button[data-m="ko"]');if(bk)bk.click()}
+}
 $('#vcBody').addEventListener('click',function(e){
   var b=e.target.closest('button');if(!b)return;var box=b.parentNode.id,id=b.dataset.id;
-  if(b.id==='vcGo'){
-    var row=vcRow(VC);qIn.value='';song='';choose(row,true);
-    if(VC.lang==='en'){var be=$('#lxMode button[data-m="enonly"]');if(be)be.click()}else if(ENG){var bk=$('#lxMode button[data-m="ko"]');if(bk)bk.click()}
-    vAuto();return}
+  if(b.id==='vcGo'){vcGo(true);vAuto();return}
   if(box==='vcG')VC.g=id;
   else if(box==='vcV'){if(VC.vs.indexOf(id)<0&&vcConflict(VC.vs,id)){var gone=VC.vs.filter(function(s){return vcConflict([s],id)}).map(function(s){return vcFind(VCV,s)[1]});VC.vs=VC.vs.filter(function(s){return !vcConflict([s],id)});toast('반대 느낌이라 빼고 바꿨어요 → 뺀 것: '+gone.join('·'))}var i=VC.vs.indexOf(id);if(i>=0)VC.vs.splice(i,1);else{VC.vs.push(id);if(VC.vs.length>2)VC.vs.shift()}var v=vcFind(VCV,id);$('#vcDesc').textContent=v?v[1]+': '+v[3]:''}
   else if(box==='vcN')VC.n=id;else if(box==='vcM')VC.m=id;else if(box==='vcL')VC.lang=id;
   else return;
   var d=$('#vcDesc')?$('#vcDesc').textContent:'';vcRender();if($('#vcDesc'))$('#vcDesc').textContent=d;
+  if(cur&&cur.virt){var _tt=$('#toast').classList.contains('show');vcGo(false);if(!_tt)toast('고른 대로 아래 문구를 바로 바꿨어요')}
 });
 function vcTab(w){var v=w==='voice';$('#vcPanel').hidden=!v;$('#artistPanel').hidden=v;$$('#findTabs button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.t===w?'true':'false')});if(v&&!$('#vcBody').innerHTML)vcRender()}
 $('#findTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)vcTab(b.dataset.t)});
