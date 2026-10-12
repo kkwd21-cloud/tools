@@ -350,6 +350,7 @@ textarea.inp{width:100%;background:var(--bg2);border:1px solid var(--line2);bord
 #cPhrase,#pkOut{font-family:'IBM Plex Mono',monospace;font-size:13px;min-height:64px}
 #mixBox .sfq .inp1{flex:1 1 160px;font-size:16px}
 .seg button{white-space:normal}
+.chip.dim{opacity:.38;filter:grayscale(.7)}
 .fxrow{display:flex;flex-direction:column;gap:4px;margin-top:8px}
 .vitem{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line,#ddd)}
 .vitem:first-child{border-top:0}
@@ -491,6 +492,7 @@ details.pk>summary .note{display:block;margin-top:4px}
         <span class="flabel"><span class="ob">②</span> 스타일 <span class="note sm" style="font-weight:400">수노 Style of Music 칸</span> <b id="mixLabel" class="mlab"></b></span>
         <textarea class="inp" id="cPhrase" rows="5" spellcheck="false"></textarea>
         <span class="note sm" id="cLen" style="align-self:flex-end"></span>
+        <div id="vcTip" class="precbox" hidden style="flex-direction:column;gap:6px;align-items:stretch"><b style="font-size:13px">목소리가 안 나오면 (수노 팁)</b><span class="note sm" style="margin:0">① 수노 고급 옵션(Advanced Options)에서 Vocal Gender를 맞추고 Style Influence를 높여 보세요. ② 아래 문구를 Exclude Styles 칸에 넣으면 반대 목소리가 덜 나와요. ③ 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 가사 칸 태그에도 목소리 설명이 자동으로 들어가요. 흐리게 보이는 항목은 고른 목소리와 반대라 막아 뒀어요.</span><div class="sfrow"><input class="inp" id="vcExcl" type="text" readonly aria-label="제외 스타일" style="font-size:14px"><button type="button" class="b-sub" id="vcExCopy">제외 스타일 복사</button></div></div>
         <div id="precBox" class="precbox" hidden><label><input type="checkbox" id="optPrec" checked> <b>이 곡 정밀 스타일</b></label><span id="precInfo"></span></div>
         <div class="sfrow"><button type="button" class="b-main" id="cpStyle">스타일 복사</button><button type="button" class="b-sub" id="vaStyle">🎲 다른 스타일로</button><button type="button" class="b-sub" id="vaReset" hidden>처음 스타일</button></div>
         <span class="note sm" id="vaInfo"></span>
@@ -588,7 +590,7 @@ details.pk>summary .note{display:block;margin-top:4px}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 47</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 49</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -719,6 +721,7 @@ function build(){
   if(VS&&!inst())parts=varify(parts);
   Object.keys(tw).forEach(function(k){if(tw[k])parts.push(TW[k].en)});
   if(tn)parts.push(tn.en);
+  if(cur.virt&&cur.strong)parts=parts.map(function(x,i){return i<1?x:x.replace(/\b(soft|gentle|delicate|airy|angelic)\s+/gi,'')});
   var ex=LXE.styleTokens(LX),fxT=fxTokens();
   if(fxT.rm.length)parts=parts.filter(function(x,i){return i<1||!fxT.rm.some(function(re){return re.test(x)})});
   fxT.sub.forEach(function(f){parts=parts.map(function(x){return x.replace(f.sub[0],f.sub[1])});if(!f.has.test(parts.join(', ')))fxT.add.unshift(f.en)});
@@ -767,10 +770,10 @@ function renderTw(){
 $('#twChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var k=b.dataset.k,on=!tw[k];
   TWG.forEach(function(g){if(g.indexOf(k)>=0)g.forEach(function(x){tw[x]=false})});tw[k]=on;renderTw();renderPhrase()});
 function renderTone(){
-  $('#toneChips').innerHTML=['<button type="button" class="chip" data-t="" aria-pressed="'+(tone===''?'true':'false')+'">기본</button>'].concat((D.tones||[]).map(function(t){return '<button type="button" class="chip" data-t="'+t.id+'" aria-pressed="'+(tone===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
+  $('#toneChips').innerHTML=['<button type="button" class="chip" data-t="" aria-pressed="'+(tone===''?'true':'false')+'">기본</button>'].concat((D.tones||[]).map(function(t){var cf=vcBlock('tone',t.id);return '<button type="button" class="chip'+(cf?' dim':'')+'" data-t="'+t.id+'"'+(cf?' title="'+esc(cf)+'" aria-disabled="true"':'')+' aria-pressed="'+(tone===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
   $('#prodRow').innerHTML='<button type="button" class="chip" data-p="1" aria-pressed="'+(prod?'true':'false')+'">풍성하게 (프로듀서 터치)</button>';
 }
-$('#toneChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;tone=b.dataset.t;LS.locked={};renderTone();renderPhrase()});
+$('#toneChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var cf=vcBlock('tone',b.dataset.t);if(cf){toast(cf);return}tone=b.dataset.t;LS.locked={};renderTone();renderPhrase()});
 $('#prodRow').addEventListener('click',function(e){if(!e.target.closest('button'))return;prod=!prod;renderTone();renderPhrase()});
 function renderTheme(){
   $('#thChips').innerHTML=['<button type="button" class="chip" data-t="" aria-pressed="'+(theme===''?'true':'false')+'">자동</button>'].concat(D.themes.map(function(t){return '<button type="button" class="chip" data-t="'+t.id+'" aria-pressed="'+(theme===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
@@ -797,6 +800,7 @@ function renderPhrase(){
   renderFeel(p);if(AU.on)startPreview();
   if(LS.sig!==lSig())lyrNew();
   if(typeof renderFix==='function')renderFix();
+  if(typeof renderVtip==='function')renderVtip();
 }
 
 /* ---------- feel: scene text, meters, sample sound ---------- */
@@ -1211,7 +1215,7 @@ function buildBar(B,t0,sp,idx){
 function R0(sp,pos){return ((sp.seed>>pos)&1)===1}
 function secName(pos){return pos<2?'도입':pos<6?'전개':pos<10?'고조':pos<14?'후렴':'여운'}
 /* playback */
-window.__sfRows=function(){return ROWS};window.__sfSpec=function(){return makeSpec()};window.__sfLyr=function(){return lyrText()};window.__sfPrec=function(){return D.prec};window.__sfPick=function(n,s){var r=ROWS.filter(function(x){return x.n===n})[0];qIn.value=n;song=s;choose(r,true)};
+window.__sfRows=function(){return ROWS};window.__sfSpec=function(){return makeSpec()};window.__sfLyr=function(){return lyrText()};window.__sfCur=function(){return cur};window.__sfPrec=function(){return D.prec};window.__sfPick=function(n,s){var r=ROWS.filter(function(x){return x.n===n})[0];qIn.value=n;song=s;choose(r,true)};
 window.__sfOff=function(bars){var sp=makeSpec(),sr=22050,len=Math.ceil(sp.beat*4*bars+2),ctx=new OfflineAudioContext(2,sr*len,sr),B=mkBus(ctx,sp.beat);applyMix(B,sp);for(var i=0;i<bars;i++)buildBar(B,.05+i*sp.beat*4,sp,i);return ctx.startRendering().then(function(buf){var d=buf.getChannelData(0),e=[],pk=0;for(var s=0;s<8;s++){var a=0,n=0;for(var k=Math.floor(d.length*s/8);k<Math.floor(d.length*(s+1)/8);k++){a+=d[k]*d[k];n++;pk=Math.max(pk,Math.abs(d[k]))}e.push(Math.sqrt(a/n))}var z=0;for(var k=1;k<d.length;k++)if((d[k]>=0)!==(d[k-1]>=0))z++;var i16=new Int16Array(d.length);for(var k=0;k<d.length;k++)i16[k]=Math.max(-32767,Math.min(32767,d[k]*32767));var u=new Uint8Array(i16.buffer),bs='';for(var k=0;k<u.length;k+=8192)bs+=String.fromCharCode.apply(null,u.subarray(k,k+8192));return {pcm:btoa(bs),arch:sp.arch||'-',bpm:sp.bpm,peak:pk,zc:z/d.length*sr,rms:e}})};
 function startPreview(){
   var C=window.AudioContext||window.webkitAudioContext;if(!C){toast('이 브라우저에서는 소리를 낼 수 없어요');return}
@@ -1350,7 +1354,7 @@ var ARC=LXE.ARC;
 function lHint(id){if(LX.arc)return ARC[LY.secdef[id].hk]||'';if(!LS.hints)return '';var hk=LY.secdef[id].hk;if(tone&&TN[tone]&&TN[tone].hints[hk])return TN[tone].hints[hk];if(lDiary()&&D.diary.hints[hk])return D.diary.hints[hk];return (LY.hints[lGenre()]||{})[hk]||''}
 function soloTag(){return LXE.soloTag(famKey([build()]))}
 function duetV(id){return LXE.duetV(id,cur&&cur.v==='male'?'male':'female')}
-function lTag(id){var d=LY.secdef[id],h=lHint(id),t=d.tag;if(id==='solo')t=soloTag();if(LX.duet){var v=duetV(id);if(v)t+=' - '+v}return '['+t+(h?': '+h:'')+']'}
+function lTag(id){var d=LY.secdef[id],h=lHint(id),t=d.tag;var _vh=(d.key&&!/^rap/.test(d.key))?voiceHint():'';if(_vh&&cur.strong&&h)h=h.split(', ').filter(function(x){return !/^(soft|airy|gentle|delicate|intimate|whispered?|hushed)$/i.test(x)}).join(', ');if(_vh)h=_vh+(h?', '+h:'');if(id==='solo')t=soloTag();if(LX.duet){var v=duetV(id);if(v)t+=' - '+v}return '['+t+(h?': '+h:'')+']'}
 function lyrText(){
   if(lInst()){var o=[];LY.ambTags.forEach(function(t,i){var hh=LS.hints&&LY.ambHints[i]?': '+LY.ambHints[i]:'';o.push('['+t+hh+']')});o.push('[End]');return o.join('\n\n')}
   var parts=[];lSecs().forEach(function(s){var d=LY.secdef[s],t=d.key?(LS.texts[d.key]||''):'';if(LX.tit&&d.key==='chorus'&&LS.title&&t.indexOf(LS.title)<0)t+='\n'+LS.title;parts.push(lTag(s)+(t?'\n'+t:''))});parts.push('[End]');return parts.join('\n\n');
@@ -1510,11 +1514,12 @@ function renderFix(){
   box.innerHTML=FXR.filter(function(r){return !(r.v&&iv)}).map(function(r){
     return '<div class="fxrow"><span class="note sm">'+r.h+'</span><div class="chips">'+r.it.map(function(x){var id=x[0],on,tx;
       if(id.indexOf('tw:')===0){var k=id.slice(3);on=!!tw[k];tx=x[1]}else{var k2=id.slice(3);on=!!FXS[k2];tx=FXD[k2].t}
-      return '<button type="button" class="chip" data-f="'+id+'" aria-pressed="'+(on?'true':'false')+'">'+esc(tx)+'</button>'}).join('')+'</div></div>'}).join('');
+      var cf=id.indexOf('fx:')===0?vcBlock('fix',id.slice(3)):'';
+      return '<button type="button" class="chip'+(cf?' dim':'')+'" data-f="'+id+'"'+(cf?' title="'+esc(cf)+'" aria-disabled="true"':'')+' aria-pressed="'+(on?'true':'false')+'">'+esc(tx)+'</button>'}).join('')+'</div></div>'}).join('');
   var n=fxCount();$('#fixCount').textContent=n?n+'개 적용 중':'';$('#fixUndo').hidden=!n;
 }
 $('#fixRows').addEventListener('click',function(e){
-  var b=e.target.closest('button[data-f]');if(!b)return;var id=b.dataset.f,k=id.slice(3),before=$('#cPhrase').value;
+  var b=e.target.closest('button[data-f]');if(!b)return;var id=b.dataset.f,k=id.slice(3),before=$('#cPhrase').value;if(id.indexOf('fx:')===0){var cf=vcBlock('fix',k);if(cf){toast(cf);return}}
   if(id.indexOf('tw:')===0){var on=!tw[k];TWG.forEach(function(g){if(g.indexOf(k)>=0)g.forEach(function(x){tw[x]=false})});tw[k]=on;renderTw()}
   else{var on2=!FXS[k];if(FXD[k].g)Object.keys(FXD).forEach(function(o){if(FXD[o].g===FXD[k].g)FXS[o]=false});FXS[k]=on2}
   VS=VS;renderPhrase();renderFix();
@@ -1537,12 +1542,21 @@ $('#rpClear').addEventListener('click',function(){rpSet([]);rpRender()});
 rpRender();
 
 /* ---------- 목소리로 찾기 ---------- */
+var VSTRONG=['husky','gravel','power','deep','soulful','sultry'],VSOFT=['clear','breathy','sweet','dreamy','warm','youth'];
+function vcConflict(sel,id){return sel.some(function(s){return (VSTRONG.indexOf(s)>=0&&VSOFT.indexOf(id)>=0)||(VSOFT.indexOf(s)>=0&&VSTRONG.indexOf(id)>=0)})}
+function vcBlock(kind,id){
+  if(!cur||!cur.virt)return '';var vs=cur.virt.vs||[],st=vs.filter(function(x){return VSTRONG.indexOf(x)>=0}),so=vs.filter(function(x){return VSOFT.indexOf(x)>=0});
+  var nm=function(a){var v=vcFind(VCV,a[0]);return v?v[1]:''};
+  if(st.length){if((kind==='tone'&&id==='dream')||(kind==='fix'&&id==='soft'))return nm(st)+' 목소리와 반대라 효과가 약해져서 막아 뒀어요'}
+  if(so.length){if((kind==='tone'&&id==='epic')||(kind==='fix'&&id==='strong'))return nm(so)+' 목소리와 반대라 효과가 약해져서 막아 뒀어요'}
+  return '';
+}
 var VCG=[['male','남자','male'],['female','여자','female'],['duet','남녀 듀엣','male-female duet'],['group','그룹','group']];
-var VCV=[['husky','허스키','husky, raspy','살짝 쉰 듯 거친 목소리'],['clear','맑은','clear, bright','깨끗하고 투명한 목소리'],['warm','부드러운','warm, smooth','따뜻하고 매끄러운 목소리'],['power','파워풀','powerful, belting','크게 시원하게 내지르는 목소리'],
- ['deep','깊은 저음','deep, low','낮고 묵직한 목소리'],['high','고음·팔세토','high, falsetto','가늘고 높게 올라가는 목소리'],['breathy','속삭이는','breathy, whispery','숨소리가 섞인 가까운 목소리'],['soulful','소울풍','soulful','음을 꺾고 흔들며 감정을 싣는 목소리'],
- ['gravel','걸걸한','gravelly','거칠고 굵은 목소리'],['sweet','달콤·귀여운','sweet, girlish','말랑하고 귀여운 목소리'],['dreamy','몽환적인','dreamy, ethereal','안개처럼 흐릿하고 아련한 목소리'],['sultry','나른한','sultry, laid-back','힘 빼고 느리게 흘리는 목소리'],
- ['youth','청량한','fresh, youthful','상쾌하고 젊은 목소리'],['sad','애절한','emotional, aching','울먹이듯 떨리는 목소리']];
-var VCN=[['ballad','발라드','ballad','slow','60~80',['emotional ballad','soft piano','gentle strings']],['acoustic','어쿠스틱 팝','acoustic','mid','85~105',['acoustic guitar pop','warm and intimate','light percussion']],
+var VCV=[['husky','허스키','husky, raspy, smoky','살짝 쉰 듯 거친 목소리','clean vocals, soft vocals, angelic'],['clear','맑은','clear, bright','깨끗하고 투명한 목소리','raspy, gravelly'],['warm','부드러운','warm, smooth','따뜻하고 매끄러운 목소리','harsh vocals'],['power','파워풀','powerful, belting','크게 시원하게 내지르는 목소리','whisper, soft vocals'],
+ ['deep','깊은 저음','deep, low','낮고 묵직한 목소리','high-pitched vocals'],['high','고음·팔세토','high, falsetto','가늘고 높게 올라가는 목소리','deep voice'],['breathy','속삭이는','breathy, whispery','숨소리가 섞인 가까운 목소리','belting, shouting'],['soulful','소울풍','soulful','음을 꺾고 흔들며 감정을 싣는 목소리',''],
+ ['gravel','걸걸한','gravelly, gritty','거칠고 굵은 목소리','clean vocals, angelic'],['sweet','달콤·귀여운','sweet, girlish','말랑하고 귀여운 목소리','raspy, deep voice'],['dreamy','몽환적인','dreamy, ethereal','안개처럼 흐릿하고 아련한 목소리','harsh, gritty'],['sultry','나른한','sultry, laid-back','힘 빼고 느리게 흘리는 목소리','bright cheerful vocals'],
+ ['youth','청량한','fresh, youthful','상쾌하고 젊은 목소리','raspy'],['sad','애절한','emotional, aching','울먹이듯 떨리는 목소리','cheerful']];
+var VCN=[['ballad','발라드','ballad','slow','60~80',['emotional ballad','piano','strings']],['acoustic','어쿠스틱 팝','acoustic','mid','85~105',['acoustic guitar pop','warm and intimate','light percussion']],
  ['indie','인디 포크','acoustic','mid','90~115',['indie folk','fingerpicked acoustic guitar','laid-back groove']],['pop','팝','pop','mid','95~120',['catchy pop','bright synths and live drums','memorable hook']],
  ['dance','댄스팝','pop','fast','110~130',['dance pop','punchy beat','synth hooks']],['rnb','R&B','pop','mid','75~100',['smooth R&B','groovy bass','finger snaps']],
  ['hiphop','힙합','pop','mid','80~100',['hip hop','heavy beats','deep bass']],['rock','록 밴드','pop','fast','100~140',['rock band','electric guitars','driving drums']],
@@ -1559,13 +1573,20 @@ function vcRow(s){
   var vp=(adj?adj+' ':'')+g[2]+(rap?' rap and vocals':' vocals');
   var items=[vp].concat(gn[5]);if(mo[2])items.push(mo[2]);
   var vn=(s.vs||[]).map(function(id){var v=vcFind(VCV,id);return v?v[1]:''}).filter(Boolean).join('·');
-  var r={n:'내가 고른 목소리',a:[],g:gn[2],v:s.g,t:gn[3],b:gn[4],k:items.join(', '),items:items,s:[],i:-1,keys:[],virt:JSON.parse(JSON.stringify(s)),
+  var STR=['husky','gravel','power','deep','soulful','sultry'],strong=(s.vs||[]).some(function(id){return STR.indexOf(id)>=0});
+  var r={n:'내가 고른 목소리',strong:strong,a:[],g:gn[2],v:s.g,t:gn[3],b:gn[4],k:items.join(', '),items:items,s:[],i:-1,keys:[],virt:JSON.parse(JSON.stringify(s)),
     d:'고른 조합: '+g[1]+' · '+(vn||'목소리 자유')+' · '+gn[1]+(mo[1]&&mo[0]?' · '+mo[1]:'')+'. 가수 없이 목소리와 장르만으로 만든 문구예요.'};
   r.w=words(r);return r;
 }
+
+function voiceHint(){if(!cur||!cur.virt||!(cur.virt.vs||[]).length)return '';var g=vcFind(VCG,cur.virt.g)||VCG[0],ws=cur.virt.vs.map(function(id){var v=vcFind(VCV,id);return v?v[2]:''}).filter(Boolean).join(', ');return ws+' '+g[2]+' vocal'}
+function voiceExcl(){if(!cur||!cur.virt)return '';var o=[];(cur.virt.vs||[]).forEach(function(id){var v=vcFind(VCV,id);if(v&&v[4])v[4].split(', ').forEach(function(x){if(o.indexOf(x)<0)o.push(x)})});
+  if(cur.virt.g==='female')o.push('male vocals');else if(cur.virt.g==='male')o.push('female vocals');return o.join(', ')}
+function renderVtip(){var t=$('#vcTip');if(!t)return;var ex=voiceExcl();t.hidden=!(cur&&cur.virt);if(t.hidden)return;$('#vcExcl').value=ex}
+$('#vcExCopy').addEventListener('click',function(){copy($('#vcExcl').value,'제외 스타일을 복사했어요')});
 function vcRender(){
   var h='<div class="fxrow"><span class="note sm">① 누가 부르나요?</span><div class="chips" id="vcG">'+VCG.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.g===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
-  h+='<div class="fxrow"><span class="note sm">② 목소리 느낌 (1~2개)</span><div class="chips" id="vcV">'+VCV.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.vs.indexOf(x[0])>=0?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div><span class="note sm" id="vcDesc"></span></div>';
+  h+='<div class="fxrow"><span class="note sm">② 목소리 느낌 (1~2개)</span><div class="chips" id="vcV">'+VCV.map(function(x){var cf=VC.vs.indexOf(x[0])<0&&vcConflict(VC.vs,x[0]);return '<button type="button" class="chip'+(cf?' dim':'')+'" data-id="'+x[0]+'"'+(cf?' title="지금 고른 목소리와 반대예요. 누르면 바꿔 줘요"':'')+' aria-pressed="'+(VC.vs.indexOf(x[0])>=0?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div><span class="note sm" id="vcDesc"></span></div>';
   h+='<div class="fxrow"><span class="note sm">③ 장르</span><div class="chips" id="vcN">'+VCN.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.n===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
   h+='<div class="fxrow"><span class="note sm">④ 분위기</span><div class="chips" id="vcM">'+VCM.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.m===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
   h+='<div class="fxrow"><span class="note sm">⑤ 가사 언어</span><div class="chips" id="vcL"><button type="button" class="chip" data-id="ko" aria-pressed="'+(VC.lang==='ko'?'true':'false')+'">한국어</button><button type="button" class="chip" data-id="en" aria-pressed="'+(VC.lang==='en'?'true':'false')+'">영어</button></div></div>';
@@ -1580,7 +1601,7 @@ $('#vcBody').addEventListener('click',function(e){
     if(VC.lang==='en'){var be=$('#lxMode button[data-m="enonly"]');if(be)be.click()}else if(ENG){var bk=$('#lxMode button[data-m="ko"]');if(bk)bk.click()}
     vAuto();return}
   if(box==='vcG')VC.g=id;
-  else if(box==='vcV'){var i=VC.vs.indexOf(id);if(i>=0)VC.vs.splice(i,1);else{VC.vs.push(id);if(VC.vs.length>2)VC.vs.shift()}var v=vcFind(VCV,id);$('#vcDesc').textContent=v?v[1]+': '+v[3]:''}
+  else if(box==='vcV'){if(VC.vs.indexOf(id)<0&&vcConflict(VC.vs,id)){var gone=VC.vs.filter(function(s){return vcConflict([s],id)}).map(function(s){return vcFind(VCV,s)[1]});VC.vs=VC.vs.filter(function(s){return !vcConflict([s],id)});toast('반대 느낌이라 빼고 바꿨어요 → 뺀 것: '+gone.join('·'))}var i=VC.vs.indexOf(id);if(i>=0)VC.vs.splice(i,1);else{VC.vs.push(id);if(VC.vs.length>2)VC.vs.shift()}var v=vcFind(VCV,id);$('#vcDesc').textContent=v?v[1]+': '+v[3]:''}
   else if(box==='vcN')VC.n=id;else if(box==='vcM')VC.m=id;else if(box==='vcL')VC.lang=id;
   else return;
   var d=$('#vcDesc')?$('#vcDesc').textContent:'';vcRender();if($('#vcDesc'))$('#vcDesc').textContent=d;
