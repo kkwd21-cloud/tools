@@ -372,7 +372,7 @@ details.pk .pkb{display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .blk{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
 .mlab{color:var(--accent2);font-weight:700;margin-left:6px;text-transform:none;letter-spacing:0}
 .sug:empty{display:none}
-#card[hidden],#starts[hidden],#mixBox[hidden],#mixOn[hidden],#mixOpen[hidden]{display:none}
+#vcPanel[hidden],#artistPanel[hidden],#card[hidden],#starts[hidden],#mixBox[hidden],#mixOn[hidden],#mixOpen[hidden]{display:none}
 .sug{display:flex;flex-direction:column;border:1px solid var(--line2);border-radius:12px;overflow:auto;max-height:320px;background:var(--panel)}
 .sug button{display:flex;align-items:center;gap:10px;text-align:left;padding:12px 14px;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);font-size:15px;font-family:inherit;cursor:pointer;min-width:0}
 .sug button:last-child{border-bottom:0}
@@ -417,11 +417,15 @@ details.pk>summary .note{display:block;margin-top:4px}
     <div class="test-bn">가수 느낌은 대략적인 설명이라 곡마다 다를 수 있어요. 수노에서 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 찾는 가수가 없으면 맨 아래에 기록돼요.</div>
   </section>
   <section class="sec" id="find">
-    <div class="sec-head"><h2><span class="stp">1</span>가수·곡 찾기</h2><p>한글이나 영어 모두 돼요. 예: 아이유, 밤편지, Shape of You</p></div>
+    <div class="sec-head"><h2><span class="stp">1</span>가수·곡 또는 목소리 찾기</h2><p>가수·곡: 한글이나 영어 모두 돼요. 예: 아이유, 밤편지, Shape of You</p></div>
+    <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="voice" aria-pressed="false">🗣 목소리로 찾기</button></div>
+    <div id="artistPanel">
     <div class="sfq"><input id="q" class="inp1" type="search" autocomplete="off" placeholder="가수 이름 또는 곡 제목" aria-label="가수 이름 또는 곡 제목"></div>
     <div class="sug" id="res" role="listbox" style="margin-top:6px"></div>
     <div id="starts" class="cg" style="margin-top:10px"></div>
     <p class="note" id="none" hidden>아직 없는 가수나 곡이에요. 곡 제목은 유명한 곡만 들어 있어요. 아래 "느낌 직접 고르기"를 써 보세요.</p>
+    </div>
+    <div id="vcPanel" hidden><p class="note sm" style="margin:0 0 4px">가수를 몰라도 돼요. 목소리와 장르만 고르면 수노용 스타일 문구, 제목, 가사까지 이어서 만들어 줘요.</p><div id="vcBody"></div></div>
   </section>
 
   <section class="sec" id="card" hidden>
@@ -584,7 +588,7 @@ details.pk>summary .note{display:block;margin-top:4px}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 46</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 47</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -710,7 +714,7 @@ function varify(parts){
   return out}
 function build(){
   var PC=prec(),parts=PC?PC.it.slice():baseItems(),tn=(tone&&TN[tone])?TN[tone]:null;
-  var kt=!PC&&kArt&&!ENG&&!inst()&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
+  var kt=!PC&&kArt&&!cur.virt&&!ENG&&!inst()&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
   if(tn){var re=TCONF[tn.id],vi=splitV(parts);parts=parts.filter(function(x){return !(re&&re.test(x))}).slice(0,5);if(tn.id==='funny'||tn.id==='epic')parts=parts.map(function(x){return x.replace(/\bballad\s*/i,'')})}
   if(VS&&!inst())parts=varify(parts);
   Object.keys(tw).forEach(function(k){if(tw[k])parts.push(TW[k].en)});
@@ -752,7 +756,7 @@ function choose(r,scroll){
   $('#cBadges').innerHTML='<span class="badge-b">'+esc(D.genreNames[r.g])+'</span> <span class="badge-b">'+esc(D.vocalNames[r.v])+'</span> <span class="badge-b">'+esc(D.tempoNames[r.t])+'</span>';
   $('#cDesc').textContent=r.d;
   $('#cBpm').textContent=D.ui.bpm.replace('{b}',r.b);
-  $('#yt').href=ytUrl();$('#yt').textContent=song?'▶ 원곡 듣기':'▶ 대표곡 듣기';
+  $('#yt').href=ytUrl();$('#yt').textContent=song?'▶ 원곡 듣기':'▶ 대표곡 듣기';$('#yt').hidden=!!r.virt;
   $('#optKo').checked=ko;$('#koRow').hidden=r.v==='inst';
   resetMix();renderTw();renderTone();renderTheme();renderSimilar();renderPhrase();
   if(scroll){$('#card').scrollIntoView({behavior:'smooth',block:'start'})}
@@ -1532,6 +1536,58 @@ $('#rpCopy').addEventListener('click',function(){var t=rpGet().map(function(x){r
 $('#rpClear').addEventListener('click',function(){rpSet([]);rpRender()});
 rpRender();
 
+/* ---------- 목소리로 찾기 ---------- */
+var VCG=[['male','남자','male'],['female','여자','female'],['duet','남녀 듀엣','male-female duet'],['group','그룹','group']];
+var VCV=[['husky','허스키','husky, raspy','살짝 쉰 듯 거친 목소리'],['clear','맑은','clear, bright','깨끗하고 투명한 목소리'],['warm','부드러운','warm, smooth','따뜻하고 매끄러운 목소리'],['power','파워풀','powerful, belting','크게 시원하게 내지르는 목소리'],
+ ['deep','깊은 저음','deep, low','낮고 묵직한 목소리'],['high','고음·팔세토','high, falsetto','가늘고 높게 올라가는 목소리'],['breathy','속삭이는','breathy, whispery','숨소리가 섞인 가까운 목소리'],['soulful','소울풍','soulful','음을 꺾고 흔들며 감정을 싣는 목소리'],
+ ['gravel','걸걸한','gravelly','거칠고 굵은 목소리'],['sweet','달콤·귀여운','sweet, girlish','말랑하고 귀여운 목소리'],['dreamy','몽환적인','dreamy, ethereal','안개처럼 흐릿하고 아련한 목소리'],['sultry','나른한','sultry, laid-back','힘 빼고 느리게 흘리는 목소리'],
+ ['youth','청량한','fresh, youthful','상쾌하고 젊은 목소리'],['sad','애절한','emotional, aching','울먹이듯 떨리는 목소리']];
+var VCN=[['ballad','발라드','ballad','slow','60~80',['emotional ballad','soft piano','gentle strings']],['acoustic','어쿠스틱 팝','acoustic','mid','85~105',['acoustic guitar pop','warm and intimate','light percussion']],
+ ['indie','인디 포크','acoustic','mid','90~115',['indie folk','fingerpicked acoustic guitar','laid-back groove']],['pop','팝','pop','mid','95~120',['catchy pop','bright synths and live drums','memorable hook']],
+ ['dance','댄스팝','pop','fast','110~130',['dance pop','punchy beat','synth hooks']],['rnb','R&B','pop','mid','75~100',['smooth R&B','groovy bass','finger snaps']],
+ ['hiphop','힙합','pop','mid','80~100',['hip hop','heavy beats','deep bass']],['rock','록 밴드','pop','fast','100~140',['rock band','electric guitars','driving drums']],
+ ['jazz','재즈','acoustic','slow','70~100',['jazz','upright bass','brushed drums','piano']],['lofi','로파이·칠','lofi','slow','70~90',['lo-fi chill','dusty drums','mellow keys']],
+ ['cine','시네마틱·웅장','cinematic','slow','60~90',['cinematic','orchestral strings','dramatic build']],['trot','트로트','ballad','mid','90~120',['Korean trot','accordion and brass','nostalgic']],
+ ['edm','일렉트로닉','pop','fast','120~130',['electronic dance','synth leads','four-on-the-floor']],['country','컨트리','acoustic','mid','90~120',['country','acoustic guitar','steel guitar']]];
+var VCM=[['','상관없음',''],['sad','슬픈','sad, melancholic'],['warm','따뜻한','warm, comforting'],['love','설레는','romantic, fluttering'],['happy','신나는','upbeat, joyful'],['lonely','쓸쓸한','lonely, wistful'],['dream','몽환적','dreamy, hazy'],['epic','힘찬','powerful, uplifting'],['calm','편안한','relaxing, easygoing']];
+var VC={g:'male',vs:['husky'],n:'ballad',m:'',lang:'ko'};
+function vcFind(a,id){var r=null;a.forEach(function(x){if(x[0]===id)r=x});return r}
+function vcRow(s){
+  var g=vcFind(VCG,s.g)||VCG[0],gn=vcFind(VCN,s.n)||VCN[0],mo=vcFind(VCM,s.m||'')||VCM[0];
+  var vl=(s.vs||[]).map(function(id){var v=vcFind(VCV,id);return v?v[2]:''}).filter(Boolean),adj=vl.length>1?vl.map(function(x){return x.split(', ')[0]}).join(' and '):vl.join(', ');
+  var rap=s.n==='hiphop';
+  var vp=(adj?adj+' ':'')+g[2]+(rap?' rap and vocals':' vocals');
+  var items=[vp].concat(gn[5]);if(mo[2])items.push(mo[2]);
+  var vn=(s.vs||[]).map(function(id){var v=vcFind(VCV,id);return v?v[1]:''}).filter(Boolean).join('·');
+  var r={n:'내가 고른 목소리',a:[],g:gn[2],v:s.g,t:gn[3],b:gn[4],k:items.join(', '),items:items,s:[],i:-1,keys:[],virt:JSON.parse(JSON.stringify(s)),
+    d:'고른 조합: '+g[1]+' · '+(vn||'목소리 자유')+' · '+gn[1]+(mo[1]&&mo[0]?' · '+mo[1]:'')+'. 가수 없이 목소리와 장르만으로 만든 문구예요.'};
+  r.w=words(r);return r;
+}
+function vcRender(){
+  var h='<div class="fxrow"><span class="note sm">① 누가 부르나요?</span><div class="chips" id="vcG">'+VCG.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.g===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
+  h+='<div class="fxrow"><span class="note sm">② 목소리 느낌 (1~2개)</span><div class="chips" id="vcV">'+VCV.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.vs.indexOf(x[0])>=0?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div><span class="note sm" id="vcDesc"></span></div>';
+  h+='<div class="fxrow"><span class="note sm">③ 장르</span><div class="chips" id="vcN">'+VCN.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.n===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
+  h+='<div class="fxrow"><span class="note sm">④ 분위기</span><div class="chips" id="vcM">'+VCM.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.m===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
+  h+='<div class="fxrow"><span class="note sm">⑤ 가사 언어</span><div class="chips" id="vcL"><button type="button" class="chip" data-id="ko" aria-pressed="'+(VC.lang==='ko'?'true':'false')+'">한국어</button><button type="button" class="chip" data-id="en" aria-pressed="'+(VC.lang==='en'?'true':'false')+'">영어</button></div></div>';
+  h+='<button type="button" class="b-main" id="vcGo" style="margin-top:12px">이 목소리로 문구 만들기</button><p class="note sm" id="vcPrev" style="margin:8px 0 0"></p>';
+  $('#vcBody').innerHTML=h;vcPrev();
+}
+function vcPrev(){var r=vcRow(VC);$('#vcPrev').textContent='미리보기: '+r.k;}
+$('#vcBody').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;var box=b.parentNode.id,id=b.dataset.id;
+  if(b.id==='vcGo'){
+    var row=vcRow(VC);qIn.value='';song='';choose(row,true);
+    if(VC.lang==='en'){var be=$('#lxMode button[data-m="enonly"]');if(be)be.click()}else if(ENG){var bk=$('#lxMode button[data-m="ko"]');if(bk)bk.click()}
+    vAuto();return}
+  if(box==='vcG')VC.g=id;
+  else if(box==='vcV'){var i=VC.vs.indexOf(id);if(i>=0)VC.vs.splice(i,1);else{VC.vs.push(id);if(VC.vs.length>2)VC.vs.shift()}var v=vcFind(VCV,id);$('#vcDesc').textContent=v?v[1]+': '+v[3]:''}
+  else if(box==='vcN')VC.n=id;else if(box==='vcM')VC.m=id;else if(box==='vcL')VC.lang=id;
+  else return;
+  var d=$('#vcDesc')?$('#vcDesc').textContent:'';vcRender();if($('#vcDesc'))$('#vcDesc').textContent=d;
+});
+function vcTab(w){var v=w==='voice';$('#vcPanel').hidden=!v;$('#artistPanel').hidden=v;$$('#findTabs button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.t===w?'true':'false')});if(v&&!$('#vcBody').innerHTML)vcRender()}
+$('#findTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)vcTab(b.dataset.t)});
+
 /* ---------- vault (보관함) ---------- */
 var VK='dusk_sf_vault_v1',VAULT=[],SID=0;
 function vLoad(){try{var a=JSON.parse(localStorage.getItem(VK)||'[]');VAULT=Array.isArray(a)?a:[]}catch(e){VAULT=[]}}
@@ -1539,7 +1595,7 @@ function vSave(){try{if(VAULT.length>60)VAULT=VAULT.slice(0,60);localStorage.set
 function vSnap(){
   if(!cur)return null;
   return {id:SID||(SID=Date.now()),ts:Date.now(),a:cur.n,mx:mix?mix.n:'',ratio:ratio,song:song,title:LS.title||'',style:$('#cPhrase').value,
-    texts:JSON.parse(JSON.stringify(LS.texts||{})),lyr:lyrText(),theme:theme,tone:tone,eng:!!ENG,ko:!!ko,tl:TL,lx:JSON.parse(JSON.stringify(LX)),tw:JSON.parse(JSON.stringify(tw||{})),fx:JSON.parse(JSON.stringify(FXS||{})),inst:!!lInst()};
+    texts:JSON.parse(JSON.stringify(LS.texts||{})),lyr:lyrText(),theme:theme,tone:tone,eng:!!ENG,ko:!!ko,tl:TL,lx:JSON.parse(JSON.stringify(LX)),vr:cur.virt?JSON.parse(JSON.stringify(cur.virt)):null,tw:JSON.parse(JSON.stringify(tw||{})),fx:JSON.parse(JSON.stringify(FXS||{})),inst:!!lInst()};
 }
 function vPut(forceNew){
   var s=vSnap();if(!s)return false;
@@ -1564,7 +1620,7 @@ function vDownload(name,text,mime){
 }
 function vFname(e,ext){return (String(e.title||'lyrics').replace(/[\\\/:*?"<>|\s]+/g,'_').slice(0,40)||'lyrics')+ext}
 function vRestore(e){
-  var row=null;ROWS.forEach(function(r){if(!row&&r.n===e.a)row=r});
+  var row=null;if(e.vr)row=vcRow(e.vr);else ROWS.forEach(function(r){if(!row&&r.n===e.a)row=r});
   if(!row){toast('이 가수는 지금 목록에 없어요');return}
   song=e.song||'';ENG=!!e.eng;try{var d0=LXE.def();Object.keys(d0).forEach(function(k){LX[k]=(e.lx&&k in e.lx)?e.lx[k]:d0[k]})}catch(x){}
   choose(row,false);
