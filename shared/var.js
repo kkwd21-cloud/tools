@@ -18,3 +18,4 @@ function tokens(fam,vocal){
   return out}
 window.DuskVar={tokens:tokens};
 })();
+(function(){if(window.__mcCta||document.querySelector('script[src*="mc-cta.js"]'))return;var c=document.currentScript,s=c&&c.src;if(!s)return;var t=document.createElement('script');t.src=s.replace(/var\.js(\?.*)?$/,'mc-cta.js');t.defer=true;document.head.appendChild(t)})();
