@@ -76,6 +76,48 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (max-width:760px){.how{grid-template-columns:1fr}}
 
 /* sections */
+.lgrid{display:flex;flex-direction:column;gap:10px}
+.lcol{display:flex;flex-direction:column;gap:10px;min-width:0}
+.cbar{position:sticky;bottom:0;z-index:20;display:flex;gap:8px;padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));margin:6px -2px -2px;background:var(--panel);border-top:1px solid var(--line)}
+.cbar button{flex:1;padding:12px 6px;font-size:14px}
+#cPhrase{min-height:96px}
+#feelBox .pkb,#mixBoxWrap .pkb{margin-top:10px}
+@media (min-width:960px){
+.lgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.lcol.r>.blk{border-top:0;padding-top:0}
+#lyBody{max-height:min(62vh,640px);overflow:auto;padding-right:6px}
+.cbar{display:none}
+}
+.hero{padding:22px 0 0!important}
+.hero h1{font-size:clamp(26px,4.2vw,40px)!important}
+.hero .vibe{margin-top:10px;max-width:72ch}
+.hero .lead{font-size:14px;margin-top:6px;max-width:72ch}
+#vault{padding-top:28px}#vault .sec-head{margin-bottom:10px}#vault .sec-head h2{font-size:clamp(17px,2.4vw,20px)}
+.eyebrow{margin-bottom:8px!important}
+#find{padding-top:20px}
+#find .sec-head{margin-bottom:12px}
+#find .sec-head h2{font-size:clamp(18px,2.6vw,22px)}
+#card{padding-top:20px}#card .sec-head{display:none}
+#card .card2{padding:12px 16px;gap:6px}
+#card .ctop{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap}
+#card .ctop h3{font-size:22px}
+#card #cName{font-size:22px;margin:0}
+#lyr{padding-top:12px}
+#lyr .sec-head{margin-bottom:10px}
+#lyr .sec-head h2{font-size:clamp(18px,2.6vw,22px)}
+#lyr .sec-head p{display:none}
+#fin{padding-top:24px}
+.tools{display:flex;flex-direction:column;gap:0}
+.tbar{display:flex;flex-wrap:wrap;gap:8px}
+.tb{background:var(--bg2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:9px 13px;font-size:14px;font-weight:700;cursor:pointer;transition:.15s}
+.tb:hover{border-color:var(--accent)}
+.tb[aria-pressed="true"]{background:var(--accent);color:#14101a;border-color:var(--accent)}
+.tcnt{font-weight:600;opacity:.85}
+.tpanels>details{display:none;margin-top:10px}
+.tpanels>details.on{display:block;max-height:58vh;overflow:auto}
+.tpanels>details>summary{display:none!important}
+.tpanels>details>.pkb,.tpanels>details>*:not(summary){margin-top:0}
+@media (max-width:760px){.tbar{display:grid;grid-template-columns:1fr 1fr}.tb{padding:10px 8px;font-size:13px}#card #cName{font-size:20px}}
 .sec{padding-top:56px}
 .sec-head{margin-bottom:20px}
 .sec-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.3}
@@ -433,9 +475,7 @@ details.pk>summary .note{display:block;margin-top:4px}
   <p class="lead">수노에는 가수 이름을 그대로 쓰기 어려워요. 그래서 가수의 느낌을 장르, 목소리, 악기, 빠르기 말로 풀어 드려요. 마음에 들면 복사하거나, 바로 노래 만들기로 넘어가세요.</p>
 </div></section>
 <div class="wrap">
-  <section class="sec">
-    <div class="test-bn">가수 느낌은 대략적인 설명이라 곡마다 다를 수 있어요. 수노에서 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 찾는 가수가 없으면 맨 아래에 기록돼요.</div>
-  </section>
+  
   <section class="sec" id="find">
     <div class="sec-head"><h2><span class="stp">1</span>가수·곡, 목소리, 음악 파일로 찾기</h2><p>가수·곡: 한글이나 영어 모두 돼요. 예: 아이유, 밤편지, Shape of You</p></div>
     <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="voice" aria-pressed="false">🗣 목소리로 찾기</button><button type="button" class="chip" data-t="file" aria-pressed="false">🎵 음악 파일로 찾기</button></div>
@@ -447,6 +487,7 @@ details.pk>summary .note{display:block;margin-top:4px}
     </div>
     <div id="vcPanel" hidden><p class="note sm" style="margin:0 0 4px">가수를 몰라도 돼요. 목소리와 장르만 고르면 수노용 스타일 문구, 제목, 가사까지 이어서 만들어 줘요.</p><div id="vcBody"></div></div>
     <div id="afPanel" hidden><p class="note sm" style="margin:0 0 8px">비슷하게 만들고 싶은 곡 파일을 넣으면 빠르기·키·소리 색을 듣고 수노 문구로 바꿔 줘요. 파일은 어디에도 올라가지 않고 이 브라우저 안에서만 분석해요.</p><label class="afdrop" id="afDrop"><input type="file" id="afIn" accept="audio/*,video/*,.mp3,.wav,.m4a,.flac,.ogg,.aac,.mp4" hidden><b>🎵 음악 파일 넣기</b><span>눌러서 고르거나 여기로 끌어다 놓기 · mp3·wav·m4a</span></label><p class="note sm" id="afMsg" style="margin:8px 0 0" aria-live="polite"></p><div id="afRes" hidden></div></div>
+    <p class="note sm" style="margin:12px 0 0">가수 느낌은 대략적인 설명이라 곡마다 다를 수 있어요. 수노에서 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 찾는 가수가 없으면 맨 아래에 기록돼요.</p>
   </section>
 
   <section class="sec" id="card" hidden>
@@ -454,17 +495,34 @@ details.pk>summary .note{display:block;margin-top:4px}
     <div class="card2">
       <div class="ctop"><h3 id="cName"></h3><div class="cbadges" id="cBadges"></div></div>
       <p class="note sm" id="cSong" hidden style="margin:0"></p>
-      <div class="feel" id="feel">
+      
+      <p id="cDesc" style="margin:0;line-height:1.7"></p>
+      <div class="sfrow2"><a class="btn-g" id="yt" href="#" target="_blank" rel="noopener">▶ 원곡 듣기</a><span class="note sm" id="cBpm"></span></div>
+      
+    </div>
+  </section>
+
+  <section class="sec" id="lyr" hidden>
+    <div class="sec-head"><h2><span class="stp">2</span>제목 · 스타일 · 가사</h2><p>이 느낌에 맞게 자동으로 만들었어요. 마음에 들면 복사해서 수노에 붙여넣기만 하세요.</p></div>
+    <div class="card2">
+      
+
+      <div class="tools" id="tools"><div class="tbar" id="tbar">
+        <button type="button" class="tb" data-tp="feelBox" aria-pressed="false">🔊 소리 들어보기</button>
+        <button type="button" class="tb" data-tp="mixBoxWrap" aria-pressed="false">🎛 가수 섞기</button>
+        <button type="button" class="tb" data-tp="adv" aria-pressed="false">⚙ 톤·주제·세부 설정</button>
+        <button type="button" class="tb" data-tp="sfxBox" aria-pressed="false">🎧 효과음 <span class="tcnt" data-src="sfxCount"></span></button>
+        <button type="button" class="tb" data-tp="fixBox" aria-pressed="false">😕 수노 결과가 달라요 <span class="tcnt" data-src="fixCount"></span></button>
+        <button type="button" class="tb" data-go="vault">💾 내 보관함</button>
+      </div><div class="tpanels" id="tpanels"><details class="pk" id="feelBox"><summary>🔊 소리로 느껴보기 <span class="note sm" style="font-weight:400">빠르기·분위기 샘플 — 눌러서 펼치기</span></summary><div class="pkb"><div class="feel" id="feel">
         <p class="scene" id="scene"></p>
         <p class="instl" id="instLine"></p>
         <div class="meters" id="meters"></div>
         <div class="playrow"><button type="button" class="b-main" id="play">▶ 소리로 느껴보기</button><button type="button" class="b-sub" id="playVar" hidden>↻ 다른 편곡</button><label class="volw" title="볼륨">🔈<input type="range" id="vol" min="0" max="100" value="80" aria-label="볼륨"></label></div>
         <div class="pv" id="pv" aria-hidden="true"></div>
         <p class="note sm" id="playNote" style="margin:0">실제 곡이 아니에요. 빠르기와 분위기만 들려주는 샘플이에요.</p>
-      </div>
-      <p id="cDesc" style="margin:0;line-height:1.7"></p>
-      <div class="sfrow2"><a class="btn-g" id="yt" href="#" target="_blank" rel="noopener">▶ 원곡 듣기</a><span class="note sm" id="cBpm"></span></div>
-      <div class="blk">
+      </div></div></details><details class="pk" id="mixBoxWrap"><summary>🎛 가수 섞기 · 비슷한 가수 <span class="note sm" style="font-weight:400">두 가수 느낌을 섞거나 비슷한 가수를 골라요</span></summary><div class="pkb" style="gap:0">
+      <div class="blk" style="border-top:0;padding-top:0">
         <span class="flabel">두 가수 느낌 섞기 <span class="note sm" style="font-weight:400">예: 아이유 × 에드 시런</span></span>
         <button type="button" class="b-sub" id="mixOpen">+ 가수 추가해서 섞기</button>
         <div id="mixBox" hidden>
@@ -477,18 +535,12 @@ details.pk>summary .note{display:block;margin-top:4px}
         </div>
       </div>
       <div class="blk"><span class="flabel">비슷한 느낌의 가수 <span class="note sm" style="font-weight:400">누르면 지금 가수에 섞여요</span></span><div class="chips" id="simChips"></div></div>
-    </div>
-  </section>
-
-  <section class="sec" id="lyr" hidden>
-    <div class="sec-head"><h2><span class="stp">3</span>제목 · 스타일 · 가사</h2><p>이 느낌에 맞게 자동으로 만들었어요. 마음에 들면 복사해서 수노에 붙여넣기만 하세요.</p></div>
-    <div class="card2">
-      <details class="pk" id="adv"><summary>고급 설정<span class="note sm" style="display:block;font-weight:400;margin-top:2px">톤 · 가수 섞기 · 가사 주제 · 세부 조정 — 몰라도 괜찮아요</span></summary>
+      </div></details><details class="pk" id="adv"><summary>고급 설정<span class="note sm" style="display:block;font-weight:400;margin-top:2px">톤 · 가수 섞기 · 가사 주제 · 세부 조정 — 몰라도 괜찮아요</span></summary>
         <div class="pkb">
-          <div class="blk" style="border-top:0;padding-top:0"><span class="flabel">곡 톤 <span class="note sm" style="font-weight:400">스타일과 가사가 같이 바뀌어요</span></span><div class="chips" id="toneChips"></div><div class="chips" id="prodRow"></div></div>
+          <div class="blk" style="border-top:0;padding-top:0"><span class="flabel">곡 톤 <span class="note sm" style="font-weight:400">스타일과 가사가 같이 바뀌어요</span></span><div class="chips" id="toneChips"></div></div>
           <div class="blk"><span class="flabel">곡에 맞게 살짝 바꾸기</span><div class="chips" id="twChips"></div></div>
           <div class="blk"><span class="flabel">가사 주제</span><div class="chips" id="thChips"></div></div>
-          <div class="blk"><span class="flabel">가사 구성</span><div class="chips" id="lyOpts"><button type="button" class="chip" data-o="short" aria-pressed="false">짧은 구성</button><button type="button" class="chip" data-o="hints" aria-pressed="true">분위기 힌트 넣기</button></div></div>
+          <div class="blk"><span class="flabel">가사 구성</span><div class="chips" id="lyOpts"><button type="button" class="chip" data-o="short" aria-pressed="false">짧은 구성</button><button type="button" class="chip" data-o="hints" aria-pressed="false">분위기 힌트 넣기 (원곡과 달라질 수 있어요)</button></div></div>
           <label class="chk" id="koRow"><input type="checkbox" id="optKo"><span>한국어 가사로 부르기</span></label>
           <div class="blk"><span class="flabel">가사 풍성하게 <span class="note sm" style="font-weight:400">전문가용 · 위 "가사 느낌"의 세부 설정</span></span>
             <span class="note sm" style="margin:6px 0 2px">영어 섞는 정도</span><div class="chips" id="lxEn"><button type="button" class="chip" data-k="en" data-v="off">없음</button><button type="button" class="chip" data-k="en" data-v="hook">후렴 끝에 한 줄</button><button type="button" class="chip" data-k="en" data-v="chorus">후렴 반반</button><button type="button" class="chip" data-k="en" data-v="half">프리·브릿지·아웃트로까지</button></div>
@@ -498,8 +550,15 @@ details.pk>summary .note{display:block;margin-top:4px}
           </div>
           <button type="button" class="b-sub" id="mkBtn">더 다듬기 (노래 만들기 페이지로) →</button>
         </div>
-      </details>
-
+      </details><details class="pk" id="fixBox"><summary>😕 수노에서 나온 곡이 마음에 안 들어요 <span class="note sm" id="fixCount" style="font-weight:400"></span></summary>
+          <p class="note sm" style="margin:8px 0">안 맞는 점을 누르면 스타일 문구가 바로 고쳐져요. 바뀐 문구를 복사해서 수노에서 다시 만들어 보세요.</p>
+          <div id="fixRows"></div>
+          <p class="note sm" id="fixInfo" hidden style="margin:8px 0 0"></p>
+          <button type="button" class="b-sub" id="fixUndo" hidden>원래대로 되돌리기</button>
+          <div class="fxrow" style="margin-top:14px"><span class="note sm">이 가수 정보 자체가 틀렸다면 눌러 주세요 <b id="rpCount" style="font-weight:400"></b></span><div class="chips" id="rpChips"><button type="button" class="chip" data-k="장르·분위기">장르·분위기가 달라요</button><button type="button" class="chip" data-k="목소리">목소리(남·여)가 달라요</button><button type="button" class="chip" data-k="빠르기">빠르기가 달라요</button><button type="button" class="chip" data-k="악기">악기가 달라요</button><button type="button" class="chip" data-k="수노 결과">수노 결과가 가수와 달라요</button></div>
+          <div class="sfrow"><button type="button" class="b-sub" id="rpCopy" hidden>신고 목록 복사 (저한테 붙여넣어 주세요)</button><button type="button" class="b-sub" id="rpClear" hidden>기록 지우기</button></div></div>
+        </details><details class="pk" id="sfxBox"><summary>🎧 효과음 넣기 · 나만의 효과 <span class="note sm" id="sfxCount" style="font-weight:400"></span><span class="note sm" style="display:block;font-weight:400;margin-top:2px">빗소리·LP 지직·박수 같은 소리나 메아리·오토튠 같은 효과를 곡에 넣어요</span></summary><p class="note sm" style="margin:8px 0">누르면 ② 스타일과 ③ 가사에 바로 들어가요. "처음·끝"은 가사 칸 맨 앞·뒤에 [Sound Effect: …]로, "곡 내내"와 소리 처리는 스타일 칸에 들어가요. 수노가 효과음을 꼭 넣어 주진 않아서, 안 나오면 "곡 내내"로 바꾸거나 2~3번 다시 만들어 보세요.</p><div id="sfxBody"></div></details></div></div>
+      <div class="lgrid"><div class="lcol l">
       <div class="blk" style="border-top:0;padding-top:0">
         <span class="flabel"><span class="ob">①</span> 제목 <span class="note sm" style="font-weight:400">수노 Song Title 칸</span></span>
         <div class="chips" id="tlChips"><button type="button" class="chip" data-l="ko" aria-pressed="true">한글 제목</button><button type="button" class="chip" data-l="en" aria-pressed="false">영어 제목</button><button type="button" class="chip" data-l="mix" aria-pressed="false">섞어서</button></div>
@@ -510,25 +569,20 @@ details.pk>summary .note{display:block;margin-top:4px}
 
       <div class="blk">
         <span class="flabel"><span class="ob">②</span> 스타일 <span class="note sm" style="font-weight:400">수노 Style of Music 칸</span> <b id="mixLabel" class="mlab"></b></span>
-        <textarea class="inp" id="cPhrase" rows="5" spellcheck="false"></textarea>
+        <textarea class="inp" id="cPhrase" rows="4" spellcheck="false"></textarea>
         <span class="note sm" id="cLen" style="align-self:flex-end"></span>
+        <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
         <div id="sgBox" class="sgbox" hidden><b style="font-size:13px">💡 이렇게 바꾸면 더 좋아질 수 있어요 <span class="note sm" style="font-weight:400">누르면 위 스타일에 바로 반영돼요</span></b><div id="sgRows"></div></div>
         <div id="vcTip" class="precbox" hidden style="flex-direction:column;gap:6px;align-items:stretch"><b style="font-size:13px">목소리가 안 나오면 (수노 팁)</b><span class="note sm" style="margin:0">① 수노 고급 옵션(Advanced Options)에서 Vocal Gender를 맞추고 Style Influence를 높여 보세요. ② 아래 문구를 Exclude Styles 칸에 넣으면 반대 목소리가 덜 나와요. ③ 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 가사 칸 태그에도 목소리 설명이 자동으로 들어가요. 흐리게 보이는 항목은 고른 목소리와 반대라 막아 뒀어요.</span><div class="sfrow"><input class="inp" id="vcExcl" type="text" readonly aria-label="제외 스타일" style="font-size:14px"><button type="button" class="b-sub" id="vcExCopy">제외 스타일 복사</button></div></div>
         <div id="precBox" class="precbox" hidden><label><input type="checkbox" id="optPrec" checked> <b>이 곡 정밀 스타일</b></label><span id="precInfo"></span></div>
         <div class="sfrow"><button type="button" class="b-main" id="cpStyle">스타일 복사</button><button type="button" class="b-sub" id="vaStyle">🎲 다른 스타일로</button><button type="button" class="b-sub" id="vaReset" hidden>처음 스타일</button></div>
         <span class="note sm" id="vaInfo"></span>
-        <details class="pk" id="fixBox"><summary>😕 수노에서 나온 곡이 마음에 안 들어요 <span class="note sm" id="fixCount" style="font-weight:400"></span></summary>
-          <p class="note sm" style="margin:8px 0">안 맞는 점을 누르면 스타일 문구가 바로 고쳐져요. 바뀐 문구를 복사해서 수노에서 다시 만들어 보세요.</p>
-          <div id="fixRows"></div>
-          <p class="note sm" id="fixInfo" hidden style="margin:8px 0 0"></p>
-          <button type="button" class="b-sub" id="fixUndo" hidden>원래대로 되돌리기</button>
-          <div class="fxrow" style="margin-top:14px"><span class="note sm">이 가수 정보 자체가 틀렸다면 눌러 주세요 <b id="rpCount" style="font-weight:400"></b></span><div class="chips" id="rpChips"><button type="button" class="chip" data-k="장르·분위기">장르·분위기가 달라요</button><button type="button" class="chip" data-k="목소리">목소리(남·여)가 달라요</button><button type="button" class="chip" data-k="빠르기">빠르기가 달라요</button><button type="button" class="chip" data-k="악기">악기가 달라요</button><button type="button" class="chip" data-k="수노 결과">수노 결과가 가수와 달라요</button></div>
-          <div class="sfrow"><button type="button" class="b-sub" id="rpCopy" hidden>신고 목록 복사 (저한테 붙여넣어 주세요)</button><button type="button" class="b-sub" id="rpClear" hidden>기록 지우기</button></div></div>
-        </details>
+        
         <p class="note sm" style="margin:0">가수 이름은 일부러 뺐어요. 수노는 가수를 똑같이 따라 하지 못하고 "분위기"까지만 비슷해져요. 같은 문구로 3~4번 만들어서 제일 가까운 걸 고르세요.</p>
       </div>
 
-      <details class="pk" id="sfxBox"><summary>🎧 효과음 넣기 · 나만의 효과 <span class="note sm" id="sfxCount" style="font-weight:400"></span><span class="note sm" style="display:block;font-weight:400;margin-top:2px">빗소리·LP 지직·박수 같은 소리나 메아리·오토튠 같은 효과를 곡에 넣어요</span></summary><p class="note sm" style="margin:8px 0">누르면 ② 스타일과 ③ 가사에 바로 들어가요. "처음·끝"은 가사 칸 맨 앞·뒤에 [Sound Effect: …]로, "곡 내내"와 소리 처리는 스타일 칸에 들어가요. 수노가 효과음을 꼭 넣어 주진 않아서, 안 나오면 "곡 내내"로 바꾸거나 2~3번 다시 만들어 보세요.</p><div id="sfxBody"></div></details>
+      
+      </div><div class="lcol r">
       <div class="blk"><span class="flabel"><span class="ob">③</span> 가사 <span class="note sm" style="font-weight:400">수노 Lyrics 칸</span></span>
         <p class="note sm" id="lyInst" hidden style="margin:0">연주곡 느낌이라 가사 없이 구간 태그만 만들어요.</p>
         <p class="note sm" id="lyTone" hidden style="margin:0"></p>
@@ -539,11 +593,13 @@ details.pk>summary .note{display:block;margin-top:4px}
         <div class="sfrow"><button type="button" class="b-main" id="cpLyr">가사 복사</button><button type="button" class="b-sub" id="lyNew">가사 다시 뽑기</button></div>
         <span class="note sm" id="lyLen" style="align-self:flex-end"></span>
       </div>
+      </div></div>
+      <div class="cbar" id="cBar"><button type="button" class="b-main" data-cp="cpTitle">제목 복사</button><button type="button" class="b-main" data-cp="cpStyle">스타일 복사</button><button type="button" class="b-main" data-cp="cpLyr">가사 복사</button></div>
     </div>
   </section>
 
   <section class="sec" id="fin" hidden>
-    <div class="sec-head"><h2><span class="stp">4</span>수노에 넣는 순서</h2></div>
+    <div class="sec-head"><h2><span class="stp">3</span>수노에 넣는 순서</h2></div>
     <div class="card2">
       <ol class="finl"><li>수노 Create → <b>Custom</b> 선택</li><li><b>Lyrics</b> 칸에 ③ 가사 붙여넣기</li><li><b>Style of Music</b> 칸에 ② 스타일 붙여넣기</li><li><b>Song Title</b> 칸에 ① 제목 붙여넣기</li></ol>
       <button type="button" class="b-main" id="winOpen">📋 수노 복사 창 열기 (수노 옆에 두고 버튼만 누르세요)</button>
@@ -612,7 +668,7 @@ details.pk>summary .note{display:block;margin-top:4px}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 59</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 62</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -639,7 +695,7 @@ function norm(s){return String(s||'').toLowerCase().replace(/[^0-9a-zㄱ-ㆎ가-
 var ROWS=D.rows,SONGS=[];
 ROWS.forEach(function(r,i){r.i=i;r.keys=[r.n].concat(r.a||[]).map(norm).filter(Boolean);r.items=r.k.split(', ');(r.s||[]).forEach(function(x){SONGS.push({t:x[0],r:r,keys:x.map(norm).filter(Boolean)})})});
 var TW=D.tweaks,TWG=D.tweakGroups;
-var TN={},tone='',prod=true;(D.tones||[]).forEach(function(t){TN[t.id]=t});
+var TN={},tone='',prod=null;function prodOn(){return prod===null?!!(cur&&cur.virt):prod}(D.tones||[]).forEach(function(t){TN[t.id]=t});
 
 /* ---------- search ---------- */
 function search(q){
@@ -750,7 +806,7 @@ function build(){
   fxT.sub.forEach(function(f){parts=parts.map(function(x){return x.replace(f.sub[0],f.sub[1])});if(!f.has.test(parts.join(', ')))fxT.add.unshift(f.en)});
   ex=ex.concat(fxT.add).concat(sfxT);ex.forEach(function(x){if(parts.join(',').toLowerCase().indexOf(x.toLowerCase())<0)parts.push(x)});
   var pStart;
-  if(prod&&!PC&&!VS){pStart=parts.length;var pg=(mix&&ratio==='b')?mix.g:cur.g,soft=false;if(!tn){var sc=scores(parts.join(', ').toLowerCase(),(mix&&ratio==='b')?mix:cur);soft=sc.e<.55}
+  if(prodOn()&&!PC&&!VS){pStart=parts.length;var pg=(mix&&ratio==='b')?mix.g:cur.g,soft=false;if(!tn){var sc=scores(parts.join(', ').toLowerCase(),(mix&&ratio==='b')?mix:cur);soft=sc.e<.55}
     var pr=tn?tn.prod:((soft&&D.prodsSoft[pg])||D.prods[pg]);
     if(!tn){var ht=parts.join(', ').toLowerCase(),kp=/k-pop|girl group|boy group/.test(ht);
       if(/1960s|1970s|vintage|classic rock|60s|70s/.test(ht)&&/band|rock|pop/.test(ht))pr='vintage analog recording, live band feel, tape warmth, natural room sound';
@@ -776,7 +832,7 @@ function mid(b){var m=String(b).match(/(\d+)\D+(\d+)/);return m?Math.round((+m[1
 /* ---------- result card ---------- */
 function ytUrl(){var q=(song?song+' ':'')+cur.n+(song?'':' 대표곡');return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q)}
 function choose(r,scroll){
-  stopPreview(true);VS=0;autoV=true;vaNote='';SID=0;cur=r;tw={};FXS={};if(mixAutoRap&&LX.rap==='v2'){LX.rap='off'}mixAutoRap=false;mix=null;ratio='a';theme='';tone='';
+  stopPreview(true);VS=0;autoV=true;vaNote='';SID=0;cur=r;prod=null;tw={};FXS={};if(mixAutoRap&&LX.rap==='v2'){LX.rap='off'}mixAutoRap=false;mix=null;ratio='a';theme='';tone='';
   ko=(/[가-힣]/.test(r.n)&&D.nonKo.indexOf(r.n)<0)||D.koSet.indexOf(r.n)>=0;kArt=ko&&r.v!=='inst';if(r.v==='inst')ko=false;
   $('#starts').hidden=true;$('#card').hidden=false;$('#lyr').hidden=false;$('#fin').hidden=false;LS.locked={};LS.texts={};LS.sig=null;
   $('#cName').textContent=r.n;
@@ -796,10 +852,10 @@ $('#twChips').addEventListener('click',function(e){var b=e.target.closest('butto
   TWG.forEach(function(g){if(g.indexOf(k)>=0)g.forEach(function(x){tw[x]=false})});tw[k]=on;renderTw();renderPhrase()});
 function renderTone(){
   $('#toneChips').innerHTML=['<button type="button" class="chip" data-t="" aria-pressed="'+(tone===''?'true':'false')+'">기본</button>'].concat((D.tones||[]).map(function(t){var cf=vcBlock('tone',t.id);return '<button type="button" class="chip'+(cf?' dim':'')+'" data-t="'+t.id+'"'+(cf?' title="'+esc(cf)+'" aria-disabled="true"':'')+' aria-pressed="'+(tone===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
-  $('#prodRow').innerHTML='<button type="button" class="chip" data-p="1" aria-pressed="'+(prod?'true':'false')+'">풍성하게 (프로듀서 터치)</button>';
+  var _po=prodOn();$('#prodRow').innerHTML='<button type="button" class="chip" data-p="0" aria-pressed="'+(_po?'false':'true')+'">🎯 원곡 느낌 우선</button><button type="button" class="chip" data-p="1" aria-pressed="'+(_po?'true':'false')+'">✨ 풍성하게 더하기</button>';var _pn=$('#prodNote');if(_pn)_pn.textContent=_po?'믹스·드럼 같은 제작 문구를 더했어요. 소리는 풍성해지지만 가수 느낌에서 멀어질 수 있어요.':'가수의 특징만 담았어요. 가수와 가장 비슷하게 나와요.';
 }
 $('#toneChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var cf=vcBlock('tone',b.dataset.t);if(cf){toast(cf);return}tone=b.dataset.t;LS.locked={};renderTone();renderPhrase()});
-$('#prodRow').addEventListener('click',function(e){if(!e.target.closest('button'))return;prod=!prod;renderTone();renderPhrase()});
+$('#prodRow').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;prod=b.dataset.p==='1';renderTone();renderPhrase()});
 function renderTheme(){
   $('#thChips').innerHTML=['<button type="button" class="chip" data-t="" aria-pressed="'+(theme===''?'true':'false')+'">자동</button>'].concat(D.themes.map(function(t){return '<button type="button" class="chip" data-t="'+t.id+'" aria-pressed="'+(theme===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
 }
@@ -818,7 +874,7 @@ $('#adv').addEventListener('click',function(e){var b=e.target.closest('#lxEn but
 $('#optKo').addEventListener('change',function(){ko=this.checked;renderPhrase();renderLyr()});
 function renderPhrase(){
   if(!cur)return;
-  if(autoV){autoV=false;if(histHas('s',build())){var _n=0;do{VS++;_n++}while(_n<30&&histHas('s',build()));vaNote='이전에 복사한 스타일과 겹쳐서 변형 '+VS+'번으로 바꿨어요.'}}var p=build();$('#cPhrase').value=p;$('#cLen').textContent=p.length+'자'+(p.length>200?' · 일부 수노 버전은 200자까지만 받아요 (풍성하게를 끄면 짧아져요)':'');
+  if(autoV){autoV=false;if(histHas('s',build())){var _n=0;do{VS++;_n++}while(_n<30&&histHas('s',build()));vaNote='이전에 복사한 스타일과 겹쳐서 변형 '+VS+'번으로 바꿨어요.'}}var p=build();$('#cPhrase').value=p;$('#cLen').textContent=p.length+'자'+(p.length>200?' · 일부 수노 버전은 200자까지만 받아요 (원곡 우선으로 바꾸면 짧아져요)':'');
   $('#mixLabel').textContent=mix?cur.n+' × '+mix.n:cur.n;
   $('#vaReset').hidden=!VS;var hn=Object.keys(HIST.s).length,tn2=Object.keys(HIST.t).length;$('#vaInfo').innerHTML=(VS?'변형 '+VS+'번 · ':'')+(vaNote?esc(vaNote)+' · ':'')+(hn||tn2?'복사한 스타일 '+hn+'개·제목 '+tn2+'개는 겹치지 않게 뽑아요. <button type="button" class="b-sub" id="histClear" style="padding:2px 8px;font-size:12px">기록 지우기</button>':'');
   var pb=$('#precBox'),pp=prec();var hasP=song&&!mix&&D.prec&&D.prec[norm(cur.n)+'|'+norm(song)];pb.hidden=!hasP;if(hasP){var q=D.prec[norm(cur.n)+'|'+norm(song)];$('#precInfo').textContent='「'+q.t+'」 느낌 · BPM 약 '+q.b+(q.k?' · 키 '+q.k:'')+' · '+q.n+' (근사값이에요. 3~4번 뽑아서 고르세요)'}
@@ -1280,7 +1336,7 @@ $('#playVar').addEventListener('click',function(){AU.salt++;startPreview()});
 window.__sfTest={buildBar:buildBar,makeSpec:makeSpec,mkBus:mkBus,mkVinyl:mkVinyl,AU:AU};
 
 /* ---------- lyrics + title (in page) ---------- */
-var LY=D.lyr,LS={texts:{},locked:{},titles:[],title:'',short:false,hints:true,g:null,inst:null};
+var LY=D.lyr,LS={texts:{},locked:{},titles:[],title:'',short:false,hints:false,g:null,inst:null};
 var LXE=window.DuskLyx;
 var LX=LXE.def();
 Object.keys(LXE.SECDEF).forEach(function(k){LY.secdef[k]=LXE.SECDEF[k]});
@@ -2015,6 +2071,17 @@ document.addEventListener('click',function(e){if(!e.target.closest('#find'))main
 renderStarts();renderTabs();renderAll();renderPk();renderMiss();
 })();
 
+(function(){var b=document.getElementById('cBar');if(b)b.addEventListener('click',function(e){var x=e.target.closest('button[data-cp]');if(!x)return;var t=document.getElementById(x.dataset.cp);if(t)t.click()});
+
+})();
+(function(){var P=document.getElementById('tpanels');if(!P)return;var ds=[].slice.call(P.querySelectorAll(':scope>details')),bs=[].slice.call(document.querySelectorAll('#tbar .tb[data-tp]'));
+ds.forEach(function(d){d.open=true});
+function show(id){ds.forEach(function(d){d.classList.toggle('on',d.id===id)});bs.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.tp===id?'true':'false')})}
+window.__tpShow=show;
+document.getElementById('tbar').addEventListener('click',function(e){var b=e.target.closest('.tb');if(!b)return;if(b.dataset.go){var t=document.getElementById(b.dataset.go);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});return}var cur=document.querySelector('#tpanels>details.on');show(cur&&cur.id===b.dataset.tp?'':b.dataset.tp)});
+function sync(){[].forEach.call(document.querySelectorAll('.tcnt'),function(e){var src=document.getElementById(e.dataset.src);e.textContent=src?src.textContent.trim():''})}
+document.addEventListener('click',function(){setTimeout(sync,80)});sync();
+var mo=document.getElementById('mixOn');if(mo&&window.MutationObserver)new MutationObserver(function(){if(!mo.hidden)show('mixBoxWrap')}).observe(mo,{attributes:true,attributeFilter:['hidden']})})();
 </script>
 </body>
 </html>
