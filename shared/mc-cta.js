@@ -19,7 +19,7 @@ var st=document.createElement('style');
 st.textContent='header.top .mc-pill{flex:0 0 auto;display:inline-flex;align-items:center;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap;color:var(--accent,#b9a0ff);border:1px solid var(--accent,#b9a0ff);border-radius:999px;padding:6px 13px;background:transparent;transition:.15s}header.top .mc-pill:hover{background:var(--accent,#b9a0ff);color:#14101a}header.top .mc-pill .s{display:none}@media (max-width:560px){header.top .mc-pill{padding:6px 11px}header.top .mc-pill .l{display:none}header.top .mc-pill .s{display:inline}}';
 document.head.appendChild(st);
 var a=document.createElement('a');a.className='mc-pill';a.target='_blank';a.rel='noopener';
-a.href='https://kkwd21.gumroad.com/l/musiccanvas?utm_source=tools&utm_medium=header&utm_campaign='+encodeURIComponent(tool);
+a.href='https://apps.microsoft.com/detail/9PKW7WPMV7CC?cid=tools-header-'+encodeURIComponent(tool);
 a.innerHTML=EN?'<span class="l">MusicCanvas · 7-day free</span><span class="s">Make video</span>':'<span class="l">뮤직캔버스 · 7일 무료</span><span class="s">영상 만들기</span>';
 a.title=EN?'MusicCanvas — turn your song into a lyric video (Windows)':'뮤직캔버스 — 내 노래를 가사 영상으로 (Windows)';
 h.appendChild(a)}
