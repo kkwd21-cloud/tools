@@ -571,7 +571,7 @@ details.pk>summary .note{display:block;margin-top:4px}
         <span class="flabel"><span class="ob">②</span> 스타일 <span class="note sm" style="font-weight:400">수노 Style of Music 칸</span> <b id="mixLabel" class="mlab"></b></span>
         <textarea class="inp" id="cPhrase" rows="4" spellcheck="false"></textarea>
         <span class="note sm" id="cLen" style="align-self:flex-end"></span>
-        <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
+        <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><div class="chips" id="eraRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
         <div id="sgBox" class="sgbox" hidden><b style="font-size:13px">💡 이렇게 바꾸면 더 좋아질 수 있어요 <span class="note sm" style="font-weight:400">누르면 위 스타일에 바로 반영돼요</span></b><div id="sgRows"></div></div>
         <div id="vcTip" class="precbox" hidden style="flex-direction:column;gap:6px;align-items:stretch"><b style="font-size:13px">목소리가 안 나오면 (수노 팁)</b><span class="note sm" style="margin:0">① 수노 고급 옵션(Advanced Options)에서 Vocal Gender를 맞추고 Style Influence를 높여 보세요. ② 아래 문구를 Exclude Styles 칸에 넣으면 반대 목소리가 덜 나와요. ③ 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 가사 칸 태그에도 목소리 설명이 자동으로 들어가요. 흐리게 보이는 항목은 고른 목소리와 반대라 막아 뒀어요.</span><div class="sfrow"><input class="inp" id="vcExcl" type="text" readonly aria-label="제외 스타일" style="font-size:14px"><button type="button" class="b-sub" id="vcExCopy">제외 스타일 복사</button></div></div>
         <div id="precBox" class="precbox" hidden><label><input type="checkbox" id="optPrec" checked> <b>이 곡 정밀 스타일</b></label><span id="precInfo"></span></div>
@@ -668,7 +668,7 @@ details.pk>summary .note{display:block;margin-top:4px}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 65</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 66</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -807,9 +807,15 @@ function varify(parts){
   if(VS%2===0&&vv.length&&!cur.virt&&/vocal|voice|harmon/i.test(out[0]||''))out[0]=pk(vv);
   add.forEach(function(x){if(x&&out.join(',').toLowerCase().indexOf(x.toLowerCase())<0)out.push(x)});
   return out}
+var ERA=true;
+var ERAKT={'Korean ballad':'contemporary Korean ballad','Korean indie folk':'modern Korean indie','Korean R&B':'contemporary Korean R&B'};
+var ERAOLD=/(^|\b)(nostalgic|retro[- ]?\w*|vintage|classic|old[- ]school|throwback|timeless|oldies|golden age)(\b|$)/gi;
+function eraRetro(){var s=(mix&&ratio==='b')?mix:cur;if(!s)return true;return /\b(1[89]\d0s|[5-9]0s)\b|y2k|oldies|disco|city pop|trot|classic|vintage|big band|swing|doo-?wop|motown|crooner|bossa|60s|70s|80s|90s/i.test(s.k||'')||(tone&&tone==='retro')}
+function eraOn(){return ERA&&!inst()&&!eraRetro()}
+function eraClean(x,i){if(i<1)return x;var y=x.replace(ERAOLD,' ').replace(/\band\s+(?=,|$)/gi,'').replace(/\s+/g,' ').replace(/^(and|with)\s+/i,'').replace(/^[\s,]+|[\s,]+$/g,'');return y}
 function build(){
   var PC=prec(),parts=PC?PC.it.slice():baseItems(),tn=(tone&&TN[tone])?TN[tone]:null;
-  var kt=!PC&&kArt&&!cur.virt&&!ENG&&!inst()&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
+  var kt=!PC&&kArt&&!cur.virt&&!ENG&&!inst()&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&eraOn()&&ERAKT[kt])kt=ERAKT[kt];if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
   if(tn){var re=TCONF[tn.id],vi=splitV(parts);parts=parts.filter(function(x){return !(re&&re.test(x)&&!(NEWTN[tn.id]&&/vocal|voice|female|male|duet|\bband\b|\bgroup\b|\brap/i.test(x)))}).slice(0,5);if(tn.id==='funny'||tn.id==='epic')parts=parts.map(function(x){return x.replace(/\bballad\s*/i,'')})}
   if(VS&&!inst())parts=varify(parts);
   Object.keys(tw).forEach(function(k){if(tw[k])parts.push(TW[k].en)});
@@ -838,6 +844,7 @@ function build(){
   if(typeof pStart==='number'){var rsv=(styleBpm()?16:0)+((ko||ENG)&&!inst()?17:0);while(parts.length>pStart&&parts.join(', ').length+rsv>200&&parts.length>pStart)parts.pop()}
   if(PC||VS||fxT.add.length||sfxT.length){var exKeep=[];ex.forEach(function(x){var i=parts.indexOf(x);if(i>=0){parts.splice(i,1);exKeep.push(x)}});var rs2=(styleBpm()?16:0)+(PC&&PC.k?(4+PC.k.length):0)+((ko||ENG)&&!inst()?17:0)+(exKeep.length?exKeep.join(', ').length+2:0);while(parts.length>(fxT.add.length||sfxT.length?3:4)&&parts.join(', ').length+rs2>200)parts.pop();exKeep.forEach(function(x){parts.push(x)})}
   if(fxT.short){var _kp=parts.filter(function(x){return ex.indexOf(x)>=0}),_ot=parts.filter(function(x){return ex.indexOf(x)<0});while(_ot.length>3&&_ot.concat(_kp).join(', ').length>125)_ot.pop();parts=_ot.concat(_kp)}
+  if(eraOn()){parts=parts.map(eraClean).filter(function(x,i){return i<1||(x&&!/^(mix|production|sound|feel|vibe|arrangements?)$/i.test(x))});parts.splice(Math.min(1,parts.length),0,'modern 2020s production')}
   var bp=styleBpm();if(PC&&PC.k&&!inst())parts.push('in '+PC.k);if(bp&&!inst())parts.push('tempo '+bp+' bpm');
   if(ENG&&!inst())parts.push('sung in English');else if(ko&&!inst())parts.push('sung in Korean');
   return parts.join(', ');
@@ -868,9 +875,10 @@ $('#twChips').addEventListener('click',function(e){var b=e.target.closest('butto
 function renderTone(){
   var _th=['<button type="button" class="chip" data-t="" aria-pressed="'+(tone===''?'true':'false')+'">기본</button>'].concat((D.tones||[]).map(function(t){var cf=vcBlock('tone',t.id);return '<button type="button" class="chip'+(cf?' dim':'')+'" data-t="'+t.id+'"'+(cf?' title="'+esc(cf)+'" aria-disabled="true"':'')+' aria-pressed="'+(tone===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
   $('#toneChips').innerHTML=_th;var _t2=$('#toneChips2');if(_t2)_t2.innerHTML=_th;
-  var _po=prodOn();$('#prodRow').innerHTML='<button type="button" class="chip" data-p="0" aria-pressed="'+(_po?'false':'true')+'">🎯 원곡 느낌 우선</button><button type="button" class="chip" data-p="1" aria-pressed="'+(_po?'true':'false')+'">✨ 풍성하게 더하기</button>';var _pn=$('#prodNote');if(_pn)_pn.textContent=_po?'믹스·드럼 같은 제작 문구를 더했어요. 소리는 풍성해지지만 가수 느낌에서 멀어질 수 있어요.':'가수의 특징만 담았어요. 가수와 가장 비슷하게 나와요.';
+  var _po=prodOn();$('#prodRow').innerHTML='<button type="button" class="chip" data-p="0" aria-pressed="'+(_po?'false':'true')+'">🎯 원곡 느낌 우선</button><button type="button" class="chip" data-p="1" aria-pressed="'+(_po?'true':'false')+'">✨ 풍성하게 더하기</button>';var _er=$('#eraRow');if(_er)_er.innerHTML='<button type="button" class="chip" data-e="1" aria-pressed="'+(ERA?'true':'false')+'">🆕 요즘 느낌</button><button type="button" class="chip" data-e="0" aria-pressed="'+(ERA?'false':'true')+'">🎞 원래 시대 그대로</button>';var _pn=$('#prodNote');if(_pn)_pn.textContent=_po?'믹스·드럼 같은 제작 문구를 더했어요. 소리는 풍성해지지만 가수 느낌에서 멀어질 수 있어요.':'가수의 특징만 담았어요. 가수와 가장 비슷하게 나와요.';
 }
 ['#toneChips','#toneChips2'].forEach(function(q){var el=$(q);if(el)el.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var cf=vcBlock('tone',b.dataset.t);if(cf){toast(cf);return}tone=b.dataset.t;LS.locked={};renderTone();renderPhrase()})});
+$('#eraRow').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;ERA=b.dataset.e==='1';renderTone();renderPhrase()});
 $('#prodRow').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;prod=b.dataset.p==='1';renderTone();renderPhrase()});
 function renderTheme(){
   $('#thChips').innerHTML=['<button type="button" class="chip" data-t="" aria-pressed="'+(theme===''?'true':'false')+'">자동</button>'].concat(D.themes.map(function(t){return '<button type="button" class="chip" data-t="'+t.id+'" aria-pressed="'+(theme===t.id?'true':'false')+'">'+esc(t.ko)+'</button>'})).join('');
