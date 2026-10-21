@@ -515,6 +515,7 @@ html{background:#fbfbfd}
 header.top a.mc-pill{background:#fff;border:1px solid var(--line2);color:#111;border-radius:999px}
 header.top a.mc-pill:hover{background:#111;color:#fff}
 .mccta{background:#fff!important;border:0!important;border-radius:22px!important;box-shadow:0 20px 60px rgba(20,20,60,.25)!important}
+#eraTip,#vcTip{display:flex;flex-direction:column;gap:8px;background:#f6f5fb;border-radius:16px;padding:14px 16px}#eraTip b,#vcTip b{display:block}#eraTip .sfrow,#vcTip .sfrow{display:flex;gap:8px;flex-wrap:wrap}#eraTip input,#vcTip input{flex:1;min-width:200px;background:#fff;border-radius:12px;padding:10px 12px}
 </style>
 </head>
 <body>
@@ -630,6 +631,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
         <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><div class="chips" id="eraRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
         <div id="sgBox" class="sgbox" hidden><b style="font-size:13px">💡 이렇게 바꾸면 더 좋아질 수 있어요 <span class="note sm" style="font-weight:400">누르면 위 스타일에 바로 반영돼요</span></b><div id="sgRows"></div></div>
         <div id="vcTip" class="precbox" hidden style="flex-direction:column;gap:6px;align-items:stretch"><b style="font-size:13px">목소리가 안 나오면 (수노 팁)</b><span class="note sm" style="margin:0">① 수노 고급 옵션(Advanced Options)에서 Vocal Gender를 맞추고 Style Influence를 높여 보세요. ② 아래 문구를 Exclude Styles 칸에 넣으면 반대 목소리가 덜 나와요. ③ 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 가사 칸 태그에도 목소리 설명이 자동으로 들어가요. 흐리게 보이는 항목은 고른 목소리와 반대라 막아 뒀어요.</span><div class="sfrow"><input class="inp" id="vcExcl" type="text" readonly aria-label="제외 스타일" style="font-size:14px"><button type="button" class="b-sub" id="vcExCopy">제외 스타일 복사</button></div></div>
+        <div id="eraTip" class="precbox" hidden style="flex-direction:column;gap:6px;align-items:stretch"><b style="font-size:13px">노래가 옛날 느낌으로 나오면 (수노 팁)</b><span class="note sm" style="margin:0">수노 추가 옵션의 제외 스타일(Exclude Styles) 칸에 아래 문구를 넣고, 스타일 영향력(Style Influence)을 높여 보세요. 같은 문구로 3~4번 만들어 가장 요즘 같은 걸 고르세요. 가사에 옛날 말투가 있으면 그 부분만 바꿔 주세요.</span><div class="sfrow"><input class="inp" id="eraExcl" type="text" readonly aria-label="제외 스타일" value="90s ballad, 2000s ballad, vintage, retro, nostalgic, old-fashioned, dated production, heavy orchestral strings, trot" style="font-size:14px"><button type="button" class="b-sub" id="eraExCopy">제외 스타일 복사</button></div></div>
         <div id="precBox" class="precbox" hidden><label><input type="checkbox" id="optPrec" checked> <b>이 곡 정밀 스타일</b></label><span id="precInfo"></span></div>
         <div class="sfrow"><button type="button" class="b-main" id="cpStyle">스타일 복사</button><button type="button" class="b-sub" id="vaStyle">🎲 다른 스타일로</button><button type="button" class="b-sub" id="vaReset" hidden>처음 스타일</button></div>
         <span class="note sm" id="vaInfo"></span>
@@ -905,7 +907,7 @@ function build(){
   if(typeof pStart==='number'){var rsv=(styleBpm()?16:0)+((ko||ENG)&&!inst()?17:0);while(parts.length>pStart&&parts.join(', ').length+rsv>200&&parts.length>pStart)parts.pop()}
   if(PC||VS||fxT.add.length||sfxT.length){var exKeep=[];ex.forEach(function(x){var i=parts.indexOf(x);if(i>=0){parts.splice(i,1);exKeep.push(x)}});var rs2=(styleBpm()?16:0)+(PC&&PC.k?(4+PC.k.length):0)+((ko||ENG)&&!inst()?17:0)+(exKeep.length?exKeep.join(', ').length+2:0);while(parts.length>(fxT.add.length||sfxT.length?3:4)&&parts.join(', ').length+rs2>200)parts.pop();exKeep.forEach(function(x){parts.push(x)})}
   if(fxT.short){var _kp=parts.filter(function(x){return ex.indexOf(x)>=0}),_ot=parts.filter(function(x){return ex.indexOf(x)<0});while(_ot.length>3&&_ot.concat(_kp).join(', ').length>125)_ot.pop();parts=_ot.concat(_kp)}
-  if(eraOn()){parts=parts.map(eraClean).filter(function(x,i){return i<1||(x&&!/^(mix|production|sound|feel|vibe|arrangements?)$/i.test(x))});parts.splice(Math.min(1,parts.length),0,'modern 2020s production')}
+  if(eraOn()){parts=parts.map(eraClean).filter(function(x,i){return i<1||(x&&!/^(mix|production|sound|feel|vibe|arrangements?)$/i.test(x))});parts.splice(Math.min(1,parts.length),0,'modern 2020s production, clean contemporary mix')}
   var bp=styleBpm();if(PC&&PC.k&&!inst())parts.push('in '+PC.k);if(bp&&!inst())parts.push('tempo '+bp+' bpm');
   if(ENG&&!inst())parts.push('sung in English');else if(ko&&!inst())parts.push('sung in Korean');
   return parts.join(', ');
@@ -967,7 +969,7 @@ function renderPhrase(){
   renderSg();  renderFeel(p);if(AU.on)startPreview();
   if(LS.sig!==lSig())lyrNew();
   if(typeof renderFix==='function')renderFix();
-  if(typeof renderVtip==='function')renderVtip();
+  if(typeof renderVtip==='function')renderVtip();if(typeof renderEraTip==='function')renderEraTip();
 }
 
 /* ---------- feel: scene text, meters, sample sound ---------- */
@@ -1802,7 +1804,7 @@ function voiceHint(){if(!cur||!cur.virt||!(cur.virt.vs||[]).length)return '';var
 function voiceExcl(){if(!cur||!cur.virt)return '';var o=[];(cur.virt.vs||[]).forEach(function(id){var v=vcFind(VCV,id);if(v&&v[4])v[4].split(', ').forEach(function(x){if(o.indexOf(x)<0)o.push(x)})});
   if(cur.virt.g==='female')o.push('male vocals');else if(cur.virt.g==='male')o.push('female vocals');return o.join(', ')}
 function renderVtip(){var t=$('#vcTip');if(!t)return;var ex=voiceExcl();t.hidden=!(cur&&cur.virt);if(t.hidden)return;$('#vcExcl').value=ex}
-$('#vcExCopy').addEventListener('click',function(){copy($('#vcExcl').value,'제외 스타일을 복사했어요')});
+$('#vcExCopy').addEventListener('click',function(){copy($('#vcExcl').value,'제외 스타일을 복사했어요')}); function renderEraTip(){var t=$('#eraTip');if(!t)return;t.hidden=!(cur&&eraOn())} if($('#eraExCopy'))$('#eraExCopy').addEventListener('click',function(){copy($('#eraExcl').value,'제외 스타일을 복사했어요')});
 function vcRender(){
   var h='<div class="fxrow"><span class="note sm">① 누가 부르나요?</span><div class="chips" id="vcG">'+VCG.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.g===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
   h+='<div class="fxrow"><span class="note sm">② 목소리 느낌 (1~2개)</span><div class="chips" id="vcV">'+VCV.map(function(x){var cf=VC.vs.indexOf(x[0])<0&&vcConflict(VC.vs,x[0]);return '<button type="button" class="chip'+(cf?' dim':'')+'" data-id="'+x[0]+'"'+(cf?' title="지금 고른 목소리와 반대예요. 누르면 바꿔 줘요"':'')+' aria-pressed="'+(VC.vs.indexOf(x[0])>=0?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div><span class="note sm" id="vcDesc"></span></div>';
