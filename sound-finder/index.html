@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://kkwd21-cloud.github.io/tools/sound-finder/">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"곡 느낌 사전","url":"https://kkwd21-cloud.github.io/tools/sound-finder/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","inLanguage":"ko","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"수노(Suno)용 가수·곡 느낌 스타일 프롬프트 생성기"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dusk Soul Toolkit","item":"https://kkwd21-cloud.github.io/tools/"},{"@type":"ListItem","position":2,"name":"곡 느낌 사전","item":"https://kkwd21-cloud.github.io/tools/sound-finder/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"수노에 가수 이름을 넣으면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"수노는 실존 가수 이름을 스타일에 넣는 것을 막거나 무시하는 경우가 많아요(정책은 바뀔 수 있어요). 그래서 이 도구는 가수 이름 대신 보컬 질감, 악기, 분위기, BPM으로 풀어서 영어 스타일 문구를 만들어 줘요."}},{"@type":"Question","name":"가수 스타일로 만들면 똑같은 노래가 나오나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 분위기와 편성이 비슷한 새 노래가 나와요. 원곡 멜로디나 가사를 복제하지 않아요. 같은 문구로 3~4번 만들어서 가장 가까운 걸 고르세요."}},{"@type":"Question","name":"곡 제목을 고르면 가사도 나오나요?","acceptedAnswer":{"@type":"Answer","text":"원곡 가사가 아니라, 그 곡의 분위기(이별, 설렘, 신나는 밤 등)에 맞춰 새로 쓴 가사예요. 수노 가사 칸에 바로 붙여넣을 수 있어요."}},{"@type":"Question","name":"BPM과 키는 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"대표곡 약 6,500곡은 곡별로 BPM 범위와 편성을 정리했어요. 근사값이라 곡에 따라 다를 수 있어요. 수노에서 여러 번 뽑아 고르는 걸 권해요."}},{"@type":"Question","name":"무료인가요? 가입이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"무료이고 가입이 없어요. 입력한 내용은 이 브라우저 안에서만 처리돼요."}}]}]}</script>
-<meta name="theme-color" content="#090d19">
+<meta name="theme-color" content="#f2f2ef">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
@@ -459,6 +459,45 @@ details.pk>summary .note{display:block;margin-top:4px}
 #nxt .tools .btn-p{flex:1 1 100%;justify-content:center}
 #nxt .tools .btn-g{flex:1 1 calc(50% - 4px);justify-content:center;text-align:center}
 @media(max-width:480px){#nxt .tools .btn-g{flex:1 1 100%}}
+</style>
+<style id="bento">
+:root{--accent:#d94a00;--accent2:#a83600;--rgb:217,74,0;--bg:#f2f2ef;--bg2:#f2f2ef;--panel:#fff;--panel2:#faf9f6;--line:#e4e3de;--line2:#d2d0c8;--text:#16161a;--muted:#5d5d66;--mut:#5d5d66;--ok:#1f8a4c;color-scheme:light}
+.bg-glow{display:none}
+.top{background:rgba(242,242,239,.97)}
+.brand{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800}
+.hero h1,.sec-head h2{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
+.gnav a.on,.btn-p,.tb[aria-pressed="true"],.b-main,.lg-r[aria-pressed="true"],.ob,.stp,.nsb .ns-next span.go,.wz-steps button.on b,.badge-b{color:#fff}
+.btn-p:hover{background:var(--accent2)}
+.btn-g{background:#fff}
+.eyebrow{color:var(--accent2)}
+.search input::placeholder{color:#8a8a92}
+.pcard,.preview,.toolbar,.step,.card2,.feel{background:var(--panel);border:0;border-radius:24px}
+.feel{background:linear-gradient(160deg,rgba(var(--rgb),.12),rgba(255,255,255,0) 70%),var(--panel)}
+.feel.qLD{background:linear-gradient(160deg,rgba(90,110,220,.16),rgba(255,255,255,0) 70%),var(--panel)}
+.feel.qLB{background:linear-gradient(160deg,rgba(255,170,110,.22),rgba(255,255,255,0) 70%),var(--panel)}
+.feel.qHD{background:linear-gradient(160deg,rgba(200,70,130,.14),rgba(255,255,255,0) 70%),var(--panel)}
+.feel.qHB{background:linear-gradient(160deg,rgba(255,210,90,.28),rgba(255,255,255,0) 70%),var(--panel)}
+.pc-text,.lyr-text,.sty,.lsec{border-color:var(--line);color:var(--text);border-radius:16px}
+.pc-text,.sty{color:var(--text)}
+.fav[aria-pressed="true"]{color:#d6336c;border-color:#d6336c;background:rgba(214,51,108,.08)}
+#favbar{background:#fff;color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+#favbar strong{color:#d6336c}
+#toast{background:#16161a;color:#fff}
+.cta-final{background:#16161a;color:#fff;border-top:0;border-radius:24px 24px 0 0}
+.cta-final p{color:#d8d8de}
+.cta-final .btn-p{background:#fff;color:#16161a}
+.lg-msg,.wz-hint.warn{color:#b45309}
+.av .kwc{color:#8a6100}
+.cnt.over{color:#c0392b}.kwc:hover{border-color:#c0392b}
+.wz-bar{background:rgba(242,242,239,.95)}
+.seo{border-top-color:var(--line)}.seoq{border-color:var(--line)}
+.test-bn{background:#fff;border-color:var(--line)}
+.mtr{background:rgba(0,0,0,.1)}.mtr i{box-shadow:0 0 0 3px rgba(0,0,0,.08)}
+.pv span{background:rgba(0,0,0,.16)}
+.sfxdel:hover{background:rgba(0,0,0,.06)}
+.chip,.tb{background:var(--bg2)}
+.chip[aria-pressed="true"]{background:rgba(var(--rgb),.14);color:var(--text)}
+.inp1,.search input{border-radius:16px}
 </style>
 </head>
 <body>
