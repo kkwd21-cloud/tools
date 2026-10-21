@@ -9,7 +9,7 @@
 <link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/">
 <link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/">
 <link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/">
-<meta name="theme-color" content="#fff7d6">
+<meta name="theme-color" content="#0b0a1f">
 <meta property="og:type" content="website"><meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="Dusk Soul 툴킷 - AI 음악 채널 무료 도구">
 <meta property="og:description" content="Suno 프롬프트 150개+ · 가사 생성기 · 유튜브 제목/해시태그 생성기 · 수익화 위험 체크">
@@ -88,44 +88,45 @@ details.all>summary::-webkit-details-marker{display:none}
 details.all>summary:after{content:"＋";font-size:18px;color:var(--muted)}
 details.all[open]>summary:after{content:"－"}
 
-/* ===== brutal redesign v1 ===== */
-:root{--bg:#fff7d6;--card:#fff;--ink:#000;--muted:#333;--line:#000;--a1:#000;--a1s:#ffc900;--a2:#000;--a2s:#90e0ff;--a3:#000;--a3s:#ff90e8;--cta:#000;--cta-ink:#fff;--onc:#000;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#fff7d6;--card:#fff;--ink:#000;--muted:#333;--line:#000;--a1:#000;--a1s:#ffc900;--a2:#000;--a2s:#90e0ff;--a3:#000;--a3s:#ff90e8;--cta:#000;--cta-ink:#fff;--onc:#000;color-scheme:light}}
-.wrap{max-width:880px;gap:30px}
-h1{font-size:clamp(34px,7.5vw,58px);line-height:1.08;font-weight:900;letter-spacing:-.03em}
-.eyebrow{color:#000;font-weight:800}
-.sub{font-size:17px;color:#222;font-weight:500}
-.picks{grid-template-columns:repeat(2,1fr);gap:20px}
-.pk{border:3px solid #000;border-radius:8px;box-shadow:6px 6px 0 #000;padding:20px;min-height:150px;transition:transform .12s,box-shadow .12s}
-.pk:hover{box-shadow:2px 2px 0 #000;transform:translate(4px,4px)}
-.pk b{font-size:20px;font-weight:900}
-.pk span{color:#111;font-weight:500}
-.pk i{color:#000;font-weight:900;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
-.pk.big{grid-column:span 2;background:#ffc900;color:#000;min-height:220px}
-.pk.big b{font-size:32px;line-height:1.15}
-.pk.big span,.pk.big i{color:#000;opacity:1}
+/* ===== aurora redesign v1 ===== */
+:root{--bg:#0b0a1f;--card:rgba(255,255,255,.09);--ink:#f4f2ff;--muted:#b9b5d9;--line:rgba(255,255,255,.22);--a1:#ff8ad0;--a1s:rgba(255,138,208,.16);--a2:#9fc0ff;--a2s:rgba(143,181,255,.16);--a3:#5fe3d0;--a3s:rgba(95,227,208,.15);--cta:#fff;--cta-ink:#1a1340;--onc:#fff;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0a1f;--card:rgba(255,255,255,.09);--ink:#f4f2ff;--muted:#b9b5d9;--line:rgba(255,255,255,.22);--a1:#ff8ad0;--a1s:rgba(255,138,208,.16);--a2:#9fc0ff;--a2s:rgba(143,181,255,.16);--a3:#5fe3d0;--a3s:rgba(95,227,208,.15);--cta:#fff;--cta-ink:#1a1340;--onc:#fff;color-scheme:dark}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#0b0a1f;--card:rgba(255,255,255,.09);--ink:#f4f2ff;--muted:#b9b5d9;--line:rgba(255,255,255,.22);--a1:#ff8ad0;--a1s:rgba(255,138,208,.16);--a2:#9fc0ff;--a2s:rgba(143,181,255,.16);--a3:#5fe3d0;--a3s:rgba(95,227,208,.15);--cta:#fff;--cta-ink:#1a1340;--onc:#fff;color-scheme:dark}}
+body{background:radial-gradient(620px 520px at 0% 0%,rgba(106,92,255,.7),transparent 70%),radial-gradient(520px 520px at 100% 35%,rgba(255,95,162,.5),transparent 70%),radial-gradient(560px 440px at 35% 100%,rgba(31,214,195,.42),transparent 70%),#0b0a1f;background-attachment:fixed;background-repeat:no-repeat}
+.wrap{max-width:880px;gap:28px}
+h1{font-size:clamp(32px,7vw,54px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.eyebrow{color:#d9d2ff}
+.sub{font-size:17px;color:#cfcbee}
+.picks{grid-template-columns:repeat(2,1fr);gap:16px}
+.pk{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-radius:26px;padding:22px;min-height:150px;transition:transform .15s,background .15s}
+.pk:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(0,0,0,.4);background:rgba(255,255,255,.14)}
+.pk b{font-size:19px;color:#fff}.pk span{color:#cfcbee}.pk i{color:var(--c);font-weight:800}
+.pk.t2{background:linear-gradient(160deg,rgba(143,181,255,.2),rgba(255,255,255,.07))}
+.pk.t3{background:linear-gradient(160deg,rgba(95,227,208,.2),rgba(255,255,255,.07))}
+.pk.big{grid-column:span 2;background:linear-gradient(135deg,rgba(255,95,162,.55),rgba(106,92,255,.55));color:#fff;min-height:220px;border-color:rgba(255,255,255,.4)}
+.pk.big b{font-size:30px;line-height:1.2}.pk.big span,.pk.big i{color:#fff}
 .pk:last-child:not(.big){grid-column:span 2}
-@media(min-width:620px){.picks{grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto)}.pk.big{grid-row:span 2;min-height:0}.pk.big b{font-size:38px}}
-.pick>h2,.path>h2{font-weight:900}
-.path{border:3px solid #000;border-radius:8px;box-shadow:8px 8px 0 #000;background:#fff;padding:22px}
-.path li a{border:3px solid #000;border-radius:6px;background:#fff;box-shadow:3px 3px 0 #000}
-.path li a:hover{background:#ffc900}
-.path li em{background:#000;color:#fff;border-radius:4px}
-.tool,.tool.feat{border:3px solid #000;border-left:3px solid #000;border-radius:8px;box-shadow:5px 5px 0 #000;background:var(--cs)}
-.tool:hover{box-shadow:2px 2px 0 #000;transform:translate(3px,3px)}
-.tool .go,.tool .num{color:#000;font-weight:900}
-.tool li{background:#fff;border:2px solid #000;color:#000;font-weight:700}
-.tool p,.tool.feat p{color:#111}
-.gl a{border:3px solid #000;border-radius:6px;box-shadow:inset 0 0 0 0 #000,3px 3px 0 #000;background:var(--g)}
-.gl b{color:#000}.gl span{color:#111}
-.flow{border:3px dashed #000;border-radius:6px;background:#fff;color:#111}
-.cta{background:#ff90e8;color:#000;border:3px solid #000;border-radius:8px;box-shadow:8px 8px 0 #000;padding:26px}
-.cta .btn{background:#000;color:#fff;border-radius:0;box-shadow:4px 4px 0 #fff;border:3px solid #000}
-.cta .fine,.cta a.fine{color:#000!important;opacity:1}
-details.all>summary{border:3px solid #000;border-radius:6px;box-shadow:4px 4px 0 #000;background:#fff;font-weight:900}
-details.all>summary:after{color:#000}
-.eyebrow+a,a[hreflang]{border:3px solid #000!important;border-radius:0!important;box-shadow:3px 3px 0 #000;background:#90e0ff!important;font-weight:900!important}
-footer{color:#222}
+@media(min-width:620px){.picks{grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto)}.pk.big{grid-row:span 2;min-height:0}.pk.big b{font-size:36px}}
+.pick>h2,.path>h2{letter-spacing:-.01em}
+.path,.flow{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-radius:26px;padding:24px}
+.flow{padding:14px 18px;border-radius:18px;border-style:solid}
+.path li a{border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.07)}
+.path li a:hover{background:rgba(255,255,255,.16)}
+.path li em{background:#fff;color:#1a1340}
+.tool,.tool.feat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-left:1px solid rgba(255,255,255,.24);border-radius:22px}
+.tool:hover{background:rgba(255,255,255,.15);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.tool li{background:var(--cs);color:#fff}
+.tool p,.tool.feat p{color:#d6d2f2}
+.gl a{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-top:3px solid var(--g);border-radius:16px}
+.gl b{color:#fff}.gl span{color:#cfcbee}
+.cta{background:linear-gradient(135deg,rgba(255,95,162,.4),rgba(106,92,255,.45));border:1px solid rgba(255,255,255,.35);border-radius:26px;padding:28px;backdrop-filter:blur(18px);color:#fff}
+.cta .btn{background:#fff;color:#1a1340;border-radius:999px}
+.cta .fine,.cta a.fine{color:#fff!important}
+details.all>summary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-radius:18px;color:#fff}
+details.all>summary:after{color:#fff}
+a[hreflang]{background:rgba(255,255,255,.14)!important;border:1px solid rgba(255,255,255,.35)!important;color:#fff!important;backdrop-filter:blur(10px)}
+.group h2,.grp>h2{color:#d9d2ff}
+footer{color:#b9b5d9}footer a{color:#fff!important}
 </style>
 </head>
 <body>

@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://kkwd21-cloud.github.io/tools/sound-finder/">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"곡 느낌 사전","url":"https://kkwd21-cloud.github.io/tools/sound-finder/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","inLanguage":"ko","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"수노(Suno)용 가수·곡 느낌 스타일 프롬프트 생성기"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dusk Soul Toolkit","item":"https://kkwd21-cloud.github.io/tools/"},{"@type":"ListItem","position":2,"name":"곡 느낌 사전","item":"https://kkwd21-cloud.github.io/tools/sound-finder/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"수노에 가수 이름을 넣으면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"수노는 실존 가수 이름을 스타일에 넣는 것을 막거나 무시하는 경우가 많아요(정책은 바뀔 수 있어요). 그래서 이 도구는 가수 이름 대신 보컬 질감, 악기, 분위기, BPM으로 풀어서 영어 스타일 문구를 만들어 줘요."}},{"@type":"Question","name":"가수 스타일로 만들면 똑같은 노래가 나오나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 분위기와 편성이 비슷한 새 노래가 나와요. 원곡 멜로디나 가사를 복제하지 않아요. 같은 문구로 3~4번 만들어서 가장 가까운 걸 고르세요."}},{"@type":"Question","name":"곡 제목을 고르면 가사도 나오나요?","acceptedAnswer":{"@type":"Answer","text":"원곡 가사가 아니라, 그 곡의 분위기(이별, 설렘, 신나는 밤 등)에 맞춰 새로 쓴 가사예요. 수노 가사 칸에 바로 붙여넣을 수 있어요."}},{"@type":"Question","name":"BPM과 키는 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"대표곡 약 6,500곡은 곡별로 BPM 범위와 편성을 정리했어요. 근사값이라 곡에 따라 다를 수 있어요. 수노에서 여러 번 뽑아 고르는 걸 권해요."}},{"@type":"Question","name":"무료인가요? 가입이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"무료이고 가입이 없어요. 입력한 내용은 이 브라우저 안에서만 처리돼요."}}]}]}</script>
-<meta name="theme-color" content="#fff7d6">
+<meta name="theme-color" content="#0b0a1f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
@@ -461,51 +461,35 @@ details.pk>summary .note{display:block;margin-top:4px}
 @media(max-width:480px){#nxt .tools .btn-g{flex:1 1 100%}}
 </style>
 <style id="bento">
-:root{--accent:#ffc900;--accent2:#000;--rgb:255,201,0;--bg:#fff7d6;--bg2:#fff;--panel:#fff;--panel2:#fffdf2;--line:#000;--line2:#000;--text:#000;--muted:#333;--mut:#333;--ok:#1a7f37;color-scheme:light}
-.bg-glow{display:none}
-.top{background:#fff7d6;border-bottom:3px solid #000}
-.brand{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:900;background:#000;color:#fff;padding:3px 10px}
-.brand span{color:#ffc900}
-.gnav a{border:2px solid #000;color:#000;background:#fff;font-weight:800;border-radius:4px}
-.gnav a.on,.gnav a:hover{background:#ffc900;color:#000}
-.top-lang{color:#000;border:2px solid #000;border-radius:0;background:#90e0ff}
-.hero h1,.sec-head h2{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:900;letter-spacing:-.03em}
-.eyebrow{color:#000;font-weight:800}
-.step .n,.sec-head h2 em,.nsb .ns-path i{color:#000}
-.pcard,.preview,.toolbar,.step,.card2,.feel,.lg-modal>div{background:#fff;border:3px solid #000;border-radius:8px;box-shadow:6px 6px 0 #000}
-.feel{background:#b8f2a8}.feel.qLD{background:#90e0ff}.feel.qLB{background:#ffc9a8}.feel.qHD{background:#ff90e8}.feel.qHB{background:#ffc900}
-.pc-text,.lyr-text,.sty,.lsec{background:#fffdf2;border:2px solid #000;color:#000;border-radius:6px}
-.inp1,.search input,input[type=search],textarea{background:#fff;border:3px solid #000;border-radius:6px;color:#000}
-.search input::placeholder{color:#555}
-.chip,.tb,.btn-g,.b-sub,.fav,.sgm,.sgt{border:2px solid #000;color:#000;background:#fff;font-weight:800;border-radius:4px}
-.chip:hover,.tb:hover,.btn-g:hover{background:#90e0ff;border-color:#000;color:#000}
-.chip[aria-pressed="true"],.tb[aria-pressed="true"]{background:#ffc900;color:#000;border-color:#000;box-shadow:2px 2px 0 #000}
-.btn-p,.b-main,.lg-r[aria-pressed="true"]{background:#ffc900;color:#000;border:3px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;font-weight:900;transition:transform .1s,box-shadow .1s}
-.btn-p:hover,.b-main:hover{background:#ffc900;color:#000;transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
-.stp,.ob,.wz-steps button.on b{background:#ffc900;color:#000;border:2px solid #000}
-.badge-b{background:#000;color:#fff;border-radius:4px}
-.fav[aria-pressed="true"]{background:#ff90e8;color:#000;border-color:#000}
-#favbar{background:#fff;color:#000;border:3px solid #000;border-radius:8px;box-shadow:4px 4px 0 #000}
-#favbar strong{color:#d6336c}
-#toast{background:#000;color:#fff;border-radius:4px}
-.cta-final{background:#ff90e8;color:#000;border-top:3px solid #000}
-.cta-final p{color:#000}
-.cta-final .btn-p{background:#000;color:#fff;box-shadow:4px 4px 0 #fff}
-.lg-msg,.wz-hint.warn{color:#9a3400}
-.av .kwc{color:#7a5200}.cnt.over{color:#c0392b}.kwc:hover{border-color:#c0392b}
-.wz-bar{background:#fff7d6;border:3px solid #000;border-radius:8px}
-.seo,.seoq{border-color:#000}
-.test-bn{background:#fff;border:2px solid #000;color:#000}
-.mtr{background:rgba(0,0,0,.15)}.mtr i{background:#000;box-shadow:none}
-.pv span{background:rgba(0,0,0,.25)}
-.nsb .ns-path span{border:2px solid #000;color:#000;background:#fff;border-radius:4px}
-.nsb .ns-path span.c{background:#ffc900}
-.nsb .ns-next{border:3px solid #000;border-radius:8px;box-shadow:6px 6px 0 #000;background:#90e0ff;color:#000}
-.nsb .ns-next small,.nsb .ns-next em{color:#000}
-.nsb .ns-next span.go{background:#ffc900;color:#000;border:3px solid #000;border-radius:4px}
-.link,.step a,.tips h3,.pv-label{color:#000}
-header.top a.mc-pill{color:#000;border:2px solid #000;border-radius:4px;background:#fff;font-weight:900;box-shadow:3px 3px 0 #000}header.top a.mc-pill:hover{background:#ffc900;color:#000}
-.mccta{box-shadow:6px 6px 0 #000!important;border:3px solid #000!important;border-radius:8px!important}
+:root{--accent:#b3a6ff;--accent2:#e0daff;--rgb:179,166,255;--bg:#0b0a1f;--bg2:rgba(255,255,255,.07);--panel:rgba(255,255,255,.09);--panel2:rgba(255,255,255,.13);--line:rgba(255,255,255,.2);--line2:rgba(255,255,255,.36);--text:#f4f2ff;--muted:#b9b5d9;--mut:#b9b5d9;--ok:#8fe0b0;color-scheme:dark}
+body{background:transparent}
+html{background:#0b0a1f}
+.bg-glow{background:radial-gradient(620px 520px at 0% 0%,rgba(106,92,255,.7),transparent 70%),radial-gradient(520px 520px at 100% 35%,rgba(255,95,162,.5),transparent 70%),radial-gradient(560px 440px at 35% 100%,rgba(31,214,195,.42),transparent 70%),#0b0a1f!important;opacity:1}
+.top{background:rgba(11,10,31,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.18)}
+.brand{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800}
+.hero h1,.sec-head h2{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
+.eyebrow{color:#e0daff}
+.gnav a{background:rgba(255,255,255,.08)}
+.gnav a.on,.btn-p,.tb[aria-pressed="true"],.b-main,.lg-r[aria-pressed="true"],.ob,.stp,.wz-steps button.on b,.nsb .ns-next span.go{background:linear-gradient(135deg,#ff6fb5,#7b6cff);color:#fff;border-color:transparent}
+.btn-p:hover,.b-main:hover{background:linear-gradient(135deg,#ff8ac4,#8f82ff);color:#fff}
+.badge-b{background:rgba(255,255,255,.22);color:#fff}
+.btn-g{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+.pcard,.preview,.toolbar,.step,.card2,.feel{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);border-radius:26px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.feel{background:linear-gradient(160deg,rgba(var(--rgb),.22),rgba(255,255,255,.05) 70%)}
+.pc-text,.lyr-text,.sty,.lsec{background:rgba(8,6,28,.45);border:1px solid rgba(255,255,255,.18);color:#f4f2ff;border-radius:16px}
+.inp1,.search input,input[type=search],textarea{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.28);border-radius:16px;color:#fff}
+.search input::placeholder{color:#9d98c4}
+.chip,.tb{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.26);color:#e8e5ff}
+.chip[aria-pressed="true"]{background:rgba(255,255,255,.22);border-color:#fff;color:#fff}
+.cta-final{background:linear-gradient(160deg,rgba(255,95,162,.3),rgba(106,92,255,.38));border-top:1px solid rgba(255,255,255,.3)}
+#favbar{background:rgba(24,18,60,.8);backdrop-filter:blur(14px);border-color:rgba(255,255,255,.3)}
+#toast{background:#fff;color:#1a1340}
+.wz-bar{background:rgba(11,10,31,.7);border-color:rgba(255,255,255,.22)}
+.nsb .ns-path span{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28)}
+.nsb .ns-next{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);border-radius:22px;backdrop-filter:blur(14px)}
+header.top a.mc-pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:#fff}
+header.top a.mc-pill:hover{background:#fff;color:#1a1340}
+.mccta{background:rgba(24,18,60,.92)!important;border-color:rgba(255,255,255,.4)!important;backdrop-filter:blur(16px)}
 </style>
 </head>
 <body>
