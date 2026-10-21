@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://kkwd21-cloud.github.io/tools/sound-finder/">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"곡 느낌 사전","url":"https://kkwd21-cloud.github.io/tools/sound-finder/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","inLanguage":"ko","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"수노(Suno)용 가수·곡 느낌 스타일 프롬프트 생성기"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dusk Soul Toolkit","item":"https://kkwd21-cloud.github.io/tools/"},{"@type":"ListItem","position":2,"name":"곡 느낌 사전","item":"https://kkwd21-cloud.github.io/tools/sound-finder/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"수노에 가수 이름을 넣으면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"수노는 실존 가수 이름을 스타일에 넣는 것을 막거나 무시하는 경우가 많아요(정책은 바뀔 수 있어요). 그래서 이 도구는 가수 이름 대신 보컬 질감, 악기, 분위기, BPM으로 풀어서 영어 스타일 문구를 만들어 줘요."}},{"@type":"Question","name":"가수 스타일로 만들면 똑같은 노래가 나오나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 분위기와 편성이 비슷한 새 노래가 나와요. 원곡 멜로디나 가사를 복제하지 않아요. 같은 문구로 3~4번 만들어서 가장 가까운 걸 고르세요."}},{"@type":"Question","name":"곡 제목을 고르면 가사도 나오나요?","acceptedAnswer":{"@type":"Answer","text":"원곡 가사가 아니라, 그 곡의 분위기(이별, 설렘, 신나는 밤 등)에 맞춰 새로 쓴 가사예요. 수노 가사 칸에 바로 붙여넣을 수 있어요."}},{"@type":"Question","name":"BPM과 키는 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"대표곡 약 6,500곡은 곡별로 BPM 범위와 편성을 정리했어요. 근사값이라 곡에 따라 다를 수 있어요. 수노에서 여러 번 뽑아 고르는 걸 권해요."}},{"@type":"Question","name":"무료인가요? 가입이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"무료이고 가입이 없어요. 입력한 내용은 이 브라우저 안에서만 처리돼요."}}]}]}</script>
-<meta name="theme-color" content="#0b0a1f">
+<meta name="theme-color" content="#fbfbfd">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
@@ -461,35 +461,60 @@ details.pk>summary .note{display:block;margin-top:4px}
 @media(max-width:480px){#nxt .tools .btn-g{flex:1 1 100%}}
 </style>
 <style id="bento">
-:root{--accent:#b3a6ff;--accent2:#e0daff;--rgb:179,166,255;--bg:#0b0a1f;--bg2:rgba(255,255,255,.07);--panel:rgba(255,255,255,.09);--panel2:rgba(255,255,255,.13);--line:rgba(255,255,255,.2);--line2:rgba(255,255,255,.36);--text:#f4f2ff;--muted:#b9b5d9;--mut:#b9b5d9;--ok:#8fe0b0;color-scheme:dark}
-body{background:transparent}
-html{background:#0b0a1f}
-.bg-glow{background:radial-gradient(620px 520px at 0% 0%,rgba(106,92,255,.7),transparent 70%),radial-gradient(520px 520px at 100% 35%,rgba(255,95,162,.5),transparent 70%),radial-gradient(560px 440px at 35% 100%,rgba(31,214,195,.42),transparent 70%),#0b0a1f!important;opacity:1}
-.top{background:rgba(11,10,31,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.18)}
+:root{--accent:#6c4df0;--accent2:#4a3fb0;--rgb:108,77,240;--bg:#fbfbfd;--bg2:#f3f2fa;--panel:#fff;--panel2:#f7f6fc;--line:#e7e5f2;--line2:#d6d2ea;--text:#111;--muted:#6b6b78;--mut:#6b6b78;--ok:#1f8a4c;color-scheme:light}
+html{background:#fbfbfd}
+.bg-glow{display:none}
+.top{background:rgba(251,251,253,.92);border-bottom:1px solid var(--line)}
 .brand{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800}
-.hero h1,.sec-head h2{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
-.eyebrow{color:#e0daff}
-.gnav a{background:rgba(255,255,255,.08)}
-.gnav a.on,.btn-p,.tb[aria-pressed="true"],.b-main,.lg-r[aria-pressed="true"],.ob,.stp,.wz-steps button.on b,.nsb .ns-next span.go{background:linear-gradient(135deg,#ff6fb5,#7b6cff);color:#fff;border-color:transparent}
-.btn-p:hover,.b-main:hover{background:linear-gradient(135deg,#ff8ac4,#8f82ff);color:#fff}
-.badge-b{background:rgba(255,255,255,.22);color:#fff}
-.btn-g{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
-.pcard,.preview,.toolbar,.step,.card2,.feel{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);border-radius:26px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3)}
-.feel{background:linear-gradient(160deg,rgba(var(--rgb),.22),rgba(255,255,255,.05) 70%)}
-.pc-text,.lyr-text,.sty,.lsec{background:rgba(8,6,28,.45);border:1px solid rgba(255,255,255,.18);color:#f4f2ff;border-radius:16px}
-.inp1,.search input,input[type=search],textarea{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.28);border-radius:16px;color:#fff}
-.search input::placeholder{color:#9d98c4}
-.chip,.tb{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.26);color:#e8e5ff}
-.chip[aria-pressed="true"]{background:rgba(255,255,255,.22);border-color:#fff;color:#fff}
-.cta-final{background:linear-gradient(160deg,rgba(255,95,162,.3),rgba(106,92,255,.38));border-top:1px solid rgba(255,255,255,.3)}
-#favbar{background:rgba(24,18,60,.8);backdrop-filter:blur(14px);border-color:rgba(255,255,255,.3)}
-#toast{background:#fff;color:#1a1340}
-.wz-bar{background:rgba(11,10,31,.7);border-color:rgba(255,255,255,.22)}
-.nsb .ns-path span{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28)}
-.nsb .ns-next{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);border-radius:22px;backdrop-filter:blur(14px)}
-header.top a.mc-pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:#fff}
-header.top a.mc-pill:hover{background:#fff;color:#1a1340}
-.mccta{background:rgba(24,18,60,.92)!important;border-color:rgba(255,255,255,.4)!important;backdrop-filter:blur(16px)}
+.gnav a{background:#fff}
+.top-lang{border-radius:999px}
+.hero{text-align:center;padding:48px 0 0!important}
+.hero h1{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;font-size:clamp(30px,5.4vw,54px)!important;line-height:1.12;background:linear-gradient(90deg,#ff7a45,#ff4f9a,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:18ch;margin:0 auto}
+.hero .vibe{margin:14px auto 0;max-width:46ch;color:#444;opacity:1;font-size:clamp(15px,2vw,18px)}
+.hero .lead{margin:8px auto 0;max-width:56ch;color:var(--muted);font-size:13.5px}
+.eyebrow{color:#8a8a95;margin-bottom:10px!important}
+#find{padding-top:26px;max-width:760px;margin:0 auto}
+.sec-head h2{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
+#find .sec-head{text-align:center}
+#find .sec-head p{margin-inline:auto}
+#findTabs{justify-content:center}
+#find .sfq{margin-top:6px}
+.inp1,.search input,input[type=search]{background:#fff;border:0;border-radius:999px;color:#111;font-size:19px;padding:20px 28px;box-shadow:0 0 0 2px #fff,0 0 0 4px #e8e4ff,0 18px 50px rgba(122,92,255,.18)}
+.inp1:focus{outline:none;box-shadow:0 0 0 2px #fff,0 0 0 4px #b9a8ff,0 18px 50px rgba(122,92,255,.28)}
+.search input::placeholder,.inp1::placeholder{color:#9a9aa5}
+#starts,.cg{justify-content:center}
+#find .note{text-align:center}
+.chip,.tb{background:#f0eefc;border:0;color:#4a3fb0;border-radius:999px;font-weight:700}
+.chip:hover,.tb:hover{background:#e4e0fb;color:#4a3fb0}
+.chip[aria-pressed="true"],.tb[aria-pressed="true"]{background:#111;color:#fff}
+.gnav a.on,.btn-p,.b-main,.lg-r[aria-pressed="true"],.nsb .ns-next span.go{background:#111;color:#fff;border-color:#111;border-radius:999px}
+.btn-p:hover,.b-main:hover{background:#333;color:#fff}
+.ob,.stp,.wz-steps button.on b{background:#111;color:#fff}
+.badge-b{background:#6c4df0;color:#fff}
+.btn-g{background:#fff;border-radius:999px;border-color:var(--line2)}
+.pcard,.preview,.toolbar,.step,.card2,.feel{background:#fff;border:0;border-radius:26px;box-shadow:0 18px 50px rgba(20,20,60,.08)}
+.feel{background:linear-gradient(160deg,rgba(var(--rgb),.1),rgba(255,255,255,0) 70%),#fff}
+.pc-text,.lyr-text,.sty,.lsec{background:#f6f5fb;border:0;color:#111;border-radius:16px}
+.pc-text,.sty{color:#111}
+.fav[aria-pressed="true"]{color:#d6336c;border-color:#d6336c;background:rgba(214,51,108,.08)}
+#favbar{background:#fff;color:#111;box-shadow:0 12px 36px rgba(20,20,60,.18)}
+#favbar strong{color:#d6336c}
+#toast{background:#111;color:#fff}
+.cta-final{background:#111;color:#fff;border-top:0;border-radius:28px 28px 0 0}
+.cta-final p{color:#ddd}
+.cta-final .btn-p{background:#fff;color:#111}
+.lg-msg,.wz-hint.warn{color:#b45309}
+.av .kwc{color:#8a6100}.cnt.over{color:#c0392b}.kwc:hover{border-color:#c0392b}
+.wz-bar{background:rgba(251,251,253,.95)}
+.seo,.seoq{border-color:var(--line)}
+.test-bn{background:#fff;border:1px solid var(--line)}
+.mtr{background:rgba(0,0,0,.1)}.mtr i{box-shadow:0 0 0 3px rgba(0,0,0,.08)}
+.pv span{background:rgba(0,0,0,.16)}
+.sfxdel:hover{background:rgba(0,0,0,.06)}
+.nsb .ns-next{border:0;border-radius:22px;box-shadow:0 12px 36px rgba(20,20,60,.1)}
+header.top a.mc-pill{background:#fff;border:1px solid var(--line2);color:#111;border-radius:999px}
+header.top a.mc-pill:hover{background:#111;color:#fff}
+.mccta{background:#fff!important;border:0!important;border-radius:22px!important;box-shadow:0 20px 60px rgba(20,20,60,.25)!important}
 </style>
 </head>
 <body>

@@ -9,7 +9,7 @@
 <link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/">
 <link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/">
 <link rel="alternate" hreflang="x-default" href="https://kkwd21-cloud.github.io/tools/en/">
-<meta name="theme-color" content="#0b0a1f">
+<meta name="theme-color" content="#fbfbfd">
 <meta property="og:type" content="website"><meta property="og:locale" content="en_US">
 <meta property="og:title" content="Dusk Soul Toolkit: Free Tools for AI Music Channels">
 <meta property="og:description" content="150+ Suno prompts · lyrics generator · YouTube title/hashtag generator · Monetization risk check">
@@ -88,45 +88,41 @@ details.all>summary::-webkit-details-marker{display:none}
 details.all>summary:after{content:"＋";font-size:18px;color:var(--muted)}
 details.all[open]>summary:after{content:"－"}
 
-/* ===== aurora redesign v1 ===== */
-:root{--bg:#0b0a1f;--card:rgba(255,255,255,.09);--ink:#f4f2ff;--muted:#b9b5d9;--line:rgba(255,255,255,.22);--a1:#ff8ad0;--a1s:rgba(255,138,208,.16);--a2:#9fc0ff;--a2s:rgba(143,181,255,.16);--a3:#5fe3d0;--a3s:rgba(95,227,208,.15);--cta:#fff;--cta-ink:#1a1340;--onc:#fff;color-scheme:dark}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0a1f;--card:rgba(255,255,255,.09);--ink:#f4f2ff;--muted:#b9b5d9;--line:rgba(255,255,255,.22);--a1:#ff8ad0;--a1s:rgba(255,138,208,.16);--a2:#9fc0ff;--a2s:rgba(143,181,255,.16);--a3:#5fe3d0;--a3s:rgba(95,227,208,.15);--cta:#fff;--cta-ink:#1a1340;--onc:#fff;color-scheme:dark}}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#0b0a1f;--card:rgba(255,255,255,.09);--ink:#f4f2ff;--muted:#b9b5d9;--line:rgba(255,255,255,.22);--a1:#ff8ad0;--a1s:rgba(255,138,208,.16);--a2:#9fc0ff;--a2s:rgba(143,181,255,.16);--a3:#5fe3d0;--a3s:rgba(95,227,208,.15);--cta:#fff;--cta-ink:#1a1340;--onc:#fff;color-scheme:dark}}
-body{background:radial-gradient(620px 520px at 0% 0%,rgba(106,92,255,.7),transparent 70%),radial-gradient(520px 520px at 100% 35%,rgba(255,95,162,.5),transparent 70%),radial-gradient(560px 440px at 35% 100%,rgba(31,214,195,.42),transparent 70%),#0b0a1f;background-attachment:fixed;background-repeat:no-repeat}
-.wrap{max-width:880px;gap:28px}
-h1{font-size:clamp(32px,7vw,54px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
-.eyebrow{color:#d9d2ff}
-.sub{font-size:17px;color:#cfcbee}
-.picks{grid-template-columns:repeat(2,1fr);gap:16px}
-.pk{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-radius:26px;padding:22px;min-height:150px;transition:transform .15s,background .15s}
-.pk:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(0,0,0,.4);background:rgba(255,255,255,.14)}
-.pk b{font-size:19px;color:#fff}.pk span{color:#cfcbee}.pk i{color:var(--c);font-weight:800}
-.pk.t2{background:linear-gradient(160deg,rgba(143,181,255,.2),rgba(255,255,255,.07))}
-.pk.t3{background:linear-gradient(160deg,rgba(95,227,208,.2),rgba(255,255,255,.07))}
-.pk.big{grid-column:span 2;background:linear-gradient(135deg,rgba(255,95,162,.55),rgba(106,92,255,.55));color:#fff;min-height:220px;border-color:rgba(255,255,255,.4)}
-.pk.big b{font-size:30px;line-height:1.2}.pk.big span,.pk.big i{color:#fff}
+/* ===== minimal redesign v1 ===== */
+:root{--bg:#fbfbfd;--card:#fff;--ink:#111;--muted:#6b6b78;--line:#e7e5f2;--a1:#6c4df0;--a1s:#f0eefc;--a2:#d94f1a;--a2s:#fff0e8;--a3:#0f8a7a;--a3s:#e6f6f3;--cta:#111;--cta-ink:#fff;--onc:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#fbfbfd;--card:#fff;--ink:#111;--muted:#6b6b78;--line:#e7e5f2;--a1:#6c4df0;--a1s:#f0eefc;--a2:#d94f1a;--a2s:#fff0e8;--a3:#0f8a7a;--a3s:#e6f6f3;--cta:#111;--cta-ink:#fff;--onc:#fff;color-scheme:light}}
+body{background:#fbfbfd}
+.wrap{max-width:860px;gap:34px}
+header{text-align:center;align-items:center;margin-top:34px}
+h1{font-size:clamp(34px,7vw,56px);line-height:1.1;font-weight:800;letter-spacing:-.03em;background:linear-gradient(90deg,#ff7a45,#ff4f9a,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 auto;font-size:17px;max-width:46ch}
+.eyebrow{color:#8a8a95}
+.pick>h2,.path>h2{text-align:center;font-weight:800;letter-spacing:-.02em;font-size:22px}
+.picks{grid-template-columns:repeat(2,1fr);gap:14px}
+.pk{background:#fff;border:0;border-radius:24px;padding:24px;min-height:150px;box-shadow:0 18px 50px rgba(20,20,60,.08);transition:transform .15s,box-shadow .15s}
+.pk:hover{transform:translateY(-3px);box-shadow:0 22px 56px rgba(20,20,60,.14)}
+.pk b{font-size:19px}
+.pk i{color:#111;font-weight:800}
+.pk.t1 i,.pk.t2 i,.pk.t3 i{color:#111}
+.pk.big{grid-column:span 2;background:#111;color:#fff;min-height:200px}
+.pk.big b{font-size:30px}.pk.big span,.pk.big i{color:#fff;opacity:.9}
 .pk:last-child:not(.big){grid-column:span 2}
-@media(min-width:620px){.picks{grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto)}.pk.big{grid-row:span 2;min-height:0}.pk.big b{font-size:36px}}
-.pick>h2,.path>h2{letter-spacing:-.01em}
-.path,.flow{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-radius:26px;padding:24px}
-.flow{padding:14px 18px;border-radius:18px;border-style:solid}
-.path li a{border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.07)}
-.path li a:hover{background:rgba(255,255,255,.16)}
-.path li em{background:#fff;color:#1a1340}
-.tool,.tool.feat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-left:1px solid rgba(255,255,255,.24);border-radius:22px}
-.tool:hover{background:rgba(255,255,255,.15);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-.tool li{background:var(--cs);color:#fff}
-.tool p,.tool.feat p{color:#d6d2f2}
-.gl a{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-top:3px solid var(--g);border-radius:16px}
-.gl b{color:#fff}.gl span{color:#cfcbee}
-.cta{background:linear-gradient(135deg,rgba(255,95,162,.4),rgba(106,92,255,.45));border:1px solid rgba(255,255,255,.35);border-radius:26px;padding:28px;backdrop-filter:blur(18px);color:#fff}
-.cta .btn{background:#fff;color:#1a1340;border-radius:999px}
-.cta .fine,.cta a.fine{color:#fff!important}
-details.all>summary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.3);border-radius:18px;color:#fff}
-details.all>summary:after{color:#fff}
-a[hreflang]{background:rgba(255,255,255,.14)!important;border:1px solid rgba(255,255,255,.35)!important;color:#fff!important;backdrop-filter:blur(10px)}
-.group h2,.grp>h2{color:#d9d2ff}
-footer{color:#b9b5d9}footer a{color:#fff!important}
+@media(min-width:620px){.picks{grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto)}.pk.big{grid-row:span 2;min-height:0}.pk.big b{font-size:34px}}
+.path{border:0;border-radius:28px;box-shadow:0 18px 50px rgba(20,20,60,.08);padding:26px}
+.path li a{border:0;border-radius:18px;background:#f4f3fa}
+.path li a:hover{background:#eae7fb}
+.path li em{background:#111;color:#fff}
+.tool,.tool.feat{border:0;border-left:0;border-radius:24px;box-shadow:0 18px 50px rgba(20,20,60,.08);background:#fff}
+.tool:hover{box-shadow:0 22px 56px rgba(20,20,60,.14)}
+.tool.feat{background:var(--cs)}
+.tool li{background:#f0eefc;color:#4a3fb0}
+.gl a{border:0;border-radius:18px;box-shadow:0 18px 50px rgba(20,20,60,.08)}
+.flow{border:0;border-radius:18px;background:#f4f3fa}
+.cta{background:#111;border-radius:28px;padding:30px}
+.cta .btn{background:#fff;color:#111;border-radius:999px}
+details.all>summary{border:0;border-radius:20px;box-shadow:0 18px 50px rgba(20,20,60,.08)}
+.grp>h2{color:#8a8a95}
+a[hreflang]{border:0!important;box-shadow:0 4px 16px rgba(20,20,60,.1)}
 </style>
 </head>
 <body>
