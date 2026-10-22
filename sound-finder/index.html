@@ -631,8 +631,9 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
         <div id="sgBox" class="sgbox" hidden><b style="font-size:13px">💡 이렇게 바꾸면 더 좋아질 수 있어요 <span class="note sm" style="font-weight:400">누르면 위 스타일에 바로 반영돼요</span></b><div id="sgRows"></div></div>
         <div id="vcTip" class="precbox" hidden style="flex-direction:column;gap:6px;align-items:stretch"><b style="font-size:13px">목소리가 안 나오면 (수노 팁)</b><span class="note sm" style="margin:0">① 수노 고급 옵션(Advanced Options)에서 Vocal Gender를 맞추고 Style Influence를 높여 보세요. ② 아래 문구를 Exclude Styles 칸에 넣으면 반대 목소리가 덜 나와요. ③ 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 가사 칸 태그에도 목소리 설명이 자동으로 들어가요. 흐리게 보이는 항목은 고른 목소리와 반대라 막아 뒀어요.</span><div class="sfrow"><input class="inp" id="vcExcl" type="text" readonly aria-label="제외 스타일" style="font-size:14px"><button type="button" class="b-sub" id="vcExCopy">제외 스타일 복사</button></div></div>
         <div id="precBox" class="precbox" hidden><label><input type="checkbox" id="optPrec" checked> <b>이 곡 정밀 스타일</b></label><span id="precInfo"></span></div>
-        <div class="sfrow"><button type="button" class="b-main" id="cpStyle">스타일 복사</button><button type="button" class="b-sub" id="vaStyle">🎲 다른 스타일로</button><button type="button" class="b-sub" id="vaReset" hidden>처음 스타일</button></div>
+        <div class="sfrow"><button type="button" class="b-main" id="cpStyle">스타일 복사</button><button type="button" class="b-sub" id="favSave">⭐ 마음에 듦 저장</button><button type="button" class="b-sub" id="vaStyle">🎲 다른 스타일로</button><button type="button" class="b-sub" id="vaReset" hidden>처음 스타일</button></div>
         <span class="note sm" id="vaInfo"></span>
+        <div id="favBox" class="precbox" hidden style="flex-direction:column;gap:8px;align-items:stretch"><b style="font-size:13px">⭐ 저장한 스타일 <span id="favN" class="note sm" style="margin:0"></span></b><div id="favList" style="display:flex;flex-direction:column;gap:8px"></div></div>
         
         <p class="note sm" style="margin:0">가수 이름은 일부러 뺐어요. 수노는 가수를 똑같이 따라 하지 못하고 "분위기"까지만 비슷해져요. 같은 문구로 3~4번 만들어서 제일 가까운 걸 고르세요.</p>
       </div>
@@ -1758,6 +1759,18 @@ $('#rpChips').addEventListener('click',function(e){var b=e.target.closest('butto
 $('#rpCopy').addEventListener('click',function(){var t=rpGet().map(function(x){return x.a+(x.s?' / '+x.s:'')+' → '+x.k+'\n  '+x.p}).join('\n');copy(t,'신고 목록을 복사했어요')});
 $('#rpClear').addEventListener('click',function(){rpSet([]);rpRender()});
 rpRender();
+
+/* ---------- 마음에 든 스타일 저장 (내 브라우저에만) ---------- */
+var FVK='dusk_sf_fav_v1';
+function fvGet(){try{var a=JSON.parse(localStorage.getItem(FVK)||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+function fvSet(a){try{localStorage.setItem(FVK,JSON.stringify(a.slice(0,60)));return true}catch(e){return false}}
+function fvRender(){var a=fvGet(),box=$('#favBox');if(!box)return;box.hidden=!a.length;$('#favN').textContent=a.length?a.length+'개':'';
+  $('#favList').innerHTML=a.map(function(x,i){var dt=x.at?new Date(x.at):null,ds=dt?(dt.getMonth()+1)+'/'+dt.getDate():'';return '<div style="display:flex;flex-direction:column;gap:6px;padding:10px 12px;border:1px solid var(--line2);border-radius:12px"><b style="font-size:13px">'+esc(x.t||'(제목 없음)')+'</b><span class="note sm" style="margin:0">'+esc(x.a||'')+(ds?' · '+ds:'')+'</span>'+(x.d?'<span style="font-size:12.5px;line-height:1.6">'+esc(x.d)+'</span>':'')+'<span style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;word-break:break-word">'+esc(x.p)+'</span><span class="sfrow"><button type="button" class="b-sub" data-fv="c'+i+'">복사</button><button type="button" class="b-sub" data-fv="d'+i+'">삭제</button></span></div>'}).join('')}
+$('#favSave').addEventListener('click',function(){var p=$('#cPhrase').value.trim();if(!p||!cur){toast('먼저 가수를 골라 주세요');return}
+  var a=fvGet().filter(function(x){return x.p!==p});a.unshift({a:cur.n+(mix?' × '+mix.n:''),t:(LS&&LS.title)||'',d:($('#cDesc')?$('#cDesc').textContent:'').trim(),p:p,at:Date.now()});fvSet(a);fvRender();toast('저장했어요')});
+$('#favList').addEventListener('click',function(e){var b=e.target.closest('button[data-fv]');if(!b)return;var k=b.dataset.fv,i=+k.slice(1),a=fvGet();if(!a[i])return;
+  if(k[0]==='c'){copy(a[i].p,'저장한 스타일을 복사했어요')}else{a.splice(i,1);fvSet(a);fvRender()}});
+fvRender();
 
 /* ---------- 목소리로 찾기 ---------- */
 var VSTRONG=['husky','gravel','power','deep','soulful','sultry'],VSOFT=['clear','breathy','sweet','dreamy','warm','youth'];
