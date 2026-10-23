@@ -452,7 +452,7 @@ details.pk>summary{display:block!important;position:relative;padding-right:28px}
 details.pk>summary::after{content:'+';position:absolute;right:0;top:0;font-size:18px;color:var(--text)}
 details.pk[open]>summary::after{content:'−'}
 details.pk>summary .note{display:block;margin-top:4px}
-#card,#lyr,#fin{scroll-margin-top:72px}
+#card,#lyr,#fin{scroll-margin-top:72px}#lyDur{scroll-margin-top:84px}#lyEst b{color:var(--text)}
 .volw{display:inline-flex;align-items:center;gap:6px;font-size:14px;margin-left:auto}
 .volw input{width:84px;accent-color:var(--accent)}
 #nxt .tools{gap:8px}
@@ -647,6 +647,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
         <div class="blk" id="genBlk"><span class="flabel">🎼 장르 바꾸기 <span class="note sm" style="font-weight:400">목소리 느낌은 두고 장르만 바꿔요</span></span><div class="chips" id="genChips"></div><span class="note sm" style="margin:0">고르면 스타일 문구의 장르·악기·빠르기가 바뀌어요. 기본을 누르면 원래대로 돌아와요. 톤과는 함께 쓸 수 없어요.</span></div>         <div class="blk" id="tkBlk"><span class="flabel">✨ 특색 가사 <span class="note sm" style="font-weight:400">누르면 스타일과 가사가 같이 특색 있게 바뀌어요</span></span><div class="chips" id="toneChips2"></div><span class="note sm" style="margin:0">스타일 문구도 톤에 맞춰 바뀌어서 가수 느낌은 조금 약해질 수 있어요. 기본을 누르면 원래대로 돌아와요.</span></div>
         <div class="blk" id="lxBeg"><span class="flabel">가사 느낌 <span class="note sm" style="font-weight:400">영어·랩을 섞고 싶을 때</span></span><div class="chips" id="lxMode"><button type="button" class="chip" data-m="ko" aria-pressed="true">한국어만</button><button type="button" class="chip" data-m="en" aria-pressed="false">영어 살짝</button><button type="button" class="chip" data-m="rap" aria-pressed="false">랩 넣기</button><button type="button" class="chip" data-m="both" aria-pressed="false">영어 + 랩</button><button type="button" class="chip" data-m="enonly" aria-pressed="false">영어만</button></div></div>
         <p class="note sm" id="lxNote" hidden style="margin:0"></p>
+        <div class="sfrow" id="lyDur" style="align-items:center"><span class="note sm" id="lyEst" style="margin:0;flex:1 1 180px"></span><button type="button" class="b-sub" id="lyShorter">− 짧게</button><button type="button" class="b-sub" id="lyLonger">+ 길게</button></div>
         <div id="lyBody"></div>
         <div class="sfrow"><button type="button" class="b-main" id="cpLyr">가사 복사</button><button type="button" class="b-sub" id="lyNew">가사 다시 뽑기</button></div>
         <span class="note sm" id="lyLen" style="align-self:flex-end"></span>
@@ -1455,7 +1456,16 @@ function lPost(k,s){return lRhy(k,LXE.post(k,s,lTheme(),LX))}
 function lPool(k){var o=LXE.pool(k,lTheme(),LX);if(o)return o;
   if(ENG&&D.lyrEn){var E=D.lyrEn[lTheme()],ek=(k==='verse1'||k==='verse2')?'verse':k;if(E&&E[ek]&&E[ek].length)return E[ek]}
   var b=lBank(),kk=(k==='verse1'||k==='verse2')?'verse':k;return b[kk]||[]}
-function lSecs(){return LXE.secs(LS.short?SHORTSEC:LY.order,LX)}
+function lvEff(){return LS.lvl!=null?LS.lvl:(LS.short?1:2)}
+function lvBase(){var v=lvEff();
+  if(v<=0)return ['intro','verse1','chorus','outro'];
+  if(v===1)return SHORTSEC;
+  if(v===2)return LY.order;
+  var o=LY.order.slice(),bi=o.indexOf('bridge'),fi=o.indexOf('chorusF');
+  if(fi>=0)o.splice(fi,0,'chorus2');
+  if(bi>=0&&!LX.solo)o.splice(bi,0,'solo');
+  return o}
+function lSecs(){return LXE.secs(lvBase(),LX)}
 function lKeys(){var ks=[];lSecs().forEach(function(s){var k=LY.secdef[s].key;if(k&&ks.indexOf(k)<0)ks.push(k)});return ks}
 function lRnd(a){return a[Math.floor(Math.random()*a.length)]}
 var LBAG={};
@@ -1542,7 +1552,7 @@ function lyrText0(){
 function lEl(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
 function renderLyr(){
   var inst=lInst(),box=$('#lyBody');box.innerHTML='';$('#lyInst').hidden=!inst;$('#lyNew').hidden=inst;
-  $$('#lyOpts button').forEach(function(b){var o=b.dataset.o;b.hidden=inst&&(o==='short'||o==='rhythm');b.setAttribute('aria-pressed',(o==='short'?LS.short:(o==='rhythm'?LS.rhythm:LS.hints))?'true':'false')});
+  $$('#lyOpts button').forEach(function(b){var o=b.dataset.o;b.hidden=inst&&(o==='short'||o==='rhythm');b.setAttribute('aria-pressed',(o==='short'?(lvEff()===1):(o==='rhythm'?LS.rhythm:LS.hints))?'true':'false')});
   $('#lyKo').hidden=inst||ko||ENG;$('#lxBeg').hidden=inst;lxRender();var ln=$('#lxNote'),nt=[];if(LX.tit)nt.push('제목이 후렴 마지막 줄에 자동으로 들어가요(복사할 때 포함).');if(LX.rap!=='off')nt.push('랩 파트는 [Rap Verse] 태그로 나가요. 수노에서 3~4번 뽑아 고르세요.');ln.hidden=inst||!nt.length;ln.textContent=nt.join(' ');
   var lt=$('#lyTone'),tOn=tone&&TN[tone],dOn=lDiary(),sOn=songTh()&&!tOn;lt.hidden=inst||ENG||!(tOn||dOn||sOn);if(!lt.hidden)lt.textContent=sOn?"'"+song+"' 곡의 분위기("+(D.themes.filter(function(t){return t.id===songTh()})[0]||{ko:''}).ko+")에 맞춰 새로 쓴 가사예요. 원곡 가사가 아니에요.":tOn?"'"+TN[tone].ko+"' 톤 가사예요. 고급 설정에서 가사 주제를 고르면 톤이 풀려요.":"'"+(((mix&&ratio==='b')?mix:cur).n)+"' 같은 일상 말투(말 걸듯 담담하게)로 만들었어요. 고급 설정에서 주제를 고르면 바뀌어요.";
   if(inst){box.appendChild(lEl('pre','',lyrText()))}
@@ -1560,7 +1570,21 @@ function renderLyr(){
   }
   renderTitles();lLen();
 }
-function lLen(){$('#lyLen').textContent=lyrText().length+'자'}
+function lyDurSec(){
+  var m=($('#cPhrase').value||'').match(/tempo\s+(\d+)\s*bpm/i),bpm=m?+m[1]:90;
+  var f=Math.max(.8,Math.min(1.35,Math.pow(100/bpm,.7))),spl=4.5*f,gap=4*f,t=0;
+  lSecs().forEach(function(s){var d=LY.secdef[s];
+    if(s==='intro')t+=10*f;else if(s==='outro')t+=12*f+gap*.5;else if(s==='solo')t+=20*f;
+    else{var tx=d.key?(LS.texts[d.key]||''):'',n=tx.split('\n').filter(function(x){return x.trim()}).length;t+=n*spl+gap}});
+  return t}
+function lyDurTxt(sec){var r=Math.round(sec/10)*10,mm=Math.floor(r/60),ss=r%60;return mm+'분'+(ss?' '+ss+'초':'')}
+function lyEst(){var box=$('#lyDur');if(!box)return;var inst=lInst();box.hidden=inst;if(inst)return;
+  $('#lyEst').innerHTML='예상 시간 <b>약 '+lyDurTxt(lyDurSec())+' 안팎</b> <span style="opacity:.7">(±30초)</span>';
+  $('#lyShorter').disabled=lvEff()<=0;$('#lyLonger').disabled=lvEff()>=3}
+function lyStep(d){LS.lvl=Math.max(0,Math.min(3,lvEff()+d));lRoll(null,true);renderLyr();toast(d>0?'구간을 더했어요':'구간을 뺐어요')}
+$('#lyShorter').addEventListener('click',function(){lyStep(-1)});
+$('#lyLonger').addEventListener('click',function(){lyStep(1)});
+function lLen(){$('#lyLen').textContent=lyrText().length+'자';lyEst()}
 function renderTitles(){
   $('#lyTitles').innerHTML=LS.titles.map(function(t){return '<button type="button" class="chip" data-t="'+esc(t)+'" aria-pressed="'+(t===LS.title?'true':'false')+'">'+esc(t)+'</button>'}).join('');
   if($('#lyTitle').value!==LS.title)$('#lyTitle').value=LS.title;
@@ -1574,8 +1598,9 @@ $('#lyBody').addEventListener('input',function(e){var t=e.target;if(t.tagName===
 $('#lyTitles').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;LS.title=b.dataset.t;renderTitles()});
 $('#lyTitle').addEventListener('input',function(){LS.title=this.value;$$('#lyTitles button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.t===LS.title?'true':'false')})});
 $('#lyNewTitles').addEventListener('click',function(){lTitles();renderTitles()});
-$('#lyNew').addEventListener('click',function(){lRoll();renderLyr();toast('새로 만들었어요')});
-$('#lyOpts').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.o==='short'){LS.short=!LS.short;lRoll(null,true)}else if(b.dataset.o==='rhythm'){LS.rhythm=!LS.rhythm;lRoll();renderPhrase()}else LS.hints=!LS.hints;renderLyr()});
+$('#lyNew').addEventListener('click',function(){lRoll();renderLyr();toast('새로 만들었어요');
+  try{var r=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;$('#lyDur').scrollIntoView({behavior:r?'auto':'smooth',block:'start'})}catch(e){}});
+$('#lyOpts').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.o==='short'){LS.short=!LS.short;LS.lvl=null;lRoll(null,true)}else if(b.dataset.o==='rhythm'){LS.rhythm=!LS.rhythm;lRoll();renderPhrase()}else LS.hints=!LS.hints;renderLyr()});
 $('#cpTitle').addEventListener('click',function(){histAdd('t',LS.title);copy(LS.title,'제목을 복사했어요')});
 $('#vaStyle').addEventListener('click',function(){var n=0,p;vaNote='';do{VS++;p=build();n++}while(n<30&&histHas('s',p));renderPhrase()});
 $('#vaReset').addEventListener('click',function(){VS=0;vaNote='';renderPhrase()});
