@@ -735,7 +735,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 144</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 145</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -1945,7 +1945,7 @@ function voiceHint(){if(!cur||!cur.virt||!(cur.virt.vs||[]).length)return '';var
 function voiceExcl(){if(!cur||!cur.virt)return '';var o=[];(cur.virt.vs||[]).forEach(function(id){var v=vcFind(VCV,id);if(v&&v[4])v[4].split(', ').forEach(function(x){if(o.indexOf(x)<0)o.push(x)})});
   if(cur.virt.g==='female')o.push('male vocals');else if(cur.virt.g==='male')o.push('female vocals');return o.join(', ')}
 function renderVtip(){var t=$('#vcTip');if(!t)return;var ex=voiceExcl();t.hidden=!(cur&&cur.virt);if(t.hidden)return;$('#vcExcl').value=ex}
-$('#exTrot').addEventListener('click',function(){copy('trot, schlager, retro, 90s, disco, cheesy, old-fashioned, nostalgic, polka, marching band','제외 스타일을 복사했어요')});
+$('#exTrot').addEventListener('click',function(){copy('trot, schlager, vibrato, melisma, ornamented vocals, retro, 90s, disco, cheesy, old-fashioned, polka','제외 스타일을 복사했어요')});
 $('#vcExCopy').addEventListener('click',function(){copy($('#vcExcl').value,'제외 스타일을 복사했어요')});
 function vcRender(){
   var h='<div class="fxrow"><span class="note sm">① 누가 부르나요?</span><div class="chips" id="vcG">'+VCG.map(function(x){return '<button type="button" class="chip" data-id="'+x[0]+'" aria-pressed="'+(VC.g===x[0]?'true':'false')+'">'+x[1]+'</button>'}).join('')+'</div></div>';
@@ -2158,7 +2158,7 @@ var CR={"fun":[["K팝 댄스팝 · 세련된","매끈한 신스 베이스와 또
 function mxPick(a){return a[Math.floor(Math.random()*a.length)]}
 function genMood(f){var L=CR[f],r,t=0;do{r=mxPick(L);t++}while(L.length>1&&r===CRLAST[f]&&t<8);CRLAST[f]=r;
  var DROPT=/instruments enter gradually|soft balanced mix|gentle dynamics|no harsh sounds|quiet intro|gradual build|brief quiet bridge|big final chorus|smooth seamless flow|slow build|slow hypnotic build|rising build/;
- var tg=r[2].split(', '),keep=tg.filter(function(x){return !DROPT.test(x)}).slice(0,4);keep.push('modern 2020s production');
+ var tg=r[2].split(', '),keep=tg.filter(function(x){return !DROPT.test(x)}).slice(0,4);keep.push('modern 2020s production');if(!/vocals?$/.test(r[5]==='inst'?'inst':'x')&&r[5]!=='inst')keep.push('natural straight-tone vocals, no vibrato');
  var h={id:'mx'+(++MXN),ko:r[0],d:r[1],en:keep.join(', '),bpm:r[3],th:mxPick(r[4]),v:r[5],t:r[6],arc:/quiet intro|gradual build|slow build|rising build/.test(r[2]),hl:r[8]||null};if(r[7])h.g=r[7];return h}
 $('#feelRow').addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;var f=b.dataset.f;if(!CR[f])return;var h=genMood(f);
  Array.prototype.forEach.call($('#feelRow').children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
