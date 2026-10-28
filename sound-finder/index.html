@@ -735,7 +735,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 158</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 160</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -2215,18 +2215,20 @@ $('#emLv').addEventListener('click',function(e){var b=e.target.closest('button')
  function clean(t){return String(t).replace(/[\[\(【「『][^\]\)】」』]*[\]\)】」』]/g,' ').replace(/official|music video|lyric video|lyrics?|audio|\bm\/?v\b|\bmv\b|가사|뮤직비디오|live|performance|teaser|visualizer|4k|hd|\bfull\b/ig,' ').replace(/[\u201c\u201d"'`]/g,' ').replace(/\s+/g,' ').trim()}
  function cands(title,author){var o=[],add=function(x){x=String(x||'').trim();if(x.length>=1&&o.indexOf(x)<0)o.push(x)};
   (String(title).match(/[\(\[]([^\)\]]{2,30})[\)\]]/g)||[]).forEach(function(b){var t=b.slice(1,-1);if(!/official|mv|m\/v|audio|lyric|live|가사|video/i.test(t))add(t)});
-  var c=clean(title);c.split(/\s[-–—|:]\s|\s*[|｜]\s*/).forEach(function(x){add(clean(x))});add(c);
-  var a=String(author||'').replace(/\s*-\s*topic$/i,'').replace(/official|vevo|channel|music|\bm\/?v\b|공식/ig,' ').replace(/\s+/g,' ').trim();add(a);
+  var c=clean(title);c.split(/\s*[-–—~|｜:：／\/]\s*/).forEach(function(x){add(clean(x))});add(c);
+  var wd=c.split(/[\s\-–—|:]+/).filter(Boolean);for(var n=1;n<=Math.min(3,wd.length-1);n++){add(wd.slice(0,n).join(' '))}
+  var a=String(author||'').replace(/\s*-\s*topic$/i,'').replace(/official|vevo|channel|music|\bm\/?v\b|공식/ig,' ').replace(/\s+/g,' ').trim();if(exact(a))add(a);
   var base=c.split(/\s[-–—|:]\s/)[0];if(base&&base!==c){var rest=c.slice(base.length).replace(/^\s*[-–—|:]\s*/,'');add(rest)}
   return o}
  function hit(q){return search(q).length||searchSongs(q).length}
+ function exact(q){var n=norm(q);return ROWS.some(function(r){return r.keys.indexOf(n)>=0})}
  function fetchJ(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json()})}
  go.addEventListener('click',function(){var u=inp.value.trim(),id=vid(u);
   if(!id){msg.textContent='유튜브 링크가 맞는지 확인해 주세요. (예: https://youtu.be/...)';return}
   msg.textContent='제목을 읽는 중이에요…';go.disabled=true;
   var url='https://www.youtube.com/watch?v='+id;
   fetchJ('https://www.youtube.com/oembed?format=json&url='+encodeURIComponent(url)).catch(function(){return fetchJ('https://noembed.com/embed?url='+encodeURIComponent(url))}).then(function(j){
-   go.disabled=false;var t=j&&j.title;if(!t)throw 0;var cs=cands(t,j.author_name),f=cs.filter(hit)[0];
+   go.disabled=false;var t=j&&j.title;if(!t)throw 0;var cs=cands(t,j.author_name),hs=cs.filter(hit),f=hs.filter(exact)[0]||hs[0];
    if(f){inp.value='';var q=$('#q');q.value=f;q.dispatchEvent(new Event('input',{bubbles:true}));msg.textContent='읽은 제목: '+t+' → "'+f+'"(으)로 찾았어요. 아래 결과를 눌러 보세요.'}
    else{var q2=$('#q');q2.value=cs[0]||'';q2.dispatchEvent(new Event('input',{bubbles:true}));msg.textContent='읽은 제목: '+t+' · 사이트에 없는 곡 같아요. 가수 이름을 직접 입력해 보세요.'}
   }).catch(function(){go.disabled=false;msg.textContent='링크에서 제목을 읽지 못했어요. 위 칸에 가수·곡 이름을 직접 입력해 주세요.'})});
