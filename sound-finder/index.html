@@ -540,7 +540,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
     <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="hit" aria-pressed="false">🙂 기분으로 고르기</button><button type="button" class="chip" id="moreTabs" title="가수를 모를 때: 목소리로 찾기, 내 음악 파일로 찾기">⋯ 다른 방법</button><button type="button" class="chip" data-t="voice" aria-pressed="false" hidden>🗣 목소리로 찾기</button><button type="button" class="chip" data-t="file" aria-pressed="false" hidden>🎵 음악 파일로 찾기</button></div>
     <div id="artistPanel">
     <div class="sfq"><input id="q" class="inp1" type="search" autocomplete="off" placeholder="가수 이름 또는 곡 제목" aria-label="가수 이름 또는 곡 제목"></div>
-    <div class="sug" id="res" role="listbox" style="margin-top:6px"></div>
+    <div class="sfq" style="margin-top:8px"><input id="ytq" class="inp1" type="url" autocomplete="off" placeholder="유튜브 링크 붙여넣기 (제목으로 가수·곡 찾기)" aria-label="유튜브 링크"><button type="button" class="chip" id="ytGo" style="margin-top:6px">▶ 링크로 찾기</button></div><p class="note sm" id="ytMsg" style="margin:6px 0 0" aria-live="polite"></p><div class="sug" id="res" role="listbox" style="margin-top:6px"></div>
     <div id="starts" class="cg" style="margin-top:10px"></div>
     <p class="note" id="none" hidden>아직 없는 가수나 곡이에요. 곡 제목은 유명한 곡만 들어 있어요. 아래 "느낌 직접 고르기"를 써 보세요.</p>
     </div>
@@ -735,7 +735,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 157</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 158</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -2207,6 +2207,30 @@ $('#emLv').addEventListener('click',function(e){var b=e.target.closest('button')
   var row=document.createElement('div');row.className='sfrow';['favSave','vaStyle','qkBtn','vaReset'].forEach(function(i){var e=g(i);if(e)row.appendChild(e)});
   grp('스타일 다듬기 (소리 느낌, 시대, 저장, 다른 스타일)',[pr&&pr.parentNode,g('sgBox'),g('vcTip'),g('precBox'),row,g('vaInfo'),g('favBox')]);
   grp('가사 옵션 (장르·톤·영어·랩·길이·하이라이트)',[g('genBlk'),g('tkBlk'),g('lxBeg'),g('lxNote'),g('hlBlk'),g('lyDur')]);
+})();
+
+/*YTLINK*/(function(){
+ var go=$('#ytGo'),inp=$('#ytq'),msg=$('#ytMsg');if(!go)return;
+ function vid(u){var m=String(u).match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/)([\w-]{11})/);return m?m[1]:''}
+ function clean(t){return String(t).replace(/[\[\(【「『][^\]\)】」』]*[\]\)】」』]/g,' ').replace(/official|music video|lyric video|lyrics?|audio|\bm\/?v\b|\bmv\b|가사|뮤직비디오|live|performance|teaser|visualizer|4k|hd|\bfull\b/ig,' ').replace(/[\u201c\u201d"'`]/g,' ').replace(/\s+/g,' ').trim()}
+ function cands(title,author){var o=[],add=function(x){x=String(x||'').trim();if(x.length>=1&&o.indexOf(x)<0)o.push(x)};
+  (String(title).match(/[\(\[]([^\)\]]{2,30})[\)\]]/g)||[]).forEach(function(b){var t=b.slice(1,-1);if(!/official|mv|m\/v|audio|lyric|live|가사|video/i.test(t))add(t)});
+  var c=clean(title);c.split(/\s[-–—|:]\s|\s*[|｜]\s*/).forEach(function(x){add(clean(x))});add(c);
+  var a=String(author||'').replace(/\s*-\s*topic$/i,'').replace(/official|vevo|channel|music|\bm\/?v\b|공식/ig,' ').replace(/\s+/g,' ').trim();add(a);
+  var base=c.split(/\s[-–—|:]\s/)[0];if(base&&base!==c){var rest=c.slice(base.length).replace(/^\s*[-–—|:]\s*/,'');add(rest)}
+  return o}
+ function hit(q){return search(q).length||searchSongs(q).length}
+ function fetchJ(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json()})}
+ go.addEventListener('click',function(){var u=inp.value.trim(),id=vid(u);
+  if(!id){msg.textContent='유튜브 링크가 맞는지 확인해 주세요. (예: https://youtu.be/...)';return}
+  msg.textContent='제목을 읽는 중이에요…';go.disabled=true;
+  var url='https://www.youtube.com/watch?v='+id;
+  fetchJ('https://www.youtube.com/oembed?format=json&url='+encodeURIComponent(url)).catch(function(){return fetchJ('https://noembed.com/embed?url='+encodeURIComponent(url))}).then(function(j){
+   go.disabled=false;var t=j&&j.title;if(!t)throw 0;var cs=cands(t,j.author_name),f=cs.filter(hit)[0];
+   if(f){inp.value='';var q=$('#q');q.value=f;q.dispatchEvent(new Event('input',{bubbles:true}));msg.textContent='읽은 제목: '+t+' → "'+f+'"(으)로 찾았어요. 아래 결과를 눌러 보세요.'}
+   else{var q2=$('#q');q2.value=cs[0]||'';q2.dispatchEvent(new Event('input',{bubbles:true}));msg.textContent='읽은 제목: '+t+' · 사이트에 없는 곡 같아요. 가수 이름을 직접 입력해 보세요.'}
+  }).catch(function(){go.disabled=false;msg.textContent='링크에서 제목을 읽지 못했어요. 위 칸에 가수·곡 이름을 직접 입력해 주세요.'})});
+ inp.addEventListener('keydown',function(e){if(e.key==='Enter')go.click()});
 })();
 function vcTab(w){var v=w==='voice';$('#vcPanel').hidden=!v;$('#afPanel').hidden=w!=='file';$('#artistPanel').hidden=w!=='artist';$('#hitPanel').hidden=w!=='hit';$$('#findTabs button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.t===w?'true':'false')});if(w==='hit')hitRender();if(v&&!$('#vcBody').innerHTML)vcRender()}
 $('#findTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.id==='moreTabs'){$$('#findTabs [data-t=voice],#findTabs [data-t=file]').forEach(function(x){x.hidden=false});b.hidden=true;return}if(b.dataset.t){if(b.hidden)return;vcTab(b.dataset.t)}});
