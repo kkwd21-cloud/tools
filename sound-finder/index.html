@@ -735,7 +735,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
-<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 179</footer>
+<footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 180</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="../shared/lyx-data.js"></script>
 <script src="../shared/lyx.js"></script>
@@ -910,7 +910,7 @@ function eraRetro(){var s=(mix&&ratio==='b')?mix:cur;if(!s)return true;return /\
 function eraOn(){return ERA&&!inst()&&!eraRetro()}
 function eraClean(x,i){if(i<1)return x;var y=x.replace(ERAOLD,' ').replace(/\band\s+(?=,|$)/gi,'').replace(/\s+/g,' ').replace(/^(and|with)\s+/i,'').replace(/^[\s,]+|[\s,]+$/g,'');return y}
 function build(){
-  if(rcOn()){var _b=[rcVoice()].concat(RC.en.split(', ')),_t=qkTok();_t.push('tempo '+RC.bpm+' bpm');if(ENG)_t.push('sung in English');else if(ko)_t.push('sung in Korean');while(_b.length>3&&_b.concat(_t).join(', ').length>200)_b.pop();return _b.concat(_t).join(', ')}
+  if(rcOn()){var _b=RC.ex?RC.en.split(', '):[rcVoice()].concat(RC.en.split(', ')),_t=qkTok();_t.push('tempo '+RC.bpm+' bpm');if(ENG)_t.push('sung in English');else if(ko)_t.push('sung in Korean');while(_b.length>3&&_b.concat(_t).join(', ').length>200)_b.pop();return _b.concat(_t).join(', ')}
   var PC=prec(),parts=PC?PC.it.slice():baseItems(),tn=(tone&&TN[tone])?TN[tone]:null;
   var kt=!PC&&kArt&&!cur.virt&&!ENG&&!inst()&&!GEN&&tone!=='choir'&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&eraOn()&&ERAKT[kt])kt=ERAKT[kt];if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
   if(tn){var re=TCONF[tn.id],vi=splitV(parts);parts=parts.filter(function(x){return !(re&&re.test(x)&&!(NEWTN[tn.id]&&tn.id!=='hymn'&&tn.id!=='hymns'&&/vocal|voice|female|male|duet|\bband\b|\bgroup\b|\brap/i.test(x)))}).slice(0,5);if(tn.id==='funny'||tn.id==='epic')parts=parts.map(function(x){return x.replace(/\bballad\s*/i,'')});if(tn.id==='choir'&&!inst())parts=[]}
@@ -2149,7 +2149,7 @@ function hitGo(h){
   var r={n:h.ko,a:[],g:h.g||'pop',v:h.v,t:h.t,b:(h.bpm-4)+'~'+(h.bpm+4),k:h.en,items:[h.en],s:[],i:-1,keys:[],hit:true,d:h.d};
   try{r.w=words(r)}catch(x){}
   qIn.value='';song='';choose(r,true);
-  RC={id:h.id,ko:h.ko,d:h.d,en:h.en,bpm:h.bpm,th:h.th};
+  RC={id:h.id,ko:h.ko,d:h.d,en:h.en,bpm:h.bpm,th:h.th,ex:h.ex||0};
   if(LY.themes[h.th]){theme=h.th;tone=''}LS.locked={};renderTone();renderTheme();renderPhrase();
   if(ENG){var bk=$('#lxMode button[data-m="ko"]');if(bk)bk.click()}
   toast('히트곡 느낌: '+h.ko);vAuto();
@@ -2174,6 +2174,9 @@ var CR={"fun":[["하우스 팝 · 요즘 K팝 느낌","일정한 킥과 통통�
  Object.keys(PL).forEach(function(f){var T=PL[f][1].filter(function(t){return D.themes&&D.themes.some(function(x){return x.id===t})}),F=[];
   PL[f][0].forEach(function(n){var r=ROWS.filter(function(x){return x.n===n||(x.a&&x.a.indexOf(n)>=0)})[0];if(!r||!r.k)return;var b=String(r.b||'80~110').split('~'),m=Math.round((+b[0]+(+b[1]||+b[0]))/2);F.push([n+' 느낌',r.d||'',r.k,m,T.length?T:['night'],r.v==='duet'?'group':r.v,r.t||'mid','',[]])});
   if(F.length>=6)CR[f]=F})}catch(e){}})();
+(function(){try{var T=['confession','crush','firstlove'].filter(function(t){return D.themes&&D.themes.some(function(x){return x.id===t})});if(!T.length)T=['crush'];
+ var W=['혹시 너도 나처럼 (내가 만든 곡)','수줍은 고백을 담은 포크 발라드. 어쿠스틱 기타와 부드러운 현악, 바로 시작.','male folk vocals, modern 2020s production, acoustic guitar ballad, gentle strings, instant start, no long intro, strong hook in the first five seconds',70,T,'male','slow','',null,1];
+ for(var i=0;i<10;i++)CR.love.push(W)}catch(e){}})();
 function mxPick(a){return a[Math.floor(Math.random()*a.length)]}
 var SFBAD=[];try{SFBAD=JSON.parse(localStorage.getItem('sf_bad')||'[]')}catch(x){}
 var SFGOOD=[];try{SFGOOD=JSON.parse(localStorage.getItem('sf_good')||'[]')}catch(x){}
@@ -2183,8 +2186,8 @@ function genMood(f){var L=CR[f].filter(function(r){return SFBAD.indexOf(r[0])<0}
  var DROPT=/instruments enter gradually|soft balanced mix|gentle dynamics|no harsh sounds|quiet intro|gradual build|brief quiet bridge|big final chorus|smooth seamless flow|slow build|slow hypnotic build|rising build/;
  var AR=(f!=='world'&&f!=='cine'),tg=r[2].split(', '),keep=tg.filter(function(x){return !DROPT.test(x)}).slice(0,AR?5:4);
  var ex=[];if(!AR&&r[5]!=='inst'){if(f==='power'){ex.push('few instruments, clean steady groove')}else if(f==='calm'||f==='sad'||f==='love'){var TW=['detuned synth hook','muted rhodes, no piano','plucked nylon guitar, no piano','deep sub bass pulse','glassy bell motif','whispered double-tracked vocals','pitched-down harmonies'];var tw=PINR?(r._tw||(r._tw=mxPick(TW))):mxPick(TW);ex.push(tw)}}
- keep=keep.slice(0,3).concat(ex,keep.slice(3));if(AR){keep.push('not trot')}else{keep.push('contemporary 2026 sound, not trot, not retro');if(r[5]!=='inst')keep.push('laid-back breathy vocals, no vibrato');keep.push('starts instantly, no intro')}
- var h={id:'mx'+(++MXN),ko:r[0],d:r[1],en:keep.join(', '),bpm:r[3],th:mxPick(r[4]),v:r[5],t:r[6],arc:/quiet intro|gradual build|slow build|rising build/.test(r[2]),hl:r[8]||null};if(r[7])h.g=r[7];return h}
+ if(r[9]){keep=tg.slice()}else{keep=keep.slice(0,3).concat(ex,keep.slice(3));if(AR){keep.push('not trot')}else{keep.push('contemporary 2026 sound, not trot, not retro');if(r[5]!=='inst')keep.push('laid-back breathy vocals, no vibrato');keep.push('starts instantly, no intro')}}
+ var h={id:'mx'+(++MXN),ko:r[0],d:r[1],en:keep.join(', '),bpm:r[3],th:mxPick(r[4]),v:r[5],t:r[6],arc:/quiet intro|gradual build|slow build|rising build/.test(r[2]),hl:r[8]||null,ex:r[9]||0};if(r[7])h.g=r[7];return h}
 function goodSave(){try{localStorage.setItem('sf_good',JSON.stringify(SFGOOD))}catch(x){}}
 $('#mxGood').addEventListener('click',function(){if(!LASTR){toast('먼저 기분 버튼을 눌러 보세요');return}var i=SFBAD.indexOf(LASTR);if(i>=0){SFBAD.splice(i,1);badSave()}if(SFGOOD.indexOf(LASTR)<0)SFGOOD.push(LASTR);goodSave();badUi();toast('좋아요! 이 스타일이 더 자주 나와요')});
 function mxHook(){try{if(UT)return;var c=LS.texts&&LS.texts.chorus;if(!c||/[A-Za-z]{4,}/.test(c))return;var L=String(c).split('\n').filter(function(x){return x.trim()});if(L.length<3)return;
