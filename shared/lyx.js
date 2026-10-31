@@ -2,13 +2,17 @@
    데이터: lyx-data.js (window.DUSK_LYX). 이 파일 하나를 고치면 불러다 쓰는 모든 페이지에 적용돼요. */
 (function(){
 'use strict';
+/* 주제별 전용 영어·랩 문구(lyx-data2.js)를 같은 폴더에서 불러와요. 실패해도 아래 별칭으로 계속 동작해요. */
+try{var _cs=document.currentScript;if(_cs&&_cs.src){var _x=new XMLHttpRequest();_x.open('GET',_cs.src.replace(/lyx\.js(\?.*)?$/,'lyx-data2.js'),false);_x.send(null);if(_x.status===200||(_x.status===0&&_x.responseText))(0,eval)(_x.responseText)}}catch(e){}
 var SECDEF={rapv:{tag:'Rap Verse',key:'rapV',hk:'rap'},rapb:{tag:'Rap',key:'rapB',hk:'rap'},solo:{tag:'Instrumental Break',key:null,hk:'solo'}};
 var ARC={intro:'soft, atmospheric',verse:'whispered, soft and close',pre:'building, rising tension',chorus:'full voice, powerful and open',rap:'confident, rhythmic delivery',bridge:'quiet, vulnerable',chorusF:'biggest, emotional peak, full vocals',outro:'fading, whispered',solo:''};
 var ADL={b:['(hey!)','(yeah, yeah)','(woo!)','(oh-oh-oh)'],d:['(ooh... ooh...)','(mmm... hmm)','(na na na)','(oh... oh...)']};
 var BRIGHT=/^(party|swag|drive|cheer|happy|summer|crush|hope)$/;
+/* 영어 훅·랩 데이터가 없는 주제는 분위기가 비슷한 주제의 문구를 대신 써요 */
+var ALIAS={rebel:'swag',revenge:'breakup',toxic:'breakup',flirt:'crush',drunk:'night',flex:'swag',gothic:'night',funny:'happy',jealous:'breakup',diss:'swag',rain:'missing',winter:'memory',autumn:'memory',family:'hope',friend:'happy',confession:'crush',reunion:'missing',lonely:'night',youth:'summer',comfort:'hope',sea:'summer',wait:'missing',unrequited:'missing',firstlove:'crush',regret:'breakup',forgive:'hope',spring:'crush',christmas:'happy',newyear:'hope',wedding:'happy',travel:'drive',hometown:'memory',city:'night',tired:'hope',challenge:'cheer',graduation:'hope',pet:'happy',cafe:'memory',morning:'hope',freedom:'drive',sunset:'memory',stars:'night',letter:'missing',growup:'hope',flower:'crush',promise:'hope',wildlife:'drive',bird:'hope',forest:'memory',plant:'hope',workout:'cheer',friday:'party',foodie:'happy',themepark:'happy',camping:'summer',festival:'party',dancechal:'party',holiday:'summer',longdistance:'missing',lastday:'memory',afterbreakup:'breakup',oldlove:'memory',quit:'cheer',selfroom:'night',fandom:'cheer',retro00:'memory',firstpay:'happy',military:'missing',rooftop:'night',cvs:'night',jobseek:'cheer',parenting:'hope',gamer:'cheer',lastbus:'night',grandma:'memory',soloeat:'happy',baseball:'cheer',hangang:'night'};
 function rnd(a){return a[Math.floor(Math.random()*a.length)]}
 function def(){return {en:'off',rap:'off',rapLen:8,duet:false,solo:false,adlib:false,arc:false,tit:false}}
-function X(th){return (window.DUSK_LYX&&window.DUSK_LYX[th])||null}
+function X(th){var D=window.DUSK_LYX;if(!D)return null;return D[th]||(ALIAS[th]&&D[ALIAS[th]])||null}
 function on(lx){return !!lx&&(lx.en!=='off'||lx.rap!=='off'||lx.duet||lx.solo||lx.adlib||lx.arc||lx.tit)}
 /* 초보용 한 번 누르기 → 세부 설정 */
 function preset(m,lx){lx=lx||def();lx.en=(m==='en'||m==='both')?'hook':'off';lx.rap=(m==='rap'||m==='both')?'v2':'off';if(lx.rap!=='off')lx.rapLen=8;return lx}
@@ -34,7 +38,7 @@ function post(k,s,th,lx){
   if(k==='rapV'&&lx.rapLen===4)s=s.split('\n').slice(0,4).join('\n');
   if(k==='chorus'){
     if(x&&lx.en!=='off'){var h=rnd(x.enHook);s=(lx.en==='hook')?s+'\n'+h:s.split('\n').slice(0,2).join('\n')+'\n'+h}
-    if(lx.adlib)s+='\n'+rnd(ADL[BRIGHT.test(th)?'b':'d'])}
+    if(lx.adlib)s+='\n'+rnd(ADL[BRIGHT.test(ALIAS[th]||th)?'b':'d'])}
   return s}
 /* 연주 구간 태그 (fam: rock/country/acoustic/edm/jazz/ballad/cinematic/rnb …) */
 function soloTag(fam){return fam==='rock'||fam==='country'||fam==='acoustic'?'Guitar Solo':fam==='edm'?'Drop':fam==='jazz'?'Saxophone Solo':(fam==='ballad'||fam==='cinematic'||fam==='rnb')?'Piano Solo':'Instrumental Break'}
