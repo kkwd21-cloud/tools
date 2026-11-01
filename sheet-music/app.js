@@ -392,6 +392,25 @@ function splitLen(n){ // 16분음표 개수를 표기 가능한 길이로 쪼개
   while(n>0){for(var i=0;i<allowed.length;i++)if(allowed[i]<=n){out.push(allowed[i]);n-=allowed[i];break}}
   return out;
 }
+function lyrTokens(line){
+  var m=String(line||'').replace(/\[[^\]]*\]|\([^)]*\)/g,' ').match(/[가-힣]|[A-Za-z0-9]+/g);
+  return m||[];
+}
+function lyrLines(){
+  var el=document.getElementById('lyIn');if(!el)return [];
+  return el.value.split(/\r?\n/).filter(function(l){return !/^\s*[\[(][^\])]*[\])]\s*$/.test(l)}).map(lyrTokens);
+}
+function lyrW(syl,flags){
+  var idx=[],i;for(i=0;i<flags.length;i++)if(!flags[i])idx.push(i);
+  var m=idx.length,n=syl.length;if(!m||!n)return '';
+  var out=[],k=0;
+  for(i=0;i<flags.length;i++){
+    if(flags[i]){out.push('*');continue}
+    var a=Math.floor(k*n/m),b=Math.floor((k+1)*n/m);k++;
+    out.push(b>a?syl.slice(a,b).join('~'):'*');
+  }
+  return out.join(' ');
+}
 function buildABC(){
   var key=keyInfo(S.key,S.shift);
   var shift=S.shift;
@@ -399,7 +418,7 @@ function buildABC(){
   var mel=S.melody.map(function(n){return {st:n.st,end:n.end,m:n.m+shift}});
   // 스텝별 이벤트
   var bars=S.bars,out=[],mi=0;
-  var body='';
+  var body='',lineStr='',lineFlags=[],prevTie=false,LL=lyrLines();
   for(var b=0;b<bars;b++){
     var bs=b*16,be=bs+16,state={},bar='';
     var ch=S.chordBars[b];
@@ -438,12 +457,19 @@ function buildABC(){
         }
         var tie=(pi<parts.length-1)||e.tieNext||(pi===parts.length-1&&e.cont);
         if(e.m===null)bar+=sym+'z'+(L>1?L:'')+' ';
-        else bar+=sym+abcPitch(e.m,state,key)+(L>1?L:'')+(tie?'-':'')+' ';
+        else{bar+=sym+abcPitch(e.m,state,key)+(L>1?L:'')+(tie?'-':'')+' ';lineFlags.push(prevTie);prevTie=!!tie}
       });
     });
-    body+=bar.trim()+' |'+(((b+1)%4===0)?'\n':' ');
+    var lastBar=(b===bars-1),eol=((b+1)%4===0)||lastBar;
+    lineStr+=bar.trim()+(lastBar?' |]':' |')+(eol?'':' ');
+    if(eol){
+      body+=lineStr.trim()+'\n';
+      var syl=LL[Math.floor(b/4)];
+      if(syl&&syl.length){var w=lyrW(syl,lineFlags);if(w)body+='w:'+w+'\n'}
+      lineStr='';lineFlags=[];
+    }
   }
-  lines.push(body.replace(/\|\s*$/,'|]'));
+  lines.push(body);
   return lines.join('\n');
 }
 
@@ -481,6 +507,7 @@ function drawAll(){
   updateSuno();
   updMatch();
 }
+(function(){var t=null;document.addEventListener('input',function(e){if(e.target&&e.target.id==='lyIn'){clearTimeout(t);t=setTimeout(function(){try{if(S.chordBars&&S.chordBars.length)drawSheetOnly(true)}catch(x){}},250)}})})();
 function drawSheetOnly(skipSuno){
   var abc=buildABC();S.abc=abc;
   try{

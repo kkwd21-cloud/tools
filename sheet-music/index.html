@@ -143,6 +143,10 @@ footer a{color:var(--acc)}
         <button type="button" data-v="mid" aria-pressed="true">보통</button>
         <button type="button" data-v="many" aria-pressed="false">많이</button>
       </div>
+      <details class="lyb" style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:700">📝 가사 넣기 <span class="note" style="font-weight:400">· 오선지 음표 아래에 가사가 들어가요</span></summary>
+        <textarea id="lyIn" rows="6" placeholder="가사를 한 줄씩 붙여 넣으세요&#10;한 줄 = 악보 한 줄(4마디)이에요&#10;간주 줄은 빈 줄로 두면 건너뛰어요" style="width:100%;margin-top:8px;font:inherit"></textarea>
+        <p class="note" style="margin:6px 0 0">[Verse] 같은 표시는 자동으로 빼요. 음표 위치는 근사치라 글자가 조금 어긋날 수 있어요.</p>
+      </details>
       <div id="sheet"></div>
       <div class="row" style="margin-top:10px">
         <button type="button" class="main" id="playSheet">▶ 악보 소리 듣기</button>
