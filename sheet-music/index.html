@@ -182,6 +182,7 @@ footer a{color:var(--acc)}
         <textarea id="lyIn" rows="6" placeholder="가사를 한 줄씩 붙여 넣으세요&#10;한 줄 = 악보 한 줄(4마디)이에요&#10;간주 줄은 빈 줄로 두면 건너뛰어요" style="width:100%;margin-top:8px;font:inherit"></textarea>
         <p class="note" style="margin:8px 0 0"><button type="button" id="lyMaker" class="chip">🎤 가사 자막 만들기에서 가사 가져오기</button> <span class="note">(같은 브라우저에서 만든 가사)</span></p>
         <p class="note" style="margin:6px 0 0"><button type="button" id="lyFull" class="chip hide">🎼 전체 곡으로 다시 분석 (오래 걸려요)</button></p>
+        <div class="row" style="margin:8px 0 0" id="lySynth"><span class="note">시간표시 없는 가사일 때:</span> <label class="note">글자 속도 <select id="lyRate" style="font:inherit"><option value="0.3">빠름</option><option value="0.42" selected>보통</option><option value="0.6">느림</option></select></label> <label class="note">가사 시작 <input type="number" id="lyStart" step="0.5" min="0" placeholder="자동" style="width:80px;font:inherit"> 초</label></div>
         <p class="note" id="lyMsg" style="margin:6px 0 0;font-weight:800;color:var(--acc)"></p>
         <p class="note" style="margin:8px 0 0">가사 파일(.txt, .lrc)이 있으면 여기서 바로 넣어요: <input type="file" id="lyFile" accept=".txt,.lrc,text/plain"></p>
         <p class="note" style="margin:6px 0 0">[Verse] 같은 표시는 자동으로 빼요. 음표 위치는 근사치라 글자가 조금 어긋날 수 있어요.</p>
@@ -236,6 +237,6 @@ footer a{color:var(--acc)}
   </footer>
 </div>
 <script src="abcjs-basic-min.js?v=1"></script>
-<script src="app.js?v=20261101j"></script>
+<script src="app.js?v=20261101k"></script>
 </body>
 </html>

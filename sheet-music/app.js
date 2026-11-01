@@ -423,6 +423,14 @@ function lyrData(){
   d.lines=d.lines.filter(function(x){return x!==null}).map(lyrTokens);
   ents=ents.filter(function(e){return e.syl.length}).sort(function(a,b){return a.t-b.t});
   if(ents.length>=2){d.timed=true;d.entries=ents}
+  else if(S.melody&&S.melody.length&&S.bpm&&d.lines.some(function(a){return a.length})){
+    // 시간표시가 없는 가사: 글자 수로 시간을 추정해서 차례대로 놓기
+    var rate=parseFloat((document.getElementById('lyRate')||{}).value)||0.42,stv=parseFloat((document.getElementById('lyStart')||{}).value);
+    var T=isNaN(stv)?(S.t0+S.melody[0].st*stepSec()):stv,es=[];
+    var ls=d.lines.slice();while(ls.length&&!ls[ls.length-1].length)ls.pop();
+    ls.forEach(function(tk){if(!tk.length){T+=3;return}es.push({t:T,syl:tk});T+=tk.length*rate+1.0});
+    if(es.length){d.timed=true;d.synth=true;d.entries=es}
+  }
   return d;
 }
 function lyrLines(){return lyrData().lines}
@@ -507,6 +515,7 @@ function buildABC(){
       for(var q=0;q<MEL.length;q++){
         var mn=MEL[q];if(mn.st<s0-3)continue;if(mn.st>=nx-1)break;
         if(!byStep[mn.st])continue;
+        if(tok[byStep[mn.st].l+':'+byStep[mn.st].x]!==undefined)continue;
         if(prevEnd!==null&&mn.st-prevEnd>=gapSt&&cand.length>=Math.min(n,3))break;
         cand.push({st:mn.st,end:Math.min(mn.end,nx),nt:byStep[mn.st]});prevEnd=mn.end;
       }
@@ -581,7 +590,7 @@ function lyMsgUpd(redraw){
   if(redraw)drawSheetOnly(true);
   var n=document.querySelectorAll('#sheet .abcjs-lyric').length,msg='';
   if(has){
-    msg=n?('✔ 가사가 악보에 들어갔어요 ('+n+'칸)'+(LDm.timed?' · 시간표시(LRC)에 맞췄어요':'')):'가사가 들어갈 음표가 없어요. 위쪽 "음표 양"을 "많이"로 바꿔 보세요.';
+    msg=n?('✔ 가사가 악보에 들어갔어요 ('+n+'칸)'+(LDm.synth?' · 시간표시가 없어 글자 수로 위치를 추정했어요 (.lrc 파일을 넣으면 더 정확해요)':LDm.timed?' · 시간표시(LRC)에 맞췄어요':'')):'가사가 들어갈 음표가 없어요. 위쪽 "음표 양"을 "많이"로 바꿔 보세요.';
     var endT=S.t0+S.bars*16*stepSec(),lastT=LDm.timed?LDm.entries[LDm.entries.length-1].t:0;
     var cut=S.lenSec>0&&((LDm.timed&&lastT>endT+2)||(!LDm.timed&&S.dur&&S.lenSec<S.dur-1&&n>0&&S.bars*16*stepSec()>=S.lenSec-8));
     if(cut){msg+='  ※ 지금은 앞부분 '+Math.round(S.lenSec)+'초만 분석돼서 뒤쪽 가사가 빠져요.';if(fb)fb.classList.remove('hide')}
@@ -919,6 +928,7 @@ function loadMakerLyrics(manual){
 }
 var _mk=document.getElementById('lyMaker');if(_mk)_mk.addEventListener('click',function(){loadMakerLyrics(true)});
 setTimeout(function(){loadMakerLyrics(false)},400);
+['lyRate','lyStart'].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener('input',function(){try{lyMsgUpd(true)}catch(x){}})});
 var SYNC0=null;
 function adjShow(){var t=document.getElementById('adjTxt');if(t&&S.bpm)t.textContent='지금: 속도 '+(Math.round(S.bpm*10)/10)+' BPM · 시작 위치 '+(Math.round(S.t0*100)/100)+'초'}
 function doAdj(a,v){
