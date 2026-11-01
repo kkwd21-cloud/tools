@@ -2818,7 +2818,7 @@ render();renderLast();
 /* ===== 악보(sheet-music) 연결 ===== */
 var smF=$('#smFrame'),smBox=$('#smBox'),loaded=false,fed=null,smRes=null;
 if(smBox&&smF){
-  smBox.addEventListener('toggle',function(){if(smBox.open&&!smF.getAttribute('src')){smF.setAttribute('src','../sheet-music/?embed=1&v=20261101h')}});
+  smBox.addEventListener('toggle',function(){if(smBox.open&&!smF.getAttribute('src')){smF.setAttribute('src','../sheet-music/?embed=1&v=20261101i')}});
   smF.addEventListener('load',function(){loaded=true;feed()});
   function feed(){var f=window.__sfLastFile;if(!f||!loaded||fed===f)return;try{var w=smF.contentWindow;if(w&&w.__SM&&w.__SM.analyze){fed=f;w.__SM.analyze(f);$('#smMsg').textContent='위에서 넣은 파일로 악보를 만드는 중이에요…'}}catch(e){}}
   window.__sfAfDone=function(){if(smBox.open)feed()};

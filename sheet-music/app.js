@@ -824,7 +824,7 @@ function dlMc(){
 async function analyze(file){
   if(S.busy)return;
   S.busy=true;err('');stopPlay();
-  S.file=file;S.shift=0;S.chordBars=[];S.titleEdited=false;setTitleAuto(file&&file.name);
+  S.file=file;S.shift=0;S.chordBars=[];SYNC0=null;S.titleEdited=false;setTitleAuto(file&&file.name);
   $('#result').classList.add('hide');
   try{
     setProg(.02,'파일을 읽는 중…');
@@ -912,6 +912,22 @@ function loadMakerLyrics(manual){
 }
 var _mk=document.getElementById('lyMaker');if(_mk)_mk.addEventListener('click',function(){loadMakerLyrics(true)});
 setTimeout(function(){loadMakerLyrics(false)},400);
+var SYNC0=null;
+(function(){var bx=document.getElementById('syncBox');if(!bx)return;
+  function show(){var t=document.getElementById('adjTxt');if(t&&S.bpm)t.textContent='지금: 속도 '+(Math.round(S.bpm*10)/10)+' BPM · 시작 위치 '+(Math.round(S.t0*100)/100)+'초'}
+  bx.addEventListener('toggle',show);
+  bx.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('button[data-adj]');if(!b||!S.bpm||!(S.notes&&S.notes.length))return;
+    if(!SYNC0)SYNC0={bpm:S.bpm,t0:S.t0};
+    stopPlay();var a=b.dataset.adj,v=b.dataset.v;
+    if(a==='bpm'){var nb=v==='half'?S.bpm/2:v==='dbl'?S.bpm*2:S.bpm+parseFloat(v);S.bpm=Math.max(40,Math.min(240,nb))}
+    else if(a==='t0'){S.t0=S.t0+parseFloat(v)}
+    else if(a==='reset'){S.bpm=SYNC0.bpm;S.t0=SYNC0.t0}
+    S.chordBars=[];try{render()}catch(x){}
+    show();
+  });
+  var o=window.addEventListener;
+})();
 var _lf=document.getElementById('lyFile');if(_lf)_lf.addEventListener('change',function(){var f=_lf.files&&_lf.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var buf=new Uint8Array(r.result),txt='';try{if(buf[0]===0xFF&&buf[1]===0xFE)txt=new TextDecoder('utf-16le').decode(buf);else if(buf[0]===0xFE&&buf[1]===0xFF)txt=new TextDecoder('utf-16be').decode(buf);else{try{txt=new TextDecoder('utf-8',{fatal:true}).decode(buf)}catch(e1){txt=new TextDecoder('euc-kr').decode(buf)}}}catch(e2){txt=''}var el=document.getElementById('lyIn');el.value=txt;var dd=lyrData();if(dd.ti)setTitleAuto(dd.ti);el.dispatchEvent(new Event('input',{bubbles:true}))};r.readAsArrayBuffer(f)});
 window.__SM={S:S,analyze:analyze};
 try{if(window.parent!==window&&window.ResizeObserver){var __h=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-__h)>4){__h=h;window.parent.postMessage({type:'sm-h',h:h},'*')}}).observe(document.body)}}catch(_){}

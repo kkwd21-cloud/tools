@@ -142,6 +142,23 @@ footer a{color:var(--acc)}
         <button type="button" id="undo" data-v="-1">▼ 키 내리기</button>
         <span class="note" id="shiftTxt"></span>
       </div>
+      <details style="margin-top:10px" id="syncBox"><summary>🎯 노래와 안 맞을 때 (박자·시작 위치 맞추기)</summary>
+        <p class="note" style="margin:6px 0">"원곡 들으며 악보 따라가기"로 들었을 때 악보가 점점 앞서거나 뒤처지면 속도(BPM)를, 처음부터 어긋나면 시작 위치를 고쳐 보세요. 누를 때마다 악보가 새로 만들어져요.</p>
+        <div class="row"><span class="note">속도</span>
+          <button type="button" data-adj="bpm" data-v="half">절반 (÷2)</button>
+          <button type="button" data-adj="bpm" data-v="-1">−1</button>
+          <button type="button" data-adj="bpm" data-v="-0.2">−0.2</button>
+          <button type="button" data-adj="bpm" data-v="0.2">+0.2</button>
+          <button type="button" data-adj="bpm" data-v="1">+1</button>
+          <button type="button" data-adj="bpm" data-v="dbl">두 배 (×2)</button></div>
+        <div class="row" style="margin-top:6px"><span class="note">시작 위치</span>
+          <button type="button" data-adj="t0" data-v="-0.1">−0.1초</button>
+          <button type="button" data-adj="t0" data-v="-0.03">−0.03초</button>
+          <button type="button" data-adj="t0" data-v="0.03">+0.03초</button>
+          <button type="button" data-adj="t0" data-v="0.1">+0.1초</button>
+          <button type="button" data-adj="reset">처음 값으로</button></div>
+        <p class="note" id="adjTxt" style="margin:6px 0 0"></p>
+      </details>
     </section>
 
     <section class="card">
@@ -217,6 +234,6 @@ footer a{color:var(--acc)}
   </footer>
 </div>
 <script src="abcjs-basic-min.js?v=1"></script>
-<script src="app.js?v=20261101h"></script>
+<script src="app.js?v=20261101i"></script>
 </body>
 </html>
