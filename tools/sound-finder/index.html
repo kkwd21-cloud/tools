@@ -581,7 +581,6 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
     <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="hit" aria-pressed="false">🙂 기분으로 고르기</button><button type="button" class="chip" id="moreTabs" title="가수를 모를 때: 목소리로 찾기, 내 음악 파일로 찾기">⋯ 다른 방법</button><button type="button" class="chip" data-t="voice" aria-pressed="false" hidden>🗣 목소리로 찾기</button><button type="button" class="chip" data-t="file" aria-pressed="false" hidden>🎵 음악 파일로 찾기</button></div>
     <div id="artistPanel">
     <div class="sfq"><input id="q" class="inp1" type="search" autocomplete="off" placeholder="가수 이름 또는 곡 제목" aria-label="가수 이름 또는 곡 제목"></div>
-    <div class="chips" id="qxMode" role="group" aria-label="가사 느낌" style="margin-top:8px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">가사:</span><button type="button" class="chip" data-m="ko" aria-pressed="true">한국어만</button><button type="button" class="chip" data-m="en" aria-pressed="false">영어 살짝</button><button type="button" class="chip" data-m="rap" aria-pressed="false">랩 넣기</button><button type="button" class="chip" data-m="both" aria-pressed="false">영어 + 랩</button><button type="button" class="chip" data-m="enonly" aria-pressed="false">영어만</button></div>
     <div class="sfq" style="margin-top:8px"><input id="ytq" class="inp1" type="url" autocomplete="off" placeholder="유튜브 링크 붙여넣기 (제목으로 가수·곡 찾기)" aria-label="유튜브 링크"><button type="button" class="chip" id="ytGo" style="margin-top:6px">▶ 링크로 찾기</button></div><p class="note sm" id="ytMsg" style="margin:6px 0 0" aria-live="polite"></p><div class="sug" id="res" role="listbox" style="margin-top:6px"></div>
     <div id="starts" class="cg" style="margin-top:10px"></div>
     <p class="note" id="none" hidden>아직 없는 가수나 곡이에요. 곡 제목은 유명한 곡만 들어 있어요. 아래 "느낌 직접 고르기"를 써 보세요.</p>
@@ -670,6 +669,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
         <div class="chips" id="tlChips"><button type="button" class="chip" data-l="ko" aria-pressed="true">한글 제목</button><button type="button" class="chip" data-l="en" aria-pressed="false">영어 제목</button><button type="button" class="chip" data-l="mix" aria-pressed="false">섞어서</button></div>
         <details style="margin:4px 0"><summary style="cursor:pointer;font-weight:700;font-size:14px">제목 느낌 바꾸기 <span class="note sm" style="font-weight:400">· 센·웃긴·어두운</span></summary><div class="chips" id="tmChips" style="margin-top:8px"><button type="button" class="chip" data-m="" aria-pressed="true">제목 느낌: 기본</button><button type="button" class="chip" data-m="strong" aria-pressed="false">센 느낌</button><button type="button" class="chip" data-m="fun" aria-pressed="false">웃긴</button><button type="button" class="chip" data-m="flirt" aria-pressed="false">아슬아슬</button><button type="button" class="chip" data-m="dark" aria-pressed="false">어두운</button></div></details>
         <div class="chips" id="lyTitles"></div>
+        <div class="chips" id="qxMode" role="group" aria-label="가사 느낌" style="margin:10px 0 4px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">가사 느낌:</span><button type="button" class="chip" data-m="ko" aria-pressed="true">한국어만</button><button type="button" class="chip" data-m="en" aria-pressed="false">영어 살짝</button><button type="button" class="chip" data-m="rap" aria-pressed="false">랩 넣기</button><button type="button" class="chip" data-m="both" aria-pressed="false">영어 + 랩</button><button type="button" class="chip" data-m="enonly" aria-pressed="false">영어만</button></div>
         <input class="inp" id="lyTitle" type="text" spellcheck="false" aria-label="제목" style="font-size:16px">
         <div class="sfrow"><button type="button" class="b-main" id="cpTitle">제목 복사</button><button type="button" class="b-sub" id="lyNewTitles">다른 제목 뽑기</button></div>
       </div>
@@ -2877,5 +2877,6 @@ iframe#smFrame{background:#fff;border-radius:10px;color-scheme:light}
 .gnav a{background:#1c2445!important;border-color:#2d3763!important;color:#d6dbf5!important}
 .gnav a:hover{background:#262f5a!important;color:#fff!important}
 .gnav a.on{background:#ff9a5c!important;border-color:#ff9a5c!important;color:#2a1405!important}
+.chip[aria-pressed="true"],.tb[aria-pressed="true"]{background:#ff9a5c!important;border-color:#ff9a5c!important;color:#2a1405!important}
 </style></body>
 </html>
