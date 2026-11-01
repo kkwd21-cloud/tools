@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dusk Soul 툴킷 | Suno 프롬프트 · 유튜브 제목 · 수익화 체크 무료</title>
-<meta name="description" content="AI 음악 채널을 위한 무료 도구 모음. Suno 스타일 프롬프트 150개 이상, 가사 생성기, 유튜브 제목·해시태그 생성기, 수노 채널 수익화 위험 체크. 가입·설치 없이 바로 사용.">
+<meta name="description" content="AI 음악 채널을 위한 무료 도구 모음. Suno 스타일 프롬프트 150개 이상, 가사 생성기, 유튜브 제목·해시태그 생성기, 노래 파일 악보 만들기, 수노 채널 수익화 위험 체크. 가입·설치 없이 바로 사용.">
 <link rel="canonical" href="https://kkwd21-cloud.github.io/tools/">
 <link rel="alternate" hreflang="ko" href="https://kkwd21-cloud.github.io/tools/">
 <link rel="alternate" hreflang="en" href="https://kkwd21-cloud.github.io/tools/en/">
@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#fbfbfd">
 <meta property="og:type" content="website"><meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="Dusk Soul 툴킷 - AI 음악 채널 무료 도구">
-<meta property="og:description" content="Suno 프롬프트 150개+ · 가사 생성기 · 유튜브 제목/해시태그 생성기 · 수익화 위험 체크">
+<meta property="og:description" content="Suno 프롬프트 150개+ · 가사 생성기 · 유튜브 제목/해시태그 생성기 · 노래 파일 악보 만들기 · 수익화 위험 체크">
 <meta property="og:url" content="https://kkwd21-cloud.github.io/tools/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -123,6 +123,8 @@ h1{font-size:clamp(34px,7vw,56px);line-height:1.1;font-weight:800;letter-spacing
 details.all>summary{border:0;border-radius:20px;box-shadow:0 18px 50px rgba(20,20,60,.08)}
 .grp>h2{color:#8a8a95}
 a[hreflang]{border:0!important;box-shadow:0 4px 16px rgba(20,20,60,.1)}
+/* 카드 5개: 마지막 카드도 한 칸만 차지 */
+.pk:last-child:not(.big){grid-column:auto}
 </style>
 </head>
 <body>
@@ -133,7 +135,7 @@ a[hreflang]{border:0!important;box-shadow:0 4px 16px rgba(20,20,60,.1)}
     <p class="sub">벨소리 만들기, AI 작곡 서비스 수노(Suno)로 노래 만들기, 유튜브에 올리기까지. 전부 무료이고 가입도 설치도 필요 없어요.</p>
   </header>
 
-  <section class="pick"><h2>무엇을 하고 싶으세요?</h2><div class="picks"><a class="pk big t1" href="./sound-finder/"><b>좋아하는 노래처럼 만들기</b><span>가수나 곡 이름만 고르면 수노에 넣을 말이 나와요</span><i>시작하기 →</i></a><a class="pk t2" href="./ringtone-maker/"><b>벨소리 만들기</b><span>좋아하는 노래로 전화·문자·알람 소리를 한 번에</span><i>시작하기 →</i></a><a class="pk t3" href="./make-song/"><b>노래 처음부터 만들기</b><span>분위기부터 가사까지 5단계로 순서대로</span><i>시작하기 →</i></a><a class="pk t1" href="./upload-kit/"><b>유튜브에 올리기</b><span>제목·설명·챕터를 한 번에 정리해요</span><i>시작하기 →</i></a></div></section>
+  <section class="pick"><h2>무엇을 하고 싶으세요?</h2><div class="picks"><a class="pk big t1" href="./sound-finder/"><b>좋아하는 노래처럼 만들기</b><span>가수나 곡 이름만 고르면 수노에 넣을 말이 나와요</span><i>시작하기 →</i></a><a class="pk t2" href="./ringtone-maker/"><b>벨소리 만들기</b><span>좋아하는 노래로 전화·문자·알람 소리를 한 번에</span><i>시작하기 →</i></a><a class="pk t3" href="./make-song/"><b>노래 처음부터 만들기</b><span>분위기부터 가사까지 5단계로 순서대로</span><i>시작하기 →</i></a><a class="pk t3" href="./sheet-music/"><b>노래 파일로 악보 만들기</b><span>파일만 넣으면 악보·코드·키·BPM이 나와요</span><i>시작하기 →</i></a><a class="pk t1" href="./upload-kit/"><b>유튜브에 올리기</b><span>제목·설명·챕터를 한 번에 정리해요</span><i>시작하기 →</i></a></div></section>
   <section class="path"><h2>처음이세요? 이 순서대로 하세요</h2><p>위에서부터 하나씩 누르면 돼요. 각 화면 아래에 "다음 단계" 버튼이 있어요.</p><ol>
 <li><a href="./sound-finder/"><em>1</em><div><b>곡 느낌 고르기</b><span>좋아하는 가수·곡 이름만 고르면 수노에 넣을 말이 나와요</span></div><i class="go">→</i></a></li>
 <li><a href="./make-song/"><em>2</em><div><b>노래 만들기</b><span>수노(Suno)에서 노래 만드는 순서를 5단계로 알려 줘요</span></div><i class="go">→</i></a></li>
@@ -143,7 +145,7 @@ a[hreflang]{border:0!important;box-shadow:0 4px 16px rgba(20,20,60,.1)}
 <li><a href="./shorts-clip/"><em>6</em><div><b>쇼츠로 알리기</b><span>노래의 가장 좋은 부분을 자동으로 찾아 줘요</span></div><i class="go">→</i></a></li>
 </ol></section>
 
-  <details class="all"><summary>모든 도구 보기 (18개)</summary>
+  <details class="all"><summary>모든 도구 보기 (19개)</summary>
   <div class="tools" style="gap:26px;margin-top:18px">
     <div class="feats">
     <a class="tool t1 feat" href="./sound-finder/">
@@ -171,6 +173,12 @@ a[hreflang]{border:0!important;box-shadow:0 4px 16px rgba(20,20,60,.1)}
       <p>장르와 주제를 고르면 [Verse] [Chorus] 메타태그가 붙은 가사, 제목 5개, 어울리는 스타일 프롬프트가 한 번에 나와요. 마음에 드는 부분은 잠그고 나머지만 다시 뽑을 수 있어요.</p>
       <ul><li>한국어 · 영어 가사</li><li>메타태그</li><li>제목 5개</li></ul>
       <span class="go">가사 만들기 →</span>
+    </a>
+    <a class="tool t3" href="./sheet-music/">
+      <span class="num">악보</span><h2>노래 파일 악보 만들기</h2>
+      <p>노래 파일을 넣으면 악보와 코드 진행, 키, BPM이 나와요. 키를 올리고 내려 보고, MIDI로 저장하고, 수노에 넣을 "이 곡처럼" 문구도 만들어 줘요. 파일은 서버로 안 가요.</p>
+      <ul><li>악보·코드</li><li>키·BPM</li><li>MIDI 저장</li></ul>
+      <span class="go">악보 만들러 가기 →</span>
     </a>
     <a class="tool t3" href="./song-analyzer/">
       <span class="num">분석</span><h2>내 노래와 닮은 수노 프롬프트 찾기</h2>
