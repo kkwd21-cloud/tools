@@ -497,13 +497,30 @@ function buildABC(){
   }
   var tok={};
   if(LD.timed){
-    var E=LD.entries;
+    var E=LD.entries,MEL=S.melody||[];
+    var byStep={};allNotes.forEach(function(nt,ix){if(!nt.cont)byStep[nt.step]=nt});
     E.forEach(function(en,x){
-      var s0=(en.t-S.t0)/ss,nx=E[x+1]?(E[x+1].t-S.t0)/ss:s0+10/ss;
-      var cap=s0+Math.max(3,en.syl.length*0.55)/ss;var e0=Math.min(nx,cap);
-      var ns=allNotes.filter(function(n){return !n.cont&&n.step>=s0-1&&n.step<e0});
-      var m=ns.length,n=en.syl.length;if(!m)return;
-      ns.forEach(function(nt,k){var a=Math.floor(k*n/m),b2=Math.floor((k+1)*n/m);if(b2>a)tok[nt.l+':'+nt.x]=en.syl.slice(a,b2).join('~')});
+      var s0=(en.t-S.t0)/ss,nx=E[x+1]?(E[x+1].t-S.t0)/ss:s0+12/ss;
+      var n=en.syl.length;
+      // 이 줄 구간의 멜로디 음 (쉼이 0.9초 이상이면 문장 끝)
+      var cand=[],prevEnd=null,gapSt=0.9/ss;
+      for(var q=0;q<MEL.length;q++){
+        var mn=MEL[q];if(mn.st<s0-3)continue;if(mn.st>=nx-1)break;
+        if(!byStep[mn.st])continue;
+        if(prevEnd!==null&&mn.st-prevEnd>=gapSt&&cand.length>=Math.min(n,3))break;
+        cand.push({st:mn.st,end:Math.min(mn.end,nx),nt:byStep[mn.st]});prevEnd=mn.end;
+      }
+      var m=cand.length;if(!m)return;
+      if(m<n){ // 음이 모자라면 한 음에 여러 글자
+        cand.forEach(function(c,k){var a=Math.floor(k*n/m),b2=Math.floor((k+1)*n/m);if(b2>a)tok[c.nt.l+':'+c.nt.x]=en.syl.slice(a,b2).join('~')});
+        return;
+      }
+      var f=cand[0].st,L=Math.max(1,cand[m-1].end-f),prev=-1;
+      for(var jx=0;jx<n;jx++){
+        var tg=f+(jx+0.5)*L/n,lo=prev+1,hi=m-(n-jx),best=lo,bd=1e9;
+        for(var k=lo;k<=hi;k++){var d=Math.abs(cand[k].st-tg);if(d<bd){bd=d;best=k}}
+        prev=best;var c2=cand[best].nt;tok[c2.l+':'+c2.x]=en.syl[jx];
+      }
     });
   }
   outLines.forEach(function(ol,idx){
