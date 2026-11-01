@@ -558,6 +558,7 @@ function drawAll(){
 function lyMsgUpd(redraw){
   var m=document.getElementById('lyMsg'),el=document.getElementById('lyIn');if(!m||!el)return;
   var LDm=lyrData(),has=LDm.lines.some(function(a){return a.length});
+  if(el.value.trim()&&!has){m.textContent='⚠ 가사 칸에 글자(가사)가 없어요. 파일에 가사 줄이 없거나 시간표시·정보만 들어 있어요. 가사를 직접 붙여 넣거나 "📝 만든 가사를 악보에 넣기"를 눌러 주세요.';return}
   if(!(S.chordBars&&S.chordBars.length)){m.textContent=has?'가사를 받았어요. 노래 파일로 악보가 만들어지면 자동으로 들어가요.':'';return}
   if(redraw)drawSheetOnly(true);
   var n=document.querySelectorAll('#sheet .abcjs-lyric').length;
@@ -869,7 +870,7 @@ function copyText(txt,note,msg){
 }
 $('#cpChords').addEventListener('click',function(){copyText(progressionText(),$('#cpChordsTxt'),'복사했어요')});
 $('#cpSuno').addEventListener('click',function(){copyText($('#sunoTxt').value.split('\n')[0],$('#cpSunoTxt'),'복사했어요')});
-window.addEventListener('message',function(e){var d=e.data;if(!d)return;if(d.type==='sm-stop')stopPlay();if(d.type==='sm-lyrics'&&typeof d.text==='string'){if(d.title)setTitleAuto(d.title);var el=document.getElementById('lyIn');if(el&&!(d.auto&&el.value.trim())){var dt=document.querySelector('.lyb');if(dt)dt.open=true;el.value=d.text;el.dispatchEvent(new Event('input',{bubbles:true}))}}});
+window.addEventListener('message',function(e){var d=e.data;if(!d)return;if(d.type==='sm-stop')stopPlay();if(d.type==='sm-lyrics'&&typeof d.text==='string'){if(d.title)setTitleAuto(d.title);var el=document.getElementById('lyIn');if(el&&!(d.auto&&lyrData().lines.some(function(a){return a.length}))){var dt=document.querySelector('.lyb');if(dt)dt.open=true;el.value=d.text;el.dispatchEvent(new Event('input',{bubbles:true}))}}});
 document.addEventListener('keydown',function(e){var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;if((e.key==='Escape'||e.key===' ')&&(playedOrig||playTimer)){e.preventDefault();stopPlay()}});
 var _ti=document.getElementById('scTitle');if(_ti)_ti.addEventListener('input',function(){S.titleEdited=true;S.title=_ti.value;try{if(S.chordBars&&S.chordBars.length)drawSheetOnly(true)}catch(x){}});
 var _pr=document.getElementById('prSheet');if(_pr)_pr.addEventListener('click',function(){if(!S.chordBars||!S.chordBars.length){return}try{window.print()}catch(x){}});
