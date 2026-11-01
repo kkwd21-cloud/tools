@@ -150,6 +150,7 @@ footer a{color:var(--acc)}
       </div>
       <details class="lyb" style="margin-bottom:8px"><summary style="cursor:pointer;font-weight:700">📝 가사 넣기 <span class="note" style="font-weight:400">· 오선지 음표 아래에 가사가 들어가요</span></summary>
         <textarea id="lyIn" rows="6" placeholder="가사를 한 줄씩 붙여 넣으세요&#10;한 줄 = 악보 한 줄(4마디)이에요&#10;간주 줄은 빈 줄로 두면 건너뛰어요" style="width:100%;margin-top:8px;font:inherit"></textarea>
+        <p class="note" id="lyMsg" style="margin:6px 0 0;font-weight:800;color:var(--acc)"></p>
         <p class="note" style="margin:8px 0 0">가사 파일(.txt, .lrc)이 있으면 여기서 바로 넣어요: <input type="file" id="lyFile" accept=".txt,.lrc,text/plain"></p>
         <p class="note" style="margin:6px 0 0">[Verse] 같은 표시는 자동으로 빼요. 음표 위치는 근사치라 글자가 조금 어긋날 수 있어요.</p>
       </details>
@@ -200,7 +201,7 @@ footer a{color:var(--acc)}
     <p><a href="../">Dusk Soul 무료 툴킷</a> · <a href="../sound-finder/">곡 느낌 사전</a> — 분석에는 오픈소스 <a href="https://github.com/spotify/basic-pitch" rel="noopener" target="_blank">Basic Pitch</a>(Apache-2.0)와 <a href="https://www.abcjs.net/" rel="noopener" target="_blank">abcjs</a>(MIT)를 사용했어요. 결과는 참고용 근사치예요.</p>
   </footer>
 </div>
-<script src="abcjs-basic-min.js"></script>
-<script src="app.js"></script>
+<script src="abcjs-basic-min.js?v=1"></script>
+<script src="app.js?v=20261101c"></script>
 </body>
 </html>

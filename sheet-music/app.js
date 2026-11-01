@@ -507,7 +507,15 @@ function drawAll(){
   updateSuno();
   updMatch();
 }
-(function(){var t=null;document.addEventListener('input',function(e){if(e.target&&e.target.id==='lyIn'){clearTimeout(t);t=setTimeout(function(){try{if(S.chordBars&&S.chordBars.length)drawSheetOnly(true)}catch(x){}},250)}})})();
+(function(){var t=null;document.addEventListener('input',function(e){if(e.target&&e.target.id==='lyIn'){clearTimeout(t);t=setTimeout(function(){try{lyMsgUpd(true)}catch(x){}},250)}})})();
+function lyMsgUpd(redraw){
+  var m=document.getElementById('lyMsg'),el=document.getElementById('lyIn');if(!m||!el)return;
+  var has=lyrLines().some(function(a){return a.length});
+  if(!(S.chordBars&&S.chordBars.length)){m.textContent=has?'가사를 받았어요. 노래 파일로 악보가 만들어지면 자동으로 들어가요.':'';return}
+  if(redraw)drawSheetOnly(true);
+  var n=document.querySelectorAll('#sheet .abcjs-lyric').length;
+  m.textContent=has?(n?('✔ 가사가 악보에 들어갔어요 ('+n+'칸)'):'가사가 들어갈 음표가 없어요. 위쪽 "음표 양"을 "많이"로 바꿔 보세요.'):'';
+}
 function drawSheetOnly(skipSuno){
   var abc=buildABC();S.abc=abc;
   try{
