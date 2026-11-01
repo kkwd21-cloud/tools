@@ -874,6 +874,27 @@ window.addEventListener('message',function(e){var d=e.data;if(!d)return;if(d.typ
 document.addEventListener('keydown',function(e){var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;if((e.key==='Escape'||e.key===' ')&&(playedOrig||playTimer)){e.preventDefault();stopPlay()}});
 var _ti=document.getElementById('scTitle');if(_ti)_ti.addEventListener('input',function(){S.titleEdited=true;S.title=_ti.value;try{if(S.chordBars&&S.chordBars.length)drawSheetOnly(true)}catch(x){}});
 var _pr=document.getElementById('prSheet');if(_pr)_pr.addEventListener('click',function(){if(!S.chordBars||!S.chordBars.length){return}try{window.print()}catch(x){}});
+function lsLyrics(){
+  var v='';try{v=localStorage.getItem('dusk_lrc_lyrics')||''}catch(e){return ''}
+  if(!v)return '';var j=v;try{j=JSON.parse(v)}catch(e){j=v}
+  function fromObj(o){
+    if(typeof o==='string')return o;
+    if(Array.isArray(o))return o.map(function(x){return typeof x==='string'?x:(x&&(x.text||x.line||x.l)||'')}).join('\n');
+    if(o&&typeof o==='object'){var k=['text','lyrics','raw','value','body','content'];for(var i=0;i<k.length;i++)if(o[k[i]])return fromObj(o[k[i]]);if(o.lines)return fromObj(o.lines)}
+    return '';
+  }
+  return fromObj(j)||'';
+}
+function loadMakerLyrics(manual){
+  var tx=lsLyrics(),el=document.getElementById('lyIn'),m=document.getElementById('lyMsg');if(!el)return;
+  if(!tx.trim()){if(manual&&m)m.textContent='⚠ 가사 자막 만들기에서 가져올 가사가 없어요. 이 브라우저에서 그 페이지에 가사를 먼저 넣어 주세요.';return}
+  if(!manual&&lyrData().lines.some(function(a){return a.length}))return;
+  var dt=document.querySelector('.lyb');if(dt)dt.open=true;
+  el.value=tx;el.dispatchEvent(new Event('input',{bubbles:true}));
+  if(m&&manual)setTimeout(function(){m.textContent='✔ 가사 자막 만들기의 가사를 가져왔어요. '+m.textContent},300);
+}
+var _mk=document.getElementById('lyMaker');if(_mk)_mk.addEventListener('click',function(){loadMakerLyrics(true)});
+setTimeout(function(){loadMakerLyrics(false)},400);
 var _lf=document.getElementById('lyFile');if(_lf)_lf.addEventListener('change',function(){var f=_lf.files&&_lf.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var buf=new Uint8Array(r.result),txt='';try{if(buf[0]===0xFF&&buf[1]===0xFE)txt=new TextDecoder('utf-16le').decode(buf);else if(buf[0]===0xFE&&buf[1]===0xFF)txt=new TextDecoder('utf-16be').decode(buf);else{try{txt=new TextDecoder('utf-8',{fatal:true}).decode(buf)}catch(e1){txt=new TextDecoder('euc-kr').decode(buf)}}}catch(e2){txt=''}var el=document.getElementById('lyIn');el.value=txt;var dd=lyrData();if(dd.ti)setTitleAuto(dd.ti);el.dispatchEvent(new Event('input',{bubbles:true}))};r.readAsArrayBuffer(f)});
 window.__SM={S:S,analyze:analyze};
 try{if(window.parent!==window&&window.ResizeObserver){var __h=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-__h)>4){__h=h;window.parent.postMessage({type:'sm-h',h:h},'*')}}).observe(document.body)}}catch(_){}
