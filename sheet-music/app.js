@@ -473,12 +473,13 @@ function drawAll(){
     d.innerHTML='<label>'+(i+1)+'마디</label>';
     var inp=document.createElement('input');inp.value=barText(i);inp.setAttribute('aria-label',(i+1)+'마디 코드');
     inp.addEventListener('change',function(){
-      if(setBarFromText(i,inp.value)){drawSheetOnly()}else{inp.value=barText(i)}
+      if(setBarFromText(i,inp.value)){drawSheetOnly();updMatch()}else{inp.value=barText(i)}
     });
     d.appendChild(inp);box.appendChild(d);
   });
   drawSheetOnly(true);
   updateSuno();
+  updMatch();
 }
 function drawSheetOnly(skipSuno){
   var abc=buildABC();S.abc=abc;
@@ -503,32 +504,102 @@ function updateSuno(){
 
 /* ---------- 소리 내기 ---------- */
 function hz(m){return 440*Math.pow(2,(m-69)/12)}
+var playRaf=0,playedOrig=false;
+function clearFollow(){
+  if(playRaf){cancelAnimationFrame(playRaf);playRaf=0}
+  $$('#chords>div.on').forEach(function(d){d.classList.remove('on')});
+  var n=$('#nowPlay');if(n){n.textContent='';n.classList.add('hide')}
+}
 function stopPlay(){
   playNodes.forEach(function(n){try{n.stop()}catch(_){}});playNodes=[];
   if(playTimer){clearTimeout(playTimer);playTimer=null}
+  if(playedOrig){try{$('#orig').pause()}catch(_){}playedOrig=false}
+  clearFollow();
   $('#playSheet').textContent='▶ 악보 소리 듣기';
+  var pb=$('#playBoth');if(pb)pb.textContent='▶ 원곡과 같이 듣기';
 }
-function playSheet(){
+function startFollow(t0ctx,shown){
+  var ss=stepSec(),barSec=16*ss,ctx=audioCtx,nowEl=$('#nowPlay'),last=-1;
+  if(nowEl)nowEl.classList.remove('hide');
+  function tick(){
+    var el=ctx.currentTime-t0ctx,i=Math.floor(el/barSec);
+    if(el>=0&&i!==last&&i<S.chordBars.length){
+      last=i;
+      $$('#chords>div.on').forEach(function(d){d.classList.remove('on')});
+      var d=$$('#chords>div')[i];if(d){d.classList.add('on');try{d.scrollIntoView({block:'nearest'})}catch(_){}}
+      if(nowEl)nowEl.textContent='지금 '+(i+1)+'마디 · 코드 '+barText(i);
+    }
+    if(el<S.bars*barSec+0.5)playRaf=requestAnimationFrame(tick);
+  }
+  playRaf=requestAnimationFrame(tick);
+}
+function playSheet(withOrig){
   stopPlay();
   var AC=window.AudioContext||window.webkitAudioContext;if(!audioCtx)audioCtx=new AC();
   if(audioCtx.state==='suspended')audioCtx.resume();
-  var ctx=audioCtx,t=ctx.currentTime+0.15,ss=stepSec(),shift=S.shift;
-  function tone(type,f,st,dur,vol){
-    var o=ctx.createOscillator(),g=ctx.createGain();
-    o.type=type;o.frequency.value=f;
-    g.gain.setValueAtTime(0,st);g.gain.linearRampToValueAtTime(vol,st+0.02);g.gain.setValueAtTime(vol,st+Math.max(0.03,dur-0.06));g.gain.linearRampToValueAtTime(0.0001,st+dur);
-    o.connect(g);g.connect(ctx.destination);o.start(st);o.stop(st+dur+0.02);playNodes.push(o);
-  }
-  S.melody.forEach(function(n){tone('triangle',hz(n.m+shift),t+n.st*ss,Math.max(0.08,(n.end-n.st)*ss*0.95),0.22)});
-  S.chordBars.forEach(function(b,i){
-    [b.a,b.b].forEach(function(c,h){
-      var st=t+(i*16+h*8)*ss,du=8*ss*0.97;
-      CT[c.t].iv.forEach(function(iv){tone('sine',hz(48+((c.r+iv+shift)%12+12)%12-0),st,du,0.07)});
+  var ctx=audioCtx,ss=stepSec(),shift=withOrig===true?0:S.shift;
+  var au=$('#orig'),vs=+($('#vSheet').value||80)/100,vo=+($('#vOrig').value||80)/100;
+  var master=ctx.createGain();master.gain.value=(withOrig===true?vs:0.9);master.connect(ctx.destination);window.__master=master;
+  function sched(t){
+    function tone(type,f,st,dur,vol){
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type=type;o.frequency.value=f;
+      g.gain.setValueAtTime(0,st);g.gain.linearRampToValueAtTime(vol,st+0.02);g.gain.setValueAtTime(vol,st+Math.max(0.03,dur-0.06));g.gain.linearRampToValueAtTime(0.0001,st+dur);
+      o.connect(g);g.connect(master);o.start(st);o.stop(st+dur+0.02);playNodes.push(o);
+    }
+    S.melody.forEach(function(n){tone('triangle',hz(n.m+shift),t+n.st*ss,Math.max(0.08,(n.end-n.st)*ss*0.95),0.22)});
+    S.chordBars.forEach(function(b,i){
+      [b.a,b.b].forEach(function(c,h){
+        var st=t+(i*16+h*8)*ss,du=8*ss*0.97;
+        CT[c.t].iv.forEach(function(iv){tone('sine',hz(48+((c.r+iv+shift)%12+12)%12-0),st,du,0.07)});
+      });
     });
+    var total=S.bars*16*ss;
+    startFollow(t,true);
+    playTimer=setTimeout(stopPlay,(total+0.8)*1000);
+  }
+  if(withOrig===true&&au&&au.src){
+    $('#playBoth').textContent='♪ 같이 재생 중…';
+    au.volume=vo;au.currentTime=Math.max(0,S.t0);playedOrig=true;
+    var pr=au.play();
+    var go=function(){sched(ctx.currentTime+0.03)};
+    if(pr&&pr.then)pr.then(go,function(){playedOrig=false;stopPlay()});else go();
+  }else{
+    $('#playSheet').textContent='♪ 재생 중…';
+    sched(ctx.currentTime+0.15);
+  }
+}
+
+/* ---------- 소리 일치도 (참고용) ---------- */
+function barScores(){
+  var ss=stepSec(),barSec=16*ss,out=[];
+  for(var i=0;i<S.chordBars.length;i++){
+    var b=S.chordBars[i],a0=S.t0+i*barSec,a1=a0+barSec,pa={},pb={},pm={};
+    CT[b.a.t].iv.forEach(function(iv){pa[(b.a.r+iv)%12]=1});
+    CT[b.b.t].iv.forEach(function(iv){pb[(b.b.r+iv)%12]=1});
+    S.melody.forEach(function(n){if(n.st>=i*16&&n.st<i*16+16)pm[((n.m%12)+12)%12]=1});
+    var tot=0,ok=0;
+    S.notes.forEach(function(n){
+      if(n.m<28||n.m>88)return;
+      var mid=n.t+n.d/2;if(mid<a0||mid>=a1)return;
+      var w=n.d*(0.3+n.a),pc=n.m%12,set=(mid<a0+barSec/2)?pa:pb;
+      tot+=w;if(set[pc])ok+=w;
+    });
+    out.push(tot>0.02?ok/tot:null);
+  }
+  return out;
+}
+function updMatch(){
+  var sc=barScores(),boxes=$$('#chords>div'),sumN=0,cnt=0;
+  sc.forEach(function(v,i){
+    var d=boxes[i];if(!d)return;
+    var tag=d.querySelector('.mt');if(!tag){tag=document.createElement('span');tag.className='mt';d.querySelector('label').appendChild(tag)}
+    if(v==null){tag.textContent='';tag.className='mt';return}
+    var pc=Math.round(v*100);tag.textContent=' '+pc+'%';tag.className='mt '+(pc>=62?'g':pc>=42?'y':'r');
+    sumN+=v;cnt++;
   });
-  var total=S.bars*16*ss;
-  $('#playSheet').textContent='♪ 재생 중…';
-  playTimer=setTimeout(stopPlay,(total+0.6)*1000);
+  var m=$('#matchTxt');
+  if(m){if(cnt){var avg=Math.round(sumN/cnt*100);m.textContent='코드 일치도 '+avg+'% (원곡 소리 중 적은 코드의 구성음과 같은 음의 비율이에요. 멜로디는 코드 밖 음도 쓰니 100%가 아니어도 정상이에요. 마디별 색: 초록 잘 맞음 · 노랑 보통 · 빨강 의심)'}else m.textContent=''}
 }
 
 /* ---------- MIDI 저장 ---------- */
@@ -633,7 +704,10 @@ var drop=$('#drop');
 drop.addEventListener('drop',function(e){var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)analyze(f)});
 $('#redo').addEventListener('click',function(){S.shift=Math.min(12,S.shift+1);drawAll()});
 $('#undo').addEventListener('click',function(){S.shift=Math.max(-12,S.shift-1);drawAll()});
-$('#playSheet').addEventListener('click',playSheet);
+$('#playSheet').addEventListener('click',function(){playSheet(false)});
+$('#playBoth').addEventListener('click',function(){if(playedOrig||playTimer){stopPlay();return}playSheet(true)});
+$('#vOrig').addEventListener('input',function(){try{$('#orig').volume=+this.value/100}catch(_){}});
+$('#vSheet').addEventListener('input',function(){try{if(window.__master)window.__master.gain.value=+this.value/100}catch(_){}});
 $('#stopSheet').addEventListener('click',stopPlay);
 $('#dlMidi').addEventListener('click',dlMidi);
 $('#dlMc').addEventListener('click',dlMc);

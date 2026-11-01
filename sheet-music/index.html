@@ -55,6 +55,10 @@ button:hover:not(:disabled){border-color:var(--acc)}
 .stat b{font-size:20px}
 .chords{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;margin-top:8px}
 .chords label{display:block;font-size:12px;color:var(--sub)}
+.chords>div.on input{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc2);background:var(--acc2)}
+.chords .mt{font-weight:700}.chords .mt.g{color:var(--ok)}.chords .mt.y{color:var(--warn)}.chords .mt.r{color:#d33}
+#nowPlay{font-weight:800;color:var(--acc);margin-top:8px}
+.vrow{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px;color:var(--sub)}.vrow input{vertical-align:middle;width:110px}
 .chords input{width:100%;font:inherit;font-weight:700;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-height:40px}
 #sheet{overflow-x:auto;background:#fff;border-radius:10px;padding:8px;color:#000}
 #sheet svg{max-width:100%;height:auto}
@@ -125,6 +129,7 @@ footer a{color:var(--acc)}
 
     <section class="card">
       <h2>코드 진행 <span class="pill" id="patPill"></span></h2>
+      <p class="note" id="matchTxt"></p>
       <p class="note">마디(한 칸)마다 코드예요. 틀린 칸은 눌러서 직접 고치면 악보에 바로 반영돼요. 한 마디에 코드가 둘이면 띄어 써요 (예: C G).</p>
       <div class="chords" id="chords"></div>
       <div class="row" style="margin-top:10px"><button type="button" id="cpChords">코드 진행 복사</button><span class="note" id="cpChordsTxt"></span></div>
@@ -141,12 +146,15 @@ footer a{color:var(--acc)}
       <div id="sheet"></div>
       <div class="row" style="margin-top:10px">
         <button type="button" class="main" id="playSheet">▶ 악보 소리 듣기</button>
+        <button type="button" class="main" id="playBoth" title="원곡과 악보 소리를 같은 박자로 동시에 틀어요. 같은 소리면 하나로 합쳐 들리고, 틀린 곳은 어긋나게 들려요">▶ 원곡과 같이 듣기</button>
         <button type="button" id="stopSheet">■ 멈춤</button>
         <button type="button" id="dlMidi">MIDI 저장</button>
         <button type="button" id="dlMc" title="뮤직캔버스 영상 화면에 코드 진행을 반투명으로 넣을 때 쓰는 파일">뮤직캔버스용 파일</button>
       </div>
+      <div id="nowPlay" class="hide"></div>
+      <div class="vrow"><label>원곡 소리 <input type="range" id="vOrig" min="0" max="100" value="80"></label><label>악보 소리 <input type="range" id="vSheet" min="0" max="100" value="80"></label></div>
       <audio id="orig" controls></audio>
-      <p class="note" style="margin-top:6px">위 플레이어는 원곡이에요. 악보 소리와 번갈아 들으며 틀린 곳을 찾아 보세요.</p>
+      <p class="note" style="margin-top:6px">악보를 읽을 줄 몰라도 돼요. <b>"원곡과 같이 듣기"</b>를 누르면 원곡과 악보 소리가 함께 나와요. 소리가 하나로 합쳐 들리면 잘 맞은 거고, 어긋나거나 불협화음처럼 들리면 그 마디가 틀린 거예요. 지금 마디가 위 코드 칸에 표시돼요. (키를 바꿔 둔 상태에서는 원래 키로 틀어요.)</p>
     </section>
 
     <section class="card">
