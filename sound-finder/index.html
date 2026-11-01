@@ -2822,6 +2822,7 @@ if(smBox&&smF){
   window.__sfAfDone=function(){if(smBox.open)feed()};
   window.addEventListener('message',function(e){
     if(e.origin!==location.origin||e.source!==smF.contentWindow)return;var d=e.data;if(!d)return;
+    if(d.type==='sm-play'){var fb=document.getElementById('smFb');if(!fb){fb=document.createElement('div');fb.id='smFb';fb.style.cssText='position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99998;display:none;gap:10px;align-items:center;max-width:calc(100% - 24px);background:#fff;color:#4b2fd0;border:2px solid #6c4bf0;border-radius:999px;padding:6px 8px 6px 16px;box-shadow:0 6px 24px rgba(0,0,0,.28);font-weight:800;font-size:14px';fb.innerHTML='<span id="smFbT" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></span><button type="button" id="smFbS" style="background:#d33;color:#fff;border:0;border-radius:999px;padding:9px 18px;font-weight:800;min-height:40px;cursor:pointer">■ 정지</button>';document.body.appendChild(fb);fb.querySelector('#smFbS').addEventListener('click',function(){try{smF.contentWindow.postMessage({type:'sm-stop'},location.origin)}catch(x){}fb.style.display='none'})}fb.style.display=d.on?'flex':'none';if(d.on)fb.querySelector('#smFbT').textContent=d.txt||''}
     if(d.type==='sm-h'){smF.style.height=Math.max(480,Math.min(2600,d.h+8))+'px'}
     if(d.type==='sm-result'){smRes=d;$('#smUse').hidden=false;$('#smMsg').textContent='악보 분석 끝: '+d.key+' · '+d.bpm+' BPM · 코드 '+d.prog}
   });

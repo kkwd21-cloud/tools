@@ -418,7 +418,7 @@ function buildABC(){
   var mel=S.melody.map(function(n){return {st:n.st,end:n.end,m:n.m+shift}});
   // 스텝별 이벤트
   var bars=S.bars,out=[],mi=0;
-  var body='',lineStr='',lineFlags=[],prevTie=false,LL=lyrLines();
+  var body='',lineStr='',lineFlags=[],prevTie=false,LL=lyrLines();S.evT=[];
   for(var b=0;b<bars;b++){
     var bs=b*16,be=bs+16,state={},bar='';
     var ch=S.chordBars[b];
@@ -448,8 +448,8 @@ function buildABC(){
     });
     var first=true;
     final.forEach(function(e,idx){
-      var parts=splitLen(e.len);
-      parts.forEach(function(L,pi){
+      var parts=splitLen(e.len),acc=0;
+      parts.forEach(function(L,pi){S.evT.push(e.st+acc);acc+=L;
         var sym='';
         if(pi===0){
           if(e.st===bs)sym='"'+chA+'"';
@@ -514,6 +514,7 @@ function drawSheetOnly(skipSuno){
     var w=Math.max(280,($('#sheet').clientWidth||600)-16);
     ABCJS.renderAbc('sheet',abc,{responsive:'resize',add_classes:true,staffwidth:w,wrap:{minSpacing:1.6,maxSpacing:2.6,preferredMeasuresPerLine:4}});
   }catch(e){$('#sheet').textContent='악보를 그리지 못했어요: '+e.message}
+  try{sheetPrep()}catch(_){}
   if(!skipSuno){updateSuno();var pat=patternName();$('#patPill').textContent=pat||'';$('#patPill').classList.toggle('hide',!pat)}
 }
 function progressionText(){
@@ -536,6 +537,8 @@ function clearFollow(){
   if(playRaf){cancelAnimationFrame(playRaf);playRaf=0}
   $$('#chords>div.on').forEach(function(d){d.classList.remove('on')});
   var n=$('#nowPlay');if(n){n.textContent='';n.classList.add('hide')}
+  try{curClear()}catch(_){}
+  fbarShow(false);
 }
 function stopPlay(){
   playNodes.forEach(function(n){try{n.stop()}catch(_){}});playNodes=[];
@@ -545,16 +548,79 @@ function stopPlay(){
   $('#playSheet').textContent='▶ 악보 소리 듣기';
   var pb=$('#playBoth');if(pb)pb.textContent='▶ 원곡과 같이 듣기';
 }
+var SH={els:[],lyr:[],ok:false,cur:-1,lyOn:null,cursor:null,lastUser:0,box:null};
+['wheel','touchstart','touchmove','keydown','mousedown'].forEach(function(ev){window.addEventListener(ev,function(){SH.lastUser=Date.now()},{passive:true})});
+function sheetPrep(){
+  var host=$('#sheet');if(!host)return;host.style.position='relative';
+  SH.cur=-1;SH.lyOn=null;SH.ok=false;SH.els=[];SH.lyr=[];
+  var hr=host.getBoundingClientRect(),sl=host.scrollLeft,st=host.scrollTop;
+  function R(el){var r=el.getBoundingClientRect();return {l:r.left-hr.left+sl,r:r.right-hr.left+sl,t:r.top-hr.top+st,b:r.bottom-hr.top+st}}
+  function ln(el){var m=/abcjs-l(\d+)/.exec(el.getAttribute('class')||'');return m?+m[1]:0}
+  var els=[].slice.call(host.querySelectorAll('svg .abcjs-note,svg .abcjs-rest'));
+  if(!els.length||els.length!==(S.evT||[]).length)return;
+  SH.els=els.map(function(e){var r=R(e);return {e:e,l:r.l,r:r.r,t:r.t,b:r.b,line:ln(e),cx:(r.l+r.r)/2}});
+  SH.lyr=[].slice.call(host.querySelectorAll('svg .abcjs-lyric')).map(function(e){var r=R(e);return {e:e,line:ln(e),cx:(r.l+r.r)/2,txt:e.textContent}});
+  var lines={};
+  [].forEach.call(host.querySelectorAll('svg .abcjs-staff-wrapper'),function(w){var r=R(w);lines[ln(w)]={t:r.t,b:r.b}});
+  SH.lines=lines;
+  var c=document.createElement('div');c.id='smCur';c.style.cssText='position:absolute;width:3px;border-radius:2px;background:#6c4bf0;opacity:.85;pointer-events:none;display:none;box-shadow:0 0 0 2px rgba(108,75,240,.18)';
+  host.appendChild(c);SH.cursor=c;SH.ok=true;
+}
+function curClear(){
+  if(SH.cur>=0&&SH.els[SH.cur])SH.els[SH.cur].e.classList.remove('sm-on');
+  if(SH.lyOn){SH.lyOn.classList.remove('sm-lyon');SH.lyOn=null}
+  SH.cur=-1;if(SH.cursor)SH.cursor.style.display='none';
+}
+function curAt(step){
+  if(!SH.ok)return '';
+  var ev=S.evT,n=ev.length,k=-1,i;
+  for(i=0;i<n;i++){if(ev[i]<=step+0.001)k=i;else break}
+  if(k<0)return '';
+  var a=SH.els[k],b=SH.els[k+1],t0=ev[k],t1=(k+1<n)?ev[k+1]:S.bars*16;
+  var f=Math.max(0,Math.min(1,(step-t0)/Math.max(1,t1-t0)));
+  var x0=a.l,x1=(b&&b.line===a.line)?b.l:(a.r+14);
+  var x=x0+(x1-x0)*f-3;
+  var ly=SH.lines&&SH.lines[a.line];
+  var cu=SH.cursor;
+  if(ly){cu.style.top=(ly.t-4)+'px';cu.style.height=(ly.b-ly.t+8)+'px'}
+  cu.style.left=x+'px';cu.style.display='block';
+  var syl='';
+  if(k!==SH.cur){
+    if(SH.cur>=0&&SH.els[SH.cur])SH.els[SH.cur].e.classList.remove('sm-on');
+    a.e.classList.add('sm-on');SH.cur=k;
+    if(SH.lyOn){SH.lyOn.classList.remove('sm-lyon');SH.lyOn=null}
+    var best=null,bd=18;
+    SH.lyr.forEach(function(L){if(L.line!==a.line)return;var d=Math.abs(L.cx-a.cx);if(d<bd){bd=d;best=L}});
+    if(best){best.e.classList.add('sm-lyon');SH.lyOn=best.e;SH.syl=best.txt}else SH.syl='';
+    // 줄이 화면 밖이면 부드럽게 따라가기 (직접 스크롤 중이면 따라가지 않음)
+    if(!document.documentElement.classList.contains('embed')&&Date.now()-SH.lastUser>4000&&ly){
+      var hr=$('#sheet').getBoundingClientRect(),top=hr.top+ly.t-$('#sheet').scrollTop,bot=hr.top+ly.b;
+      if(top<70||bot>window.innerHeight-90){try{window.scrollTo({top:window.scrollY+top-120,behavior:'smooth'})}catch(_){}}
+    }
+  }
+  return SH.syl||'';
+}
+function fbarShow(on,txt){
+  var emb=document.documentElement.classList.contains('embed');
+  if(emb){try{window.parent.postMessage({type:'sm-play',on:on,txt:txt||''},'*')}catch(_){}return}
+  var fb=$('#fbar');if(!fb)return;fb.classList.toggle('hide',!on);if(on){$('#fbTxt').textContent=txt||''}
+}
 function startFollow(t0ctx,shown){
-  var ss=stepSec(),barSec=16*ss,ctx=audioCtx,nowEl=$('#nowPlay'),last=-1;
+  var ss=stepSec(),barSec=16*ss,ctx=audioCtx,nowEl=$('#nowPlay'),last=-1,lastTxt='';
   if(nowEl)nowEl.classList.remove('hide');
+  fbarShow(true,'재생 중…');
   function tick(){
     var el=ctx.currentTime-t0ctx,i=Math.floor(el/barSec);
     if(el>=0&&i!==last&&i<S.chordBars.length){
       last=i;
       $$('#chords>div.on').forEach(function(d){d.classList.remove('on')});
-      var d=$$('#chords>div')[i];if(d){d.classList.add('on');try{d.scrollIntoView({block:'nearest'})}catch(_){}}
-      if(nowEl)nowEl.textContent='지금 '+(i+1)+'마디 · 코드 '+barText(i);
+      var d=$$('#chords>div')[i];if(d)d.classList.add('on');
+    }
+    var syl='';
+    if(el>=0)syl=curAt(el/ss);
+    if(el>=0&&i<S.chordBars.length){
+      var txt='지금 '+(i+1)+'마디 · 코드 '+barText(i)+(syl?' · ♪ '+syl:'');
+      if(txt!==lastTxt){lastTxt=txt;if(nowEl)nowEl.textContent=txt;fbarShow(true,txt)}
     }
     if(el<S.bars*barSec+0.5)playRaf=requestAnimationFrame(tick);
   }
@@ -736,6 +802,7 @@ $('#playBoth').addEventListener('click',function(){if(playedOrig||playTimer){sto
 $('#vOrig').addEventListener('input',function(){try{$('#orig').volume=+this.value/100}catch(_){}});
 $('#vSheet').addEventListener('input',function(){try{if(window.__master)window.__master.gain.value=+this.value/100}catch(_){}});
 $('#stopSheet').addEventListener('click',stopPlay);
+var _fs=$('#fbStop');if(_fs)_fs.addEventListener('click',stopPlay);
 $('#dlMidi').addEventListener('click',dlMidi);
 $('#dlMc').addEventListener('click',dlMc);
 function copyText(txt,note,msg){
@@ -745,6 +812,7 @@ function copyText(txt,note,msg){
 }
 $('#cpChords').addEventListener('click',function(){copyText(progressionText(),$('#cpChordsTxt'),'복사했어요')});
 $('#cpSuno').addEventListener('click',function(){copyText($('#sunoTxt').value.split('\n')[0],$('#cpSunoTxt'),'복사했어요')});
+window.addEventListener('message',function(e){if(e.data&&e.data.type==='sm-stop')stopPlay()});
 window.__SM={S:S,analyze:analyze};
 try{if(window.parent!==window&&window.ResizeObserver){var __h=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-__h)>4){__h=h;window.parent.postMessage({type:'sm-h',h:h},'*')}}).observe(document.body)}}catch(_){}
 })();
