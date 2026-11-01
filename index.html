@@ -125,6 +125,36 @@ details.all>summary{border:0;border-radius:20px;box-shadow:0 18px 50px rgba(20,2
 a[hreflang]{border:0!important;box-shadow:0 4px 16px rgba(20,20,60,.1)}
 /* 카드 5개: 마지막 카드도 한 칸만 차지 */
 .pk:last-child:not(.big){grid-column:auto}
+/* ===== refined look ===== */
+:root{--bg:#f5f6f8;--card:#fff;--ink:#14161c;--muted:#626773;--line:#e4e6eb;--a1:#27336b;--a1s:#eef0f6;--a2:#27336b;--a2s:#eef0f6;--a3:#27336b;--a3s:#eef0f6;--cta:#14161c}
+body{background:#f5f6f8}
+.wrap{max-width:820px}
+header{text-align:left!important;align-items:flex-start!important;margin-top:28px!important}
+h1{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#14161c!important;font-weight:700!important;letter-spacing:-.025em!important;font-size:clamp(28px,5vw,40px)!important;line-height:1.2!important}
+.sub{margin:0!important;font-size:16px!important}
+.pick>h2,.path>h2{text-align:left!important;font-size:18px!important;font-weight:700!important}
+.pk{border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:none!important;background:#fff!important;padding:20px!important;transition:border-color .15s}
+.pk:hover{transform:none!important;box-shadow:none!important;border-color:#14161c!important}
+.pk b{font-size:17px!important;font-weight:700}
+.pk i{color:var(--a1)!important;font-weight:700!important}
+.pk.big{background:#14161c!important;border-color:#14161c!important;color:#fff!important}
+.pk.big b{font-size:26px!important}.pk.big span,.pk.big i{color:#fff!important}
+.pk.t1 i,.pk.t2 i,.pk.t3 i{color:var(--a1)!important}
+.pk.big i{color:#fff!important}
+.path{border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:none!important;padding:20px!important}
+.path li a{background:#f7f8fa!important;border:1px solid var(--line)!important;border-radius:10px!important}
+.path li a:hover{background:#fff!important;border-color:#14161c!important}
+.path li em{border-radius:6px!important;width:26px;height:26px;font-size:13px}
+.tool,.tool.feat{border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:none!important;background:#fff!important}
+.tool.feat{background:#fff!important}
+.tool:hover{border-color:#14161c!important;box-shadow:none!important}
+.tool li{background:#eef0f6!important;color:#27336b!important;border-radius:6px!important}
+.gl a{border:1px solid var(--line)!important;border-radius:10px!important;box-shadow:none!important}
+.flow{border-radius:10px!important;background:#fff!important;border:1px solid var(--line)!important}
+.cta{border-radius:12px!important;background:#14161c!important}
+.cta .btn{border-radius:10px!important}
+details.all>summary{border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:none!important}
+.grp>h2{color:var(--muted)!important}
 </style>
 </head>
 <body>

@@ -778,6 +778,51 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 .nsb .ns-next strong{display:block;font-size:18px;line-height:1.35}
 .nsb .ns-next em{display:block;font-style:normal;font-size:13.5px;color:var(--muted,#98a2c4);margin-top:3px}
 .nsb .ns-next span.go{font-weight:800;padding:10px 18px;border-radius:12px;background:var(--accent,#b9a0ff);color:#15122a;white-space:nowrap}
+/* ===== refined look (차분한 도구 스타일) ===== */
+:root{--accent:#27336b;--accent2:#27336b;--rgb:39,51,107;--bg:#f5f6f8;--bg2:#f1f2f5;--panel:#fff;--panel2:#f7f8fa;--line:#e4e6eb;--line2:#cfd3db;--text:#14161c;--muted:#626773;--mut:#626773}
+html,body{background:#f5f6f8}
+.top{background:rgba(245,246,248,.94);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:-.01em}
+.gnav a,header.top a.mc-pill,.top-lang{border-radius:8px}
+.hero{text-align:left!important;padding:40px 0 0!important}
+.hero h1{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#14161c!important;font-weight:700!important;letter-spacing:-.025em!important;font-size:clamp(26px,4.2vw,38px)!important;line-height:1.22!important;max-width:24ch!important;margin:0!important}
+.hero .vibe{margin:12px 0 0!important;max-width:52ch!important;color:var(--muted)!important;font-size:clamp(15px,1.8vw,16.5px)!important}
+.hero .lead{margin:6px 0 0!important}
+.hero .eyebrow{margin-bottom:12px!important}
+.eyebrow{color:var(--muted)!important;letter-spacing:.1em}
+.howto{margin:18px 0 0!important;max-width:620px;border-radius:12px;background:#fff}
+.howto .hn,.ob,.stp,.wz-steps button.on b{width:20px!important;height:20px!important;border-radius:6px!important;font-size:12px!important;background:#14161c!important;color:#fff!important}
+#find{max-width:820px;margin:0 auto}
+#find .sec-head,#find .note{text-align:left!important}
+#find .sec-head p{margin-inline:0!important}
+.sec-head h2{font-weight:700!important;letter-spacing:-.015em}
+#findTabs,#starts,.cg{justify-content:flex-start!important}
+.inp1,.search input,input[type=search]{border:1px solid var(--line2)!important;border-radius:12px!important;font-size:16px!important;padding:13px 16px!important;box-shadow:none!important;background:#fff}
+.inp1:focus,.search input:focus,input[type=search]:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px rgba(39,51,107,.14)!important;outline:none}
+textarea.inp,.inp{border-radius:10px}
+.chip,.tb{background:#fff!important;border:1px solid var(--line2)!important;color:var(--text)!important;border-radius:8px!important;font-weight:600!important;padding:6px 12px}
+.chip:hover,.tb:hover{background:#f1f2f5!important;border-color:#9aa0ad!important;color:var(--text)!important}
+.chip[aria-pressed="true"],.tb[aria-pressed="true"]{background:#14161c!important;border-color:#14161c!important;color:#fff!important}
+.gnav a.on,.btn-p,.b-main,.lg-r[aria-pressed="true"],.nsb .ns-next span.go{border-radius:10px!important;background:#14161c!important;border-color:#14161c!important;color:#fff!important}
+.b-main:hover,.btn-p:hover{background:#2a2d36!important}
+.b-sub,.btn-g{border-radius:10px!important;background:#fff;border:1px solid var(--line2)!important;color:var(--text)!important;font-weight:600}
+.b-sub:hover,.btn-g:hover{border-color:#8f95a3!important;background:#f5f6f8;color:var(--text)!important}
+.pcard,.preview,.toolbar,.step,.card2,.feel,.nsb .ns-next{border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:none!important;background:#fff!important}
+details.pk{border-radius:12px;border:1px solid var(--line);background:#fff;padding:12px 16px}
+details.pk summary{font-weight:600}
+.pc-text,.lyr-text,.sty,.lsec{background:#f7f8fa!important;border:1px solid var(--line)!important;border-radius:10px!important}
+.badge-b{background:#14161c!important;color:#fff!important;border-radius:6px!important}
+.ppc{background:#fff!important;border-radius:10px!important}
+.ppc.on{border-color:#14161c!important}
+.ppb{background:#eceef3!important;color:#3a3f4b!important;border-radius:6px!important}
+.pp-go:hover b{color:var(--accent)}
+.sug button:hover,.sug button.on{background:#eef0f5!important}
+.cta-final{border-radius:0!important;background:#14161c!important}
+#favbar{box-shadow:0 8px 24px rgba(20,22,28,.18)!important;border-radius:12px}
+.mccta{border-radius:14px!important}
+.afdrop{border-radius:12px}
+.hero{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}
+.pill,.pc-tags span,.sgm,.sgt{border-radius:6px!important}
 </style><nav class="nsb" aria-label="전체 순서"><div class="ns-path"><b>전체 순서</b><span class="c"><i>1</i>곡 느낌 고르기</span><a href="../make-song/"><i>2</i>노래 만들기</a><a href="../cover-maker/"><i>3</i>앨범 커버</a><a href="../lrc-maker/"><i>4</i>가사 자막</a><a href="../upload-kit/"><i>5</i>유튜브에 올리기</a><a href="../shorts-clip/"><i>6</i>쇼츠로 알리기</a></div><a class="ns-next" href="../make-song/"><div><small>다음 단계</small><strong>노래 만들기</strong><em>찾은 문구로 수노에서 노래를 만들어요</em></div><span class="go">열기 →</span></a></nav><!--/nextstep--></main>
 <footer>© Dusk Soul · 입력한 내용은 이 브라우저 안에서만 처리돼요. · 버전 183</footer>
 <div id="toast" role="status" aria-live="polite"></div>
