@@ -157,16 +157,16 @@ footer a{color:var(--acc)}
       <div id="sheet"></div>
       <div class="row" style="margin-top:10px">
         <button type="button" class="main" id="playSheet">▶ 악보 소리 듣기</button>
-        <button type="button" class="main" id="playBoth" title="원곡과 악보 소리를 같은 박자로 동시에 틀어요. 같은 소리면 하나로 합쳐 들리고, 틀린 곳은 어긋나게 들려요">▶ 원곡과 같이 듣기</button>
+        <button type="button" class="main" id="playBoth" title="원곡만 들으면서 악보의 보라색 선이 따라가요. 악보 소리는 꺼져 있어요(아래 슬라이더로 켤 수 있어요)">▶ 원곡 들으며 악보 따라가기</button>
         <button type="button" id="stopSheet">■ 멈춤</button>
         <button type="button" id="dlMidi">MIDI 저장</button>
         <button type="button" id="dlMc" title="뮤직캔버스 영상 화면에 코드 진행을 반투명으로 넣을 때 쓰는 파일">뮤직캔버스용 파일</button>
       </div>
       <div id="nowPlay" class="hide"></div>
       <div id="fbar" class="hide"><span id="fbTxt"></span><button type="button" id="fbStop">■ 정지</button></div>
-      <div class="vrow"><label>원곡 소리 <input type="range" id="vOrig" min="0" max="100" value="80"></label><label>악보 소리 <input type="range" id="vSheet" min="0" max="100" value="80"></label></div>
+      <div class="vrow"><label>원곡 소리 <input type="range" id="vOrig" min="0" max="100" value="80"></label><label>악보 소리 <input type="range" id="vSheet" min="0" max="100" value="0"></label><span class="note">(0이면 원곡만 나와요)</span></div>
       <audio id="orig" controls></audio>
-      <p class="note" style="margin-top:6px">악보를 읽을 줄 몰라도 돼요. <b>"원곡과 같이 듣기"</b>를 누르면 원곡과 악보 소리가 함께 나와요. 소리가 하나로 합쳐 들리면 잘 맞은 거고, 어긋나거나 불협화음처럼 들리면 그 마디가 틀린 거예요. 지금 마디가 위 코드 칸에 표시돼요. (키를 바꿔 둔 상태에서는 원래 키로 틀어요.)</p>
+      <p class="note" style="margin-top:6px"><b>"원곡 들으며 악보 따라가기"</b>를 누르면 원곡만 나오고, 악보의 보라색 선과 가사가 노래를 따라가요. 악보가 맞는지 확인하고 싶을 때만 "악보 소리" 슬라이더를 올려 원곡과 같이 들어 보세요. (키를 바꿔 둔 상태에서는 원래 키로 틀어요.)</p>
     </section>
 
     <section class="card">
@@ -202,6 +202,6 @@ footer a{color:var(--acc)}
   </footer>
 </div>
 <script src="abcjs-basic-min.js?v=1"></script>
-<script src="app.js?v=20261101c"></script>
+<script src="app.js?v=20261101d"></script>
 </body>
 </html>

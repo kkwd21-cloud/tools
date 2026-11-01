@@ -554,7 +554,7 @@ function stopPlay(){
   if(playedOrig){try{$('#orig').pause()}catch(_){}playedOrig=false}
   clearFollow();
   $('#playSheet').textContent='▶ 악보 소리 듣기';
-  var pb=$('#playBoth');if(pb)pb.textContent='▶ 원곡과 같이 듣기';
+  var pb=$('#playBoth');if(pb)pb.textContent='▶ 원곡 들으며 악보 따라가기';
 }
 var SH={els:[],lyr:[],ok:false,cur:-1,lyOn:null,cursor:null,lastUser:0,box:null};
 ['wheel','touchstart','touchmove','keydown','mousedown'].forEach(function(ev){window.addEventListener(ev,function(){SH.lastUser=Date.now()},{passive:true})});
@@ -618,7 +618,9 @@ function startFollow(t0ctx,shown){
   if(nowEl)nowEl.classList.remove('hide');
   fbarShow(true,'재생 중…');
   function tick(){
-    var el=ctx.currentTime-t0ctx,i=Math.floor(el/barSec);
+    var el=ctx.currentTime-t0ctx;
+    if(playedOrig){var _au=$('#orig');if(_au&&!_au.paused)el=_au.currentTime-Math.max(0,S.t0)}
+    var i=Math.floor(el/barSec);
     if(el>=0&&i!==last&&i<S.chordBars.length){
       last=i;
       $$('#chords>div.on').forEach(function(d){d.classList.remove('on')});
@@ -660,7 +662,7 @@ function playSheet(withOrig){
     playTimer=setTimeout(stopPlay,(total+0.8)*1000);
   }
   if(withOrig===true&&au&&au.src){
-    $('#playBoth').textContent='♪ 같이 재생 중…';
+    $('#playBoth').textContent='♪ 원곡 재생 중… (누르면 멈춤)';
     au.volume=vo;au.currentTime=Math.max(0,S.t0);playedOrig=true;
     var pr=au.play();
     var go=function(){sched(ctx.currentTime+0.03)};
@@ -820,7 +822,7 @@ function copyText(txt,note,msg){
 }
 $('#cpChords').addEventListener('click',function(){copyText(progressionText(),$('#cpChordsTxt'),'복사했어요')});
 $('#cpSuno').addEventListener('click',function(){copyText($('#sunoTxt').value.split('\n')[0],$('#cpSunoTxt'),'복사했어요')});
-window.addEventListener('message',function(e){if(e.data&&e.data.type==='sm-stop')stopPlay()});
+window.addEventListener('message',function(e){var d=e.data;if(!d)return;if(d.type==='sm-stop')stopPlay();if(d.type==='sm-lyrics'&&typeof d.text==='string'){var el=document.getElementById('lyIn');if(el&&!(d.auto&&el.value.trim())){var dt=document.querySelector('.lyb');if(dt)dt.open=true;el.value=d.text;el.dispatchEvent(new Event('input',{bubbles:true}))}}});
 document.addEventListener('keydown',function(e){var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;if((e.key==='Escape'||e.key===' ')&&(playedOrig||playTimer)){e.preventDefault();stopPlay()}});
 var _lf=document.getElementById('lyFile');if(_lf)_lf.addEventListener('change',function(){var f=_lf.files&&_lf.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var el=document.getElementById('lyIn');el.value=String(r.result||'');el.dispatchEvent(new Event('input',{bubbles:true}))};r.readAsText(f,'utf-8')});
 window.__SM={S:S,analyze:analyze};
