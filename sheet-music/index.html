@@ -58,6 +58,18 @@ button:hover:not(:disabled){border-color:var(--acc)}
 .chords>div.on input{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc2);background:var(--acc2)}
 .chords .mt{font-weight:700}.chords .mt.g{color:var(--ok)}.chords .mt.y{color:var(--warn)}.chords .mt.r{color:#d33}
 #nowPlay{font-weight:800;color:var(--acc);margin-top:8px}
+@media print{
+@page{margin:12mm}
+body{background:#fff!important}
+.wrap>*:not(#result){display:none!important}
+#result>*:not(#sheetCard){display:none!important}
+#sheetCard{box-shadow:none!important;border:0!important;padding:0!important;margin:0!important}
+#sheetCard>*:not(#sheet){display:none!important}
+#sheet{overflow:visible!important;padding:0!important;border:0!important}
+#sheet .sm-on,#sheet .sm-on *{fill:#000!important;stroke:#000!important}
+#smCur,#fbar{display:none!important}
+.wrap{max-width:none!important;padding:0!important}
+}
 #fbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:60;display:flex;gap:10px;align-items:center;max-width:calc(100% - 24px);background:var(--card);border:2px solid var(--acc);border-radius:999px;padding:6px 8px 6px 16px;box-shadow:0 6px 24px rgba(0,0,0,.22)}
 #fbar span{font-weight:800;color:var(--acc);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #fbar button{background:#d33;color:#fff;border:0;border-radius:999px;padding:9px 18px;font-weight:800;min-height:40px}
@@ -140,7 +152,7 @@ footer a{color:var(--acc)}
       <div class="row" style="margin-top:10px"><button type="button" id="cpChords">코드 진행 복사</button><span class="note" id="cpChordsTxt"></span></div>
     </section>
 
-    <section class="card">
+    <section class="card" id="sheetCard">
       <h2>악보 <span class="pill">멜로디 · 근사치</span></h2>
       <div class="chips row" style="margin-bottom:8px">
         <span class="note">음표 양</span>
@@ -154,12 +166,14 @@ footer a{color:var(--acc)}
         <p class="note" style="margin:8px 0 0">가사 파일(.txt, .lrc)이 있으면 여기서 바로 넣어요: <input type="file" id="lyFile" accept=".txt,.lrc,text/plain"></p>
         <p class="note" style="margin:6px 0 0">[Verse] 같은 표시는 자동으로 빼요. 음표 위치는 근사치라 글자가 조금 어긋날 수 있어요.</p>
       </details>
+      <div class="row" style="margin-bottom:8px"><label class="note" for="scTitle">악보 제목</label><input type="text" id="scTitle" placeholder="곡 제목 (파일 이름이 자동으로 들어가요)" style="flex:1;min-width:180px;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)"></div>
       <div id="sheet"></div>
       <div class="row" style="margin-top:10px">
         <button type="button" class="main" id="playSheet">▶ 악보 소리 듣기</button>
         <button type="button" class="main" id="playBoth" title="원곡만 들으면서 악보의 보라색 선이 따라가요. 악보 소리는 꺼져 있어요(아래 슬라이더로 켤 수 있어요)">▶ 원곡 들으며 악보 따라가기</button>
         <button type="button" id="stopSheet">■ 멈춤</button>
         <button type="button" id="dlMidi">MIDI 저장</button>
+        <button type="button" id="prSheet" title="악보만 깔끔하게 인쇄하거나 PDF로 저장해요">🖨 악보 인쇄 / PDF</button>
         <button type="button" id="dlMc" title="뮤직캔버스 영상 화면에 코드 진행을 반투명으로 넣을 때 쓰는 파일">뮤직캔버스용 파일</button>
       </div>
       <div id="nowPlay" class="hide"></div>
@@ -202,6 +216,6 @@ footer a{color:var(--acc)}
   </footer>
 </div>
 <script src="abcjs-basic-min.js?v=1"></script>
-<script src="app.js?v=20261101d"></script>
+<script src="app.js?v=20261101e"></script>
 </body>
 </html>

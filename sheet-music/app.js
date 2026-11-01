@@ -392,14 +392,40 @@ function splitLen(n){ // 16분음표 개수를 표기 가능한 길이로 쪼개
   while(n>0){for(var i=0;i<allowed.length;i++)if(allowed[i]<=n){out.push(allowed[i]);n-=allowed[i];break}}
   return out;
 }
+function titleText(){
+  var t=(S.title||'').replace(/[\r\n]+/g,' ').trim();
+  return t||'자동 채보';
+}
+function setTitleAuto(t){
+  if(S.titleEdited||!t)return;
+  S.title=String(t).replace(/\.[A-Za-z0-9]{2,4}$/,'').replace(/[_]+/g,' ').trim();
+  var el=document.getElementById('scTitle');if(el)el.value=S.title;
+}
 function lyrTokens(line){
   var m=String(line||'').replace(/\[[^\]]*\]|\([^)]*\)/g,' ').match(/[가-힣]|[A-Za-z0-9]+/g);
   return m||[];
 }
-function lyrLines(){
-  var el=document.getElementById('lyIn');if(!el)return [];
-  return el.value.replace(/\[\d{1,3}:\d{2}(?:[.:]\d{1,3})?\]/g,'').split(/\r?\n/).filter(function(l){return !/^\s*[\[(][^\])]*[\])]\s*$/.test(l)}).map(lyrTokens);
+var TSRE=/\[(\d{1,3}):(\d{2}(?:[.:]\d{1,3})?)\]/g;
+function lyrData(){
+  var el=document.getElementById('lyIn');
+  var d={timed:false,lines:[],entries:[],ti:''};if(!el)return d;
+  var raw=el.value.replace(/^\uFEFF/,'').replace(/<\d{1,3}:\d{2}(?:[.:]\d{1,3})?>/g,'');
+  var rows=raw.split(/\r\n|\r|\n/),ents=[];
+  rows.forEach(function(r){
+    var mt=/^\s*\[ti:([^\]]*)\]/i.exec(r);if(mt){d.ti=mt[1].trim();return}
+    var ts=[],m;TSRE.lastIndex=0;
+    while((m=TSRE.exec(r)))ts.push(parseInt(m[1],10)*60+parseFloat(m[2].replace(':','.')));
+    var txt=r.replace(TSRE,'');
+    if(/^\s*[\[(][^\])]*[\])]\s*$/.test(txt))txt='';
+    if(ts.length){var tk=lyrTokens(txt);ts.forEach(function(t){ents.push({t:t,syl:tk})})}
+    d.lines.push(/^\s*[\[(][^\])]*[\])]\s*$/.test(r)&&!ts.length?null:txt);
+  });
+  d.lines=d.lines.filter(function(x){return x!==null}).map(lyrTokens);
+  ents=ents.filter(function(e){return e.syl.length}).sort(function(a,b){return a.t-b.t});
+  if(ents.length>=2){d.timed=true;d.entries=ents}
+  return d;
 }
+function lyrLines(){return lyrData().lines}
 function lyrW(syl,flags){
   var idx=[],i;for(i=0;i<flags.length;i++)if(!flags[i])idx.push(i);
   var m=idx.length,n=syl.length;if(!m||!n)return '';
@@ -414,11 +440,11 @@ function lyrW(syl,flags){
 function buildABC(){
   var key=keyInfo(S.key,S.shift);
   var shift=S.shift;
-  var lines=['X:1','T:자동 채보','M:4/4','L:1/16','Q:1/4='+Math.round(S.bpm),'K:'+key.name];
+  var lines=['X:1','T:'+titleText(),'M:4/4','L:1/16','Q:1/4='+Math.round(S.bpm),'K:'+key.name];
   var mel=S.melody.map(function(n){return {st:n.st,end:n.end,m:n.m+shift}});
   // 스텝별 이벤트
   var bars=S.bars,out=[],mi=0;
-  var body='',lineStr='',lineFlags=[],prevTie=false,LL=lyrLines();S.evT=[];
+  var body='',lineStr='',lineFlags=[],lineSteps=[],prevTie=false,LD=lyrData(),LL=LD.lines,ss=stepSec(),outLines=[],allNotes=[];S.evT=[];
   for(var b=0;b<bars;b++){
     var bs=b*16,be=bs+16,state={},bar='';
     var ch=S.chordBars[b];
@@ -457,18 +483,39 @@ function buildABC(){
         }
         var tie=(pi<parts.length-1)||e.tieNext||(pi===parts.length-1&&e.cont);
         if(e.m===null)bar+=sym+'z'+(L>1?L:'')+' ';
-        else{bar+=sym+abcPitch(e.m,state,key)+(L>1?L:'')+(tie?'-':'')+' ';lineFlags.push(prevTie);prevTie=!!tie}
+        else{bar+=sym+abcPitch(e.m,state,key)+(L>1?L:'')+(tie?'-':'')+' ';lineFlags.push(prevTie);lineSteps.push(e.st+acc-L);prevTie=!!tie}
       });
     });
     var lastBar=(b===bars-1),eol=((b+1)%4===0)||lastBar;
     lineStr+=bar.trim()+(lastBar?' |]':' |')+(eol?'':' ');
     if(eol){
-      body+=lineStr.trim()+'\n';
-      var syl=LL[Math.floor(b/4)];
-      if(syl&&syl.length){var w=lyrW(syl,lineFlags);if(w)body+='w:'+w+'\n'}
-      lineStr='';lineFlags=[];
+      var li=Math.floor(b/4);
+      outLines.push({str:lineStr.trim(),flags:lineFlags,steps:lineSteps,li:li});
+      lineFlags.forEach(function(f,x){allNotes.push({l:outLines.length-1,x:x,step:lineSteps[x],cont:f})});
+      lineStr='';lineFlags=[];lineSteps=[];
     }
   }
+  var tok={};
+  if(LD.timed){
+    var E=LD.entries;
+    E.forEach(function(en,x){
+      var s0=(en.t-S.t0)/ss,nx=E[x+1]?(E[x+1].t-S.t0)/ss:s0+10/ss;
+      var cap=s0+Math.max(3,en.syl.length*0.55)/ss;var e0=Math.min(nx,cap);
+      var ns=allNotes.filter(function(n){return !n.cont&&n.step>=s0-1&&n.step<e0});
+      var m=ns.length,n=en.syl.length;if(!m)return;
+      ns.forEach(function(nt,k){var a=Math.floor(k*n/m),b2=Math.floor((k+1)*n/m);if(b2>a)tok[nt.l+':'+nt.x]=en.syl.slice(a,b2).join('~')});
+    });
+  }
+  outLines.forEach(function(ol,idx){
+    body+=ol.str+'\n';
+    var w='';
+    if(LD.timed){
+      var any=false;w=ol.flags.map(function(f,x){var t=tok[idx+':'+x];if(t){any=true;return t}return '*'}).join(' ');if(!any)w='';
+    }else{
+      var syl=LL[ol.li];if(syl&&syl.length)w=lyrW(syl,ol.flags);
+    }
+    if(w)body+='w:'+w+'\n';
+  });
   lines.push(body);
   return lines.join('\n');
 }
@@ -510,11 +557,11 @@ function drawAll(){
 (function(){var t=null;document.addEventListener('input',function(e){if(e.target&&e.target.id==='lyIn'){clearTimeout(t);t=setTimeout(function(){try{lyMsgUpd(true)}catch(x){}},250)}})})();
 function lyMsgUpd(redraw){
   var m=document.getElementById('lyMsg'),el=document.getElementById('lyIn');if(!m||!el)return;
-  var has=lyrLines().some(function(a){return a.length});
+  var LDm=lyrData(),has=LDm.lines.some(function(a){return a.length});
   if(!(S.chordBars&&S.chordBars.length)){m.textContent=has?'가사를 받았어요. 노래 파일로 악보가 만들어지면 자동으로 들어가요.':'';return}
   if(redraw)drawSheetOnly(true);
   var n=document.querySelectorAll('#sheet .abcjs-lyric').length;
-  m.textContent=has?(n?('✔ 가사가 악보에 들어갔어요 ('+n+'칸)'):'가사가 들어갈 음표가 없어요. 위쪽 "음표 양"을 "많이"로 바꿔 보세요.'):'';
+  m.textContent=has?(n?('✔ 가사가 악보에 들어갔어요 ('+n+'칸)'+(LDm.timed?' · 시간표시(LRC)에 맞췄어요':'')+(LDm.timed&&LDm.entries[LDm.entries.length-1].t>S.t0+S.bars*16*stepSec()+2?'  ※ 가사 뒤쪽은 분석 범위(앞부분 '+Math.round(S.lenSec)+'초) 밖이에요. "더 정확하게 만들기"에서 분석 범위를 늘리세요.':'')):'가사가 들어갈 음표가 없어요. 위쪽 "음표 양"을 "많이"로 바꿔 보세요.'):'';
 }
 function drawSheetOnly(skipSuno){
   var abc=buildABC();S.abc=abc;
@@ -759,7 +806,7 @@ function dlMc(){
 async function analyze(file){
   if(S.busy)return;
   S.busy=true;err('');stopPlay();
-  S.file=file;S.shift=0;S.chordBars=[];
+  S.file=file;S.shift=0;S.chordBars=[];S.titleEdited=false;setTitleAuto(file&&file.name);
   $('#result').classList.add('hide');
   try{
     setProg(.02,'파일을 읽는 중…');
@@ -822,9 +869,11 @@ function copyText(txt,note,msg){
 }
 $('#cpChords').addEventListener('click',function(){copyText(progressionText(),$('#cpChordsTxt'),'복사했어요')});
 $('#cpSuno').addEventListener('click',function(){copyText($('#sunoTxt').value.split('\n')[0],$('#cpSunoTxt'),'복사했어요')});
-window.addEventListener('message',function(e){var d=e.data;if(!d)return;if(d.type==='sm-stop')stopPlay();if(d.type==='sm-lyrics'&&typeof d.text==='string'){var el=document.getElementById('lyIn');if(el&&!(d.auto&&el.value.trim())){var dt=document.querySelector('.lyb');if(dt)dt.open=true;el.value=d.text;el.dispatchEvent(new Event('input',{bubbles:true}))}}});
+window.addEventListener('message',function(e){var d=e.data;if(!d)return;if(d.type==='sm-stop')stopPlay();if(d.type==='sm-lyrics'&&typeof d.text==='string'){if(d.title)setTitleAuto(d.title);var el=document.getElementById('lyIn');if(el&&!(d.auto&&el.value.trim())){var dt=document.querySelector('.lyb');if(dt)dt.open=true;el.value=d.text;el.dispatchEvent(new Event('input',{bubbles:true}))}}});
 document.addEventListener('keydown',function(e){var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;if((e.key==='Escape'||e.key===' ')&&(playedOrig||playTimer)){e.preventDefault();stopPlay()}});
-var _lf=document.getElementById('lyFile');if(_lf)_lf.addEventListener('change',function(){var f=_lf.files&&_lf.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var el=document.getElementById('lyIn');el.value=String(r.result||'');el.dispatchEvent(new Event('input',{bubbles:true}))};r.readAsText(f,'utf-8')});
+var _ti=document.getElementById('scTitle');if(_ti)_ti.addEventListener('input',function(){S.titleEdited=true;S.title=_ti.value;try{if(S.chordBars&&S.chordBars.length)drawSheetOnly(true)}catch(x){}});
+var _pr=document.getElementById('prSheet');if(_pr)_pr.addEventListener('click',function(){if(!S.chordBars||!S.chordBars.length){return}try{window.print()}catch(x){}});
+var _lf=document.getElementById('lyFile');if(_lf)_lf.addEventListener('change',function(){var f=_lf.files&&_lf.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var buf=new Uint8Array(r.result),txt='';try{if(buf[0]===0xFF&&buf[1]===0xFE)txt=new TextDecoder('utf-16le').decode(buf);else if(buf[0]===0xFE&&buf[1]===0xFF)txt=new TextDecoder('utf-16be').decode(buf);else{try{txt=new TextDecoder('utf-8',{fatal:true}).decode(buf)}catch(e1){txt=new TextDecoder('euc-kr').decode(buf)}}}catch(e2){txt=''}var el=document.getElementById('lyIn');el.value=txt;var dd=lyrData();if(dd.ti)setTitleAuto(dd.ti);el.dispatchEvent(new Event('input',{bubbles:true}))};r.readAsArrayBuffer(f)});
 window.__SM={S:S,analyze:analyze};
 try{if(window.parent!==window&&window.ResizeObserver){var __h=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-__h)>4){__h=h;window.parent.postMessage({type:'sm-h',h:h},'*')}}).observe(document.body)}}catch(_){}
 })();

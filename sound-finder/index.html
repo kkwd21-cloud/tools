@@ -2634,7 +2634,7 @@ $('#vaultClear').addEventListener('click',function(){if(!VAULT.length)return;var
 function openLrcPane(){var o=document.getElementById('lrcPane');if(!o){var st=document.createElement('style');st.textContent='#lrcPane{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;background:#14101a}#lrcPane .lp-bar{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px;color:#fff;font:700 14px system-ui,sans-serif}#lrcPane .lp-bar button{white-space:nowrap;cursor:pointer;border:0;border-radius:8px;padding:9px 14px;font:700 14px system-ui,sans-serif;background:#fff;color:#14101a}#lrcPane .lp-bar span{opacity:.8;font-weight:600;font-size:13px}#lrcPane iframe{flex:1 1 auto;width:100%;border:0;background:#fff}';document.head.appendChild(st);o=document.createElement('div');o.id='lrcPane';o.innerHTML='<div class="lp-bar"><button type="button" id="lpClose">← 돌아가기</button><span>가사는 그대로 들어가 있어요. 곡을 올리고 시간을 맞춘 뒤 저장하세요.</span></div><iframe title="가사 자막 만들기"></iframe>';document.body.appendChild(o);o.querySelector('#lpClose').addEventListener('click',function(){o.style.display='none';document.body.style.overflow=''});var fr=o.querySelector('iframe');fr.addEventListener('load',function(){try{var d=fr.contentDocument;var c=d.createElement('style');c.textContent='header.top,.hero,.how,#use,#tips,#faq,#more,.nsb,.cta-final,footer,.mc-cta,[class*=mc-cta],.mc-back{display:none!important}main{padding-top:8px!important}';d.head.appendChild(c)}catch(e){}})}
 var f=o.querySelector('iframe');f.src='../lrc-maker/?embed=1&t='+Date.now();o.style.display='flex';document.body.style.overflow='hidden'}
 $('#toLrc').addEventListener('click',function(){if(!cur)return;var t=vClean(lyrText());try{localStorage.setItem('dusk_lrc_lyrics',t)}catch(e){}vAuto();openLrcPane()});
-window.__sfLyrics=function(){try{return cur?vClean(lyrText()):''}catch(e){return ''}};
+window.__sfTitle=function(){try{return (LS&&LS.title)||''}catch(e){return ''}};window.__sfLyrics=function(){try{return cur?vClean(lyrText()):''}catch(e){return ''}};
 $('#cpMc').addEventListener('click',function(){if(!cur)return;var t=vClean(lyrText());vAuto();if(vDownload(vFname({title:LS.title},'.txt'),(LS.title?LS.title+'\n\n':'')+t))toast('뮤직캔버스용 가사 파일을 저장했어요');else copy(t,'가사를 복사했어요')});
 ['cpStyle','cpTitle','cpLyr','cpAll','mkBtn'].forEach(function(id){var el=$('#'+id);if(el)el.addEventListener('click',vAuto)});
 
@@ -2817,7 +2817,7 @@ render();renderLast();
 /* ===== 악보(sheet-music) 연결 ===== */
 var smF=$('#smFrame'),smBox=$('#smBox'),loaded=false,fed=null,smRes=null;
 if(smBox&&smF){
-  smBox.addEventListener('toggle',function(){if(smBox.open&&!smF.getAttribute('src')){smF.setAttribute('src','../sheet-music/?embed=1&v=20261101d')}});
+  smBox.addEventListener('toggle',function(){if(smBox.open&&!smF.getAttribute('src')){smF.setAttribute('src','../sheet-music/?embed=1&v=20261101e')}});
   smF.addEventListener('load',function(){loaded=true;feed()});
   function feed(){var f=window.__sfLastFile;if(!f||!loaded||fed===f)return;try{var w=smF.contentWindow;if(w&&w.__SM&&w.__SM.analyze){fed=f;w.__SM.analyze(f);$('#smMsg').textContent='위에서 넣은 파일로 악보를 만드는 중이에요…'}}catch(e){}}
   window.__sfAfDone=function(){if(smBox.open)feed()};
@@ -2827,7 +2827,7 @@ if(smBox&&smF){
     if(d.type==='sm-h'){smF.style.height=Math.max(480,Math.min(2600,d.h+8))+'px'}
     if(d.type==='sm-result'){smRes=d;try{sendLy(true)}catch(x){}$('#smUse').hidden=false;$('#smMsg').textContent='악보 분석 끝: '+d.key+' · '+d.bpm+' BPM · 코드 '+d.prog}
   });
-  function sendLy(quiet){var _a=!!quiet;var tx=(window.__sfLyrics&&window.__sfLyrics())||'';if(!tx){if(!quiet)toast('먼저 위에서 가사를 만들어 주세요');return false}try{smF.contentWindow.postMessage({type:'sm-lyrics',text:tx,auto:_a},location.origin)}catch(x){return false}if(!quiet)toast('가사를 악보에 넣었어요');return true}
+  function sendLy(quiet){var _a=!!quiet;var tx=(window.__sfLyrics&&window.__sfLyrics())||'';if(!tx){if(!quiet)toast('먼저 위에서 가사를 만들어 주세요');return false}try{smF.contentWindow.postMessage({type:'sm-lyrics',text:tx,auto:_a,title:(window.__sfTitle&&window.__sfTitle())||''},location.origin)}catch(x){return false}if(!quiet)toast('가사를 악보에 넣었어요');return true}
   $('#smLy').addEventListener('click',function(){sendLy(false)});
   $('#smUse').addEventListener('click',function(){
     if(!smRes)return;var p=$('#cPhrase');
