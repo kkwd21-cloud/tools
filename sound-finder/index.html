@@ -461,6 +461,32 @@ details.pk>summary .note{display:block;margin-top:4px}
 #nxt .tools .btn-p{flex:1 1 100%;justify-content:center}
 #nxt .tools .btn-g{flex:1 1 calc(50% - 4px);justify-content:center;text-align:center}
 @media(max-width:480px){#nxt .tools .btn-g{flex:1 1 100%}}
+
+.ppgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.ppc{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.ppc.on{border-color:var(--accent)}
+.pph{display:flex;align-items:flex-start;gap:6px}
+.pp-pin{background:none;border:0;color:var(--muted);font-size:16px;line-height:1.3;padding:0;cursor:pointer;flex:none}
+.pp-pin[aria-pressed="true"]{color:#f5c542}
+.pp-go{background:none;border:0;color:var(--text);text-align:left;padding:0;cursor:pointer;font:inherit;flex:1;min-width:0}
+.pp-go b{font-size:14.5px;line-height:1.4}
+.pp-go:hover b{color:var(--accent2)}
+.pp-mx{font-size:12px;color:var(--muted);white-space:nowrap}
+.ppd{font-size:12.5px;color:var(--muted);line-height:1.5}
+.ppm{font-size:12px;color:var(--muted);min-height:1em}
+.ppb{background:rgba(var(--rgb),.18);color:var(--accent2);border-radius:999px;padding:1px 8px;font-size:11.5px;font-weight:700}
+.ppmore summary{cursor:pointer;font-size:12px;color:var(--muted)}
+.ppx{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.ppr{display:flex;gap:6px;flex-wrap:wrap}
+.pp-memo{resize:vertical}
+#ppBox>summary,#ppAdd>summary{display:block!important}
+#ppBox>summary:after,#ppAdd>summary:after{content:none!important}
+#ppBox>summary .note,#ppAdd>summary .note{display:inline!important;margin:0 0 0 4px}
+#ppBox .ppmore{border:0!important;padding:0!important;background:none!important;box-shadow:none!important;margin:0!important}
+#ppBox .ppmore>summary{display:block!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;font-size:12px;font-weight:600;color:var(--muted)}
+#ppBox .ppmore>summary:after{content:none!important}
+#ppBox .sfrow>.chip,#ppBox .sfrow>.b-main,#ppBox .sfrow>.b-sub{flex:0 0 auto;width:auto}
+#ppBox .ppgrid .ppc{box-shadow:none}
 </style>
 <style id="bento">
 :root{--accent:#6c4df0;--accent2:#4a3fb0;--rgb:108,77,240;--bg:#fbfbfd;--bg2:#f3f2fa;--panel:#fff;--panel2:#f7f6fc;--line:#e7e5f2;--line2:#d6d2ea;--text:#111;--muted:#6b6b78;--mut:#6b6b78;--ok:#1f8a4c;color-scheme:light}
@@ -537,6 +563,21 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
   
   <section class="sec" id="find">
     <div class="sec-head"><h2><span class="stp">1</span>곡 느낌 고르기</h2><p>가수나 곡 이름을 쓰거나, 🔥 히트곡 느낌을 눌러요. 예: 아이유, 밤편지, Shape of You</p></div>
+    <details class="pk" id="ppBox" open style="margin-bottom:12px"><summary>🔥 유튜브 인기 스타일 <span class="note sm" style="font-weight:400">· 눌러서 바로 시작해요</span></summary><div class="pkb">
+      <p class="note sm" id="ppLast" hidden style="margin:0"></p>
+      <div id="ppList" class="ppgrid"></div>
+      <div class="sfrow" style="gap:6px;flex-wrap:wrap"><button type="button" class="chip" id="ppMore">＋ 더 보기</button><button type="button" class="chip" id="ppMixBtn" aria-pressed="false">🔀 두 개 섞기</button><button type="button" class="chip" id="ppRestore" hidden>숨긴 스타일 되돌리기</button></div>
+      <div id="ppMixBar" class="sfrow" hidden style="gap:8px;align-items:center;flex-wrap:wrap"><span class="note sm" id="ppMixNote" style="margin:0"></span><button type="button" class="b-main" id="ppMixGo" disabled>섞어서 만들기</button><button type="button" class="b-sub" id="ppMixSave" hidden>💾 내 카드로 저장</button></div>
+      <details class="pk" id="ppAdd"><summary>＋ 내 스타일 추가 <span class="note sm" style="font-weight:400">· 잘 나온 곡을 카드로 남겨 두세요</span></summary><div class="pkb">
+        <input class="inp1" id="ppAn" type="text" maxlength="40" placeholder="이름 (예: 새벽 감성 피아노)">
+        <textarea class="inp" id="ppAe" rows="3" spellcheck="false" placeholder="영어 스타일 문구 (수노 Style of Music 칸에 넣은 말)"></textarea>
+        <button type="button" class="b-sub" id="ppAimp" style="align-self:flex-start">아래에서 만든 문구 가져오기</button>
+        <div class="sfrow" style="gap:6px;flex-wrap:wrap"><input class="inp1" id="ppAb" type="number" min="40" max="220" placeholder="BPM" style="width:84px"><select class="inp1" id="ppAt"><option value="slow">느린 곡</option><option value="mid" selected>보통</option><option value="fast">빠른 곡</option></select><select class="inp1" id="ppAv"><option value="female">여자 목소리</option><option value="male">남자 목소리</option><option value="group">그룹</option><option value="inst">연주만</option></select></div>
+        <input class="inp1" id="ppAm" type="text" maxlength="60" placeholder="한 줄 설명 (선택)">
+        <input class="inp1" id="ppAl" type="url" placeholder="내 곡 링크 (선택)">
+        <button type="button" class="b-main" id="ppAddSave" style="align-self:flex-start">카드로 저장</button>
+      </div></details>
+    </div></details>
     <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="hit" aria-pressed="false">🙂 기분으로 고르기</button><button type="button" class="chip" id="moreTabs" title="가수를 모를 때: 목소리로 찾기, 내 음악 파일로 찾기">⋯ 다른 방법</button><button type="button" class="chip" data-t="voice" aria-pressed="false" hidden>🗣 목소리로 찾기</button><button type="button" class="chip" data-t="file" aria-pressed="false" hidden>🎵 음악 파일로 찾기</button></div>
     <div id="artistPanel">
     <div class="sfq"><input id="q" class="inp1" type="search" autocomplete="off" placeholder="가수 이름 또는 곡 제목" aria-label="가수 이름 또는 곡 제목"></div>
@@ -546,7 +587,9 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
     </div>
     <div id="hitPanel" hidden><p class="note sm" style="margin:0 0 8px"><b>어떤 노래를 만들고 싶으세요?</b> 기분 하나만 누르세요. 제목·스타일·가사가 한 번에 나와요. 마음에 안 들면 한 번 더 누르세요.</p><div class="chips" id="feelRow" style="margin-bottom:12px"><button type="button" class="chip" data-f="fun" style="font-size:1.05em;padding:10px 16px">🎉 신나는</button><button type="button" class="chip" data-f="calm" style="font-size:1.05em;padding:10px 16px">🌙 조용한</button><button type="button" class="chip" data-f="sad" style="font-size:1.05em;padding:10px 16px">😢 슬픈</button><button type="button" class="chip" data-f="love" style="font-size:1.05em;padding:10px 16px">💗 설레는</button><button type="button" class="chip" data-f="power" style="font-size:1.05em;padding:10px 16px">💪 힘나는</button><details class="pk" style="flex-basis:100%;margin:4px 0 0"><summary>🧪 특이한 스타일 · 선택 <span class="note sm" style="font-weight:400">처음이면 위 버튼부터</span></summary><div class="pkb" style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="chip" data-f="world" style="font-size:1.05em;padding:10px 16px">🌍 세계 음악</button><button type="button" class="chip" data-f="cine" style="font-size:1.05em;padding:10px 16px">🎬 영화 같은</button></div></details></div><p class="note sm" id="feelNote" style="margin:-4px 0 10px"></p><p class="note sm" style="margin:0 0 6px"><button type="button" class="chip" id="mxPin" aria-pressed="false">📌 이 스타일 고정</button> <button type="button" class="chip" id="mxGood">👍 좋아요 · 더 자주 나와요</button> <button type="button" class="chip" id="mxBad">👎 별로예요 · 다시 안 나와요</button> <button type="button" class="chip" id="mxBadReset" hidden>되돌리기</button> <span class="note sm" id="mxGoodN"></span></p><p class="note sm" style="margin:0 0 10px">촌스럽게 나오면 → <button type="button" class="chip" id="exTrot">수노 제외 스타일 복사</button> <span class="note sm">(수노 Exclude Styles 칸에 붙여 넣기)</span></p><details class="pk" id="hitMore" style="margin:0 0 6px"><summary>더 자세히 고르기 <span class="note sm" style="font-weight:400">· 건너뛰어도 돼요</span></summary><div class="pkb"><div class="chips" id="hitBody"></div></div></details><p class="note sm" style="margin:10px 0 0">내 곡 파일이 있다면 이름이 아니라 <b>실제 소리</b>를 분석해서 비슷하게 만들 수 있어요. <button type="button" class="chip" id="hitToFile">🎵 내 곡 파일로 분석하기</button></p></div>
     <div id="vcPanel" hidden><p class="note sm" style="margin:0 0 4px">가수를 몰라도 돼요. 목소리와 장르만 고르면 수노용 스타일 문구, 제목, 가사까지 이어서 만들어 줘요.</p><div id="vcBody"></div></div>
-    <div id="afPanel" hidden><p class="note sm" style="margin:0 0 8px">비슷하게 만들고 싶은 곡 파일을 넣으면 빠르기·키·소리 색을 듣고 수노 문구로 바꿔 줘요. 파일은 어디에도 올라가지 않고 이 브라우저 안에서만 분석해요.</p><label class="afdrop" id="afDrop"><input type="file" id="afIn" accept="audio/*,video/*,.mp3,.wav,.m4a,.flac,.ogg,.aac,.mp4" hidden><b>🎵 음악 파일 넣기</b><span>눌러서 고르거나 여기로 끌어다 놓기 · mp3·wav·m4a</span></label><p class="note sm" id="afMsg" style="margin:8px 0 0" aria-live="polite"></p><div id="afRes" hidden></div><p class="note sm" style="margin:10px 0 0">파일이 없으면 → <button type="button" class="chip" id="fileToHit">🔥 히트곡 느낌으로 고르기</button></p></div>
+    <div id="afPanel" hidden><p class="note sm" style="margin:0 0 8px">비슷하게 만들고 싶은 곡 파일을 넣으면 빠르기·키·소리 색을 듣고 수노 문구로 바꿔 줘요. 파일은 어디에도 올라가지 않고 이 브라우저 안에서만 분석해요.</p><label class="afdrop" id="afDrop"><input type="file" id="afIn" accept="audio/*,video/*,.mp3,.wav,.m4a,.flac,.ogg,.aac,.mp4" hidden><b>🎵 음악 파일 넣기</b><span>눌러서 고르거나 여기로 끌어다 놓기 · mp3·wav·m4a</span></label><p class="note sm" id="afMsg" style="margin:8px 0 0" aria-live="polite"></p><div id="afRes" hidden></div>
+<details class="pk" id="smBox" style="margin-top:12px"><summary>🎼 악보·코드도 같이 보기 <span class="note sm" style="font-weight:400">· 같은 파일로 악보와 코드 진행이 나와요</span></summary><div class="pkb"><p class="note sm" id="smMsg" style="margin:0">위에서 파일을 넣었다면 자동으로 이어서 분석해요. 파일은 어디에도 올라가지 않아요.</p><iframe id="smFrame" title="노래 파일 악보 만들기" style="width:100%;height:640px;border:1px solid var(--line);border-radius:12px;background:#fff" loading="lazy"></iframe><div class="sfrow" style="gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="b-main" id="smUse" hidden>🎯 이 곡처럼 만들기 (키·BPM·코드를 문구에 넣기)</button><a class="b-sub" href="../sheet-music/" target="_blank" rel="noopener" style="text-decoration:none">악보 페이지 따로 열기 ↗</a></div></div></details>
+<p class="note sm" style="margin:10px 0 0">파일이 없으면 → <button type="button" class="chip" id="fileToHit">🔥 히트곡 느낌으로 고르기</button></p></div>
     <p class="note sm" style="margin:12px 0 0">가수 느낌은 대략적인 설명이라 곡마다 다를 수 있어요. 수노에서 같은 문구로 3~4번 만들어 가장 가까운 걸 고르세요. 찾는 가수가 없으면 맨 아래에 기록돼요.</p>
   </section>
 
@@ -2154,6 +2197,7 @@ function hitGo(h){
   if(ENG){var bk=$('#lxMode button[data-m="ko"]');if(bk)bk.click()}
   toast('히트곡 느낌: '+h.ko);vAuto();
 }
+window.__sfHitGo=hitGo;window.__sfToast=toast;
 function goTab(t){var b=document.querySelector('#findTabs [data-t="'+t+'"]');if(!b)return;b.hidden=false;b.click();try{b.scrollIntoView({block:'nearest'})}catch(x){}}
 $('#hitToFile').addEventListener('click',function(){goTab('file')});
 $('#fileToHit').addEventListener('click',function(){goTab('hit')});
@@ -2390,6 +2434,7 @@ $('#afRes').addEventListener('click',function(e){
 });
 function afFile(file){
   if(!file)return;
+  window.__sfLastFile=file;
   var msg=$('#afMsg');
   if(file.size>300*1024*1024){msg.textContent='파일이 너무 커요(300MB 이하).';return}
   msg.textContent='듣는 중… ('+file.name+')';$('#afRes').hidden=true;
@@ -2405,7 +2450,7 @@ function afFile(file){
         if(!f){msg.textContent='곡이 너무 짧거나 소리가 없어요. 10초 이상인 곡을 넣어 주세요.';return}
         f.name=file.name.replace(/\.[^.]+$/,'');AF=f;
         AFS.n=f.gGuess=afGenre(f);AFS.m=f.mGuess=afMood(f);
-        msg.textContent='다 들었어요: '+file.name;afRender();
+        msg.textContent='다 들었어요: '+file.name;afRender();try{if(window.__sfAfDone)window.__sfAfDone(file)}catch(e){}
         $('#afRes').scrollIntoView({behavior:'smooth',block:'nearest'});
       },30);
     };
@@ -2608,6 +2653,141 @@ document.getElementById('tbar').addEventListener('click',function(e){var b=e.tar
 function sync(){[].forEach.call(document.querySelectorAll('.tcnt'),function(e){var src=document.getElementById(e.dataset.src);e.textContent=src?src.textContent.trim():''})}
 document.addEventListener('click',function(){setTimeout(sync,80)});sync();
 var mo=document.getElementById('mixOn');if(mo&&window.MutationObserver)new MutationObserver(function(){if(!mo.hidden)show('mixBoxWrap')}).observe(mo,{attributes:true,attributeFilter:['hidden']})})();
+</script>
+<script>
+/* ===== 유튜브 인기 스타일 카드 + 악보 연결 (sound-finder 확장) ===== */
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function toast(m){try{window.__sfToast(m)}catch(e){}}
+var K='sf_pop_v1';
+var DEF=[
+ {id:'lofi',ko:'로파이 칠 · 공부·휴식',d:'먼지 낀 LP 소리와 느긋한 비트.',en:'lo-fi hip hop beat, dusty vinyl crackle, mellow rhodes, lazy boom-bap drums, warm tape saturation',bpm:78,v:'inst',t:'slow',th:'night'},
+ {id:'citypop',ko:'시티팝 · 레트로 드라이브',d:'통통한 슬랩 베이스와 반짝이는 80년대 신스.',en:'city pop, slap bass groove, glossy 80s synths, bright electric guitar, breezy vocals',bpm:108,v:'female',t:'mid',th:'drive'},
+ {id:'kballad',ko:'감성 K발라드',d:'피아노와 현악이 차오르다 마지막 후렴에서 터져요.',en:'Korean emotional ballad, grand piano, swelling strings, intimate breathy vocals, big final chorus',bpm:72,v:'female',t:'slow',th:'breakup'},
+ {id:'folk',ko:'어쿠스틱 포크 · 따뜻한',d:'기타 소리와 부드러운 화음.',en:'acoustic folk pop, fingerpicked guitar, warm vocals, soft harmonies, light percussion',bpm:92,v:'male',t:'mid',th:'comfort'},
+ {id:'synthwave',ko:'신스웨이브 · 밤 드라이브',d:'네온 불빛 같은 아르페지오와 묵직한 드럼.',en:'synthwave, analog arpeggios, gated reverb drums, pulsing bass, neon night drive mood',bpm:100,v:'inst',t:'mid',th:'drive'},
+ {id:'bossa',ko:'보사노바 · 카페',d:'나일론 기타와 브러시 드럼, 오후의 카페.',en:'bossa nova, nylon guitar, brushed drums, soft vocals, warm cafe afternoon',bpm:96,v:'female',t:'mid',th:'cafe'},
+ {id:'dreampop',ko:'드림팝 · 몽환 인디',d:'뿌연 잔향과 반짝이는 기타.',en:'dreamy indie pop, shimmering guitars, hazy reverb vocals, airy synth pads, soft drums',bpm:98,v:'female',t:'mid',th:'night'},
+ {id:'rnb',ko:'R&B 슬로우잼 · 늦은 밤',d:'부드러운 목소리와 낮은 베이스.',en:'slow-jam R&B, silky vocals, warm rhodes, deep sub bass, finger snaps, late-night mood',bpm:68,v:'female',t:'slow',th:'night'},
+ {id:'house',ko:'하우스 · 신나는 EDM',d:'쌓아 올리다 한 번에 터지는 후렴.',en:'melodic house, four-on-the-floor kick, plucky synth lead, uplifting build and drop',bpm:124,v:'group',t:'fast',th:'party'},
+ {id:'kdance',ko:'K팝 댄스팝',d:'중독성 있는 후크와 또렷한 베이스.',en:'K-pop dance-pop, punchy bass, sparkling synths, catchy chant hook, polished production',bpm:118,v:'group',t:'fast',th:'party'},
+ {id:'piano',ko:'잔잔한 피아노 솔로',d:'느린 멜로디, 방 안에서 치는 듯한 소리.',en:'solo piano, gentle arpeggios, soft pedal, slow emotional melody, intimate room sound',bpm:66,v:'inst',t:'slow',th:'memory'},
+ {id:'epic',ko:'시네마틱 에픽 · OST',d:'웅장한 현악과 금관, 점점 커지는 클라이맥스.',en:'cinematic orchestral, soaring strings, powerful brass, epic percussion, slow build to climax',bpm:90,v:'inst',t:'mid',th:'hope'},
+ {id:'jazz',ko:'재즈 카페',d:'업라이트 베이스와 따뜻한 피아노.',en:'smooth jazz trio, upright bass, brushed drums, warm piano, relaxed cafe mood',bpm:90,v:'inst',t:'mid',th:'cafe'},
+ {id:'tropical',ko:'트로피컬 하우스 · 여름',d:'마림바와 시원한 신스, 바닷가 분위기.',en:'tropical house, marimba pluck, breezy vocals, sunny synths, beach summer vibe',bpm:110,v:'female',t:'mid',th:'summer'},
+ {id:'indie',ko:'인디 록 · 청춘',d:'쨍한 기타와 달리는 드럼.',en:'indie rock, jangly guitars, driving drums, earnest vocals, youthful energy',bpm:122,v:'male',t:'fast',th:'youth'}
+];
+var S={mine:[],hide:{},pin:{},st:{},last:''};
+try{var raw=JSON.parse(localStorage.getItem(K)||'null');if(raw&&typeof raw==='object'){S.mine=raw.mine||[];S.hide=raw.hide||{};S.pin=raw.pin||{};S.st=raw.st||{};S.last=raw.last||''}}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function all(){return DEF.filter(function(c){return !S.hide[c.id]}).concat(S.mine)}
+function stat(id){return S.st[id]||(S.st[id]={g:0,m:0,b:0,link:'',memo:''})}
+function score(c){var s=S.st[c.id];return s?(s.g-s.b):0}
+function sorted(){var A=all().map(function(c,i){return {c:c,i:i}});
+ A.sort(function(a,b){var pa=S.pin[a.c.id]?1:0,pb=S.pin[b.c.id]?1:0;if(pa!==pb)return pb-pa;var d=score(b.c)-score(a.c);if(d)return d;return a.i-b.i});return A.map(function(x){return x.c})}
+var EXP=false,MIX=false,PICK=[];
+function find(id){return all().filter(function(c){return c.id===id})[0]}
+function apply(c){
+  if(typeof window.__sfHitGo!=='function'){toast('잠시 뒤에 다시 눌러 주세요');return}
+  S.last=c.id;save();
+  window.__sfHitGo({id:'pp_'+c.id,ko:c.ko,d:c.d||'',en:c.en,bpm:+c.bpm||100,th:c.th||'night',v:c.v||'female',t:c.t||'mid'});
+  renderLast();render();
+}
+function renderLast(){
+  var b=$('#ppLast');if(!b)return;var c=S.last&&find(S.last);
+  if(!c){b.hidden=true;return}
+  b.hidden=false;
+  b.innerHTML='방금 쓴 스타일: <b>'+esc(c.ko)+'</b> · 수노에서 만들어 보셨나요? <button type="button" class="chip" data-r="g">👍 좋음</button> <button type="button" class="chip" data-r="m">😐 그냥 그래</button> <button type="button" class="chip" data-r="b">👎 별로</button>';
+}
+function render(){
+  var box=$('#ppList');if(!box)return;
+  var L=sorted(),n=EXP?L.length:Math.min(6,L.length),h='';
+  for(var i=0;i<n;i++){var c=L[i],s=S.st[c.id]||{g:0,m:0,b:0,link:'',memo:''},pin=!!S.pin[c.id],mine=!!c.mine;
+    h+='<div class="ppc'+(PICK.indexOf(c.id)>=0?' on':'')+'" data-id="'+esc(c.id)+'">'
+     +'<div class="pph"><button type="button" class="pp-pin" data-a="pin" aria-pressed="'+pin+'" title="맨 위에 고정">'+(pin?'⭐':'☆')+'</button>'
+     +'<button type="button" class="pp-go" data-a="go"><b>'+esc(c.ko)+'</b></button>'
+     +(MIX?'<label class="pp-mx"><input type="checkbox" data-a="pick"'+(PICK.indexOf(c.id)>=0?' checked':'')+'> 섞기</label>':'')+'</div>'
+     +'<div class="ppd">'+esc(c.d||'')+'</div>'
+     +'<div class="ppm">'+(mine?'<span class="ppb">내 성공작</span> ':'')+(s.g||s.m||s.b?'<span>👍'+s.g+' 😐'+s.m+' 👎'+s.b+'</span>':'')+'</div>'
+     +'<details class="ppmore"><summary>더 보기</summary><div class="ppx">'
+     +'<div class="ppr"><button type="button" class="chip" data-a="g">👍 좋음</button><button type="button" class="chip" data-a="m">😐 그냥 그래</button><button type="button" class="chip" data-a="b">👎 별로</button></div>'
+     +'<input class="inp1 pp-link" data-a="link" type="url" placeholder="링크 (수노·유튜브 주소)" value="'+esc(s.link||'')+'">'
+     +(s.link?'<a class="note sm" href="'+esc(s.link)+'" target="_blank" rel="noopener">링크 열기 ↗</a>':'')
+     +'<textarea class="inp pp-memo" data-a="memo" rows="2" placeholder="메모 (잘 된 점, 바꿀 점)">'+esc(s.memo||'')+'</textarea>'
+     +'<div class="ppr"><button type="button" class="b-sub" data-a="cp">영어 문구 복사</button><button type="button" class="b-sub" data-a="del">'+(mine?'삭제':'숨기기')+'</button></div>'
+     +'</div></details></div>';
+  }
+  box.innerHTML=h;
+  var mb=$('#ppMore');if(mb){mb.hidden=L.length<=6;mb.textContent=EXP?'▲ 접기':'＋ 더 보기 ('+(L.length-6)+'개)'}
+  var hid=DEF.filter(function(c){return S.hide[c.id]}).length,rb=$('#ppRestore');if(rb){rb.hidden=!hid;rb.textContent='숨긴 '+hid+'개 되돌리기'}
+  var bar=$('#ppMixBar');if(bar){bar.hidden=!MIX;var A=PICK.map(find).filter(Boolean);$('#ppMixGo').disabled=A.length!==2;$('#ppMixNote').textContent=A.length===2?(A[0].ko.split('·')[0].trim()+' × '+A[1].ko.split('·')[0].trim()):'카드 두 개를 골라 주세요 ('+A.length+'/2)'}
+  var mbtn=$('#ppMixBtn');if(mbtn)mbtn.setAttribute('aria-pressed',MIX?'true':'false');
+}
+function mixCard(a,b){
+  var ta=a.en.split(/,\s*/),tb=b.en.split(/,\s*/),out=[];
+  ta.slice(0,3).concat(tb.slice(0,3)).forEach(function(x){if(out.indexOf(x)<0)out.push(x)});
+  var nm=a.ko.split('·')[0].trim()+' × '+b.ko.split('·')[0].trim();
+  return {id:'mix'+Date.now(),ko:nm,d:'두 스타일을 섞은 카드',en:out.join(', '),bpm:Math.round(((+a.bpm||100)+(+b.bpm||100))/2),v:a.v==='inst'?b.v:a.v,t:a.t===b.t?a.t:'mid',th:a.th,mine:1};
+}
+var LASTMIX=null;
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t.closest||!t.closest('#ppBox'))return;
+  var b=t.closest('button,input,label');if(!b)return;
+  if(b.id==='ppMore'){EXP=!EXP;render();return}
+  if(b.id==='ppRestore'){S.hide={};save();render();return}
+  if(b.id==='ppMixBtn'){MIX=!MIX;PICK=[];LASTMIX=null;$('#ppMixSave').hidden=true;render();return}
+  if(b.id==='ppMixGo'){var A=PICK.map(find).filter(Boolean);if(A.length!==2)return;LASTMIX=mixCard(A[0],A[1]);
+    if(typeof window.__sfHitGo==='function'){window.__sfHitGo({id:'pp_'+LASTMIX.id,ko:LASTMIX.ko,d:LASTMIX.d,en:LASTMIX.en,bpm:LASTMIX.bpm,th:LASTMIX.th,v:LASTMIX.v||'female',t:LASTMIX.t})}
+    $('#ppMixSave').hidden=false;return}
+  if(b.id==='ppMixSave'){if(!LASTMIX)return;S.mine.push(LASTMIX);save();toast('섞은 스타일을 내 카드로 저장했어요');LASTMIX=null;b.hidden=true;MIX=false;PICK=[];render();return}
+  if(b.dataset&&b.dataset.r){var c0=S.last&&find(S.last);if(!c0)return;var s0=stat(c0.id);s0[b.dataset.r]++;save();toast('기록했어요');render();renderLast();return}
+  var card=t.closest('.ppc');if(!card)return;var id=card.dataset.id,c=find(id);if(!c)return;var a=b.dataset&&b.dataset.a;
+  if(a==='go'){apply(c);return}
+  if(a==='pin'){if(S.pin[id])delete S.pin[id];else S.pin[id]=1;save();render();return}
+  if(a==='g'||a==='m'||a==='b'){stat(id)[a]++;save();var op=card.querySelector('details');render();var nc=document.querySelector('.ppc[data-id="'+id+'"] details');if(nc)nc.open=true;toast('기록했어요');return}
+  if(a==='del'){if(c.mine){S.mine=S.mine.filter(function(x){return x.id!==id})}else{S.hide[id]=1}delete S.pin[id];PICK=PICK.filter(function(x){return x!==id});save();render();toast(c.mine?'삭제했어요':'숨겼어요 (아래에서 되돌릴 수 있어요)');return}
+  if(a==='cp'){try{navigator.clipboard.writeText(c.en).then(function(){toast('복사했어요')},function(){toast('복사하지 못했어요')})}catch(x){toast('복사하지 못했어요')}return}
+  if(a==='pick'){var i=PICK.indexOf(id);if(i>=0)PICK.splice(i,1);else{PICK.push(id);if(PICK.length>2)PICK.shift()}render();return}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;if(!t.closest||!t.closest('#ppBox'))return;var card=t.closest('.ppc');if(!card)return;
+  var a=t.dataset&&t.dataset.a;if(a==='link'||a==='memo'){var s=stat(card.dataset.id);s[a]=t.value.trim();save()}
+});
+/* 내 스타일 추가 */
+var addBtn=$('#ppAddSave');
+if(addBtn)addBtn.addEventListener('click',function(){
+  var nm=$('#ppAn').value.trim(),en=$('#ppAe').value.trim();
+  if(!nm||!en){toast('이름과 영어 스타일 문구를 넣어 주세요');return}
+  var c={id:'u'+Date.now(),ko:nm,d:$('#ppAm').value.trim()||'내가 만든 스타일',en:en,bpm:Math.max(40,Math.min(220,parseInt($('#ppAb').value)||100)),v:$('#ppAv').value,t:$('#ppAt').value,th:({slow:'night',mid:'comfort',fast:'party'})[$('#ppAt').value]||'night',mine:1};
+  S.mine.push(c);var l=$('#ppAl').value.trim();if(l){stat(c.id).link=l}save();
+  ['ppAn','ppAe','ppAm','ppAl','ppAb'].forEach(function(i){$('#'+i).value=''});
+  $('#ppAdd').open=false;render();toast('내 성공작 카드를 추가했어요');
+});
+var imp=$('#ppAimp');
+if(imp)imp.addEventListener('click',function(){var p=$('#cPhrase');var v=p&&p.value.trim();if(!v){toast('먼저 아래에서 스타일 문구를 만들어 주세요');return}$('#ppAe').value=v;toast('지금 문구를 가져왔어요')});
+render();renderLast();
+
+/* ===== 악보(sheet-music) 연결 ===== */
+var smF=$('#smFrame'),smBox=$('#smBox'),loaded=false,fed=null,smRes=null;
+if(smBox&&smF){
+  smBox.addEventListener('toggle',function(){if(smBox.open&&!smF.getAttribute('src')){smF.setAttribute('src','../sheet-music/?embed=1')}});
+  smF.addEventListener('load',function(){loaded=true;feed()});
+  function feed(){var f=window.__sfLastFile;if(!f||!loaded||fed===f)return;try{var w=smF.contentWindow;if(w&&w.__SM&&w.__SM.analyze){fed=f;w.__SM.analyze(f);$('#smMsg').textContent='위에서 넣은 파일로 악보를 만드는 중이에요…'}}catch(e){}}
+  window.__sfAfDone=function(){if(smBox.open)feed()};
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin||e.source!==smF.contentWindow)return;var d=e.data;if(!d)return;
+    if(d.type==='sm-h'){smF.style.height=Math.max(480,Math.min(2600,d.h+8))+'px'}
+    if(d.type==='sm-result'){smRes=d;$('#smUse').hidden=false;$('#smMsg').textContent='악보 분석 끝: '+d.key+' · '+d.bpm+' BPM · 코드 '+d.prog}
+  });
+  $('#smUse').addEventListener('click',function(){
+    if(!smRes)return;var p=$('#cPhrase');
+    if(p&&!p.closest('[hidden]')&&p.value.trim()){var add=/tempo \d+ bpm/.test(p.value)?smRes.suno.replace(/^tempo \d+ bpm,\s*/,''):smRes.suno;p.value=add+', '+p.value;p.dispatchEvent(new Event('input',{bubbles:true}));toast('스타일 문구 앞에 키·BPM·코드를 넣었어요');p.scrollIntoView({behavior:'smooth',block:'center'})}
+    else{try{navigator.clipboard.writeText(smRes.suno).then(function(){toast('키·BPM·코드 문구를 복사했어요')})}catch(x){toast('먼저 위에서 "문구 만들기"를 눌러 주세요')}}
+  });
+}
+})();
 </script>
 </body>
 </html>

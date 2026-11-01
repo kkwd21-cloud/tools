@@ -498,6 +498,7 @@ function updateSuno(){
   var key=keyInfo(S.key,S.shift);
   var p='tempo '+Math.round(S.bpm)+' bpm, in '+key.disp.replace(' major',' major').replace(' minor',' minor')+', chord progression '+progressionText();
   $('#sunoTxt').value=p+'\n(장르·분위기 단어를 앞에 붙여서 쓰세요. 예: soft piano ballad, '+p.split(',')[0]+')';
+  try{if(window.parent!==window)window.parent.postMessage({type:'sm-result',bpm:Math.round(S.bpm),key:key.disp,prog:progressionText(),suno:p},'*')}catch(_){}
 }
 
 /* ---------- 소리 내기 ---------- */
@@ -604,7 +605,7 @@ async function analyze(file){
     setProg(1,'완료!');
     $('#result').classList.remove('hide');
     setTimeout(function(){$('#prog').classList.add('hide')},1200);
-    $('#result').scrollIntoView({behavior:'smooth',block:'start'});
+    if(!document.documentElement.classList.contains('embed'))$('#result').scrollIntoView({behavior:'smooth',block:'start'});
   }catch(e){
     console.error(e);err(e.message||'분석 중 문제가 생겼어요.');$('#prog').classList.add('hide');
   }finally{S.busy=false}
@@ -644,4 +645,5 @@ function copyText(txt,note,msg){
 $('#cpChords').addEventListener('click',function(){copyText(progressionText(),$('#cpChordsTxt'),'복사했어요')});
 $('#cpSuno').addEventListener('click',function(){copyText($('#sunoTxt').value.split('\n')[0],$('#cpSunoTxt'),'복사했어요')});
 window.__SM={S:S,analyze:analyze};
+try{if(window.parent!==window&&window.ResizeObserver){var __h=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-__h)>4){__h=h;window.parent.postMessage({type:'sm-h',h:h},'*')}}).observe(document.body)}}catch(_){}
 })();
