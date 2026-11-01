@@ -398,7 +398,7 @@ function lyrTokens(line){
 }
 function lyrLines(){
   var el=document.getElementById('lyIn');if(!el)return [];
-  return el.value.split(/\r?\n/).filter(function(l){return !/^\s*[\[(][^\])]*[\])]\s*$/.test(l)}).map(lyrTokens);
+  return el.value.replace(/\[\d{1,3}:\d{2}(?:[.:]\d{1,3})?\]/g,'').split(/\r?\n/).filter(function(l){return !/^\s*[\[(][^\])]*[\])]\s*$/.test(l)}).map(lyrTokens);
 }
 function lyrW(syl,flags){
   var idx=[],i;for(i=0;i<flags.length;i++)if(!flags[i])idx.push(i);
@@ -813,6 +813,8 @@ function copyText(txt,note,msg){
 $('#cpChords').addEventListener('click',function(){copyText(progressionText(),$('#cpChordsTxt'),'복사했어요')});
 $('#cpSuno').addEventListener('click',function(){copyText($('#sunoTxt').value.split('\n')[0],$('#cpSunoTxt'),'복사했어요')});
 window.addEventListener('message',function(e){if(e.data&&e.data.type==='sm-stop')stopPlay()});
+document.addEventListener('keydown',function(e){var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;if((e.key==='Escape'||e.key===' ')&&(playedOrig||playTimer)){e.preventDefault();stopPlay()}});
+var _lf=document.getElementById('lyFile');if(_lf)_lf.addEventListener('change',function(){var f=_lf.files&&_lf.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var el=document.getElementById('lyIn');el.value=String(r.result||'');el.dispatchEvent(new Event('input',{bubbles:true}))};r.readAsText(f,'utf-8')});
 window.__SM={S:S,analyze:analyze};
 try{if(window.parent!==window&&window.ResizeObserver){var __h=0;new ResizeObserver(function(){var h=document.documentElement.scrollHeight;if(Math.abs(h-__h)>4){__h=h;window.parent.postMessage({type:'sm-h',h:h},'*')}}).observe(document.body)}}catch(_){}
 })();
