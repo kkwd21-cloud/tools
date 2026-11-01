@@ -9,7 +9,7 @@ var FIFTHS={0:0,7:1,2:2,9:3,4:4,11:5,6:6,1:-5,8:-4,3:-3,10:-2,5:-1};
 var SHARP_ORD=['F','C','G','D','A','E','B'],FLAT_ORD=['B','E','A','D','G','C','F'];
 var LETTERS=['C','D','E','F','G','A','B'];
 var FPS=22050/256; // Basic Pitch 프레임 속도
-var S={file:null,url:null,frames:null,onsets:null,notes:[],dur:0,bpm:0,t0:0,key:null,kind:'mix',lenSec:60,density:'mid',shift:0,chordBars:[],melody:[],bars:0,busy:false};
+var S={file:null,url:null,frames:null,onsets:null,notes:[],dur:0,bpm:0,t0:0,key:null,kind:'mix',lenSec:0,density:'mid',shift:0,chordBars:[],melody:[],bars:0,busy:false};
 var BP=null,audioCtx=null,playTimer=null,playNodes=[];
 
 /* ---------- 작은 도구 ---------- */
