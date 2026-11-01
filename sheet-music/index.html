@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>노래 파일 악보 만들기 – MP3 코드·악보 변환기 (무료) | Dusk Soul</title>
+<meta name="description" content="MP3·WAV 노래 파일을 넣으면 키, BPM, 코드 진행, 멜로디 악보가 자동으로 나와요. 가입·설치 없이 브라우저에서 무료로, 파일은 서버로 올라가지 않아요. MIDI 저장, 키 바꾸기, 수노(Suno) 스타일 문구까지.">
+<meta name="keywords" content="노래 악보 만들기, mp3 악보 변환, 노래 파일 악보, 음악 파일 코드 추출, 코드 악보 자동, mp3 코드 분석, 노래 키 찾기, BPM 측정, 음악 파일 MIDI 변환, 수노 악보">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/sheet-music/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="노래 파일 악보 만들기 – MP3 코드·악보 변환기 (무료)">
+<meta property="og:description" content="노래 파일을 넣으면 키·BPM·코드·멜로디 악보가 자동으로. 가입 없이 무료, 파일은 내 브라우저에서만 처리돼요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/sheet-music/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"노래 파일 악보 만들기","url":"https://kkwd21-cloud.github.io/tools/sheet-music/","applicationCategory":"MultimediaApplication","operatingSystem":"Any (브라우저)","inLanguage":"ko","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"MP3·WAV 노래 파일에서 키, BPM, 코드 진행, 멜로디 악보를 자동으로 뽑아 주는 무료 웹 도구"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "MP3 파일로 악보를 만들 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. MP3, WAV, M4A 같은 노래 파일을 넣으면 키, BPM, 코드 진행과 멜로디 악보를 자동으로 만들어 줘요. 다만 사람이 쓴 악보처럼 100% 정확하지는 않아서 틀린 코드는 직접 고칠 수 있게 했어요."}}, {"@type": "Question", "name": "파일이 서버에 올라가나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 분석은 내 브라우저 안에서만 이루어지고 파일은 어디로도 전송되지 않아요."}}, {"@type": "Question", "name": "악보가 정확하지 않아요.", "acceptedAnswer": {"@type": "Answer", "text": "반주가 섞인 곡은 멜로디가 틀리기 쉬워요. 보컬만 따로 분리한 파일(수노의 스템 내보내기 등)을 넣고 '보컬/멜로디만 있는 파일'을 고르면 훨씬 정확해져요."}}, {"@type": "Question", "name": "코드 악보나 MIDI로 저장할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "코드 진행은 복사할 수 있고, 멜로디와 코드는 MIDI 파일로 저장할 수 있어요."}}, {"@type": "Question", "name": "수노(Suno)로 만든 노래도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 수노에서 받은 MP3·WAV 파일을 그대로 넣으면 돼요. 키와 BPM을 수노 스타일 문구로 바로 복사할 수도 있어요."}}]}
+</script>
+<style>
+:root{--bg:#f6f4fa;--card:#ffffff;--ink:#241f33;--sub:#6a6480;--line:#e2deec;--acc:#6c4de6;--acc2:#e9e3ff;--ok:#1f9d6b;--warn:#b5651d;--shadow:0 1px 3px rgba(40,30,80,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15121f;--card:#1e1a2d;--ink:#eeeaf8;--sub:#a59fbd;--line:#322c47;--acc:#9d85ff;--acc2:#2a2347;--ok:#4cd39b;--warn:#f0a35e;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15121f;--card:#1e1a2d;--ink:#eeeaf8;--sub:#a59fbd;--line:#322c47;--acc:#9d85ff;--acc2:#2a2347;--ok:#4cd39b;--warn:#f0a35e;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:18px 16px 60px}
+.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--sub);margin-bottom:6px}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+h1{font-size:26px;line-height:1.3;margin:8px 0 6px;text-wrap:balance}
+h2{font-size:19px;margin:0 0 8px;text-wrap:balance}
+h3{font-size:16px;margin:14px 0 4px}
+p{margin:0 0 10px}
+.lead{color:var(--sub);margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
+.drop{display:block;border:2px dashed var(--acc);background:var(--acc2);border-radius:14px;padding:30px 16px;text-align:center;cursor:pointer;transition:.15s}
+.drop.on{background:var(--card)}
+.drop b{font-size:18px;display:block;margin-bottom:4px}
+.drop span{color:var(--sub);font-size:14px}
+button,.btn{font:inherit;font-size:15px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 14px;cursor:pointer;min-height:42px}
+button.main{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:700}
+button:disabled{opacity:.45;cursor:default}
+button:hover:not(:disabled){border-color:var(--acc)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips button{padding:7px 12px;min-height:38px;border-radius:999px}
+.chips button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .2s}
+.note{font-size:13.5px;color:var(--sub)}
+.warn{color:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.stat{background:var(--acc2);border-radius:12px;padding:10px 12px}
+.stat small{display:block;color:var(--sub);font-size:12.5px}
+.stat b{font-size:20px}
+.chords{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;margin-top:8px}
+.chords label{display:block;font-size:12px;color:var(--sub)}
+.chords input{width:100%;font:inherit;font-weight:700;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-height:40px}
+#sheet{overflow-x:auto;background:#fff;border-radius:10px;padding:8px;color:#000}
+#sheet svg{max-width:100%;height:auto}
+textarea{width:100%;font:inherit;font-size:14.5px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);color:var(--ink);min-height:62px;resize:vertical}
+details summary{cursor:pointer;font-weight:700;padding:4px 0}
+audio{width:100%;margin-top:8px}
+.hide{display:none!important}
+.faq p{margin:0 0 4px}
+.faq h3{margin-top:14px}
+ol,ul{padding-left:20px;margin:6px 0 10px}
+li{margin:3px 0}
+footer{margin-top:26px;font-size:13px;color:var(--sub)}
+footer a{color:var(--acc)}
+.pill{display:inline-block;background:var(--acc2);color:var(--acc);border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top"><a href="../">← Dusk Soul 툴킷</a><span>·</span><a href="../sound-finder/">곡 느낌 사전 (수노 프롬프트)</a></nav>
+  <h1>노래 파일 악보 만들기</h1>
+  <p class="lead">MP3·WAV 노래 파일을 넣으면 <b>키 · BPM · 코드 진행 · 멜로디 악보</b>가 나와요. 가입도 설치도 필요 없고, 파일은 내 브라우저 안에서만 처리돼요.</p>
+
+  <section class="card" id="inputCard">
+    <label class="drop" id="drop" for="file">
+      <b>🎵 여기에 노래 파일을 끌어다 놓거나 눌러서 고르세요</b>
+      <span>mp3 · wav · m4a · ogg (몇 분짜리 곡도 돼요)</span>
+    </label>
+    <input type="file" id="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac" class="hide">
+    <details style="margin-top:12px"><summary>더 정확하게 만들기 (선택)</summary>
+      <h3>파일 종류</h3>
+      <div class="chips row" id="kindChips">
+        <button type="button" data-v="mix" aria-pressed="true">반주가 있는 일반 곡</button>
+        <button type="button" data-v="solo" aria-pressed="false">보컬/멜로디만 있는 파일</button>
+      </div>
+      <p class="note" style="margin-top:6px">수노에서 곡을 만들면 보컬만 따로 받을 수 있어요(스템 내보내기). 그 파일을 넣고 아래를 고르면 멜로디가 훨씬 정확해져요.</p>
+      <h3>분석 범위</h3>
+      <div class="chips row" id="lenChips">
+        <button type="button" data-v="60" aria-pressed="true">앞부분 1분 (빠름)</button>
+        <button type="button" data-v="120" aria-pressed="false">앞부분 2분</button>
+        <button type="button" data-v="0" aria-pressed="false">곡 전체 (오래 걸려요)</button>
+      </div>
+    </details>
+    <div id="prog" class="hide">
+      <div class="bar"><i id="progBar"></i></div>
+      <div class="note" id="progTxt">준비 중…</div>
+    </div>
+    <p class="note" id="err" style="color:#d33"></p>
+  </section>
+
+  <div id="result" class="hide">
+    <section class="card">
+      <h2>분석 결과</h2>
+      <div class="grid">
+        <div class="stat"><small>키 (음 높이)</small><b id="sKey">-</b></div>
+        <div class="stat"><small>BPM (속도)</small><b id="sBpm">-</b></div>
+        <div class="stat"><small>박자</small><b>4/4</b></div>
+        <div class="stat"><small>멜로디 음역</small><b id="sRange">-</b></div>
+      </div>
+      <p class="note" id="sHint" style="margin-top:10px"></p>
+      <div class="row" style="margin-top:6px">
+        <button type="button" id="redo" data-v="1">▲ 키 올리기</button>
+        <button type="button" id="undo" data-v="-1">▼ 키 내리기</button>
+        <span class="note" id="shiftTxt"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>코드 진행 <span class="pill" id="patPill"></span></h2>
+      <p class="note">마디(한 칸)마다 코드예요. 틀린 칸은 눌러서 직접 고치면 악보에 바로 반영돼요. 한 마디에 코드가 둘이면 띄어 써요 (예: C G).</p>
+      <div class="chords" id="chords"></div>
+      <div class="row" style="margin-top:10px"><button type="button" id="cpChords">코드 진행 복사</button><span class="note" id="cpChordsTxt"></span></div>
+    </section>
+
+    <section class="card">
+      <h2>악보 <span class="pill">멜로디 · 근사치</span></h2>
+      <div class="chips row" style="margin-bottom:8px">
+        <span class="note">음표 양</span>
+        <button type="button" data-v="few" aria-pressed="false">적게</button>
+        <button type="button" data-v="mid" aria-pressed="true">보통</button>
+        <button type="button" data-v="many" aria-pressed="false">많이</button>
+      </div>
+      <div id="sheet"></div>
+      <div class="row" style="margin-top:10px">
+        <button type="button" class="main" id="playSheet">▶ 악보 소리 듣기</button>
+        <button type="button" id="stopSheet">■ 멈춤</button>
+        <button type="button" id="dlMidi">MIDI 저장</button>
+        <button type="button" id="dlMc" title="뮤직캔버스 영상 화면에 코드 진행을 반투명으로 넣을 때 쓰는 파일">뮤직캔버스용 파일</button>
+      </div>
+      <audio id="orig" controls></audio>
+      <p class="note" style="margin-top:6px">위 플레이어는 원곡이에요. 악보 소리와 번갈아 들으며 틀린 곳을 찾아 보세요.</p>
+    </section>
+
+    <section class="card">
+      <h2>수노(Suno)에 쓸 문구</h2>
+      <textarea id="sunoTxt" readonly></textarea>
+      <div class="row" style="margin-top:8px"><button type="button" class="main" id="cpSuno">복사</button><a class="btn" href="../sound-finder/" style="text-decoration:none">곡 느낌 사전에서 장르 더 고르기 →</a><span class="note" id="cpSunoTxt"></span></div>
+    </section>
+  </div>
+
+  <section class="card faq">
+    <h2>이 도구는 이렇게 써요</h2>
+    <ol>
+      <li>위 상자에 노래 파일(MP3·WAV)을 끌어다 놓아요.</li>
+      <li>키, BPM, 코드 진행, 멜로디 악보가 나올 때까지 잠깐 기다려요. (처음엔 분석 도구를 내려받느라 조금 더 걸려요.)</li>
+      <li>틀린 코드는 눌러서 고치고, 악보와 원곡을 번갈아 들어 보세요.</li>
+      <li>MIDI로 저장하거나, 키·BPM을 수노 스타일 문구로 복사해 새 곡을 만들 때 쓰세요.</li>
+    </ol>
+    <h2 style="margin-top:18px">자주 묻는 질문</h2>
+    <h3>MP3 파일로 악보를 만들 수 있나요?</h3>
+    <p>네. MP3, WAV, M4A 같은 노래 파일에서 키, BPM, 코드 진행, 멜로디 악보를 자동으로 만들어 줘요. 다만 사람이 직접 채보한 악보만큼 정확하지는 않아서 틀린 코드를 고칠 수 있게 했어요.</p>
+    <h3>파일이 서버에 올라가나요?</h3>
+    <p>아니요. 모든 분석은 내 기기의 브라우저 안에서만 이루어지고 파일은 어디로도 보내지 않아요.</p>
+    <h3>악보가 정확하지 않아요.</h3>
+    <p>반주가 섞인 곡은 멜로디가 틀리기 쉬워요. 보컬만 따로 분리한 파일을 넣고 “보컬/멜로디만 있는 파일”을 고르면 훨씬 정확해져요. 코드는 반주가 섞여 있어도 꽤 잘 맞아요.</p>
+    <h3>코드 악보나 MIDI로 저장할 수 있나요?</h3>
+    <p>코드 진행은 복사할 수 있고, 멜로디와 코드는 MIDI 파일로 저장할 수 있어요.</p>
+    <h3>수노(Suno)로 만든 노래도 되나요?</h3>
+    <p>네. 수노에서 받은 MP3·WAV 파일을 그대로 넣으면 돼요. 키와 BPM을 수노 스타일 문구로 바로 복사할 수 있어서, 마음에 든 곡과 비슷한 곡을 다시 만들 때 편해요.</p>
+  </section>
+
+  <footer>
+    <p><a href="../">Dusk Soul 무료 툴킷</a> · <a href="../sound-finder/">곡 느낌 사전</a> — 분석에는 오픈소스 <a href="https://github.com/spotify/basic-pitch" rel="noopener" target="_blank">Basic Pitch</a>(Apache-2.0)와 <a href="https://www.abcjs.net/" rel="noopener" target="_blank">abcjs</a>(MIT)를 사용했어요. 결과는 참고용 근사치예요.</p>
+  </footer>
+</div>
+<script src="abcjs-basic-min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

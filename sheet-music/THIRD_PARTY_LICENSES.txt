@@ -1,0 +1,3 @@
+Basic Pitch (c) Spotify AB - Apache License 2.0 - https://github.com/spotify/basic-pitch
+  (bp.bundle.js includes TensorFlow.js, Apache License 2.0; model/ is the Basic Pitch model)
+abcjs (c) Paul Rosen and Gregory Dyke - MIT License - https://www.abcjs.net/
