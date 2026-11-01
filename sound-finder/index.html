@@ -960,7 +960,7 @@ function eraRetro(){var s=(mix&&ratio==='b')?mix:cur;if(!s)return true;return /\
 function eraOn(){return ERA&&!inst()&&!eraRetro()}
 function eraClean(x,i){if(i<1)return x;var y=x.replace(ERAOLD,' ').replace(/\band\s+(?=,|$)/gi,'').replace(/\s+/g,' ').replace(/^(and|with)\s+/i,'').replace(/^[\s,]+|[\s,]+$/g,'');return y}
 function build(){
-  if(rcOn()){var _b=RC.ex?RC.en.split(', '):[rcVoice()].concat(RC.en.split(', ')),_t=qkTok();_t.push('tempo '+RC.bpm+' bpm');if(ENG)_t.push('sung in English');else if(ko)_t.push('sung in Korean');while(_b.length>3&&_b.concat(_t).join(', ').length>200)_b.pop();return _b.concat(_t).join(', ')}
+  if(rcOn()){var _b=RC.ex?RC.en.split(', '):[rcVoice()].concat(RC.en.split(', ')),_t=qkTok();if(INX)_b=instSwap(_b);_t.push('tempo '+RC.bpm+' bpm');if(ENG)_t.push('sung in English');else if(ko)_t.push('sung in Korean');while(_b.length>3&&_b.concat(_t).join(', ').length>200)_b.pop();return _b.concat(_t).join(', ')}
   var PC=prec(),parts=PC?PC.it.slice():baseItems(),tn=(tone&&TN[tone])?TN[tone]:null;
   var kt=!PC&&kArt&&!cur.virt&&!ENG&&!inst()&&!GEN&&tone!=='choir'&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&eraOn()&&ERAKT[kt])kt=ERAKT[kt];if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
   if(tn){var re=TCONF[tn.id],vi=splitV(parts);parts=parts.filter(function(x){return !(re&&re.test(x)&&!(NEWTN[tn.id]&&tn.id!=='hymn'&&tn.id!=='hymns'&&/vocal|voice|female|male|duet|\bband\b|\bgroup\b|\brap/i.test(x)))}).slice(0,5);if(tn.id==='funny'||tn.id==='epic')parts=parts.map(function(x){return x.replace(/\bballad\s*/i,'')});if(tn.id==='choir'&&!inst())parts=[]}
