@@ -578,7 +578,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
         <button type="button" class="b-main" id="ppAddSave" style="align-self:flex-start">카드로 저장</button>
       </div></details>
     </div></details>
-    <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="hit" aria-pressed="false">🙂 기분으로 고르기</button><button type="button" class="chip" id="moreTabs" title="가수를 모를 때: 목소리로 찾기, 내 음악 파일로 찾기">⋯ 다른 방법</button><button type="button" class="chip" data-t="voice" aria-pressed="false" hidden>🗣 목소리로 찾기</button><button type="button" class="chip" data-t="file" aria-pressed="false" hidden>🎵 음악 파일로 찾기</button></div>
+    <div class="chips" id="findTabs" style="margin-bottom:10px"><button type="button" class="chip" data-t="artist" aria-pressed="true">🎤 가수·곡으로 찾기</button><button type="button" class="chip" data-t="hit" aria-pressed="false">🙂 기분으로 고르기</button><button type="button" class="chip" id="moreTabs" title="가수를 모를 때: 목소리로 찾기, 내 음악 파일로 찾기">⋯ 다른 방법</button><button type="button" class="chip" id="smTab" title="노래 파일로 악보·코드 만들기 (인쇄 가능)">🎼 악보 만들기</button><button type="button" class="chip" data-t="voice" aria-pressed="false" hidden>🗣 목소리로 찾기</button><button type="button" class="chip" data-t="file" aria-pressed="false" hidden>🎵 음악 파일로 찾기</button></div>
     <div id="artistPanel">
     <div class="sfq"><input id="q" class="inp1" type="search" autocomplete="off" placeholder="가수 이름 또는 곡 제목" aria-label="가수 이름 또는 곡 제목"></div>
     <div class="sfq" style="margin-top:8px"><input id="ytq" class="inp1" type="url" autocomplete="off" placeholder="유튜브 링크 붙여넣기 (제목으로 가수·곡 찾기)" aria-label="유튜브 링크"><button type="button" class="chip" id="ytGo" style="margin-top:6px">▶ 링크로 찾기</button></div><p class="note sm" id="ytMsg" style="margin:6px 0 0" aria-live="polite"></p><div class="sug" id="res" role="listbox" style="margin-top:6px"></div>
@@ -2344,6 +2344,7 @@ $('#emLv').addEventListener('click',function(e){var b=e.target.closest('button')
  inp.addEventListener('keydown',function(e){if(e.key==='Enter')go.click()});
 })();
 function vcTab(w){var v=w==='voice';$('#vcPanel').hidden=!v;$('#afPanel').hidden=w!=='file';$('#artistPanel').hidden=w!=='artist';$('#hitPanel').hidden=w!=='hit';$$('#findTabs button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.t===w?'true':'false')});if(w==='hit')hitRender();if(v&&!$('#vcBody').innerHTML)vcRender()}
+var _st=document.getElementById('smTab');if(_st)_st.addEventListener('click',function(e){e.stopPropagation();goTab('file');var bx=document.getElementById('smBox');if(bx){bx.open=true;try{bx.dispatchEvent(new Event('toggle'))}catch(x){}setTimeout(function(){try{bx.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}},150)}});
 $('#findTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.id==='moreTabs'){$$('#findTabs [data-t=voice],#findTabs [data-t=file]').forEach(function(x){x.hidden=false});b.hidden=true;return}if(b.dataset.t){if(b.hidden)return;vcTab(b.dataset.t)}});
 
 /* ---------- 음악 파일로 찾기 (브라우저 안에서만 분석) ---------- */
