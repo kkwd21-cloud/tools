@@ -679,7 +679,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 
       <div class="blk">
         <span class="flabel"><span class="ob">②</span> 스타일 <span class="note sm" style="font-weight:400">수노 Style of Music 칸</span> <b id="mixLabel" class="mlab"></b></span>
-        <div class="chips" id="vxRow" role="group" aria-label="목소리" style="margin:6px 0 4px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">🎤 목소리:</span><button type="button" class="chip" data-vx="" aria-pressed="true">자동</button><button type="button" class="chip" data-vx="female" aria-pressed="false">여자</button><button type="button" class="chip" data-vx="male" aria-pressed="false">남자</button></div>
+        <div class="chips" id="vxRow" role="group" aria-label="목소리" style="margin:6px 0 4px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">🎤 목소리:</span><button type="button" class="chip" data-vx="" aria-pressed="true">자동</button><button type="button" class="chip" data-vx="female" aria-pressed="false">여자</button><button type="button" class="chip" data-vx="male" aria-pressed="false">남자</button><button type="button" class="chip" data-vh="1" aria-pressed="false">허스키</button></div>
         <textarea class="inp" id="cPhrase" rows="4" spellcheck="false"></textarea>
         <span class="note sm" id="cLen" style="align-self:flex-end"></span>
         <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><div class="chips" id="eraRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
@@ -973,7 +973,13 @@ function voxApply(p){if(!VOX)return p;var g=VOX==='female'?'female':'male',w=g+'
   t.forEach(function(x){if(/^(?:male-female duet|group vocals)$/i.test(x)){if(!f){f=true;o.push(w)}}else if(/\b(?:fe)?male\b(?=[\s-]+(?:vocals?|singer|voice|fronted|lead))/i.test(x)){f=true;o.push(x.replace(/\b(?:fe)?male\b(?=[\s-]+(?:vocals?|singer|voice|fronted|lead))/ig,g))}else o.push(x)});
   if(!f)o.splice(Math.min(2,o.length),0,w);
   var r=o.join(', ');while(o.length>3&&r.length>200){o.pop();r=o.join(', ')}return r}
-function build(){return voxApply(build0())}
+var VOXH=false;try{VOXH=localStorage.getItem('sf_vxh')==='1'}catch(e){}
+function huskApply(p){if(!VOXH)return p;var t=p.split(', '),f=false,o=[];
+  t.forEach(function(x){if(!f&&/\b(?:vocals?|singer|voice)\b/i.test(x)){f=true;x=x.replace(/\b(?:clear|delicate|airy|breathy|sweet|bright|crystal|soft|silky|angelic|light|gentle|smooth|whispery|ethereal|pure|high|husky|raspy)\b[\s-]*/ig,'').replace(/^\s+/,'');o.push('husky '+x)}else o.push(x)});
+  if(!f)o.splice(Math.min(2,o.length),0,'husky raspy vocals');
+  o=o.filter(function(x,i){return !(i>0&&/^(?:soft|airy|breathy|clear|delicate|sweet|bright|silky|angelic|whispery|ethereal|light|gentle|smooth|pure|crystal)\b[\w\s-]*\b(?:vocals?|voice|singer)\b/i.test(x))});
+  var r=o.join(', ');while(o.length>3&&r.length>200){o.pop();r=o.join(', ')}return r}
+function build(){return huskApply(voxApply(build0()))}
 function build0(){
   if(rcOn()){var _b=RC.ex?RC.en.split(', '):[rcVoice()].concat(RC.en.split(', ')),_t=qkTok();if(INX)_b=instSwap(_b);_t.push('tempo '+RC.bpm+' bpm');if(ENG)_t.push('sung in English');else if(ko)_t.push('sung in Korean');while(_b.length>3&&_b.concat(_t).join(', ').length>200)_b.pop();return _b.concat(_t).join(', ')}
   var PC=prec(),parts=PC?PC.it.slice():baseItems(),tn=(tone&&TN[tone])?TN[tone]:null;
@@ -1815,8 +1821,9 @@ $('#lyNew').addEventListener('click',function(){HLAUTO=null;AUTOROT=1+Math.floor
   try{var r=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;$('#lyDur').scrollIntoView({behavior:r?'auto':'smooth',block:'start'})}catch(e){}});
 $('#lyOpts').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.o==='short'){LS.short=!LS.short;LS.lvl=null;lRoll(null,true)}else if(b.dataset.o==='rhythm'){LS.rhythm=!LS.rhythm;lRoll();renderPhrase()}else LS.hints=!LS.hints;renderLyr()});
 $('#cpTitle').addEventListener('click',function(){histAdd('t',LS.title);copy(LS.title,'제목을 복사했어요')});
-$('#vxRow').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;VOX=b.dataset.vx||'';try{localStorage.setItem('sf_vox',VOX)}catch(x){}Array.prototype.forEach.call(this.querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',(c.dataset.vx||'')===VOX?'true':'false')});if(cur)renderPhrase()});
-Array.prototype.forEach.call($('#vxRow').querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',(c.dataset.vx||'')===VOX?'true':'false')});
+$('#vxRow').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.vh){VOXH=!VOXH;try{localStorage.setItem('sf_vxh',VOXH?'1':'0')}catch(x){}}else{VOX=b.dataset.vx||'';try{localStorage.setItem('sf_vox',VOX)}catch(x){}}vxSync();if(cur)renderPhrase()});
+function vxSync(){Array.prototype.forEach.call($('#vxRow').querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',c.dataset.vh?(VOXH?'true':'false'):((c.dataset.vx||'')===VOX?'true':'false'))});}
+Array.prototype.forEach.call($('#vxRow').querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',c.dataset.vh?(VOXH?'true':'false'):((c.dataset.vx||'')===VOX?'true':'false'))});
 $('#vaStyle').addEventListener('click',function(){var n=0,p;vaNote='';do{VS++;p=build();n++}while(n<30&&histHas('s',p));renderPhrase()});
 $('#vaReset').addEventListener('click',function(){VS=0;QKT='';QKK='';RC=null;vaNote='';renderPhrase()});
 $('#qkBtn').addEventListener('click',function(){var c=QKPOOL.filter(function(x){return x[0]!==QKT}),q=c[Math.floor(Math.random()*c.length)];QKT=q[0];QKK=q[1];renderPhrase();toast('독특한 요소를 넣었어요: '+q[1])});
