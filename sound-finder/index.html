@@ -679,6 +679,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 
       <div class="blk">
         <span class="flabel"><span class="ob">②</span> 스타일 <span class="note sm" style="font-weight:400">수노 Style of Music 칸</span> <b id="mixLabel" class="mlab"></b></span>
+        <div class="chips" id="vxRow" role="group" aria-label="목소리" style="margin:6px 0 4px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">🎤 목소리:</span><button type="button" class="chip" data-vx="" aria-pressed="true">자동</button><button type="button" class="chip" data-vx="female" aria-pressed="false">여자</button><button type="button" class="chip" data-vx="male" aria-pressed="false">남자</button></div>
         <textarea class="inp" id="cPhrase" rows="4" spellcheck="false"></textarea>
         <span class="note sm" id="cLen" style="align-self:flex-end"></span>
         <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><div class="chips" id="eraRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
@@ -965,7 +966,13 @@ var ERAOLD=/(^|\b)(nostalgic|retro[- ]?\w*|vintage|classic|old[- ]school|throwba
 function eraRetro(){var s=(mix&&ratio==='b')?mix:cur;if(!s)return true;return /\b(1[89]\d0s|[5-9]0s|2000s)\b|y2k|oldies|disco|city pop|trot|classic|vintage|big band|swing|doo-?wop|motown|crooner|bossa|60s|70s|80s|90s/i.test(s.k||'')||(tone&&(tone==='retro'||tone==='choir'))||GEN==='trot'||GEN==='jazz'}
 function eraOn(){return ERA&&!inst()&&!eraRetro()}
 function eraClean(x,i){if(i<1)return x;var y=x.replace(ERAOLD,' ').replace(/\band\s+(?=,|$)/gi,'').replace(/\s+/g,' ').replace(/^(and|with)\s+/i,'').replace(/^[\s,]+|[\s,]+$/g,'');return y}
-function build(){
+var VOX='';try{VOX=localStorage.getItem('sf_vox')||''}catch(e){}
+function voxApply(p){if(!VOX)return p;var g=VOX==='female'?'female':'male',w=g+' vocals',t=p.split(', '),f=false,o=[];
+  t.forEach(function(x){if(/^(?:male-female duet|group vocals)$/i.test(x)){if(!f){f=true;o.push(w)}}else if(/\b(?:fe)?male\b(?=[\s-]+(?:vocals?|singer|voice|fronted|lead))/i.test(x)){f=true;o.push(x.replace(/\b(?:fe)?male\b(?=[\s-]+(?:vocals?|singer|voice|fronted|lead))/ig,g))}else o.push(x)});
+  if(!f)o.splice(Math.min(2,o.length),0,w);
+  var r=o.join(', ');while(o.length>3&&r.length>200){o.pop();r=o.join(', ')}return r}
+function build(){return voxApply(build0())}
+function build0(){
   if(rcOn()){var _b=RC.ex?RC.en.split(', '):[rcVoice()].concat(RC.en.split(', ')),_t=qkTok();if(INX)_b=instSwap(_b);_t.push('tempo '+RC.bpm+' bpm');if(ENG)_t.push('sung in English');else if(ko)_t.push('sung in Korean');while(_b.length>3&&_b.concat(_t).join(', ').length>200)_b.pop();return _b.concat(_t).join(', ')}
   var PC=prec(),parts=PC?PC.it.slice():baseItems(),tn=(tone&&TN[tone])?TN[tone]:null;
   var kt=!PC&&kArt&&!cur.virt&&!ENG&&!inst()&&!GEN&&tone!=='choir'&&!/trot/i.test(cur.k||'')?D.kgenre[cur.g]:'';if(kt&&ROCKRE.test((cur.k||'').toLowerCase())&&!/k-pop/i.test(cur.k||''))kt='Korean rock band';if(kt&&eraOn()&&ERAKT[kt])kt=ERAKT[kt];if(kt&&parts.join(',').toLowerCase().indexOf(kt.toLowerCase())<0)parts.splice(Math.min(2,parts.length),0,kt);
@@ -1806,6 +1813,8 @@ $('#lyNew').addEventListener('click',function(){HLAUTO=null;AUTOROT=1+Math.floor
   try{var r=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;$('#lyDur').scrollIntoView({behavior:r?'auto':'smooth',block:'start'})}catch(e){}});
 $('#lyOpts').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.o==='short'){LS.short=!LS.short;LS.lvl=null;lRoll(null,true)}else if(b.dataset.o==='rhythm'){LS.rhythm=!LS.rhythm;lRoll();renderPhrase()}else LS.hints=!LS.hints;renderLyr()});
 $('#cpTitle').addEventListener('click',function(){histAdd('t',LS.title);copy(LS.title,'제목을 복사했어요')});
+$('#vxRow').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;VOX=b.dataset.vx||'';try{localStorage.setItem('sf_vox',VOX)}catch(x){}Array.prototype.forEach.call(this.querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',(c.dataset.vx||'')===VOX?'true':'false')});if(cur)renderPhrase()});
+Array.prototype.forEach.call($('#vxRow').querySelectorAll('button'),function(c){c.setAttribute('aria-pressed',(c.dataset.vx||'')===VOX?'true':'false')});
 $('#vaStyle').addEventListener('click',function(){var n=0,p;vaNote='';do{VS++;p=build();n++}while(n<30&&histHas('s',p));renderPhrase()});
 $('#vaReset').addEventListener('click',function(){VS=0;QKT='';QKK='';RC=null;vaNote='';renderPhrase()});
 $('#qkBtn').addEventListener('click',function(){var c=QKPOOL.filter(function(x){return x[0]!==QKT}),q=c[Math.floor(Math.random()*c.length)];QKT=q[0];QKK=q[1];renderPhrase();toast('독특한 요소를 넣었어요: '+q[1])});
