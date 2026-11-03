@@ -226,6 +226,12 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
 .drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
 .note{font-size:12.5px;color:var(--muted)}
 .note.warn{color:#ffb86b}
+.lyr-warn{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:2px 0 10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,184,107,.45);background:rgba(255,184,107,.09);color:#ffb86b;font-size:13px;line-height:1.5}
+.lyr-warn b{color:#ffd9a8}
+.lyr-warn .lw-t{flex:1 1 240px;min-width:0}
+.lyr-warn button{flex:none;border:1px solid rgba(255,184,107,.55);background:transparent;color:#ffd9a8;border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer}
+.lyr-warn button:hover{background:rgba(255,184,107,.16)}
+.lyr-warn.restored{border-color:#ffb86b;background:rgba(255,184,107,.16)}
 .opts{display:flex;flex-wrap:wrap;gap:8px 18px}
 .opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
 .opts input,.chk input{accent-color:var(--accent)}
@@ -306,6 +312,7 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
         <h3>1. 음악과 가사</h3>
         <label class="drop" id="drop"><input type="file" id="audioFile" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac,.opus"><span id="dropTxt">여기를 눌러 음악 파일을 고르거나 끌어다 놓으세요 (mp3, wav, m4a)</span></label>
         <p class="note" id="audioInfo" hidden></p>
+        <div class="lyr-warn" id="lyrWarn" role="note"><span class="lw-t">⚠️ <b>이 노래의 가사가 맞는지 꼭 확인하세요.</b> 지난번에 넣은 가사가 자동으로 남아 있을 수 있어요. 다른 노래 가사면 자막이 노래와 전혀 안 맞아요.</span><button type="button" id="lyrClear">가사 칸 비우기</button></div>
         <label class="flabel" for="lyr">가사</label>
         <textarea class="inp lyr-in" id="lyr" rows="9" placeholder="가사를 한 줄에 한 줄씩 붙여 넣으세요.
 
@@ -736,7 +743,8 @@ var dz=$('#drop');
 ['dragleave','drop'].forEach(function(n){dz.addEventListener(n,function(e){e.preventDefault();dz.classList.remove('over')})});
 dz.addEventListener('drop',function(e){var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)loadAudio(f)});
 $('#audioFile').addEventListener('change',function(e){loadAudio(e.target.files[0])});
-try{var sv=localStorage.getItem('dusk_lrc_lyrics'); if(sv&&!$('#lyr').value)$('#lyr').value=sv}catch(_){}
+try{var sv=localStorage.getItem('dusk_lrc_lyrics'); if(sv&&!$('#lyr').value){$('#lyr').value=sv;var lw=$('#lyrWarn');if(lw){lw.classList.add('restored');lw.querySelector('.lw-t').innerHTML='⚠️ <b>지난번에 쓴 가사를 불러왔어요.</b> 이 노래의 가사가 맞는지 확인하고, 다르면 비우고 새로 붙여 넣으세요.'}}}catch(_){}
+$('#lyrClear').addEventListener('click',function(){var ta=$('#lyr');ta.value='';ta.dispatchEvent(new Event('input'));var lw=$('#lyrWarn');lw.classList.remove('restored');lw.querySelector('.lw-t').innerHTML='가사 칸을 비웠어요. 이 노래의 가사를 붙여 넣어 주세요.';ta.focus()});
 $('#lyr').addEventListener('input',function(){try{localStorage.setItem('dusk_lrc_lyrics',$('#lyr').value)}catch(_){}});
 $('#build').addEventListener('click',function(){
   var err=$('#s1err'); err.hidden=true;
