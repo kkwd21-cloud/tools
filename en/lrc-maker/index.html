@@ -226,6 +226,12 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
 .drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
 .note{font-size:12.5px;color:var(--muted)}
 .note.warn{color:#ffb86b}
+.lyr-warn{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:2px 0 10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,184,107,.45);background:rgba(255,184,107,.09);color:#ffb86b;font-size:13px;line-height:1.5}
+.lyr-warn b{color:#ffd9a8}
+.lyr-warn .lw-t{flex:1 1 240px;min-width:0}
+.lyr-warn button{flex:none;border:1px solid rgba(255,184,107,.55);background:transparent;color:#ffd9a8;border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer}
+.lyr-warn button:hover{background:rgba(255,184,107,.16)}
+.lyr-warn.restored{border-color:#ffb86b;background:rgba(255,184,107,.16)}
 .opts{display:flex;flex-wrap:wrap;gap:8px 18px}
 .opts label,.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
 .opts input,.chk input{accent-color:var(--accent)}
@@ -306,6 +312,7 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
         <h3>1. Song and lyrics</h3>
         <label class="drop" id="drop"><input type="file" id="audioFile" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac,.opus"><span id="dropTxt">Click to choose an audio file, or drag it here (mp3, wav, m4a)</span></label>
         <p class="note" id="audioInfo" hidden></p>
+        <div class="lyr-warn" id="lyrWarn" role="note"><span class="lw-t">⚠️ <b>Make sure these are the lyrics of this song.</b> Lyrics you used last time may still be here. Wrong lyrics will never line up with the music.</span><button type="button" id="lyrClear">Clear lyrics</button></div>
         <label class="flabel" for="lyr">Lyrics</label>
         <textarea class="inp lyr-in" id="lyr" rows="9" placeholder="Paste your lyrics, one line per line.
 
@@ -736,7 +743,8 @@ var dz=$('#drop');
 ['dragleave','drop'].forEach(function(n){dz.addEventListener(n,function(e){e.preventDefault();dz.classList.remove('over')})});
 dz.addEventListener('drop',function(e){var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)loadAudio(f)});
 $('#audioFile').addEventListener('change',function(e){loadAudio(e.target.files[0])});
-try{var sv=localStorage.getItem('dusk_lrc_lyrics'); if(sv&&!$('#lyr').value)$('#lyr').value=sv}catch(_){}
+try{var sv=localStorage.getItem('dusk_lrc_lyrics'); if(sv&&!$('#lyr').value){$('#lyr').value=sv;var lw=$('#lyrWarn');if(lw){lw.classList.add('restored');lw.querySelector('.lw-t').innerHTML='⚠️ <b>Lyrics from your last visit were loaded.</b> Check they match this song; if not, clear them and paste the right ones.'}}}catch(_){}
+$('#lyrClear').addEventListener('click',function(){var ta=$('#lyr');ta.value='';ta.dispatchEvent(new Event('input'));var lw=$('#lyrWarn');lw.classList.remove('restored');lw.querySelector('.lw-t').innerHTML='Lyrics cleared. Paste the lyrics of this song.';ta.focus()});
 $('#lyr').addEventListener('input',function(){try{localStorage.setItem('dusk_lrc_lyrics',$('#lyr').value)}catch(_){}});
 $('#build').addEventListener('click',function(){
   var err=$('#s1err'); err.hidden=true;
