@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>얼굴 이미지로 노래 영상 만들기 – 반짝이·입 움직임 무료 | Dusk Soul</title>
+<meta name="description" content="AI로 만든 얼굴 이미지와 내 노래를 올리면 반짝이 가루, 흐린 불빛, 천천히 다가가는 카메라와 입 움직임이 들어간 노래 영상을 무료로 만들어요. 가입 없이 브라우저에서만 동작해요.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/face-singer/">
+<meta name="theme-color" content="#090d19">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#7fd1e8;--accent2:#b8e6f2;--bg:#090d19;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--ok:#8fe0b0;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+h1,h2,p{margin:0}
+[hidden]{display:none!important}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+.top{position:sticky;top:0;z-index:5;background:rgba(9,13,25,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;gap:14px;align-items:center}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none}
+.brand span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:8px;font-family:system-ui,sans-serif;font-weight:400}
+.top a.all{margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none}
+.wrap{max-width:980px;margin:0 auto;padding:22px 16px 60px;display:flex;flex-direction:column;gap:18px}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700}
+h1{font-family:'Noto Serif KR',serif;font-size:clamp(24px,5vw,34px);line-height:1.3;text-wrap:balance}
+.lead{color:var(--muted);max-width:60ch}
+.stagebox{display:flex;justify-content:center}
+.stage{background:#000;border:1px solid var(--line2);border-radius:14px;overflow:hidden;position:relative;width:100%;max-height:78vh}
+.stage canvas{width:100%;height:auto;max-height:78vh;display:block;margin:0 auto;object-fit:contain;cursor:crosshair}
+.stage .hint{position:absolute;inset:auto 0 12px 0;text-align:center;font-size:13px;color:#fff;text-shadow:0 1px 6px #000;pointer-events:none}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lbl{font-size:13px;font-weight:700;color:var(--muted);width:100%}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#10141f;font-weight:700}
+.btn{background:var(--accent);color:#10141f;border:0;border-radius:12px;padding:12px 20px;font-weight:800;font-size:15px}
+.btn.g{background:var(--panel2);color:var(--text);border:1px solid var(--line2)}
+.btn:disabled{opacity:.45;cursor:default}
+.file{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.file input[type=file]{max-width:100%}
+.txt{width:100%;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;color:var(--text);padding:9px 12px;font:inherit}
+.note{font-size:13px;color:var(--muted)}
+.bar{height:8px;border-radius:99px;background:var(--panel2);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent)}
+.res a{display:inline-block;background:var(--ok);color:#0c1a12;font-weight:800;border-radius:12px;padding:12px 20px;text-decoration:none}
+input[type=range]{width:200px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+summary{cursor:pointer;font-weight:700}
+details p{margin-top:8px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in"><a class="brand" href="../">Dusk Soul<span>Toolkit</span></a><a class="all" href="../">전체 도구</a></div></header>
+<main class="wrap">
+  <div>
+    <p class="eyebrow">무료 · 가입 없음</p>
+    <h1>얼굴 이미지로 노래 영상 만들기</h1>
+    <p class="lead">AI로 만든 얼굴 이미지와 내 노래를 올리면, 반짝이 가루와 흐린 불빛이 떠다니고 입이 노래에 맞춰 살짝 움직이는 영상이 나와요.</p>
+  </div>
+
+  <div class="stagebox"><div class="stage" id="stage"><canvas id="cv" width="1280" height="720"></canvas><div class="hint" id="hint">얼굴 이미지를 올려 주세요</div></div></div>
+
+  <section class="panel">
+    <div class="file"><b>1. 얼굴 이미지</b><input type="file" id="imgIn" accept="image/*"><span class="note">직접 만든 가상 인물만 쓰세요</span></div>
+    <div class="file"><b>2. 노래 파일</b><input type="file" id="song" accept="audio/*"><span class="note" id="songInfo"></span></div>
+    <div><div class="lbl">3. 영상 모양</div><div class="row" id="asp"></div></div>
+    <div><div class="lbl">4. 입 움직임 <span class="note" style="font-weight:400">· 입술 가운데(윗입술과 아랫입술이 만나는 곳)를 화면에서 눌러 위치를 맞추세요</span></div>
+      <div class="row" id="mth"></div>
+      <div class="row"><span class="note">입 너비</span><input type="range" id="mw" min="4" max="16" value="8"></div></div>
+    <div><div class="lbl">5. 반짝이</div><div class="row" id="gl"></div></div>
+    <div><div class="lbl">6. 자막 띠 (선택)</div><input class="txt" id="tick" placeholder="예) 오늘은 아무것도 안 해 · I'm always cheering for you"></div>
+    <div class="row">
+      <button class="btn g" id="play" disabled>▶ 미리 듣기</button>
+      <button class="btn" id="rec" disabled>● 영상 만들기</button>
+      <span class="note">영상 만들기는 노래 길이만큼 걸려요. 창을 닫지 마세요.</span>
+    </div>
+    <div id="prog" hidden><div class="bar"><i id="pbar"></i></div><p class="note" id="ptxt"></p></div>
+    <div class="res" id="res" hidden></div>
+  </section>
+
+  <details><summary>어떻게 쓰나요?</summary><p>얼굴 이미지와 노래를 올리고, 화면에서 입술 가운데를 한 번 눌러 위치를 맞춘 뒤 "영상 만들기"를 누르세요. 노래가 끝나면 영상을 저장할 수 있어요. 저장한 영상은 뮤직 영상의 배경으로 쓰면 돼요.</p></details>
+  <details><summary>입이 어색해 보여요</summary><p>입 움직임을 "작게"로 바꾸고 입 너비를 입술 크기에 맞춰 보세요. 사진 같은 얼굴은 입을 크게 움직이면 어색해서, 작게 움직이는 쪽이 자연스러워요.</p></details>
+  <details><summary>이미지나 노래가 서버에 올라가나요?</summary><p>아니요. 모든 처리가 내 브라우저 안에서 이뤄지고 어디로도 전송되지 않아요.</p></details>
+</main>
+
+<script>
+(function(){
+'use strict';
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+var $=function(id){return document.getElementById(id)};
+
+var ASP=[{name:'가로 16:9',w:1280,h:720},{name:'세로 9:16',w:720,h:1280},{name:'정사각 1:1',w:1000,h:1000}];
+var MTH=[{name:'없음',k:0},{name:'작게',k:.55},{name:'보통',k:1}];
+var GL=[{name:'은은하게',k:.5},{name:'보통',k:.9},{name:'많이',k:1.5}];
+var st={asp:0,mth:1,gl:1,mx:.5,my:.5,mw:8,img:null,iw:0,ih:0,tint:'255,150,160',custom:false};
+function chips(el,arr,key){
+  el.innerHTML='';
+  arr.forEach(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o.name;
+    b.setAttribute('aria-pressed',st[key]===i?'true':'false');
+    b.addEventListener('click',function(){st[key]=i;chips(el,arr,key);if(key==='asp')setAspect()});
+    el.appendChild(b)});
+}
+chips($('asp'),ASP,'asp');chips($('mth'),MTH,'mth');chips($('gl'),GL,'gl');
+$('mw').addEventListener('input',function(){st.mw=+this.value});
+
+function setAspect(){
+  var a=ASP[st.asp];cv.width=a.w;cv.height=a.h;W=a.w;H=a.h;bgCache={key:''};
+}
+
+/* ---------- 이미지 ---------- */
+var src=null,bgCache={key:''};
+$('imgIn').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  var im=new Image();im.onload=function(){
+    var sc=Math.min(1,1600/Math.max(im.naturalWidth,im.naturalHeight));
+    var c=document.createElement('canvas');c.width=Math.round(im.naturalWidth*sc);c.height=Math.round(im.naturalHeight*sc);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+    src=c;st.iw=c.width;st.ih=c.height;
+    // 평균 색
+    var t=document.createElement('canvas');t.width=t.height=16;var tc=t.getContext('2d');tc.drawImage(c,0,0,16,16);
+    var d=tc.getImageData(0,0,16,16).data,r=0,g=0,b=0,n=0;for(var i=0;i<d.length;i+=4){var l=d[i]+d[i+1]+d[i+2];if(l>60){r+=d[i];g+=d[i+1];b+=d[i+2];n++}}
+    n=Math.max(1,n);r=r/n;g=g/n;b=b/n;var m=Math.max(r,g,b,1),k=255/m;
+    st.tint=Math.min(255,Math.round(r*k))+','+Math.min(255,Math.round(g*k*.9))+','+Math.min(255,Math.round(b*k*.95));
+    if(!st.custom){st.mx=.5;st.my=.5}
+    bgCache={key:''};
+    $('hint').textContent='입술 가운데를 한 번 눌러 위치를 맞추세요';
+    ready();
+  };
+  im.src=URL.createObjectURL(f);
+});
+bgCache={key:''};
+
+function layout(){
+  // 이미지가 화면 안에서 어떻게 놓이는지 (이미지 좌표 -> 화면)
+  var land=W>=H;
+  var base=land?H/st.ih*1.06:Math.max(W/st.iw,H/st.ih)*1.03;
+  return {base:base};
+}
+cv.addEventListener('click',function(e){
+  if(!src)return;
+  var r=cv.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*W,y=(e.clientY-r.top)/r.height*H;
+  // 화면좌표 -> 이미지좌표 (현재 변환 역산)
+  var p=toImg(x,y);st.mx=Math.max(0,Math.min(1,p.x/st.iw));st.my=Math.max(0,Math.min(1,p.y/st.ih));st.custom=true;
+  $('hint').textContent='';
+});
+var cam={z:1,rot:0,ox:0,oy:0,cy:0};
+function toImg(x,y){
+  var L=layout(),s=L.base*cam.z;
+  var cx=W/2+cam.ox,cy=imgCY()+cam.oy;
+  var dx=x-cx,dy=y-cy,c=Math.cos(-cam.rot),sn=Math.sin(-cam.rot);
+  var rx=dx*c-dy*sn,ry=dx*sn+dy*c;
+  return {x:rx/s+st.iw/2,y:ry/s+st.ih/2};
+}
+function imgCY(){return H/2}
+
+/* ---------- 오디오 ---------- */
+var audio=new Audio();audio.preload='auto';
+var AC=null,an=null,srcNode=null,dest=null,fb=null,songURL=null,hasSong=false;
+function initAudio(){
+  if(AC)return;
+  AC=new (window.AudioContext||window.webkitAudioContext)();
+  srcNode=AC.createMediaElementSource(audio);
+  an=AC.createAnalyser();an.fftSize=2048;an.smoothingTimeConstant=.5;
+  dest=AC.createMediaStreamDestination();
+  srcNode.connect(an);srcNode.connect(AC.destination);srcNode.connect(dest);
+  fb=new Uint8Array(an.frequencyBinCount);
+}
+$('song').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  if(songURL)URL.revokeObjectURL(songURL);
+  songURL=URL.createObjectURL(f);audio.src=songURL;hasSong=true;
+  audio.addEventListener('loadedmetadata',function h(){audio.removeEventListener('loadedmetadata',h);
+    $('songInfo').textContent=f.name+' · '+fmt(audio.duration);ready()});
+});
+function ready(){var ok=!!src&&hasSong;$('play').disabled=!ok;$('rec').disabled=!ok}
+function fmt(s){s=Math.round(s||0);return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+
+var sm={open:0,wide:.5,energy:0,bass:0},peak=.2,lastBeat=0,beatPulse=0;
+function analyse(dt){
+  var voc=0,bass=0,cen=1200;
+  if(an&&!audio.paused){
+    an.getByteFrequencyData(fb);
+    var bw=AC.sampleRate/an.fftSize,i0=Math.floor(250/bw),i1=Math.floor(3400/bw),b1=Math.floor(150/bw);
+    var s=0,n=0,cw=0,cs=0;
+    for(var i=i0;i<=i1;i++){var v=fb[i]/255;s+=v*v;n++;cw+=v*i*bw;cs+=v}
+    voc=Math.sqrt(s/Math.max(1,n));cen=cs>0?cw/cs:1200;
+    var bs=0,bn=0;for(var j=2;j<=b1;j++){var u=fb[j]/255;bs+=u*u;bn++}
+    bass=Math.sqrt(bs/Math.max(1,bn));
+  }
+  peak=Math.max(peak*0.9993,voc,.15);
+  var tg=Math.min(1,Math.pow(voc/peak,1.6)*1.15);
+  sm.open+=(tg-sm.open)*(tg>sm.open?.5:.2);
+  sm.wide+=(Math.min(1,Math.max(0,(cen-700)/1500))-sm.wide)*.12;
+  sm.energy+=(Math.min(1,(voc+bass)/(peak+.3))-sm.energy)*.08;
+  if(bass>sm.bass*1.25&&bass>.35&&performance.now()-lastBeat>220){beatPulse=1;lastBeat=performance.now()}
+  sm.bass+=(bass-sm.bass)*.25;
+  beatPulse*=Math.pow(.001,dt);
+}
+
+/* ---------- 효과 데이터 ---------- */
+var rs=4242;function rnd(){rs=(rs*16807)%2147483647;return rs/2147483647}
+var glit=[],bok=[];
+for(var i=0;i<170;i++)glit.push({x:rnd(),y:rnd(),s:.8+rnd()*2.6,p:rnd()*6.28,v:.01+rnd()*.03,tw:1.5+rnd()*3,c:rnd()<.5?0:(rnd()<.5?1:2)});
+for(var j=0;j<22;j++)bok.push({x:rnd(),y:rnd(),r:10+rnd()*46,p:rnd()*6.28,v:.004+rnd()*.012,a:.1+rnd()*.2});
+var grain=(function(){var g=document.createElement('canvas');g.width=g.height=200;var gc=g.getContext('2d'),id=gc.createImageData(200,200);for(var i=0;i<id.data.length;i+=4){var v=Math.random()*255;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255}gc.putImageData(id,0,0);return g})();
+var sprites={};
+function spr(color){if(sprites[color])return sprites[color];var c=document.createElement('canvas');c.width=c.height=128;var x=c.getContext('2d');
+  var g=x.createRadialGradient(64,64,0,64,64,62);g.addColorStop(0,'rgba('+color+',.5)');g.addColorStop(.8,'rgba('+color+',.45)');g.addColorStop(.94,'rgba('+color+',.8)');g.addColorStop(1,'rgba('+color+',0)');x.fillStyle=g;x.beginPath();x.arc(64,64,62,0,6.283);x.fill();return sprites[color]=c}
+var spark=(function(){var c=document.createElement('canvas');c.width=c.height=64;var x=c.getContext('2d');var g=x.createRadialGradient(32,32,0,32,32,30);g.addColorStop(0,'rgba(255,244,232,.95)');g.addColorStop(.18,'rgba(255,226,200,.55)');g.addColorStop(.5,'rgba(255,200,170,.12)');g.addColorStop(1,'rgba(255,200,170,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return c})();
+
+function bgLayer(){
+  var key=W+'x'+H+':'+st.iw+'x'+st.ih;if(bgCache.key===key)return bgCache.cv;
+  var c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
+  var sc=Math.max(W/st.iw,H/st.ih)*1.2;x.filter='blur(28px) brightness(.55) saturate(1.2)';
+  x.drawImage(src,W/2-st.iw*sc/2,H/2-st.ih*sc/2,st.iw*sc,st.ih*sc);x.filter='none';
+  bgCache={key:key,cv:c};return c}
+
+/* ---------- 입 움직임 ---------- */
+var wc=document.createElement('canvas'),wx=wc.getContext('2d');
+function drawMouth(){
+  var k=MTH[st.mth].k;if(!k)return;
+  var o=Math.max(0,sm.open-.08)*k;if(o<.03)return;
+  var mx=st.mx*st.iw,my=st.my*st.ih,mwid=st.mw/100*st.iw;
+  var R=mwid*1.7,d=Math.min(mwid*.55,mwid*.55*o*(1-sm.wide*.25)+0);
+  var hh=Math.round(R*1.5),ww=Math.round(R*2);
+  if(ww<8||hh<8)return;
+  // 입 안쪽
+  ctx.save();
+  var iw2=mwid*(.34+.1*sm.wide),ih2=d*.5+1.5;
+  var ig=ctx.createLinearGradient(0,my,0,my+d);ig.addColorStop(0,'#1a0508');ig.addColorStop(.7,'#4a0f18');ig.addColorStop(1,'#6a1822');
+  ctx.fillStyle=ig;ctx.beginPath();ctx.ellipse(mx,my+d*.5,iw2,ih2,0,0,6.283);ctx.fill();
+  if(d>mwid*.18){ctx.fillStyle='rgba(235,215,205,.85)';ctx.beginPath();ctx.ellipse(mx,my+1.5,iw2*.78,Math.max(1,d*.13),0,0,6.283);ctx.fill();
+    ctx.fillStyle='rgba(150,50,60,.7)';ctx.beginPath();ctx.ellipse(mx,my+d*.82,iw2*.6,Math.max(1,d*.18),0,0,6.283);ctx.fill()}
+  ctx.restore();
+  // 아랫부분 변형
+  wc.width=ww;wc.height=hh+Math.ceil(d)+4;wx.clearRect(0,0,wc.width,wc.height);
+  for(var j=0;j<hh;j+=2){var t=j/hh,sh=d*Math.pow(1-t,1.6);wx.drawImage(src,mx-R,my+j,ww,2,0,j+sh,ww,2.6)}
+  wx.globalCompositeOperation='destination-in';
+  var mg=wx.createRadialGradient(ww/2,hh*.25,R*.25,ww/2,hh*.35,R*1.0);mg.addColorStop(0,'rgba(0,0,0,1)');mg.addColorStop(.72,'rgba(0,0,0,1)');mg.addColorStop(1,'rgba(0,0,0,0)');
+  wx.fillStyle=mg;wx.fillRect(0,0,wc.width,wc.height);wx.globalCompositeOperation='source-over';
+  ctx.drawImage(wc,mx-R,my);
+}
+
+/* ---------- 프레임 ---------- */
+var t0=performance.now(),last=t0;
+function frame(now){
+  var dt=Math.min(.1,(now-last)/1000);last=now;var t=(now-t0)/1000;
+  analyse(dt);
+  ctx.fillStyle='#07080f';ctx.fillRect(0,0,W,H);
+  if(!src){
+    var g=ctx.createRadialGradient(W/2,H/2,10,W/2,H/2,H*.7);g.addColorStop(0,'#2a1d4a');g.addColorStop(1,'#07080f');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    requestAnimationFrame(frame);return}
+  ctx.drawImage(bgLayer(),0,0);
+  var L=layout();
+  cam.z=1+.035*(.5+.5*Math.sin(t*.12))+beatPulse*.004+sm.energy*.006;
+  cam.rot=Math.sin(t*.31)*.004;cam.ox=Math.sin(t*.2)*5;cam.oy=Math.cos(t*.23)*3+Math.sin(t*1.5)*1.6;
+  var s=L.base*cam.z,cx=W/2+cam.ox,cy=imgCY()+cam.oy;
+  ctx.save();ctx.translate(cx,cy);ctx.rotate(cam.rot);ctx.scale(s,s);ctx.translate(-st.iw/2,-st.ih/2);
+  ctx.drawImage(src,0,0);
+  drawMouth();
+  ctx.restore();
+  var gk=GL[st.gl].k;
+  // 보케
+  ctx.save();ctx.globalCompositeOperation='lighter';var sp=spr(st.tint);
+  bok.forEach(function(q){var x=((q.x+t*q.v)%1.2-.1)*W,y=((q.y-t*q.v*.4)%1.1+1.1)%1.1*H-H*.05,r=q.r*Math.min(W,H)/720*(1+beatPulse*.08);ctx.globalAlpha=Math.min(.32,q.a*.8*gk*(.5+.5*Math.sin(t*.8+q.p))*(.7+sm.energy*.6));ctx.drawImage(sp,x-r,y-r,r*2,r*2)});
+  // 반짝이 가루
+  var n=Math.min(glit.length,Math.round(glit.length*gk*.6));
+  for(var i=0;i<n;i++){var q=glit[i];var x=(q.x+Math.sin(t*.3+q.p)*.02)*W,y=((q.y-t*q.v)%1+1)%1*H;
+    var a=Math.max(0,Math.sin(t*q.tw+q.p));a=a*a;var sz=q.s*Math.min(W,H)/720*(3.2+a*3.6+beatPulse*1.2);
+    ctx.globalAlpha=Math.min(.8,(.12+a*.6)*(.7+sm.energy*.4));
+    ctx.drawImage(spark,x-sz/2,y-sz/2,sz,sz)}
+  ctx.restore();
+  ctx.fillStyle='rgba(10,8,18,.10)';ctx.fillRect(0,0,W,H);
+  // 컬러 / 비네트 / 그레인
+  var vg=ctx.createRadialGradient(W/2,H/2,Math.min(W,H)*.38,W/2,H/2,Math.max(W,H)*.78);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.55)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+  // 자막 띠
+  var tx=$('tick').value.trim();
+  if(tx){var bh=Math.max(28,H*.05),by=H*.16;
+    var tg=ctx.createLinearGradient(0,by,0,by+bh);tg.addColorStop(0,'rgba(8,6,14,.0)');tg.addColorStop(.18,'rgba(8,6,14,.46)');tg.addColorStop(.82,'rgba(8,6,14,.46)');tg.addColorStop(1,'rgba(8,6,14,0)');ctx.fillStyle=tg;ctx.fillRect(0,by,W,bh);
+    var fs=Math.round(bh*.38);ctx.font='500 '+fs+'px "Noto Sans KR",system-ui,sans-serif';ctx.textBaseline='middle';
+    try{ctx.letterSpacing=Math.max(1,fs*.12)+'px'}catch(e){}
+    ctx.fillStyle='rgba(255,255,255,.82)';
+    var unit=tx+'      ·      ',uw=ctx.measureText(unit).width||200,off=(t*55)%uw;
+    for(var px=-off;px<W;px+=uw)ctx.fillText(unit,px,by+bh/2);
+    try{ctx.letterSpacing='0px'}catch(e){}}
+  ctx.save();ctx.globalAlpha=.05;ctx.globalCompositeOperation='overlay';var ox=Math.random()*200,oy=Math.random()*200;
+  for(var gx=-ox;gx<W;gx+=200)for(var gy=-oy;gy<H;gy+=200)ctx.drawImage(grain,gx,gy);ctx.restore();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- 재생 / 녹화 ---------- */
+$('play').addEventListener('click',function(){
+  initAudio();if(AC.state==='suspended')AC.resume();
+  if(audio.paused){audio.play();$('play').textContent='❚❚ 멈춤';$('hint').textContent=''}
+  else{audio.pause();$('play').textContent='▶ 미리 듣기'}
+});
+audio.addEventListener('ended',function(){$('play').textContent='▶ 미리 듣기'});
+var recorder=null,chunks=[],recTimer=null;
+$('rec').addEventListener('click',function(){if(recorder){stopRec();return}startRec()});
+function pickMime(){var c=['video/mp4;codecs=avc1,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];
+  for(var i=0;i<c.length;i++){if(window.MediaRecorder&&MediaRecorder.isTypeSupported(c[i]))return c[i]}return ''}
+function startRec(){
+  if(!window.MediaRecorder){alert('이 브라우저는 영상 저장을 지원하지 않아요. 크롬을 써 주세요.');return}
+  initAudio();if(AC.state==='suspended')AC.resume();
+  audio.pause();audio.currentTime=0;
+  var vs=cv.captureStream(30);dest.stream.getAudioTracks().forEach(function(tr){vs.addTrack(tr)});
+  var mime=pickMime();
+  try{recorder=new MediaRecorder(vs,mime?{mimeType:mime,videoBitsPerSecond:8000000}:{videoBitsPerSecond:8000000})}catch(e){recorder=new MediaRecorder(vs)}
+  chunks=[];recorder.ondataavailable=function(e){if(e.data&&e.data.size)chunks.push(e.data)};
+  recorder.onstop=function(){
+    var type=recorder.mimeType||mime||'video/webm',ext=/mp4/.test(type)?'mp4':'webm';
+    var blob=new Blob(chunks,{type:type}),url=URL.createObjectURL(blob);
+    var r=$('res');r.hidden=false;
+    r.innerHTML='<a href="'+url+'" download="face-singer.'+ext+'">영상 저장하기 (.'+ext+')</a><p class="note" style="margin-top:8px">저장한 영상을 뮤직 영상의 배경으로 넣고, 원래 노래 파일을 음악으로 쓰세요.</p>';
+    $('prog').hidden=true;$('rec').textContent='● 영상 만들기';$('play').disabled=false;recorder=null;clearInterval(recTimer);audio.pause();
+  };
+  recorder.start(1000);
+  $('res').hidden=true;$('prog').hidden=false;$('rec').textContent='■ 그만 만들기';$('play').disabled=true;$('hint').textContent='';
+  audio.play();
+  recTimer=setInterval(function(){var p=audio.duration?audio.currentTime/audio.duration:0;$('pbar').style.width=(p*100).toFixed(1)+'%';$('ptxt').textContent='만드는 중 '+fmt(audio.currentTime)+' / '+fmt(audio.duration)},300);
+  audio.onended=function(){stopRec()};
+}
+function stopRec(){try{recorder&&recorder.state!=='inactive'&&recorder.stop()}catch(e){}}
+window.__fs={st:st,sm:sm,audio:audio,cam:cam};
+})();
+</script>
+</body>
+</html>
