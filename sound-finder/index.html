@@ -1869,7 +1869,8 @@ var HLD={cappella:{t:'맨소리 한 줄로 시작',st:'opens with a single a cap
  stop:{t:'멈췄다 터지기',pre:'[Break: sudden near-silence, one a cappella line, then the full band returns]',st:'dramatic pause before the final chorus'},
  drop:{t:'드롭',pre:'[Drop: heavy bass and drums, instrumental]',st:'heavy drop'},
  solo:{t:'악기 솔로',pre:'[Instrumental Break: expressive lead solo, melodic and emotional]',st:'expressive instrumental solo'},
- hook:{t:'기억에 남는 멜로디',intro:'short signature melodic hook',st:'memorable signature melodic hook'}};
+ hook:{t:'기억에 남는 멜로디',intro:'short signature melodic hook',st:'memorable signature melodic hook'},
+ high:{t:'고음 · 처음·중간·끝',tag:'climactic sustained high note, powerful belting at full voice, soaring and emotional',st:'powerful high-note vocals, soaring belting, high notes at the opening, mid-song and the climax'}};
 var HLORD=['solo','build','stop','drop'];
 var HLAUTO=null,AUTOROT=0;
 function hlRand(a){return a[Math.floor(Math.random()*a.length)]}
@@ -1890,11 +1891,16 @@ function hlAuto(){if(HLAUTO)return HLAUTO;HLSONG=false;var _pn=prec();if(_pn&&!H
   a=[intro],n=1+Math.floor(Math.random()*2),tmp=pool.slice();for(var k=0;k<n&&tmp.length;k++){a.push(tmp.splice(Math.floor(Math.random()*tmp.length),1)[0])}
  if(a.indexOf('peak')<0&&Math.random()<.6)a.push('peak');return HLAUTO=a}
 function hlSel(){if(!cur||lInst()||HLM==='off')return [];if(HLM==='auto')return hlAuto();return Object.keys(HLSET).filter(function(k){return HLSET[k]})}
-function hlStyle(){var sel=hlSel(),pr=['open','cappella','impact','peak','drop','solo','hook','build','stop'],o=[];pr.forEach(function(k){if(sel.indexOf(k)>=0&&o.length<2)o.push(HLD[k].st)});return o}
+function hlStyle(){var sel=hlSel(),pr=['high','open','cappella','impact','peak','drop','solo','hook','build','stop'],o=[];pr.forEach(function(k){if(sel.indexOf(k)>=0&&o.length<2)o.push(HLD[k].st)});return o}
 function hlWrap(t){var sel=hlSel();if(!sel.length)return t;
  var _ik=['open','cappella','impact'].filter(function(k){return sel.indexOf(k)>=0})[0];
  if(_ik){var _cl=String(LS.texts&&LS.texts.chorus||'').split('\n').filter(function(x){return x.trim()}).slice(0,2).join('\n'),_it=_ik==='open'?'[Intro: starts instantly, no slow build, punchy first beat, full energy from the first second]'+(_cl?'\n\n[Hook: chorus teaser, catchy and memorable]\n'+_cl:''):_ik==='cappella'?'[Intro: a cappella, one striking vocal line, then the band enters on the beat]'+(_cl?'\n'+_cl.split('\n')[0]:''):'[Intro: sudden impact hit, a beat of silence, then the groove drops in]';
   t=t.replace(/\[Intro[^\]]*\]/,_it)}
+ if(sel.indexOf('high')>=0){
+  t=t.replace(/\[Intro[^\]]*\]/,'[Intro: opens with a soaring high-note vocal line, full voice, then the band enters]');
+  t=t.replace(/(\[Verse 2)([^\]]*)\]/,function(m,a,b){return a+(b?b+', ':': ')+'a rising vocal run with a short high note, powerful]'});
+  t=t.replace(/(\[Bridge)([^\]]*)\]/,function(m,a,b){return a+(b?b+', ':': ')+'rising vocal, sustained high note, building tension]'});
+  t=t.replace(/(\[Final Chorus)([^\]]*)\]/,function(m,a,b){return a+(b?b+', ':': ')+HLD.high.tag+']'})}
  var pre=HLORD.filter(function(k){return sel.indexOf(k)>=0}).map(function(k){return HLD[k].pre});
  var fi=t.indexOf('[Final Chorus');
  if(sel.indexOf('peak')>=0&&fi>=0){t=t.replace(/(\[Final Chorus)([^\]]*)\]/,function(m,a,b){return a+(b?b+', ':': ')+HLD.peak.tag+']'});fi=t.indexOf('[Final Chorus')}
@@ -1911,6 +1917,7 @@ $('#hlChips').addEventListener('click',function(e){var b=e.target.closest('butto
  if(k==='auto'||k==='off'){HLM=k;HLSET={}}
  else{if(HLM!=='set'){HLSET={};hlAuto().forEach(function(x){HLSET[x]=true});HLM='set'}HLSET[k]=!HLSET[k];if(!Object.keys(HLSET).some(function(x){return HLSET[x]}))HLM='off'}
  renderHL();renderLyr();renderPhrase()});
+window.__sfHL=function(a){HLSET={};a.forEach(function(k){if(HLD[k])HLSET[k]=true});HLM='set';LS.locked={};renderHL();renderLyr();renderPhrase()};
 
 function lyrText0(){
   if(lInst()){var o=[];LY.ambTags.forEach(function(t,i){var hh=LS.hints&&LY.ambHints[i]?': '+LY.ambHints[i]:'';o.push('['+t+hh+']')});o.push('[End]');return o.join('\n\n')}
@@ -2883,6 +2890,9 @@ function toast(m){try{window.__sfToast(m)}catch(e){}}
 var K='sf_pop_v1';
 var DEF=[
  {id:'dusk',ko:'⭐ 노을 추천 · 펠트 피아노 + 첼로',d:'피아노 한 대가 이끌고 첼로가 조용히 받쳐요. 드럼은 마지막 후렴에서만. 바로 시작해서 이탈이 적어요.',en:'Korean emotional ballad, felt piano leading, solo cello, soft breathy female vocals, close intimate sound, drums only in final chorus, starts instantly, not trot',bpm:68,v:'female',t:'slow',th:'memory'},
+ {id:'highballad',ko:'🎤 고음 발라드 · 처음·중간·끝에서 터지는 고음',d:'첫 소절부터 시원한 고음이 나오고, 중간중간 한 번씩 올라가고, 마지막 후렴에서 가장 높은 음이 길게 터져요.',en:'Korean power ballad, powerful high-note vocals, soaring belting from the opening line, high notes recurring mid-song, climactic sustained high note in the final chorus, piano and strings building into full band',bpm:72,v:'male',t:'slow',th:'missing',hl:['high','build','peak']},
+ {id:'highfemale',ko:'🎤 여자 고음 발라드 · 가슴 벅찬 고음',d:'조용한 피아노로 시작해도 첫 줄에서 고음이 나오고, 후렴마다 높아지다 마지막에 가장 높게 터져요.',en:'Korean female power ballad, soaring high-note vocals, belting from the first line, rising high notes through each chorus, climactic sustained high note at the end, piano and strings building to full band',bpm:70,v:'female',t:'slow',th:'regret',hl:['high','stop','peak']},
+ {id:'highrock',ko:'🎤 록 고음 · 기타와 같이 터지는 고음',d:'전기기타와 드럼이 몰아치는 가운데 처음부터 고음이 나오고, 마지막 후렴에서 가장 크게 올라가요.',en:'Korean rock ballad, powerful high-note male vocals, soaring belting at the opening and mid-song, climactic sustained high note, electric guitar solo, driving drums, anthemic chorus',bpm:96,v:'male',t:'mid',th:'youth',hl:['high','peak']},
  {id:'indiefolk',ko:'인디 포크 · 숲속 아침',d:'손으로 뜯는 기타와 첼로, 공기 같은 목소리.',en:'indie folk, fingerpicked acoustic guitar, soft cello, airy intimate vocals, warm room recording',bpm:84,v:'female',t:'mid',th:'morning'},
  {id:'cinematicindie',ko:'시네마틱 인디 · 새벽',d:'펠트 피아노와 느린 현악, 넓은 잔향 속 속삭임.',en:'cinematic indie ballad, felt piano, slow strings, hushed vocals, vast soft reverb',bpm:66,v:'female',t:'slow',th:'night'},
  {id:'chamberpop',ko:'챔버 팝 · 현악 사중주',d:'작은 방에서 연주하는 듯한 현악과 섬세한 목소리.',en:'chamber pop, string quartet, gentle piano, delicate vocals, small-room warmth',bpm:72,v:'female',t:'slow',th:'memory'},
@@ -2942,6 +2952,7 @@ function apply(c){
   if(typeof window.__sfHitGo!=='function'){toast('잠시 뒤에 다시 눌러 주세요');return}
   S.last=c.id;save();
   window.__sfHitGo({id:'pp_'+c.id,ko:c.ko,d:c.d||'',en:c.en,bpm:+c.bpm||100,th:pickTh(c),v:c.v||'female',t:c.t||'mid'});
+  if(c.hl&&typeof window.__sfHL==='function')window.__sfHL(c.hl);
   renderLast();render();
 }
 function renderLast(){
