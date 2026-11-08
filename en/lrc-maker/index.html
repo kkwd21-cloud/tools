@@ -1084,6 +1084,7 @@ async function aiPost(body){
   throw new Error('fail');
 }
 function aiLang(txt){return /[가-힣]/.test(txt)?'ko':(/[぀-ヿ]/.test(txt)?'ja':'en')}
+function HQnow(){var h=$('#optHQ');return !!(h&&h.checked)}
 async function aiRun(){
   if(st.busy||!st.buf||!st.lines.length)return; st.busy=true; var msg=$('#aiMsg'), btn=$('#aiBtn'); btn.disabled=true; au.pause();
   try{
@@ -1102,7 +1103,7 @@ async function aiRun(){
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
     var r=aiAlign(words,L.map(function(l){return l.text}),dur);
-    if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } $('#s2').classList.remove('auto'); msg.textContent=AX.fail;btn.disabled=false;st.busy=false;return}
+    if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); msg.textContent=AX.fail+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return}
     var found=0;
     L.forEach(function(l,i){ var t=r.t[i]; if(r.anch[i]&&st.cand){t=snapOnset(t,0.4,0.4,0.4,0.5)} l.t=Math.max(0,t); l.est=r.anch[i]?'auto':true; l.lock=false; if(r.anch[i])found++ });
     st.secT=st.secs.map(function(){return null}); st.secMode=false; setModeUI(); st.tapIdx=L.length; st.verify=true; lastActive='';
