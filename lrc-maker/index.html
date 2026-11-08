@@ -759,7 +759,7 @@ window.addEventListener('resize',function(){if(!$('#s2').hidden)drawBase()});
 // ---------- playback loop
 var raf=0, lastActive='';
 function activeIndex(t){
-  var idx=-1,best=-1; st.lines.forEach(function(l,i){if(l.t!=null&&l.est!==true&&l.t<=t&&l.t>=best){best=l.t;idx=i}}); return idx;
+  var idx=-1,best=-1; st.lines.forEach(function(l,i){if(l.t!=null&&(l.est!==true||st.verify)&&l.t<=t&&l.t>=best){best=l.t;idx=i}}); return idx;
 }
 function updateTime(){
   var t=au.currentTime||0,dur=st.dur||au.duration||0;
@@ -960,12 +960,14 @@ function aiAlign(words,lines,dur){
   var rate=0.22, anc=[];
   for(k=0;k<nl;k++){var p=per[k]; if(p.ts.length>=2&&p.ts.length>=0.3*p.n){ anc.push({k:k,t:lineStart(p.ts,rate),w:p.ts.length}) } }
   // weighted LIS on t
+  var cw=[0]; lines.forEach(function(x,q){cw.push(cw[q]+aiWeight(x))});
   var L=anc.length; if(!L)return null; var best=new Array(L),prev=new Array(L).fill(-1),bi2=0;
-  for(i=0;i<L;i++){best[i]=anc[i].w; for(j=0;j<i;j++){ if(anc[j].t<anc[i].t-0.3&&best[j]+anc[i].w>best[i]){best[i]=best[j]+anc[i].w;prev[i]=j} } if(best[i]>best[bi2])bi2=i}
+  for(i=0;i<L;i++){best[i]=anc[i].w; for(j=0;j<i;j++){ if(anc[j].t<anc[i].t-0.3&&anc[i].t-anc[j].t>=0.09*(cw[anc[i].k]-cw[anc[j].k])&&best[j]+anc[i].w>best[i]){best[i]=best[j]+anc[i].w;prev[i]=j} } if(best[i]>best[bi2])bi2=i}
   var keep=[]; for(i=bi2;i>=0;i=prev[i])keep.push(anc[i]); keep.reverse();
   return aiFinish(keep,lines,dur);
 }
 
+var AI_VEND=0;
 function aiFinish(keep,lines,dur){
   var nl=lines.length,i,k,rate=0.22;
   var t=new Array(nl).fill(null),anch=new Array(nl).fill(false);
@@ -978,7 +980,7 @@ function aiFinish(keep,lines,dur){
   function fill(a,b,ta,tb){ // lines a+1..b-1 between ta and tb ; a or b may be -1/nl
     var tot=0,q; for(q=a;q<b;q++)if(q>=0)tot+=wt[q]; 
     if(a<0){ var tt=tb; for(q=b-1;q>=0;q--){tt-=wt[q]*pace;t[q]=Math.max(0,tt)} return }
-    if(b>=nl){ var tt2=ta+wt[a]*pace; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*pace} if(dur&&nl-1>a&&t[nl-1]>dur-2){var span2=Math.max(2,dur-3-ta),tot2=0,ac=wt[a];for(q=a;q<nl;q++)tot2+=wt[q];for(q=a+1;q<nl;q++){t[q]=ta+span2*ac/tot2;ac+=wt[q]}} return }
+    if(b>=nl){ var tt2=ta+wt[a]*pace; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*pace} var tgt=Math.min(dur||1e9,(AI_VEND>0?AI_VEND:(dur||1e9)))-3; if(dur&&nl-1>a&&(t[nl-1]>dur-2||(nl-1-a>=3&&t[nl-1]<tgt-8))){var span2=Math.max(2,tgt-ta),tot2=0,ac=wt[a];for(q=a;q<nl;q++)tot2+=wt[q];for(q=a+1;q<nl;q++){t[q]=ta+span2*ac/tot2;ac+=wt[q]}} return }
     var acc=wt[a],span=(tb-ta)*0.85; for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
   }
   fill(-1,ks[0],null,t[ks[0]]);
@@ -1010,8 +1012,9 @@ function aiAlign2(words,lines,dur){
       cands.push({k:k,t:lineStart(ts,0.22),w:mc});
     }
   }
+  var cw=[0]; lines.forEach(function(x,q){cw.push(cw[q]+aiWeight(x))});
   var L=cands.length; if(!L)return null; var best=new Array(L),prev=new Array(L).fill(-1),bi=0;
-  for(i=0;i<L;i++){best[i]=cands[i].w; for(j=0;j<i;j++){ if(cands[j].k<cands[i].k&&cands[j].t<cands[i].t-0.3&&best[j]+cands[i].w>best[i]){best[i]=best[j]+cands[i].w;prev[i]=j} } if(best[i]>best[bi])bi=i}
+  for(i=0;i<L;i++){best[i]=cands[i].w; for(j=0;j<i;j++){ if(cands[j].k<cands[i].k&&cands[j].t<cands[i].t-0.3&&cands[i].t-cands[j].t>=0.09*(cw[cands[i].k]-cw[cands[j].k])&&best[j]+cands[i].w>best[i]){best[i]=best[j]+cands[i].w;prev[i]=j} } if(best[i]>best[bi])bi=i}
   var keep=[]; for(i=bi;i>=0;i=prev[i])keep.push(cands[i]); keep.reverse();
   return aiFinish(keep,lines,dur);
 }
@@ -1153,21 +1156,22 @@ async function aiRun(){
     } }
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
-    var r=aiAlign(words,L.map(function(l){return l.text}),dur); if(!r||r.frac<0.2){ var r2=null; try{r2=aiAlign2(words,L.map(function(l){return l.text}),dur)}catch(_){} if(r2&&(!r||r2.frac>r.frac))r=r2 } try{window.__fr=r?r.frac:null;window.__nw=words.length}catch(_){}
-    if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } if(!r||r.frac<0.1){ $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); var rough=false; try{rough=aiRough(words)}catch(_){} msg.textContent=(rough?(KO?'AI가 가사를 못 알아들어서 노래 길이에 맞춰 대략 맞췄어요. 들어 보고 어긋난 줄만 고치세요.':'The AI could not make out the lyrics, so lines were spread over the song roughly. Listen and fix any that are off.'):AX.fail)+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return} }
+    try{AI_VEND=estimate()[1]}catch(_){AI_VEND=0} var r=aiAlign(words,L.map(function(l){return l.text}),dur); if(!r||r.frac<0.2){ var r2=null; try{r2=aiAlign2(words,L.map(function(l){return l.text}),dur)}catch(_){} if(r2&&(!r||r2.frac>r.frac))r=r2 } try{window.__fr=r?r.frac:null;window.__nw=words.length}catch(_){}
+    if(!r||r.frac<0.6){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; st.r1=r; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } if(st.r1&&(!r||st.r1.frac>r.frac)){ r=st.r1 } st.r1=null; if(!r||r.frac<0.1){ $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); var rough=false; try{rough=aiRough(words)}catch(_){} msg.textContent=(rough?(KO?'AI가 가사를 못 알아들어서 노래 길이에 맞춰 대략 맞췄어요. 들어 보고 어긋난 줄만 고치세요.':'The AI could not make out the lyrics, so lines were spread over the song roughly. Listen and fix any that are off.'):AX.fail)+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return} }
     try{ var fa=-1,q0; for(q0=0;q0<r.anch.length;q0++)if(r.anch[q0]){fa=q0;break}
       if(fa>0){ var s0=estimate()[0], ta=r.t[fa]; if(isFinite(s0)&&ta-s0>fa*1.2&&r.t[0]<s0-1){ var ww=L.slice(0,fa).map(function(l){return aiWeight(l.text)}),tw=0,ac=0,q1; ww.forEach(function(x){tw+=x}); for(q1=0;q1<fa;q1++){ r.t[q1]=s0+(ta-s0)*ac/tw; ac+=ww[q1] } } } }catch(_){}
     var found=0;
-    L.forEach(function(l,i){ var t=r.t[i]; if(r.anch[i]&&st.cand){t=snapOnset(t,0.4,0.4,0.4,0.5)} l.t=Math.max(0,t); l.est=r.anch[i]?'auto':true; l.lock=false; if(r.anch[i])found++ });
+    L.forEach(function(l,i){ var t=r.t[i]; if(r.anch[i]&&st.cand){t=snapOnset(t,0.4,0.4,0.4,0.5)} l.t=Math.max(0,t-0.6); l.est=r.anch[i]?'auto':true; l.lock=false; if(r.anch[i])found++ });
     st.secT=st.secs.map(function(){return null}); st.secMode=false; setModeUI(); st.tapIdx=L.length; st.verify=true; lastActive='';
-    refreshAllTimes(); msg.textContent=AX.done(found,L.length);
+    refreshAllTimes(); var fa2=null,la2=null,cn=[],ff=function(x){return Math.floor(x/60)+':'+('0'+Math.floor(x%60)).slice(-2)}; L.forEach(function(l,i){if(r.anch[i]){if(fa2==null)fa2=l.t;la2=l.t}}); words.forEach(function(w){var b=Math.floor(w.s/30);cn[b]=(cn[b]||0)+1}); for(var bq=0;bq<Math.ceil(dur/30);bq++)cn[bq]=cn[bq]||0;
+    msg.textContent=AX.done(found,L.length)+(fa2!=null?' ['+ff(fa2)+'~'+ff(la2)+' · '+cn.join('/')+']':'');
     var f=null; L.forEach(function(l){if(f==null||l.t<f)f=l.t}); au.currentTime=Math.max(0,(f||0)-1.5); au.play().catch(function(){}); $('#s2').classList.remove('auto'); var s3x=$('#s3'); if(s3x&&s3x.scrollIntoView)setTimeout(function(){s3x.scrollIntoView({behavior:'smooth',block:'start'})},300);
   }catch(e){ try{console.error(e)}catch(_){} var why=String((e&&e.message)||e||'').replace(/\s+/g,' ').slice(0,100); msg.textContent=AX.net+(why?' ['+why+']':'') }
   $('#s2').classList.remove('auto'); btn.disabled=false; st.busy=false;
 }
 $('#aiBtn').addEventListener('click',aiRun);
 $('#build').addEventListener('click',function(){
-  $('#s2').classList.remove('auto'); var oa=$('#optAuto'); if(!oa||!oa.checked||st.verify)return; var n=0; st.retried=false; $('#s2').classList.add('auto');
+  $('#s2').classList.remove('auto'); var oa=$('#optAuto'); if(!oa||!oa.checked||st.verify)return; var n=0; st.retried=false; st.r1=null; $('#s2').classList.add('auto');
   (function go(){ if(st.busy||!st.lines.length){ $('#s2').classList.remove('auto'); return } if(st.buf){ aiRun(); return } if(++n<20)setTimeout(go,500); else $('#s2').classList.remove('auto') })();
 });
 
