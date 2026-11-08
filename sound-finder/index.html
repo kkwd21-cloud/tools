@@ -1994,6 +1994,7 @@ function lyrNew(){HLAUTO=null;AUTOROT=1+Math.floor(Math.random()*997);LS.sig=lSi
 $('#lyBody').addEventListener('click',function(e){var b=e.target.closest('button[data-act]');if(!b)return;var k=b.dataset.k;
   if(b.dataset.act==='lock'){LS.locked[k]=!LS.locked[k];renderLyr()}
   else if(tone==='story'&&!ENG&&window.__STORY&&LS.story&&SWM[k]){var pl=storyPool(k,SWM[k]).concat([LS.story[k]]).filter(function(x){return x!==LS.texts[k]});LS.texts[k]=pl[Math.floor(Math.random()*pl.length)];renderLyr()}
+  else if(tone==='story'&&!ENG&&window.__STORY&&LS.story&&/^(verse1|verse2|pre|chorus)$/.test(k)){var bk=(k==='verse1'||k==='verse2')?'verse':k,pl2=storyPool(bk,['modern','now','ahead']);window.__STORY.forEach(function(z){if(z!==LS.story&&z[k])pl2.push(z[k])});pl2.push(LS.story[k]);pl2=pl2.filter(function(x){return x!==LS.texts[k]&&!(k==='verse1'&&x===LS.texts.verse2)&&!(k==='verse2'&&x===LS.texts.verse1)});LS.texts[k]=pl2[Math.floor(Math.random()*pl2.length)];renderLyr()}
   else if(tone==='story'&&!ENG&&window.__STORY){storyRoll(false);renderLyr();renderTitles();renderPhrase()}
   else{var av=LS.texts[k],p=lPool(k),c=p.filter(function(x){return x!==av&&!(k==='verse1'&&x===LS.texts.verse2)&&!(k==='verse2'&&x===LS.texts.verse1)});LS.texts[k]=lRnd(c.length?c:p);renderLyr()}});
 $('#lyBody').addEventListener('input',function(e){var t=e.target;if(t.tagName==='TEXTAREA'){t.rows=Math.max(2,(t.value.match(/\n/g)||[]).length+1);LS.texts[t.dataset.k]=t.value;lLen()}});
