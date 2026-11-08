@@ -1004,32 +1004,58 @@ function aiClean(x){
   for(var p=0;p<n;p+=win){var e=0,q=Math.min(n,p+win),k;for(k=p;k<q;k++)e+=y[k]*y[k];var r=Math.sqrt(e/(q-p))+1e-4,tg=Math.max(0.5,Math.min(8,0.08/r));g+=(tg-g)*0.08;for(k=p;k<q;k++){var v2=y[k]*g;y[k]=v2>1?1:(v2<-1?-1:v2)}}
   return y;
 }
+var AIW=null, AIWM='';
+var AIW_SRC="let pipe=null;\nself.onmessage=async(e)=>{const d=e.data;try{\nif(d.type==='load'){let T=null,ie=null;for(const u of d.cdn){try{T=await import(u);break}catch(x){ie=x}}\nif(!T)throw (ie||new Error('import'));let err=null;pipe=null;\nfor(const t of d.tries){try{pipe=await T.pipeline('automatic-speech-recognition',d.model,Object.assign({progress_callback:(p)=>self.postMessage({type:'prog',p:{status:p&&p.status,loaded:p&&p.loaded,total:p&&p.total}})},t));break}catch(x){err=x}}\nif(!pipe)throw (err||new Error('load'));self.postMessage({type:'loaded'})}\nelse if(d.type==='run'){const out=await pipe(d.seg,{return_timestamps:'word',language:d.lang,task:'transcribe'});\nself.postMessage({type:'out',chunks:((out&&out.chunks)||[]).map((c)=>({text:c.text,timestamp:c.timestamp}))})}\n}catch(x){self.postMessage({type:'err',msg:String((x&&x.message)||x)})}};";
+function aiWorkerLoad(mname,tries,cdn,onprog){
+  return new Promise(function(res,rej){
+    if(AIW&&AIWM===mname){res();return}
+    if(AIW){try{AIW.terminate()}catch(_){} AIW=null}
+    var w; try{ w=new Worker(URL.createObjectURL(new Blob([AIW_SRC],{type:'text/javascript'})),{type:'module'}) }catch(e){ var ne=new Error('noworker'); ne.noworker=1; rej(ne); return }
+    w.onerror=function(ev){ var ne=new Error('worker '+((ev&&ev.message)||'error')); ne.noworker=1; rej(ne) };
+    w.onmessage=function(e){ var d=e.data; if(d.type==='prog')onprog(d.p); else if(d.type==='loaded'){ AIW=w; AIWM=mname; w.onerror=null; res() } else if(d.type==='err'){ try{w.terminate()}catch(_){} rej(new Error(d.msg)) } };
+    w.postMessage({type:'load',model:mname,tries:tries,cdn:cdn});
+  });
+}
+function aiWorkerRun(seg,lg){
+  return new Promise(function(res,rej){
+    AIW.onmessage=function(e){ var d=e.data; if(d.type==='out')res(d.chunks); else if(d.type==='err')rej(new Error(d.msg)) };
+    AIW.onerror=function(){ rej(new Error('worker error')) };
+    var cp=seg.slice(); AIW.postMessage({type:'run',seg:cp,lang:lg},[cp.buffer]);
+  });
+}
 async function aiLocal(pcm,msg,lang){
   var HQ=!!($('#optHQ')&&$('#optHQ').checked), mname=HQ?'onnx-community/whisper-small_timestamped':'onnx-community/whisper-base_timestamped';
-  if(AIPIPE&&AIPIPE._m!==mname)AIPIPE=null;
-  if(!AIPIPE){
-    msg.textContent=AX.load;
-    var T=null,CDN=['https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.6/dist/transformers.web.js','https://unpkg.com/@huggingface/transformers@3.7.6/dist/transformers.web.js','https://esm.sh/@huggingface/transformers@3.7.6'],ie=null;
-    for(var ci=0;ci<CDN.length&&!T;ci++){ try{ T=await import(CDN[ci]) }catch(e){ ie=e } }
-    if(!T)throw (ie||new Error('import'));
-    var prog=function(p){ if(p&&p.status==='progress'&&p.total){ msg.textContent=AX.load+Math.round(p.loaded/p.total*100)+'%' } };
-    var tries=[]; if(navigator.gpu&&!HQ)tries.push({device:'webgpu'}); tries.push({device:'wasm',dtype:'uint8'}); tries.push({device:'wasm'});
-    var err=null;
-    for(var ti=0;ti<tries.length&&!AIPIPE;ti++){
-      try{ AIPIPE=await T.pipeline('automatic-speech-recognition',mname,Object.assign({progress_callback:prog},tries[ti])); AIPIPE._m=mname }catch(e){ err=e }
+  var CDN=['https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.6/dist/transformers.web.js','https://unpkg.com/@huggingface/transformers@3.7.6/dist/transformers.web.js','https://esm.sh/@huggingface/transformers@3.7.6'];
+  var tries=[]; if(navigator.gpu&&!HQ)tries.push({device:'webgpu'}); tries.push({device:'wasm',dtype:'uint8'}); tries.push({device:'wasm'});
+  var prog=function(p){ if(p&&p.status==='progress'&&p.total){ msg.textContent=AX.load+Math.round(p.loaded/p.total*100)+'%' } };
+  var useW=!!window.Worker;
+  msg.textContent=AX.load;
+  if(useW){ try{ await aiWorkerLoad(mname,tries,CDN,prog) }catch(e){ if(!e.noworker)throw e; useW=false } }
+  if(!useW){
+    if(AIPIPE&&AIPIPE._m!==mname)AIPIPE=null;
+    if(!AIPIPE){
+      var T=null,ie=null;
+      for(var ci=0;ci<CDN.length&&!T;ci++){ try{ T=await import(CDN[ci]) }catch(e){ ie=e } }
+      if(!T)throw (ie||new Error('import'));
+      var err=null;
+      for(var ti=0;ti<tries.length&&!AIPIPE;ti++){
+        try{ AIPIPE=await T.pipeline('automatic-speech-recognition',mname,Object.assign({progress_callback:prog},tries[ti])); AIPIPE._m=mname }catch(e){ err=e }
+      }
+      if(!AIPIPE)throw (err||new Error('load'));
     }
-    if(!AIPIPE)throw (err||new Error('load'));
   }
-  // 30초씩 직접 잘라서(25초마다, 5초 겹침) 듣고 시간을 이어 붙여요 (긴 노래에서 시간이 꼬이는 것 방지)
+  // 30초씩 직접 잘라서(25초마다, 5초 겹침) 듣고 시간을 이어 붙여요. AI는 별도 작업 공간(Worker)에서 돌아 화면이 멈추지 않아요.
   var cl=aiClean(pcm), SR=16000, WIN=30*SR, STEP=25*SR, ws=[], nw=Math.max(1,Math.ceil(Math.max(0,cl.length-5*SR)/STEP)), wi=0, lg=lang==='ko'?'korean':(lang==='ja'?'japanese':'english');
   for(var s0=0; s0<cl.length; s0+=STEP){
     var last=(s0+WIN>=cl.length), seg=cl.subarray(s0,Math.min(cl.length,s0+WIN)), t0=s0/SR; wi++;
     msg.textContent=AX.listen+wi+'/'+nw;
     var en=0,q2; for(q2=0;q2<seg.length;q2+=16)en+=seg[q2]*seg[q2];
     if(Math.sqrt(en/Math.max(1,seg.length/16))>=0.003){
-      var out=await AIPIPE(seg,{return_timestamps:'word',language:lg,task:'transcribe'});
+      var chunks;
+      if(useW){ chunks=await aiWorkerRun(seg,lg) } else { var o2=await AIPIPE(seg,{return_timestamps:'word',language:lg,task:'transcribe'}); chunks=(o2&&o2.chunks)||[] }
       var lo=t0+(s0>0?2.5:0), hi=last?1e9:t0+27.5;
-      ((out&&out.chunks)||[]).forEach(function(c){ if(c&&c.text&&c.timestamp&&isFinite(c.timestamp[0])){ var st0=c.timestamp[0]+t0, e0=c.timestamp[1]; e0=isFinite(e0)?e0+t0:st0+0.3; var mid=(st0+e0)/2; if(mid>=lo&&mid<hi)ws.push({w:c.text,s:st0,e:Math.max(e0,st0+0.05)}) } });
+      chunks.forEach(function(c){ if(c&&c.text&&c.timestamp&&isFinite(c.timestamp[0])){ var st0=c.timestamp[0]+t0, e0=c.timestamp[1]; e0=isFinite(e0)?e0+t0:st0+0.3; var mid=(st0+e0)/2; if(mid>=lo&&mid<hi)ws.push({w:c.text,s:st0,e:Math.max(e0,st0+0.05)}) } });
+      await new Promise(function(r){setTimeout(r,0)});
     }
     if(last)break;
   }
