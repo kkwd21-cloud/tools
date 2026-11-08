@@ -1001,7 +1001,9 @@ async function aiLocal(pcm,msg,lang){
   if(AIPIPE&&AIPIPE._m!==mname)AIPIPE=null;
   if(!AIPIPE){
     msg.textContent=AX.load;
-    var T=await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.6/dist/transformers.web.js');
+    var T=null,CDN=['https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.6/dist/transformers.web.js','https://unpkg.com/@huggingface/transformers@3.7.6/dist/transformers.web.js','https://esm.sh/@huggingface/transformers@3.7.6'],ie=null;
+    for(var ci=0;ci<CDN.length&&!T;ci++){ try{ T=await import(CDN[ci]) }catch(e){ ie=e } }
+    if(!T)throw (ie||new Error('import'));
     var prog=function(p){ if(p&&p.status==='progress'&&p.total){ msg.textContent=AX.load+Math.round(p.loaded/p.total*100)+'%' } };
     var tries=[]; if(navigator.gpu&&!HQ)tries.push({device:'webgpu'}); tries.push({device:'wasm',dtype:'uint8'}); tries.push({device:'wasm'});
     var err=null;
@@ -1064,7 +1066,7 @@ async function aiRun(){
     st.secT=st.secs.map(function(){return null}); st.secMode=false; setModeUI(); st.tapIdx=L.length; st.verify=true; lastActive='';
     refreshAllTimes(); msg.textContent=AX.done(found,L.length);
     var f=null; L.forEach(function(l){if(f==null||l.t<f)f=l.t}); au.currentTime=Math.max(0,(f||0)-1.5); au.play().catch(function(){});
-  }catch(e){ msg.textContent=AX.net }
+  }catch(e){ try{console.error(e)}catch(_){} var why=String((e&&e.message)||e||'').replace(/\s+/g,' ').slice(0,100); msg.textContent=AX.net+(why?' ['+why+']':'') }
   btn.disabled=false; st.busy=false;
 }
 $('#aiBtn').addEventListener('click',aiRun);
