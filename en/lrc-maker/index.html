@@ -287,6 +287,10 @@ footer{padding:26px 20px 90px;text-align:center;font-size:12.5px;color:var(--mut
 .lsec{font-size:12px;color:var(--accent2);padding:8px 4px 2px;letter-spacing:.02em;opacity:.9}
 .lrow.auto .lt{font-style:italic;color:var(--text);opacity:.85}
 #modeRow .flabel{margin-right:4px}
+
+#s2.auto>*:not(h3):not(#aiBox){display:none!important}
+#s2.auto~#s3{display:none!important}
+#s2.auto #aiBtn{pointer-events:none;opacity:.85}
 </style>
 </head>
 <body>
@@ -336,8 +340,8 @@ I stayed awake thinking of you again
             <label><input type="checkbox" id="optHQ"><span>Precision mode (more accurate but slower · about 250 MB)</span></label>
           </div>
         </details>
-        <button type="button" class="b-main b-big" id="build">Start</button>
-        <p class="note">When you press Start the song plays. Press the big button each time a line begins.</p>
+        <button type="button" class="b-main b-big" id="build">Make subtitles</button>
+        <p class="note">The AI does it automatically. If it cannot, a tap-along screen appears.</p>
         <p class="note warn" id="s1err" hidden></p>
       </div>
 
@@ -987,6 +991,7 @@ if(!AI_URL){
   AX.net=KO?'AI를 불러오지 못했어요. 인터넷 연결을 확인하거나 아래 큰 버튼으로 맞춰 주세요.':'Could not load the AI. Check your connection or use the big button below.';
 }
 var AIPIPE=null;
+AX.retry='Not clear enough, so listening again with the more precise AI (about 250 MB the first time · keep this tab open) ';
 function aiClean(x){
   // 노래에서 목소리 대역(약 120Hz~6kHz)만 남기고 크기를 고르게 맞춰요 (AI가 더 잘 알아듣게)
   var n=x.length,y=new Float32Array(n),sr=16000,i;
@@ -1061,19 +1066,19 @@ async function aiRun(){
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
     var r=aiAlign(words,L.map(function(l){return l.text}));
-    if(!r||r.frac<0.2){msg.textContent=AX.fail;btn.disabled=false;st.busy=false;return}
+    if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } $('#s2').classList.remove('auto'); msg.textContent=AX.fail;btn.disabled=false;st.busy=false;return}
     var found=0;
     L.forEach(function(l,i){ var t=r.t[i]; if(r.anch[i]&&st.cand){t=snapOnset(t,0.4,0.4,0.4,0.5)} l.t=Math.max(0,t); l.est=r.anch[i]?'auto':true; l.lock=false; if(r.anch[i])found++ });
     st.secT=st.secs.map(function(){return null}); st.secMode=false; setModeUI(); st.tapIdx=L.length; st.verify=true; lastActive='';
     refreshAllTimes(); msg.textContent=AX.done(found,L.length);
-    var f=null; L.forEach(function(l){if(f==null||l.t<f)f=l.t}); au.currentTime=Math.max(0,(f||0)-1.5); au.play().catch(function(){});
+    var f=null; L.forEach(function(l){if(f==null||l.t<f)f=l.t}); au.currentTime=Math.max(0,(f||0)-1.5); au.play().catch(function(){}); $('#s2').classList.remove('auto'); var s3x=$('#s3'); if(s3x&&s3x.scrollIntoView)setTimeout(function(){s3x.scrollIntoView({behavior:'smooth',block:'start'})},300);
   }catch(e){ try{console.error(e)}catch(_){} var why=String((e&&e.message)||e||'').replace(/\s+/g,' ').slice(0,100); msg.textContent=AX.net+(why?' ['+why+']':'') }
-  btn.disabled=false; st.busy=false;
+  $('#s2').classList.remove('auto'); btn.disabled=false; st.busy=false;
 }
 $('#aiBtn').addEventListener('click',aiRun);
 $('#build').addEventListener('click',function(){
-  var oa=$('#optAuto'); if(!oa||!oa.checked||st.verify)return; var n=0;
-  (function go(){ if(st.busy||!st.lines.length)return; if(st.buf){ aiRun(); return } if(++n<20)setTimeout(go,500) })();
+  $('#s2').classList.remove('auto'); var oa=$('#optAuto'); if(!oa||!oa.checked||st.verify)return; var n=0; st.retried=false; $('#s2').classList.add('auto');
+  (function go(){ if(st.busy||!st.lines.length){ $('#s2').classList.remove('auto'); return } if(st.buf){ aiRun(); return } if(++n<20)setTimeout(go,500); else $('#s2').classList.remove('auto') })();
 });
 
 // ---------- section mode UI
