@@ -932,6 +932,7 @@ function aiNorm(s){var a=(String(s).replace(/\[[^\]]*\]/g,' ').toLowerCase().mat
 function aiWeight(s){var h=(s.match(/[가-힣]/g)||[]).length,l=(s.replace(/[가-힣]/g,' ').match(/[aeiouy]+/gi)||[]).length,o=(s.match(/[぀-ヿ一-鿿]/g)||[]).length;return Math.max(2,h+l+o)}
 // words:[{w,s,e}]  lines:[text]  -> {t:[..], anch:[bool], frac}
 function lineStart(ts,rate){
+  if(ts.length>2){ var gs=[],cur=[ts[0]],q; for(q=1;q<ts.length;q++){ var dg=ts[q][1]-ts[q-1][1]; if(dg<-1.5||dg>5){gs.push(cur);cur=[]} cur.push(ts[q]) } gs.push(cur); var bg=gs[0]; gs.forEach(function(g){if(g.length>bg.length)bg=g}); if(bg.length>=2)ts=bg }
   var n=ts.length,sx=0,sy=0,sxx=0,sxy=0,i; for(i=0;i<n;i++){sx+=ts[i][0];sy+=ts[i][1];sxx+=ts[i][0]*ts[i][0];sxy+=ts[i][0]*ts[i][1]}
   var den=n*sxx-sx*sx, b=den>1e-9?(n*sxy-sx*sy)/den:rate; b=Math.max(0.08,Math.min(0.7,b));
   var a=(sy-b*sx)/n; return Math.min(a,ts[0][1]);
@@ -962,6 +963,11 @@ function aiAlign(words,lines,dur){
   var L=anc.length; if(!L)return null; var best=new Array(L),prev=new Array(L).fill(-1),bi2=0;
   for(i=0;i<L;i++){best[i]=anc[i].w; for(j=0;j<i;j++){ if(anc[j].t<anc[i].t-0.3&&best[j]+anc[i].w>best[i]){best[i]=best[j]+anc[i].w;prev[i]=j} } if(best[i]>best[bi2])bi2=i}
   var keep=[]; for(i=bi2;i>=0;i=prev[i])keep.push(anc[i]); keep.reverse();
+  return aiFinish(keep,lines,dur);
+}
+
+function aiFinish(keep,lines,dur){
+  var nl=lines.length,i,k,rate=0.22;
   var t=new Array(nl).fill(null),anch=new Array(nl).fill(false);
   keep.forEach(function(a){t[a.k]=a.t;anch[a.k]=true});
   var wt=lines.map(aiWeight);
@@ -980,6 +986,34 @@ function aiAlign(words,lines,dur){
   fill(ks[ks.length-1],nl,t[ks[ks.length-1]],null);
   for(k=1;k<nl;k++)if(t[k]<t[k-1]+0.25)t[k]=t[k-1]+0.25;
   return {t:t,anch:anch,frac:keep.length/nl};
+}
+
+function aiAlign2(words,lines,dur){
+  var H=[],Ht=[],nl=lines.length,k,i,j,cands=[];
+  words.forEach(function(wd){var cs=aiNorm(wd.w),n=cs.length;cs.forEach(function(c,q){H.push(c);Ht.push(wd.s+(wd.e-wd.s)*(q+0.5)/n)})});
+  var m=H.length; if(m<4)return null;
+  for(k=0;k<nl;k++){
+    var R=aiNorm(lines[k]),n=R.length; if(n<3)continue;
+    var W=m+1,D=new Int16Array((n+1)*W),B=new Uint8Array((n+1)*W);
+    for(i=1;i<=n;i++){D[i*W]=-i;B[i*W]=2; for(j=1;j<=m;j++){
+      var dg=D[(i-1)*W+j-1]+(R[i-1]===H[j-1]?2:-1),up=D[(i-1)*W+j]-1,lf=D[i*W+j-1]-1,b=1,v=dg;
+      if(up>v){v=up;b=2} if(lf>v){v=lf;b=3}
+      D[i*W+j]=v;B[i*W+j]=b;
+    }}
+    var ends=[]; for(j=1;j<=m;j++)ends.push(j); ends.sort(function(x,y){return D[n*W+y]-D[n*W+x]});
+    var used=[],need=Math.max(3,Math.ceil(0.5*n));
+    for(var e=0;e<ends.length&&used.length<3;e++){
+      var je=ends[e],ok=true; for(var u=0;u<used.length;u++)if(Math.abs(used[u]-je)<n*2)ok=false; if(!ok)continue;
+      if(D[n*W+je]<need*2-(n-need))break;
+      var ts=[],ii=n,jj=je,mc=0; while(ii>0&&jj>0){var b2=B[ii*W+jj]; if(b2===1){ if(R[ii-1]===H[jj-1]){ts.push([ii-1,Ht[jj-1]]);mc++} ii--;jj--} else if(b2===2)ii--; else jj--}
+      if(mc<need)continue; ts.reverse(); used.push(je);
+      cands.push({k:k,t:lineStart(ts,0.22),w:mc});
+    }
+  }
+  var L=cands.length; if(!L)return null; var best=new Array(L),prev=new Array(L).fill(-1),bi=0;
+  for(i=0;i<L;i++){best[i]=cands[i].w; for(j=0;j<i;j++){ if(cands[j].k<cands[i].k&&cands[j].t<cands[i].t-0.3&&best[j]+cands[i].w>best[i]){best[i]=best[j]+cands[i].w;prev[i]=j} } if(best[i]>best[bi])bi=i}
+  var keep=[]; for(i=bi;i>=0;i=prev[i])keep.push(cands[i]); keep.reverse();
+  return aiFinish(keep,lines,dur);
 }
 
 // ---------- AI auto sync (optional, needs AI_URL)
@@ -1085,6 +1119,23 @@ async function aiPost(body){
 }
 function aiLang(txt){return /[가-힣]/.test(txt)?'ko':(/[぀-ヿ]/.test(txt)?'ja':'en')}
 function HQnow(){var h=$('#optHQ');return !!(h&&h.checked)}
+function aiRough(words){
+  var L=st.lines; if(!L.length)return false; var est=estimate(), s=est[0], e=est[1], ws=(words||[]).filter(function(w){return isFinite(w.s)&&isFinite(w.e)}), a=-1, b=-1, i;
+  for(i=0;i+3<ws.length;i++){ if(ws[i+3].e-ws[i].s<=6){a=ws[i].s;break} }
+  for(i=ws.length-1;i>=3;i--){ if(ws[i].e-ws[i-3].s<=6){b=ws[i].e;break} }
+  if(a>=0&&b>a+10){ s=Math.max(s,a); e=Math.min(e,b+0.5) }
+  if(e<s+10){ s=est[0]; e=est[1] }
+  if(e<s+2)return false;
+  draft(s,e,$('#optSnap').checked);
+  var vw=ws.filter(function(w){return w.s>=s-0.5&&w.s<=e}); 
+  if(vw.length>=40){ var tot=0,acc=0,q,sn=$('#optSnap').checked,pv=-1; L.forEach(function(l,i){tot+=((l.gap&&i>0)?GAPW:0)+weight(l.text)});
+    L.forEach(function(l,i){ acc+=((l.gap&&i>0)?GAPW:0); var t=i===0?vw[0].s:vw[Math.min(vw.length-1,Math.floor(acc/tot*vw.length))].s; acc+=weight(l.text); if(i>0&&sn&&st.env)t=snapTime(t); if(pv>=0&&t<pv+0.25)t=pv+0.25; l.t=t; l.est=true; pv=t }) }
+  L.forEach(function(l){l.lock=false}); st.secT=st.secs.map(function(){return null}); st.secMode=false; setModeUI(); st.tapIdx=L.length; st.verify=true; lastActive='';
+  refreshAllTimes();
+  var f=null; L.forEach(function(l){if(l.t!=null&&(f==null||l.t<f))f=l.t}); au.currentTime=Math.max(0,(f||0)-1.5); au.play().catch(function(){});
+  var s3x=$('#s3'); if(s3x&&s3x.scrollIntoView)setTimeout(function(){s3x.scrollIntoView({behavior:'smooth',block:'start'})},300);
+  return true;
+}
 async function aiRun(){
   if(st.busy||!st.buf||!st.lines.length)return; st.busy=true; var msg=$('#aiMsg'), btn=$('#aiBtn'); btn.disabled=true; au.pause();
   try{
@@ -1102,8 +1153,10 @@ async function aiRun(){
     } }
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
-    var r=aiAlign(words,L.map(function(l){return l.text}),dur);
-    if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); msg.textContent=AX.fail+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return}
+    var r=aiAlign(words,L.map(function(l){return l.text}),dur); if(!r||r.frac<0.2){ var r2=null; try{r2=aiAlign2(words,L.map(function(l){return l.text}),dur)}catch(_){} if(r2&&(!r||r2.frac>r.frac))r=r2 } try{window.__fr=r?r.frac:null;window.__nw=words.length}catch(_){}
+    if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } if(!r||r.frac<0.1){ $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); var rough=false; try{rough=aiRough(words)}catch(_){} msg.textContent=(rough?(KO?'AI가 가사를 못 알아들어서 노래 길이에 맞춰 대략 맞췄어요. 들어 보고 어긋난 줄만 고치세요.':'The AI could not make out the lyrics, so lines were spread over the song roughly. Listen and fix any that are off.'):AX.fail)+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return} }
+    try{ var fa=-1,q0; for(q0=0;q0<r.anch.length;q0++)if(r.anch[q0]){fa=q0;break}
+      if(fa>0){ var s0=estimate()[0], ta=r.t[fa]; if(isFinite(s0)&&ta-s0>fa*1.2&&r.t[0]<s0-1){ var ww=L.slice(0,fa).map(function(l){return aiWeight(l.text)}),tw=0,ac=0,q1; ww.forEach(function(x){tw+=x}); for(q1=0;q1<fa;q1++){ r.t[q1]=s0+(ta-s0)*ac/tw; ac+=ww[q1] } } } }catch(_){}
     var found=0;
     L.forEach(function(l,i){ var t=r.t[i]; if(r.anch[i]&&st.cand){t=snapOnset(t,0.4,0.4,0.4,0.5)} l.t=Math.max(0,t); l.est=r.anch[i]?'auto':true; l.lock=false; if(r.anch[i])found++ });
     st.secT=st.secs.map(function(){return null}); st.secMode=false; setModeUI(); st.tapIdx=L.length; st.verify=true; lastActive='';
