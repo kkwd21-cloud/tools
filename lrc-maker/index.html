@@ -936,7 +936,7 @@ function lineStart(ts,rate){
   var den=n*sxx-sx*sx, b=den>1e-9?(n*sxy-sx*sy)/den:rate; b=Math.max(0.08,Math.min(0.7,b));
   var a=(sy-b*sx)/n; return Math.min(a,ts[0][1]);
 }
-function aiAlign(words,lines){
+function aiAlign(words,lines,dur){
   var H=[],Ht=[],R=[],Rl=[],i,j;
   words.forEach(function(wd){var cs=aiNorm(wd.w),n=cs.length;cs.forEach(function(c,k){H.push(c);Ht.push(wd.s+(wd.e-wd.s)*(k+0.5)/n)})});
   lines.forEach(function(t,li){aiNorm(t).forEach(function(c){R.push(c);Rl.push(li)})});
@@ -967,10 +967,12 @@ function aiAlign(words,lines){
   var wt=lines.map(aiWeight);
   // fill gaps
   var ks=keep.map(function(a){return a.k});
+  var paces=[],pq,pw; for(i=0;i<ks.length-1;i++){pw=0;for(pq=ks[i];pq<ks[i+1];pq++)pw+=wt[pq]; if(pw>0)paces.push((t[ks[i+1]]-t[ks[i]])/pw)}
+  paces.sort(function(x,y){return x-y}); var pace=paces.length?paces[Math.floor(paces.length/2)]:rate*1.1; pace=Math.max(0.12,Math.min(1.2,pace));
   function fill(a,b,ta,tb){ // lines a+1..b-1 between ta and tb ; a or b may be -1/nl
     var tot=0,q; for(q=a;q<b;q++)if(q>=0)tot+=wt[q]; 
-    if(a<0){ var tt=tb; for(q=b-1;q>=0;q--){tt-=wt[q]*rate*1.1;t[q]=Math.max(0,tt)} return }
-    if(b>=nl){ var tt2=ta+wt[a]*rate*1.1; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*rate*1.1} return }
+    if(a<0){ var tt=tb; for(q=b-1;q>=0;q--){tt-=wt[q]*pace;t[q]=Math.max(0,tt)} return }
+    if(b>=nl){ var tt2=ta+wt[a]*pace; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*pace} if(dur&&nl-1>a&&t[nl-1]>dur-2){var span2=Math.max(2,dur-3-ta),tot2=0,ac=wt[a];for(q=a;q<nl;q++)tot2+=wt[q];for(q=a+1;q<nl;q++){t[q]=ta+span2*ac/tot2;ac+=wt[q]}} return }
     var acc=wt[a],span=(tb-ta)*0.85; for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
   }
   fill(-1,ks[0],null,t[ks[0]]);
@@ -1065,7 +1067,7 @@ async function aiRun(){
     } }
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
-    var r=aiAlign(words,L.map(function(l){return l.text}));
+    var r=aiAlign(words,L.map(function(l){return l.text}),dur);
     if(!r||r.frac<0.2){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } $('#s2').classList.remove('auto'); msg.textContent=AX.fail;btn.disabled=false;st.busy=false;return}
     var found=0;
     L.forEach(function(l,i){ var t=r.t[i]; if(r.anch[i]&&st.cand){t=snapOnset(t,0.4,0.4,0.4,0.5)} l.t=Math.max(0,t); l.est=r.anch[i]?'auto':true; l.lock=false; if(r.anch[i])found++ });
