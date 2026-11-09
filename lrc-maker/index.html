@@ -967,7 +967,7 @@ function aiAlign(words,lines,dur){
   return aiFinish(keep,lines,dur);
 }
 
-var AI_VEND=0;
+var AI_VEND=0,AI_WT=[];
 function aiFinish(keep,lines,dur){
   var nl=lines.length,i,k,rate=0.22;
   var t=new Array(nl).fill(null),anch=new Array(nl).fill(false);
@@ -981,7 +981,7 @@ function aiFinish(keep,lines,dur){
     var tot=0,q; for(q=a;q<b;q++)if(q>=0)tot+=wt[q]; 
     if(a<0){ var tt=tb; for(q=b-1;q>=0;q--){tt-=wt[q]*pace;t[q]=Math.max(0,tt)} return }
     if(b>=nl){ var tt2=ta+wt[a]*pace; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*pace} var tgt=Math.min(dur||1e9,(AI_VEND>0?AI_VEND:(dur||1e9)))-3; if(dur&&nl-1>a&&(t[nl-1]>dur-2||(nl-1-a>=3&&t[nl-1]<tgt-8))){var span2=Math.max(2,tgt-ta),tot2=0,ac=wt[a];for(q=a;q<nl;q++)tot2+=wt[q];for(q=a+1;q<nl;q++){t[q]=ta+span2*ac/tot2;ac+=wt[q]}} return }
-    var acc=wt[a],span=(tb-ta)*0.85; if(tb-ta>1.8*tot*pace+4){span=tot*pace} for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
+    var acc=wt[a],span=(tb-ta)*0.95; if(tb-ta>1.8*tot*pace+4){var pe=ta+tot*pace+2,nwv=0,wi;for(wi=0;wi<AI_WT.length;wi++){if(AI_WT[wi]>=pe&&AI_WT[wi]<=tb-2)nwv++} if(nwv<=1)span=tot*pace} for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
   }
 
 
@@ -1180,6 +1180,7 @@ async function aiRun(){
     } }
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
+    try{AI_WT=words.map(function(w){return w.s})}catch(_){AI_WT=[]}
     try{AI_VEND=estimate()[1]}catch(_){AI_VEND=0} var r=aiAlign(words,L.map(function(l){return l.text}),dur); if(!r||r.frac<0.2){ var r2=null; try{r2=aiAlign2(words,L.map(function(l){return l.text}),dur)}catch(_){} if(r2&&(!r||r2.frac>r.frac))r=r2 } try{window.__fr=r?r.frac:null;window.__nw=words.length}catch(_){}
     if(!r||r.frac<0.6){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; st.r1=r; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } if(st.r1&&(!r||st.r1.frac>r.frac)){ r=st.r1 } st.r1=null; if(!r||r.frac<0.1){ $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); var rough=false; try{rough=aiRough(words)}catch(_){} msg.textContent=(rough?(KO?'AI가 가사를 못 알아들어서 노래 길이에 맞춰 대략 맞췄어요. 들어 보고 어긋난 줄만 고치세요.':'The AI could not make out the lyrics, so lines were spread over the song roughly. Listen and fix any that are off.'):AX.fail)+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return} }
     try{ var fa=-1,q0; for(q0=0;q0<r.anch.length;q0++)if(r.anch[q0]){fa=q0;break}
