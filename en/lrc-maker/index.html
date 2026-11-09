@@ -982,6 +982,17 @@ function aiFinish(keep,lines,dur){
     if(a<0){ var tt=tb; for(q=b-1;q>=0;q--){tt-=wt[q]*pace;t[q]=Math.max(0,tt)} return }
     if(b>=nl){ var tt2=ta+wt[a]*pace; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*pace} var tgt=Math.min(dur||1e9,(AI_VEND>0?AI_VEND:(dur||1e9)))-3; if(dur&&nl-1>a&&(t[nl-1]>dur-2||(nl-1-a>=3&&t[nl-1]<tgt-8))){var span2=Math.max(2,tgt-ta),tot2=0,ac=wt[a];for(q=a;q<nl;q++)tot2+=wt[q];for(q=a+1;q<nl;q++){t[q]=ta+span2*ac/tot2;ac+=wt[q]}} return }
     var acc=wt[a],span=(tb-ta)*0.95; if(tb-ta>1.8*tot*pace+4){var pe=ta+tot*pace+2,nwv=0,wi;for(wi=0;wi<AI_WT.length;wi++){if(AI_WT[wi]>=pe&&AI_WT[wi]<=tb-2)nwv++} if(nwv<=1)span=tot*pace} for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
+ // a long silent hole before the next anchor means the lines were spread too early: re-place them where singing was heard
+    if(AI_WT.length&&b-a>1&&tb-t[b-1]>2.2*wt[b-1]*pace+8){
+      var t0q=ta+wt[a]*pace*0.9,ww=[],wz; for(wz=0;wz<AI_WT.length;wz++){ if(AI_WT[wz]>t0q&&AI_WT[wz]<tb-0.5)ww.push(AI_WT[wz]) }
+      var mq=b-a-1,wsum=0; for(q=a+1;q<b;q++)wsum+=wt[q];
+      if(ww.length>=Math.max(4,mq*2)){
+        var cumw=0,tmp=[],prevq=ta+wt[a]*pace*0.5;
+        for(q=a+1;q<b;q++){ var gi=Math.min(ww.length-1,Math.floor(cumw/wsum*ww.length)); var tq=Math.max(ww[gi],prevq+0.8); tmp.push(tq); prevq=tq; cumw+=wt[q] }
+        if(tmp[tmp.length-1]<tb-0.8){ for(q=a+1;q<b;q++)t[q]=tmp[q-a-1] }
+      }
+    }
+
   }
 
 
