@@ -981,8 +981,32 @@ function aiFinish(keep,lines,dur){
     var tot=0,q; for(q=a;q<b;q++)if(q>=0)tot+=wt[q]; 
     if(a<0){ var tt=tb; for(q=b-1;q>=0;q--){tt-=wt[q]*pace;t[q]=Math.max(0,tt)} return }
     if(b>=nl){ var tt2=ta+wt[a]*pace; for(q=a+1;q<nl;q++){t[q]=tt2;tt2+=wt[q]*pace} var tgt=Math.min(dur||1e9,(AI_VEND>0?AI_VEND:(dur||1e9)))-3; if(dur&&nl-1>a&&(t[nl-1]>dur-2||(nl-1-a>=3&&t[nl-1]<tgt-8))){var span2=Math.max(2,tgt-ta),tot2=0,ac=wt[a];for(q=a;q<nl;q++)tot2+=wt[q];for(q=a+1;q<nl;q++){t[q]=ta+span2*ac/tot2;ac+=wt[q]}} return }
-    var acc=wt[a],span=(tb-ta)*0.85; for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
+    var acc=wt[a],span=(tb-ta)*0.85; if(tb-ta>1.8*tot*pace+4){span=tot*pace} for(q=a+1;q<b;q++){t[q]=ta+span*acc/tot;acc+=wt[q]}
   }
+
+
+  // repeated-lyric twins: a missed line that repeats an anchored line (chorus etc.) borrows its timing
+  var soft=new Array(nl).fill(false);
+  (function(){
+    var nr=lines.map(function(x){return aiNorm(x).join('')}),kq,kt,dd,r,d,pass;
+    for(pass=0;pass<2;pass++){
+      var add={},nadd=0;
+      for(kq=0;kq<nl;kq++){ if(t[kq]!=null||nr[kq].length<3)continue;
+        var vals=[];
+        for(kt=0;kt<nl;kt++){ if(kt===kq||t[kt]==null||nr[kt]!==nr[kq])continue; d=kt-kq;
+          for(dd=1;dd<=4;dd++){ r=kq-dd; if(r>=0&&t[r]!=null&&r+d>=0&&r+d<nl&&r+d!==kq&&t[r+d]!=null&&nr[r+d]===nr[r]){vals.push(t[r]+(t[kt]-t[r+d]));break} }
+          for(dd=1;dd<=4;dd++){ r=kq+dd; if(r<nl&&t[r]!=null&&r+d>=0&&r+d<nl&&r+d!==kq&&t[r+d]!=null&&nr[r+d]===nr[r]){vals.push(t[r]-(t[r+d]-t[kt]));break} }
+        }
+        if(vals.length){ vals.sort(function(x,y){return x-y}); var md=vals[vals.length>>1]; if(vals.length<3||vals[vals.length-1]-vals[0]<4){add[kq]=md;nadd++} }
+      }
+      if(!nadd)break;
+      for(kq in add){ k=+kq;
+        var pv=-1e9,nx=1e9,q2; for(q2=k-1;q2>=0;q2--)if(t[q2]!=null){pv=t[q2];break} for(q2=k+1;q2<nl;q2++)if(t[q2]!=null){nx=t[q2];break}
+        if(add[kq]>pv+0.8&&add[kq]<nx-0.8){t[k]=add[kq];soft[k]=true}
+      }
+    }
+  })();
+  ks=[];for(i=0;i<nl;i++)if(t[i]!=null)ks.push(i);
   fill(-1,ks[0],null,t[ks[0]]);
   for(i=0;i<ks.length-1;i++)fill(ks[i],ks[i+1],t[ks[i]],t[ks[i+1]]);
   fill(ks[ks.length-1],nl,t[ks[ks.length-1]],null);
