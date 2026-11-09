@@ -1043,6 +1043,7 @@ function aiAlign2(words,lines,dur){
   return aiFinish(keep,lines,dur);
 }
 
+
 // ---------- AI auto sync (optional, needs AI_URL)
 var AI_URL=window.DUSK_AI_URL||'';
 var AX=KO?{btn:'🤖 AI로 자동 맞추기',sub:'(약 1분 · 베타)',note:'음악이 AI 서버로 잠깐 전송돼요. 저장하지 않아요.',listen:'AI가 노래를 듣는 중이에요… ',fail:'AI가 가사를 잘 못 알아들었어요. 고급 설정에서 "정밀 모드"를 켜고 다시 누르거나, 아래 큰 버튼으로 맞춰 주세요.',net:'AI 서버에 연결하지 못했어요. 아래 큰 버튼으로 맞춰 주세요.',done:function(a,n){return 'AI가 '+n+'줄 중 '+a+'줄을 찾았어요. 들어 보고 어긋난 줄만 고치세요.'+(a<n?' (못 찾은 줄은 어림잡은 시간이에요)':'')}}:{btn:'🤖 Auto-sync with AI',sub:'(about 1 min · beta)',note:'Your audio is sent to an AI server briefly. It is not stored.',listen:'AI is listening… ',fail:'The AI could not make out the lyrics. Use the big button below instead.',net:'Could not reach the AI server. Use the big button below instead.',done:function(a,n){return 'AI found '+a+' of '+n+' lines. Listen through and fix only the ones that are off.'+(a<n?' (lines it missed use rough times)':'')}};
@@ -1181,7 +1182,7 @@ async function aiRun(){
     await Promise.all([worker(),worker()]);
     words.sort(function(a,b){return a.s-b.s});
     try{AI_WT=words.map(function(w){return w.s})}catch(_){AI_WT=[]}
-    try{AI_VEND=estimate()[1]}catch(_){AI_VEND=0} var r=aiAlign(words,L.map(function(l){return l.text}),dur); if(!r||r.frac<0.2){ var r2=null; try{r2=aiAlign2(words,L.map(function(l){return l.text}),dur)}catch(_){} if(r2&&(!r||r2.frac>r.frac))r=r2 } try{window.__fr=r?r.frac:null;window.__nw=words.length}catch(_){}
+    try{AI_VEND=estimate()[1]}catch(_){AI_VEND=0} var r=aiAlign(words,L.map(function(l){return l.text}),dur); if(!r||r.frac<0.95){ var r2=null; try{r2=aiAlign2(words,L.map(function(l){return l.text}),dur)}catch(_){} if(r2&&(!r||r2.frac>r.frac))r=r2 } try{window.__fr=r?r.frac:null;window.__nw=words.length}catch(_){}
     if(!r||r.frac<0.6){ var hq=$('#optHQ'); if(!AI_URL&&hq&&!hq.checked&&!st.retried){ st.retried=true; st.r1=r; hq.checked=true; msg.textContent=AX.retry; btn.disabled=false; st.busy=false; setTimeout(aiRun,50); return } if(st.r1&&(!r||st.r1.frac>r.frac)){ r=st.r1 } st.r1=null; if(!r||r.frac<0.1){ $('#s2').classList.remove('auto'); var heard=words.slice(0,10).map(function(w){return w.w}).join('').replace(/\s+/g,' ').slice(0,30); var rough=false; try{rough=aiRough(words)}catch(_){} msg.textContent=(rough?(KO?'AI가 가사를 못 알아들어서 노래 길이에 맞춰 대략 맞췄어요. 들어 보고 어긋난 줄만 고치세요.':'The AI could not make out the lyrics, so lines were spread over the song roughly. Listen and fix any that are off.'):AX.fail)+' ['+words.length+(KO?'단어':' words')+(heard?' · '+heard:'')+(HQnow()?' · small':' · base')+']';btn.disabled=false;st.busy=false;return} }
     try{ var fa=-1,q0; for(q0=0;q0<r.anch.length;q0++)if(r.anch[q0]){fa=q0;break}
       if(fa>0){ var s0=estimate()[0], ta=r.t[fa]; if(isFinite(s0)&&ta-s0>fa*1.2&&r.t[0]<s0-1){ var ww=L.slice(0,fa).map(function(l){return aiWeight(l.text)}),tw=0,ac=0,q1; ww.forEach(function(x){tw+=x}); for(q1=0;q1<fa;q1++){ r.t[q1]=s0+(ta-s0)*ac/tw; ac+=ww[q1] } } } }catch(_){}
