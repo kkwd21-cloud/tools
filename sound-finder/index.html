@@ -3087,11 +3087,12 @@ function render(){
   var bar=$('#ppMixBar');if(bar){bar.hidden=!MIX;var A=PICK.map(find).filter(Boolean);$('#ppMixGo').disabled=A.length!==2;$('#ppMixNote').textContent=A.length===2?(A[0].ko.split('·')[0].trim()+' × '+A[1].ko.split('·')[0].trim()):'카드 두 개를 골라 주세요 ('+A.length+'/2)'}
   var mbtn=$('#ppMixBtn');if(mbtn)mbtn.setAttribute('aria-pressed',MIX?'true':'false');
 }
+function MIXSTORY(c){return c.tn==='story'||/^(dusk|story|highballad|highfemale|highsoul|highmusical|highduet|highost|highfalsetto|highacoustic|cinematicindie|chamberpop|soulballad|nylonballad|kballad|ostballad|piano|bandballad|rnb|rockballad|ballad80|duetballad)$/.test(c.id||'')}
 function mixCard(a,b){
   var ta=a.en.split(/,\s*/),tb=b.en.split(/,\s*/),out=[];
   ta.slice(0,3).concat(tb.slice(0,3)).forEach(function(x){if(out.indexOf(x)<0)out.push(x)});
   var nm=a.ko.split('·')[0].trim()+' × '+b.ko.split('·')[0].trim();
-  return {id:'mix'+Date.now(),ko:nm,d:'두 스타일을 섞은 카드',en:out.join(', '),bpm:Math.round(((+a.bpm||100)+(+b.bpm||100))/2),v:a.v==='inst'?b.v:a.v,t:a.t===b.t?a.t:'mid',th:a.th,mine:1};
+  return {id:'mix'+Date.now(),ko:nm,d:'두 스타일을 섞은 카드',en:out.join(', '),bpm:Math.round(((+a.bpm||100)+(+b.bpm||100))/2),v:a.v==='inst'?b.v:a.v,t:a.t===b.t?a.t:'mid',th:a.th,mine:1,tn:(MIXSTORY(a)||MIXSTORY(b))?'story':undefined};
 }
 var LASTMIX=null;
 document.addEventListener('click',function(e){
@@ -3102,6 +3103,7 @@ document.addEventListener('click',function(e){
   if(b.id==='ppMixBtn'){MIX=!MIX;PICK=[];LASTMIX=null;$('#ppMixSave').hidden=true;render();return}
   if(b.id==='ppMixGo'){var A=PICK.map(find).filter(Boolean);if(A.length!==2)return;LASTMIX=mixCard(A[0],A[1]);
     if(typeof window.__sfHitGo==='function'){window.__sfHitGo({id:'pp_'+LASTMIX.id,ko:LASTMIX.ko,d:LASTMIX.d,en:LASTMIX.en,bpm:LASTMIX.bpm,th:LASTMIX.th,v:LASTMIX.v||'female',t:LASTMIX.t})}
+    if(LASTMIX.tn){var _tb=document.querySelector('#toneChips button[data-t="story"]');if(_tb)_tb.click()}
     $('#ppMixSave').hidden=false;return}
   if(b.id==='ppMixSave'){if(!LASTMIX)return;S.mine.push(LASTMIX);save();toast('섞은 스타일을 내 카드로 저장했어요');LASTMIX=null;b.hidden=true;MIX=false;PICK=[];render();return}
   if(b.dataset&&b.dataset.r){var c0=S.last&&find(S.last);if(!c0)return;var s0=stat(c0.id);s0[b.dataset.r]++;save();toast('기록했어요');render();renderLast();return}
