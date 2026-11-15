@@ -1802,8 +1802,11 @@ function storyTitles(){var S=LS.story;if(!S)return;LS.titles=[S.t].concat(S.a||[
 function storyPool(k,ms){var o=[],C=window.__LYC||{};ms.forEach(function(m){var Z=C[m];if(Z&&Z[k])Z[k].forEach(function(x){o.push(x)})});return o}
 var SWM={bridge:['modern','now','ahead'],outro:['modern','now']};
 function storySwap(k,S){var v=S[k],pr=S.love?0:(k==='bridge'?.25:.15);if(SWM[k]&&Math.random()<pr){var p=storyPool(k,SWM[k]);if(p.length)v=p[Math.floor(Math.random()*p.length)]}return v}
+function storyLxTh(S){var th=({c:'swag',f:'happy',t:'night'})[S&&S.k];if(!th){var h=0,t=(S&&S.t)||'';for(var i=0;i<t.length;i++)h+=t.charCodeAt(i);th=['memory','missing','hope','crush'][h%4]}return th}
+function storyLxK(k,t,S){try{if(!LXE.on(LX))return t;var th=storyLxTh(S);if(k==='chorus')return LXE.post('chorus',t,th,LX);if(k==='pre'||k==='bridge'||k==='outro'){var P=LXE.pool(k,th,LX);if(P&&P.length)return P[Math.floor(Math.random()*P.length)]}}catch(e){}return t}
+function storyLxRap(S,missing){try{if(LX.rap==='off')return;var th=storyLxTh(S);['rapV','rapB'].forEach(function(k){if(LS.locked[k])return;if(missing&&LS.texts[k])return;var P=LXE.pool(k,th,LX);if(P&&P.length)LS.texts[k]=LXE.post(k,P[Math.floor(Math.random()*P.length)],th,LX)})}catch(e){}}
 function storyRoll(missing){var S=(missing&&LS.story)?LS.story:(LS.story=storyPick());
-  ['verse1','pre','chorus','verse2','bridge','outro'].forEach(function(k){if(LS.locked[k])return;if(missing&&LS.texts[k])return;LS.texts[k]=storySwap(k,S)});storyTitles()}
+  ['verse1','pre','chorus','verse2','bridge','outro'].forEach(function(k){if(LS.locked[k])return;if(missing&&LS.texts[k])return;LS.texts[k]=storyLxK(k,storySwap(k,S),S)});storyLxRap(S,missing);storyTitles()}
 function lRoll(only,missing){
   if(tone==='story'&&!ENG&&window.__STORY&&window.__STORY.length){storyRoll(missing);utHook();return}
   lKeys().forEach(function(k){if(LS.locked[k])return;if(only&&only!==k)return;if(missing&&LS.texts[k])return;LS.texts[k]=lPick(k,k==='verse2'?LS.texts.verse1:null)});
