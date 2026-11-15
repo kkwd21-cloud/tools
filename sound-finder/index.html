@@ -2818,7 +2818,7 @@ function vSave(){try{if(VAULT.length>60)VAULT=VAULT.slice(0,60);localStorage.set
 function vSnap(){
   if(!cur)return null;
   return {id:SID||(SID=Date.now()),ts:Date.now(),a:cur.n,mx:mix?mix.n:'',ratio:ratio,song:song,title:LS.title||'',style:$('#cPhrase').value,
-    texts:JSON.parse(JSON.stringify(LS.texts||{})),lyr:lyrText(),theme:theme,tone:tone,eng:!!ENG,ko:!!ko,tl:TL,lx:JSON.parse(JSON.stringify(LX)),vr:cur.virt?JSON.parse(JSON.stringify(cur.virt)):null,tw:JSON.parse(JSON.stringify(tw||{})),sfx:JSON.parse(JSON.stringify(SFX)),fx:JSON.parse(JSON.stringify(FXS||{})),inst:!!lInst()};
+    texts:JSON.parse(JSON.stringify(LS.texts||{})),lyr:lyrText(),theme:theme,tone:tone,eng:!!ENG,ko:!!ko,tl:TL,lx:JSON.parse(JSON.stringify(LX)),vr:cur.virt?JSON.parse(JSON.stringify(cur.virt)):null,hr:(cur.hit&&!cur.virt)?{n:cur.n,d:cur.d||'',g:cur.g||'pop',v:cur.v,t:cur.t,b:cur.b,k:cur.k,rc:RC?{id:RC.id,ko:RC.ko,d:RC.d,en:RC.en,bpm:RC.bpm,th:RC.th,ex:RC.ex,form:RC.form,q:RC.q}:null}:null,tw:JSON.parse(JSON.stringify(tw||{})),sfx:JSON.parse(JSON.stringify(SFX)),fx:JSON.parse(JSON.stringify(FXS||{})),inst:!!lInst()};
 }
 function vPut(forceNew){
   var s=vSnap();if(!s)return false;
@@ -2845,9 +2845,10 @@ function vDownload(name,text,mime){
 function vFname(e,ext){return (String(e.title||'lyrics').replace(/[\\\/:*?"<>|\s]+/g,'_').slice(0,40)||'lyrics')+ext}
 function vRestore(e){
   var row=null;if(e.vr)row=vcRow(e.vr);else ROWS.forEach(function(r){if(!row&&r.n===e.a)row=r});
-  if(!row){toast('이 가수는 지금 목록에 없어요');return}
+  if(!row&&e.a){var h0=e.hr||{},st0=e.style||'';row={n:e.a,a:[],g:h0.g||'pop',v:h0.v||((/\bmale\b/i.test(st0)&&!/female/i.test(st0))?'male':'female'),t:h0.t||'mid',b:h0.b||'90~100',k:h0.k||st0,items:[h0.k||st0],s:[],i:-1,keys:[],hit:true,d:h0.d||''};try{row.w=words(row)}catch(x){}}
+  if(!row){toast('이 곡을 열 수 없어요');return}
   song=e.song||'';ENG=!!e.eng;try{var d0=LXE.def();Object.keys(d0).forEach(function(k){LX[k]=(e.lx&&k in e.lx)?e.lx[k]:d0[k]})}catch(x){}
-  choose(row,false);
+  choose(row,false);if(e.hr&&e.hr.rc)RC=e.hr.rc;
   SFX=e.sfx&&e.sfx.on?JSON.parse(JSON.stringify(e.sfx)):{on:[],pos:{}};sfxRender();tw=e.tw||{};FXS=e.fx||{};theme=e.theme||'';tone=e.tone||'';ko=!!e.ko;$('#optKo').checked=ko;
   if(e.mx){var mr=null;ROWS.forEach(function(r){if(!mr&&r.n===e.mx)mr=r});if(mr){setMix(mr);ratio=e.ratio||'a';renderRatio()}}
   renderTw();renderTone();renderTheme();lxRender();renderPhrase();
