@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>뒷모습·실루엣 배경 이미지 문구 만들기 – 음악 영상용 | Dusk Soul</title>
+<meta name="description" content="음악 영상 배경으로 쓰는 뒷모습·실루엣 AI 이미지 문구를 칩 선택만으로 만들어요. 한 번에 10개씩 뽑아 곡마다 다른 배경을 쓰세요. 무료, 가입 없음.">
+<link rel="canonical" href="https://kkwd21-cloud.github.io/tools/bg-prompt/">
+<meta name="theme-color" content="#090d19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="뒷모습·실루엣 배경 이미지 문구 만들기">
+<meta property="og:description" content="칩만 고르면 AI 이미지 문구 10개가 한 번에. 곡마다 다른 배경을 쓰세요.">
+<meta property="og:url" content="https://kkwd21-cloud.github.io/tools/bg-prompt/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"뒷모습·실루엣 배경 이미지 문구 만들기","url":"https://kkwd21-cloud.github.io/tools/bg-prompt/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"}</script>
+<style>
+:root{--accent:#b9a0ff;--accent2:#d9ccff;--bg:#090d19;--panel:#121a31;--panel2:#18223f;--line:#27325c;--line2:#34417a;--text:#f3f0e8;--muted:#98a2c4;--warn:#f0c987;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+h1,h2,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:var(--accent2)}
+[hidden]{display:none!important}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px}
+.top{position:sticky;top:0;z-index:20;background:rgba(9,13,25,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{max-width:860px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-family:'Noto Serif KR',serif;font-weight:700;text-decoration:none;color:var(--text)}
+.top a.all{font-size:13px;color:var(--muted);text-decoration:none}
+.hero{padding:44px 0 8px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px}
+h1{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(27px,6vw,44px);line-height:1.22;text-wrap:balance}
+.lead{margin-top:14px;color:var(--muted);max-width:56ch}
+.card{margin-top:20px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:20px}
+.card h2{font-size:17px}
+.card>p{margin-top:6px;color:var(--muted);font-size:14px}
+.lab{margin-top:16px;font-size:13px;color:var(--muted);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{border:1px solid var(--line2);background:transparent;color:var(--text);padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:600;font-family:inherit;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14101a}
+.hint{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn-p,.btn-g{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;border-radius:12px;padding:10px 16px;border:1px solid transparent;cursor:pointer;font-family:inherit}
+.btn-p{background:var(--accent);color:#14101a}
+.btn-g{background:rgba(255,255,255,.04);border-color:var(--line2);color:var(--text)}
+.btn-s{padding:6px 12px;font-size:12.5px;border-radius:10px;flex:none}
+.out li{display:flex;gap:12px;align-items:flex-start;margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.out .n{font-family:'IBM Plex Mono',monospace;color:var(--accent);font-weight:600;flex:none;width:22px}
+.out .t{flex:1;font-size:13px;line-height:1.6;color:var(--text);min-width:0}
+.svc{display:grid;gap:10px;margin-top:12px}
+@media(min-width:640px){.svc{grid-template-columns:1fr 1fr}}
+.svc li{border:1px solid var(--line);border-radius:12px;background:var(--panel2);padding:12px 14px}
+.svc b{display:block}
+.svc span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.tip{margin-top:12px;font-size:13.5px;color:var(--warn)}
+.chk li{display:flex;gap:10px;align-items:flex-start;margin-top:8px;font-size:14px}
+.chk input{margin-top:6px;accent-color:var(--accent)}
+footer{margin:34px 0 60px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in"><a class="brand" href="../">Dusk Soul Toolkit</a><a class="all" href="../">모든 도구</a></div></header>
+<main class="wrap">
+<section class="hero">
+<p class="eyebrow">Background prompt</p>
+<h1>뒷모습·실루엣<br>배경 이미지 문구 만들기</h1>
+<p class="lead">얼굴이 안 나오는 뒷모습·실루엣 이미지는 어색할 일이 없고 고급스러워요. 칩을 고르면 AI 이미지 도구에 붙여 넣을 문구가 나오고, 한 번에 10개씩 뽑아 곡마다 다른 배경을 쓸 수 있어요.</p>
+</section>
+
+<section class="card">
+<h2>1. 고르기</h2>
+<p>여러 개 골라도 되고, 아무것도 안 고르면 전부에서 섞어요.</p>
+<div class="lab">장면</div>
+<div class="chips" id="gScene"></div>
+<div class="lab">시간대·날씨</div>
+<div class="chips" id="gTime"></div>
+<div class="lab">옷차림</div>
+<div class="chips" id="gWear"></div>
+<div class="lab">구도</div>
+<div class="chips" id="gComp"></div>
+<div class="lab">화면 비율</div>
+<div class="chips" id="gAr"></div>
+<div class="row"><button class="btn-p" id="make" type="button">문구 10개 뽑기</button></div>
+</section>
+
+<section class="card" id="resCard" hidden>
+<h2>2. 복사해서 이미지 도구에 붙이기</h2>
+<ul class="out" id="out"></ul>
+<div class="row"><button class="btn-g" id="copyAll" type="button">전체 복사</button><button class="btn-g" id="again" type="button">🎲 다시 뽑기</button></div>
+</section>
+
+<section class="card">
+<h2>3. 이미지 만들 곳</h2>
+<p>무료 한도(하루·월 장수, 해상도)는 서비스마다 다르고 자주 바뀌어요. 가입 화면의 안내를 먼저 확인하고, 한도가 차면 다른 곳으로 넘어가세요.</p>
+<ul class="svc">
+<li><b>ChatGPT</b><span>문구를 붙여 넣으면 바로 생성</span></li>
+<li><b>Gemini</b><span>구글 계정으로 바로 사용</span></li>
+<li><b>Microsoft Copilot (Designer)</b><span>마이크로소프트 계정으로 사용</span></li>
+<li><b>Canva</b><span>이미지 생성 후 바로 편집 가능</span></li>
+</ul>
+<p class="tip">한 번에 마음에 드는 이미지가 안 나와도 괜찮아요. 같은 문구로 2~3번 더 시도해 가장 좋은 걸 고르세요.</p>
+</section>
+
+<section class="card">
+<h2>4. 영상으로 만들기</h2>
+<p>이미지는 정지 상태로 두고, 노래와 가사 자막만 얹어도 충분해요. 곡마다 이미지만 바꿔 가면 양을 늘릴 수 있어요.</p>
+<div class="row"><a class="btn-p" href="../musiccanvas/">MusicCanvas 보기 · 7일 무료</a><a class="btn-g" href="../lrc-maker/">가사 자막 만들기</a><a class="btn-g" href="../upload-kit/">유튜브 올리기 5단계</a></div>
+</section>
+
+<section class="card">
+<h2>올리기 전 확인</h2>
+<ul class="chk">
+<li><input type="checkbox" id="c1"><label for="c1">실제 인물·연예인을 닮게 만들지 않았나요?</label></li>
+<li><input type="checkbox" id="c2"><label for="c2">이미지 도구의 이용 약관에서 영상 배경 사용(상업 이용 포함)이 가능한지 확인했나요?</label></li>
+<li><input type="checkbox" id="c3"><label for="c3">유튜브 스튜디오의 "변경되거나 합성된 콘텐츠" 질문에 직접 확인하고 답했나요?</label></li>
+</ul>
+</section>
+
+<footer>이 페이지는 외부 서비스와 제휴 관계가 없어요. 서비스의 요금·정책은 각 사이트에서 확인하세요.</footer>
+</main>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var D={
+scene:[
+["노을 창가","standing in front of a large window at sunset, city skyline outside"],
+["비 오는 밤거리","walking alone on a rainy city street at night, neon reflections on wet pavement"],
+["새벽 바다","standing on an empty beach at dawn, calm sea, soft mist"],
+["눈 오는 가로등","standing under a street lamp in gentle falling snow, quiet snowy street"],
+["기차 창가","sitting by a train window, blurred landscape passing outside"],
+["옥상 야경","standing on a rooftop overlooking the city night lights"],
+["숲길","walking along a quiet forest path with light filtering through trees"],
+["무대 역광","standing on an empty stage facing the audience with strong backlight and light haze"],
+["골목 카페 창","sitting alone at a cafe window seat, rain on the glass"],
+["들판 석양","standing in a wide open field at golden hour, tall grass"]
+],
+time:[
+["노을","warm golden hour light, orange and pink sky"],
+["푸른 새벽","cool blue pre-dawn light, quiet and still"],
+["비 오는 밤","night rain, cool tones with warm light spots"],
+["흐린 오후","soft overcast daylight, muted tones"],
+["눈 내리는 밤","snowy night, cold blue with warm lamp glow"]
+],
+wear:[
+["코트","wearing a long dark coat"],
+["후드","wearing a loose hoodie"],
+["원피스","wearing a simple flowing dress"],
+["셔츠","wearing a plain white shirt"],
+["교복풍 재킷","wearing a plain casual jacket"],
+["우산 들기","holding a dark umbrella"]
+],
+comp:[
+["뒷모습 전신","full body from behind, small figure in a wide scene"],
+["뒷모습 상반신","upper body seen from behind, centered"],
+["옆 실루엣","side profile as a pure dark silhouette, face in shadow"],
+["정면 역광 실루엣","front silhouette strongly backlit, no facial features visible"]
+],
+ar:[
+["16:9 가로","16:9"],
+["9:16 세로","9:16"],
+["1:1 정사각","1:1"]
+]
+};
+var KEY={scene:'gScene',time:'gTime',wear:'gWear',comp:'gComp',ar:'gAr'};
+var SINGLE={ar:1};
+function mk(g){
+  var el=$('#'+KEY[g]);
+  D[g].forEach(function(it,i){
+    var b=document.createElement('button');
+    b.type='button';b.className='chip';b.textContent=it[0];b.setAttribute('data-i',i);
+    b.setAttribute('aria-pressed',(SINGLE[g]&&i===0)?'true':'false');
+    el.appendChild(b);
+  });
+  el.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(SINGLE[g]){
+      el.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    }else{
+      b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');
+    }
+  });
+}
+Object.keys(KEY).forEach(mk);
+function sel(g){
+  var on=[].slice.call($('#'+KEY[g]).querySelectorAll('[aria-pressed="true"]')).map(function(b){return D[g][+b.getAttribute('data-i')]});
+  return on.length?on:D[g];
+}
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+var TAIL="no face visible, faceless, one person only, no text, no watermark, cinematic composition, shallow depth of field, soft film grain, muted color grading, natural realistic photo, calm and emotional mood";
+function one(){
+  var s=rnd(sel('scene')),t=rnd(sel('time')),w=rnd(sel('wear')),c=rnd(sel('comp')),a=sel('ar')[0];
+  return "Photorealistic cinematic photo, "+c[1]+", a lone person "+s[1]+", "+w[1]+", "+t[1]+", "+TAIL+", aspect ratio "+a[1];
+}
+var cur=[];
+function render(){
+  cur=[];var seen={};
+  var guard=0;
+  while(cur.length<10&&guard<200){guard++;var p=one();if(!seen[p]){seen[p]=1;cur.push(p)}}
+  var ul=$('#out');ul.innerHTML='';
+  cur.forEach(function(p,i){
+    var li=document.createElement('li');
+    var n=document.createElement('span');n.className='n';n.textContent=String(i+1);
+    var t=document.createElement('span');t.className='t';t.textContent=p;
+    var b=document.createElement('button');b.type='button';b.className='btn-g btn-s';b.textContent='복사';
+    b.addEventListener('click',function(){copy(p,b,'복사')});
+    li.appendChild(n);li.appendChild(t);li.appendChild(b);ul.appendChild(li);
+  });
+  $('#resCard').hidden=false;
+}
+function copy(text,btn,label){
+  function done(){btn.textContent='복사했어요';setTimeout(function(){btn.textContent=label},1400)}
+  function fb(){
+    var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy')}catch(e){}
+    document.body.removeChild(ta);done();
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fb)}else fb();
+}
+$('#make').addEventListener('click',function(){render();$('#resCard').scrollIntoView({behavior:'smooth',block:'start'})});
+$('#again').addEventListener('click',render);
+$('#copyAll').addEventListener('click',function(){copy(cur.map(function(p,i){return (i+1)+". "+p}).join("\n\n"),this,'전체 복사')});
+render();
+})();
+</script>
+</body>
+</html>
