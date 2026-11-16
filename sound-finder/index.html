@@ -487,7 +487,7 @@ details.pk>summary .note{display:block;margin-top:4px}
 #ppBox .ppmore>summary:after{content:none!important}
 #ppBox .sfrow>.chip,#ppBox .sfrow>.b-main,#ppBox .sfrow>.b-sub{flex:0 0 auto;width:auto}
 #ppBox .ppgrid .ppc{box-shadow:none}
-#insBox>summary{display:block!important}#insBox>summary:after{content:none!important}#insBox>summary .note{display:inline!important;margin:0 0 0 4px}#insBox .ppc{box-shadow:none}#insBox .ppc button{all:unset;cursor:pointer;display:block;width:100%}#insBox .ppc b{display:block;font-size:14px}#insBox .ppd{font-size:12px;color:var(--mute,#8a8f98);margin-top:4px}
+#insBox>summary{display:block!important}#insBox>summary:after{content:'＋ 펼치기'!important;float:right;font-size:12.5px;font-weight:700;color:var(--muted,#888)}#insBox[open]>summary:after{content:'－ 접기'!important}#insBox>summary .note{display:inline!important;margin:0 0 0 4px}#insBox .ppc{box-shadow:none}#insBox .ppc button{all:unset;cursor:pointer;display:block;width:100%}#insBox .ppc b{display:block;font-size:14px}#insBox .ppd{font-size:12px;color:var(--mute,#8a8f98);margin-top:4px}
 </style>
 <style id="bento">
 :root{--accent:#6c4df0;--accent2:#4a3fb0;--rgb:108,77,240;--bg:#fbfbfd;--bg2:#f3f2fa;--panel:#fff;--panel2:#f7f6fc;--line:#e7e5f2;--line2:#d6d2ea;--text:#111;--muted:#6b6b78;--mut:#6b6b78;--ok:#1f8a4c;color-scheme:light}
@@ -564,7 +564,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
   
   <section class="sec" id="find">
     <div class="sec-head"><h2><span class="stp">1</span>곡 느낌 고르기</h2><p>가수나 곡 이름을 쓰거나, 🔥 히트곡 느낌을 눌러요. 예: 아이유, 밤편지, Shape of You</p></div>
-    <details class="pk" id="insBox" open style="margin-bottom:12px"><summary>🎼 연주곡 스타일 <span class="note sm" style="font-weight:400">· 노래 없이 악기 연주만 나와요</span></summary><div class="pkb"><div id="insList" class="ppgrid"></div><p class="note sm" id="insTip" style="margin:0">카드를 누르면 제목·스타일·가사가 자동으로 나와요. 복사해서 수노에 붙여 넣기만 하세요.</p></div></details>
+    <details class="pk" id="insBox" style="margin-bottom:12px"><summary>🎼 연주곡 스타일 <span class="note sm" style="font-weight:400">· 노래 없이 악기 연주만 나와요</span></summary><div class="pkb"><div id="insList" class="ppgrid"></div><p class="note sm" id="insTip" style="margin:0">카드를 누르면 제목·스타일·가사가 자동으로 나와요. 복사해서 수노에 붙여 넣기만 하세요.</p></div></details>
     <details class="pk" id="ppBox" open style="margin-bottom:12px"><summary>🔥 유튜브 인기 스타일 <span class="note sm" style="font-weight:400">· 눌러서 바로 시작해요</span></summary><div class="pkb">
       <p class="note sm" id="ppLast" hidden style="margin:0"></p>
       <div id="ppList" class="ppgrid"></div>
