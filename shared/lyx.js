@@ -15,13 +15,15 @@ function def(){return {en:'off',rap:'off',rapLen:8,duet:false,solo:false,adlib:f
 function X(th){var D=window.DUSK_LYX;if(!D)return null;return D[th]||(ALIAS[th]&&D[ALIAS[th]])||null}
 function on(lx){return !!lx&&(lx.en!=='off'||lx.rap!=='off'||lx.duet||lx.solo||lx.adlib||lx.arc||lx.tit)}
 /* 초보용 한 번 누르기 → 세부 설정 */
-function preset(m,lx){lx=lx||def();lx.en=(m==='en'||m==='both')?'hook':'off';lx.rap=(m==='rap'||m==='both')?'v2':'off';if(lx.rap!=='off')lx.rapLen=8;return lx}
-function presetOf(lx){if(lx.en==='off'&&lx.rap==='off')return 'ko';if(lx.en==='hook'&&lx.rap==='off')return 'en';if(lx.en==='off'&&lx.rap==='v2'&&lx.rapLen===8)return 'rap';if(lx.en==='hook'&&lx.rap==='v2'&&lx.rapLen===8)return 'both';return ''}
+function preset(m,lx){lx=lx||def();lx.en=(m==='en'||m==='both')?'hook':'off';lx.rap=(m==='rap'||m==='both')?'v2':(m==='rap1'?'v1':'off');if(lx.rap!=='off')lx.rapLen=8;return lx}
+function presetOf(lx){if(lx.en==='off'&&lx.rap==='off')return 'ko';if(lx.en==='hook'&&lx.rap==='off')return 'en';if(lx.en==='off'&&lx.rap==='v1'&&lx.rapLen===8)return 'rap1';if(lx.en==='off'&&lx.rap==='v2'&&lx.rapLen===8)return 'rap';if(lx.en==='hook'&&lx.rap==='v2'&&lx.rapLen===8)return 'both';return ''}
 /* 구간 순서: base 는 verse1,pre,chorus… 같은 기존 목록 */
 function secs(base,lx){
   var out=[];
   base.forEach(function(s){
-    if(s==='verse2'&&(lx.rap==='v2'||lx.rap==='both'))out.push('rapv');
+    if(s==='intro'&&lx.rap==='v1')return;
+    if(s==='verse1'&&lx.rap==='v1')out.push('rapv');
+    else if(s==='verse2'&&(lx.rap==='v2'||lx.rap==='both'))out.push('rapv');
     else if(s==='bridge'&&(lx.rap==='br'||lx.rap==='both'))out.push('rapb');
     else out.push(s);
     if(lx.solo&&(s==='chorus2'||s==='verse2'&&base.indexOf('chorus2')<0))out.push('solo')});
@@ -53,7 +55,7 @@ function tag(id,baseTag,hintText,lx,ctx){
   if(lx.duet){var v=duetV(id,ctx.lead);if(v)t+=' - '+v}
   return '['+t+(hintText?': '+hintText:'')+']'}
 /* 스타일 문구에 붙일 키워드 */
-function styleTokens(lx){var o=[];if(lx.rap!=='off')o.push('rap verse');if(lx.en==='hook')o.push('English hook');else if(lx.en!=='off')o.push('bilingual lyrics with English lines');if(lx.duet)o.push('male and female duet');return o}
+function styleTokens(lx){var o=[];if(lx.rap==='v1')o.push('opens with a rap verse');else if(lx.rap!=='off')o.push('rap verse');if(lx.en==='hook')o.push('English hook');else if(lx.en!=='off')o.push('bilingual lyrics with English lines');if(lx.duet)o.push('male and female duet');return o}
 /* 후렴 마지막에 제목 한 줄 (복사 결과에만 반영) */
 function withTitle(k,t,title,lx){return(lx.tit&&k==='chorus'&&title&&t.indexOf(title)<0)?t+'\n'+title:t}
 window.DuskLyx={SECDEF:SECDEF,ARC:ARC,def:def,on:on,preset:preset,presetOf:presetOf,secs:secs,pool:pool,post:post,soloTag:soloTag,duetV:duetV,hint:hint,tag:tag,styleTokens:styleTokens,withTitle:withTitle,theme:X};
