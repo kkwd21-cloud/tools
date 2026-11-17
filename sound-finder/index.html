@@ -681,7 +681,7 @@ header.top a.mc-pill:hover{background:#111;color:#fff}
 
       <div class="blk">
         <span class="flabel"><span class="ob">②</span> 스타일 <span class="note sm" style="font-weight:400">수노 Style of Music 칸</span> <b id="mixLabel" class="mlab"></b></span>
-        <div class="chips" id="vxRow" role="group" aria-label="목소리" style="margin:6px 0 4px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">🎤 목소리:</span><button type="button" class="chip" data-vx="" aria-pressed="true">자동</button><button type="button" class="chip" data-vx="female" aria-pressed="false">여자</button><button type="button" class="chip" data-vx="male" aria-pressed="false">남자</button><button type="button" class="chip" data-vh="1" aria-pressed="false">허스키</button></div>
+        <div class="chips" id="vxRow" role="group" aria-label="목소리" style="margin:6px 0 4px;align-items:center"><span class="note sm" style="margin:0 2px 0 0">🎤 목소리:</span><button type="button" class="chip" data-vx="" aria-pressed="true">자동 🎲</button><button type="button" class="chip" data-vx="female" aria-pressed="false">여자</button><button type="button" class="chip" data-vx="male" aria-pressed="false">남자</button><button type="button" class="chip" data-vh="1" aria-pressed="false">허스키</button></div>
         <textarea class="inp" id="cPhrase" rows="4" spellcheck="false"></textarea>
         <span class="note sm" id="cLen" style="align-self:flex-end"></span>
         <div class="blk" style="border-top:0;padding-top:0;gap:4px"><div class="chips" id="prodRow"></div><div class="chips" id="eraRow"></div><span class="note sm" id="prodNote" style="margin:0"></span></div>
@@ -1151,12 +1151,12 @@ function eraRetro(){var s=(mix&&ratio==='b')?mix:cur;if(!s)return true;return /\
 function eraOn(){return ERA&&!inst()&&!eraRetro()}
 function eraClean(x,i){if(i<1)return x;var y=x.replace(ERAOLD,' ').replace(/\band\s+(?=,|$)/gi,'').replace(/\s+/g,' ').replace(/^(and|with)\s+/i,'').replace(/^[\s,]+|[\s,]+$/g,'');return y}
 var VOX='';try{VOX=localStorage.getItem('sf_vox')||''}catch(e){}
-function voxApply(p){if(!VOX)return p;var g=VOX==='female'?'female':'male',w=g+' vocals',t=p.split(', '),f=false,o=[];
+function voxApply(p){var _V=VOX;if(!_V&&window.__AUTOON&&window.__AUTOV==='male')_V='male';if(!_V)return p;var g=_V==='female'?'female':'male',w=g+' vocals',t=p.split(', '),f=false,o=[];
   t.forEach(function(x){if(/^(?:male-female duet|group vocals)$/i.test(x)){if(!f){f=true;o.push(w)}}else if(/\b(?:fe)?male\b(?=[\s-]+(?:vocals?|singer|voice|fronted|lead))/i.test(x)){f=true;o.push(x.replace(/\b(?:fe)?male\b(?=[\s-]+(?:vocals?|singer|voice|fronted|lead))/ig,g))}else o.push(x)});
   if(!f)o.splice(Math.min(2,o.length),0,w);
   var r=o.join(', ');while(o.length>3&&r.length>200){o.pop();r=o.join(', ')}return r}
 var VOXH=false;try{VOXH=localStorage.getItem('sf_vxh')==='1'}catch(e){}
-function huskApply(p){if(!VOXH)return p;var t=p.split(', '),f=false,o=[];
+function huskApply(p){if(!(VOXH||(window.__AUTOON&&!VOX&&window.__AUTOV==='hf')))return p;var t=p.split(', '),f=false,o=[];
   t.forEach(function(x){if(!f&&/\b(?:vocals?|singer|voice)\b/i.test(x)){f=true;x=x.replace(/\b(?:clear|delicate|airy|breathy|sweet|bright|crystal|soft|silky|angelic|light|gentle|smooth|whispery|ethereal|pure|high|husky|raspy)\b[\s-]*/ig,'').replace(/^\s+/,'');o.push('husky '+x)}else o.push(x)});
   if(!f)o.splice(Math.min(2,o.length),0,'husky raspy vocals');
   o=o.filter(function(x,i){return !(i>0&&/^(?:soft|airy|breathy|clear|delicate|sweet|bright|silky|angelic|whispery|ethereal|light|gentle|smooth|pure|crystal)\b[\w\s-]*\b(?:vocals?|voice|singer)\b/i.test(x))});
@@ -3094,6 +3094,7 @@ function apply(c){
   if(c.vars&&c.vars.length){var vi;var W=c.vars.length===5?[40,10,15,10,25]:c.vars.map(function(){return 1}),tw=W.reduce(function(x,y){return x+y},0),r=Math.random()*tw;vi=0;while(vi<W.length-1&&r>=W[vi]){r-=W[vi];vi++}window.__sfVi=vi;c=Object.assign({},c,c.vars[vi])}
   S.last=c.id;LASTIDS=null;save();
   if(!c.tn&&!c.mine&&/^(dusk|highballad|highfemale|highsoul|highmusical|highduet|highost|highfalsetto|highacoustic|cinematicindie|chamberpop|soulballad|nylonballad|kballad|ostballad|piano|bandballad|rnb|rockballad|ballad80|duetballad)$/.test(c.id))c=Object.assign({},c,{tn:'story'});
+  window.__AUTOON=!!(c.tn==='story');if(window.__AUTOON){var _r=Math.random();window.__AUTOV=_r<.6?'female':(_r<.9?'male':'hf')}
   if(!c.mine&&!c.raw)c=Object.assign({},c,{en:microVary(c)});
   window.__sfHitGo({id:'pp_'+c.id,ko:c.ko,d:c.d||'',en:boostEn(c),bpm:(+c.bpm||100)+Math.round((Math.random()-.5)*6),th:pickTh(c),v:c.v||'female',t:c.t||'mid',q:c.mine?0:1});
   if(c.hl&&typeof window.__sfHL==='function')window.__sfHL(c.hl);
@@ -3145,7 +3146,7 @@ document.addEventListener('click',function(e){
   if(b.id==='ppMore'){EXP=!EXP;render();return}
   if(b.id==='ppRestore'){S.hide={};save();render();return}
   if(b.id==='ppMixBtn'){MIX=!MIX;PICK=[];LASTMIX=null;$('#ppMixSave').hidden=true;render();return}
-  if(b.id==='ppMixGo'){var A=PICK.map(find).filter(Boolean);if(A.length!==2)return;LASTMIX=mixCard(A[0],A[1]);LASTIDS=[A[0].id,A[1].id];renderLast();
+  if(b.id==='ppMixGo'){var A=PICK.map(find).filter(Boolean);if(A.length!==2)return;LASTMIX=mixCard(A[0],A[1]);LASTIDS=[A[0].id,A[1].id];renderLast();window.__AUTOON=!!(LASTMIX.tn==='story');if(window.__AUTOON){var _r=Math.random();window.__AUTOV=_r<.6?'female':(_r<.9?'male':'hf')}
     if(typeof window.__sfHitGo==='function'){window.__sfHitGo({id:'pp_'+LASTMIX.id,ko:LASTMIX.ko,d:LASTMIX.d,en:LASTMIX.en,bpm:LASTMIX.bpm,th:LASTMIX.th,v:LASTMIX.v||'female',t:LASTMIX.t})}
     if(LASTMIX.tn){var _tb=document.querySelector('#toneChips button[data-t="story"]');if(_tb)_tb.click()}
     $('#ppMixSave').hidden=false;return}
