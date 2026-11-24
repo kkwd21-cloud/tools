@@ -1777,7 +1777,7 @@ window.__sfTest={buildBar:buildBar,makeSpec:makeSpec,mkBus:mkBus,mkVinyl:mkVinyl
 
 /* ---------- lyrics + title (in page) ---------- */
 var LY=D.lyr,LS={texts:{},locked:{},titles:[],title:'',short:false,hints:false,rhythm:false,g:null,inst:null};
-var LXE=window.DuskLyx;
+var LXE=window.DuskLyx;window.__sfHum=function(){var k=(tone==='story'&&LS.story&&LS.story.k)||'';if(k)return k==='d'||k==='g';try{return lMoodB()==='sad'}catch(e){return false}};
 var LX=LXE.def();
 Object.keys(LXE.SECDEF).forEach(function(k){LY.secdef[k]=LXE.SECDEF[k]});
 var SHORTSEC=['intro','verse1','chorus','verse2','chorus2','chorusF','outro'];
