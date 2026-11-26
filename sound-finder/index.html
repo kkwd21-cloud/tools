@@ -1172,7 +1172,8 @@ function voxKid(p){if(!VOXG&&!VOXC&&!VOXT)return p;var lim=p.length>200?1e9:200,
 var VOXS='';try{VOXS=localStorage.getItem('sf_vxs')||''}catch(e){}
 var VSP={deep:'deep warm baritone male vocals, low and resonant',tenor:'bright clear young male tenor vocals, soft and sweet',whisper:'whispered breathy intimate vocals, close-mic',power:'powerful belting vocals, soaring high notes at full voice',duet:'male and female duet vocals, trading lines and harmonizing',spoken:'spoken-word style delivery, half-sung half-spoken, poetic narration'};
 function voxSp(p){if(!VOXS||!VSP[VOXS])return p;var lim=p.length>200?1e9:200,t=p.split(', '),i=-1;t.forEach(function(x,j){if(i<0&&/\b(?:vocals?|singer|voice)\b/i.test(x))i=j});
-  if(i<0){t.splice(Math.min(1,t.length),0,VSP[VOXS]);i=Math.min(1,t.length-1)}else t[i]=VSP[VOXS];
+  if(i<0){t.splice(Math.min(1,t.length),0,VSP[VOXS]);i=Math.min(1,t.length-1)}else{var _g=/\bfemale\b/i.test(t[i])?'female ':/\bmale\b/i.test(t[i])?'male ':'';t[i]=(/^(?:whisper|power|spoken)$/.test(VOXS)?_g:'')+VSP[VOXS]}
+  if(VOXS!=='duet'){var _f=t.filter(function(x,j){return j===i||!(/\b(?:fe)?male\b[^,]*\b(?:vocals?|voice|singer|lead)\b|\blead (?:vocal|singer)\b|\b(?:vocals?|voice)\b[^,]*\b(?:fe)?male\b/i.test(x))});i=_f.indexOf(t[i]);t=_f}
   var prot=/children's choir|rap verse|chant/i,r=t.join(', ');
   while(r.length>lim&&t.length>3){var k=-1;for(var q=t.length-1;q>0;q--){if(q!==i&&!prot.test(t[q])){k=q;break}}if(k<0)break;t.splice(k,1);if(k<i)i--;r=t.join(', ')}
   return r}
